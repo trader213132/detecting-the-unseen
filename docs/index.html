@@ -13,11 +13,16 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314171f'/%3E%3Crect x='7' y='9' width='12' height='4' rx='2' fill='%23858d9b'/%3E%3Crect x='7' y='15' width='18' height='4' rx='2' fill='%23ee5f95'/%3E%3Crect x='7' y='21' width='9' height='4' rx='2' fill='%23a3abbb'/%3E%3C/svg%3E">
   <script>
     try { var t = localStorage.getItem("dtu-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+    // The opening sequence: hidden before first paint, played once the fonts are in (see masthead.js).
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !location.hash) {
+      document.documentElement.classList.add("intro");
+      setTimeout(function () { document.documentElement.classList.remove("intro", "intro-play"); }, 5000);
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/lake.css">
+  <link rel="stylesheet" href="assets/site.css?v=4"><link rel="stylesheet" href="assets/lake.css?v=4"><link rel="stylesheet" href="assets/masthead.css?v=4">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="lake-at-top"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div><button class="lake-toggle" type="button" data-lake-toggle aria-pressed="false" hidden>Pause motion</button>
@@ -29,43 +34,92 @@
         <span class="wordmark__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         Detecting the Unseen
       </a>
-      <nav class="topnav" aria-label="Sections">
-        <ul>
-          <li><a href="#question">Question</a></li>
-          <li><a href="#method">Experiment</a></li>
-          <li><a href="#results">Results</a></li>
-          <li><a href="#progress">Progress</a></li>
+      <nav class="menu" id="menu" aria-label="Sections">
+        <ul class="menu__links">
+          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">Findings<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><a class="menu__plain" href="#progress" id="progress-link">Progress</a></li>
         </ul>
+
+        <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
+        <div class="dd" id="dd">
+          <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
+            <div class="dd-list">
+              <a class="dd-item is-active" href="#findings" data-img="0"><strong>The short answer</strong><span>Untaught detectors found honest orders stranger than spoofs.</span></a>
+              <a class="dd-item" href="#figure-6" data-img="1"><strong>Does spoofing work?</strong><span>A fake wall lifts the spoofer's real fill chance.</span></a>
+              <a class="dd-item" href="#figure-2" data-img="2"><strong>Seven detectors</strong><span>Catch rates, from a hand-written rule to an LSTM.</span></a>
+              <a class="dd-item" href="#figure-7" data-img="3"><strong>Order by order</strong><span>Every honest large order ranked above every spoof.</span></a>
+            </div>
+            <div class="dd-media" aria-hidden="true">
+              <img class="is-active" src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async">
+              <img src="assets/menu/works.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img src="assets/menu/orders.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+            </div>
+          </div>
+          <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
+            <a class="dd-card" href="#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><span>The wall goes up, the order fills, the wall vanishes.</span></a>
+            <a class="dd-card" href="analytics.html"><img src="assets/menu/analytics.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Analytics explorer</strong><span>Every detector, market and threshold, side by side.</span></a>
+          </div>
+          <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
+            <a class="dd-link" href="#question">The question</a>
+            <a class="dd-link" href="#method">The experiment</a>
+            <a class="dd-link" href="#answer">What it means</a>
+            <a class="dd-link" href="#references">References</a>
+          </div>
+        </div>
       </nav>
       <div class="topbar__actions">
-        <a class="pill analytics-link" href="analytics.html">Analytics</a>
         <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch between light and dark theme">
           <i class="ph ph-moon theme-icon-light" aria-hidden="true"></i>
           <i class="ph ph-sun theme-icon-dark" aria-hidden="true"></i>
         </button>
-        <a class="pill pill--quiet" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link aria-label="Code repository"><i class="ph ph-github-logo" aria-hidden="true"></i><span class="repo-label">Code</span></a>
+        <a class="icon-button" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link aria-label="Code on GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a>
+        <a class="pill cta analytics-link" href="analytics.html">Analytics</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5h12M2 10.5h12"/></svg>
+        </button>
       </div>
+    </div>
+
+    <div class="sheet" id="sheet">
+      <h3>Findings</h3>
+      <a href="#findings">The short answer</a>
+      <a href="#figure-6">Does spoofing work?</a>
+      <a href="#figure-2">Seven detectors</a>
+      <a href="#figure-7">Order by order</a>
+      <h3>Explore</h3>
+      <a href="#replay">Watch one spoof</a>
+      <a href="analytics.html">Analytics explorer</a>
+      <h3>The paper</h3>
+      <a href="#question">The question</a>
+      <a href="#method">The experiment</a>
+      <a href="#answer">What it means</a>
+      <a href="#references">References</a>
+      <h3>Project</h3>
+      <a href="#progress">Progress</a>
+      <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
     </div>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="title">
-      
-      <div class="hero__inner">
-        <div class="hero__text">
-          <h1 class="hero__title rise" id="title" style="--i:0">Detecting the <em>Unseen</em></h1>
-          <p class="hero__dek rise" style="--i:1">Can AI spot market manipulation it was never shown? A simulated market, seven detectors and an honest answer.</p>
-          <p class="byline rise" style="--i:2"><strong>Ebrahim</strong>, Habs Research Scholarship project<br>Preliminary results, updated <time id="updated-date" datetime="2026-10-08">8 October 2026</time></p>
-          <div class="rise" style="--i:3; display:flex; flex-wrap:wrap; gap:0.6rem">
-            <a class="pill" href="#findings">Read the findings</a>
-            <a class="pill pill--quiet" href="#replay">Watch one spoof</a>
-          </div>
+      <div class="hero__stack">
+        <a class="eyebrow" href="#progress">
+          <span class="eyebrow__chip">Preliminary</span>
+          <span class="eyebrow__label">Results updated <time id="updated-date" datetime="2026-10-08">8 October 2026</time></span>
+          <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg>
+        </a>
+        <h1 class="hero__title" id="title"><span class="ln"><span class="ln-i">Detecting</span></span><span class="ln"><span class="ln-i">the <em>Unseen</em></span></span></h1>
+        <p class="hero__dek">Can AI spot market manipulation it was never shown? A simulated market, seven detectors and an honest answer.</p>
+        <div class="hero__cta">
+          <a class="btn btn--ghost" href="#replay">Watch one spoof</a>
+          <a class="btn btn--solid" href="#findings">Read the findings</a>
         </div>
+        <p class="hero__by"><b>Ebrahim</b> · Habs Research Scholarship project</p>
       </div>
-      <div class="hero__foot">
-        <p class="hero__legend">A small disturbance. A wider consequence.<br>Follow the ripples into the evidence.</p>
-        
-      </div>
+      <div class="scroll-cue" aria-hidden="true"><span>(</span><span>scroll down</span><span>)</span></div>
     </section>
 
     <section class="answer" id="findings" aria-labelledby="answer-title">
@@ -381,8 +435,9 @@
   
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
   <script src="progress.js"></script>
-  <script src="assets/site.js"></script>
-  <script type="module" src="assets/lake.js"></script>
+  <script src="assets/site.js?v=4"></script>
+  <script src="assets/masthead.js?v=4"></script>
+  <script type="module" src="assets/lake.js?v=4"></script>
 </body>
 </html>
 

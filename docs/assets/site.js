@@ -213,7 +213,7 @@
       const current = sections.find((s) => visible.get(s.id));
       if (!current) return;
       $$(".toc a").forEach((a) => a.toggleAttribute("aria-current", a.getAttribute("href") === `#${current.id}`));
-      $$('.topnav a[href^="#"]').forEach((a) => a.toggleAttribute("aria-current", a.getAttribute("href") === `#${topFor[current.id]}`));
+      $$('.topnav a[href^="#"], .menu__plain').forEach((a) => a.toggleAttribute("aria-current", a.getAttribute("href") === `#${topFor[current.id]}`));
       $$("[aria-current]").forEach((a) => { if (a.getAttribute("aria-current") === "") a.setAttribute("aria-current", "true"); });
     }, { rootMargin: "-30% 0px -60% 0px" });
     sections.forEach((s) => io.observe(s));
