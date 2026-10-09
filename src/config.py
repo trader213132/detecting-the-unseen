@@ -47,6 +47,14 @@ class MarketConfig:
     institution_rate: float = 1 / 2000      # chance per step (about one per session)
     institution_life: tuple = (150, 400)    # how long it leaves the order, in steps
 
+    # Accounts: who placed each order, as a regulator (not the public) would see it.
+    # Background traders are drawn from a pool of accounts. Account numbers come from
+    # their own random stream, so changing them never changes the market itself.
+    accounts_per_kind: int = 200            # accounts shared by ZI traders, and again by reactive traders
+    omnibus_share: float = 0.0              # share of background orders routed through one broker account;
+                                            # if above zero, the spoofer trades through that account too
+    spoofer_accounts: int = 1               # 2 = an evasive spoofer: wall from one account, small order from another
+
 
 # Market regimes. "volatile" has a jumpier fundamental value and wider market-maker quotes.
 REGIMES = {
@@ -61,6 +69,7 @@ MAX_EPISODE_STEPS = 30      # a spoof "wall" is never left on the book longer th
 LAYERS = 4                  # a layered spoof splits its wall over this many price levels
 SIZE_MULTIPLIERS = (1, 2, 4, 8, 16)
 CONTROL_LIFE = (150, 400)   # legitimate large orders in control sessions stay this long
+REVERSAL_AFTER = (5, 25)    # an honest trader who changes their mind does so this many steps after placing
 
 # --- Detection ----------------------------------------------------------------
 # The rule-writer's definition of a "quick" cancellation. This is domain

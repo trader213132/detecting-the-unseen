@@ -1,0 +1,215 @@
+setting,detector,threshold,test,metric,size_mult,value,ci_low,ci_high,n
+main,Principle (accounts),10.0,normal_calm,false_alarm_windows,,0.00718562874251497,0.0035928143712574854,0.011077844311377245,20
+main,Principle (accounts),10.0,normal_volatile,false_alarm_windows,,0.008682634730538923,0.004491017964071856,0.013772455089820357,20
+main,Principle (accounts),10.0,control_calm,flag_rate,1.0,0.0,0.0,0.0,30
+main,Principle (accounts),10.0,control_calm,flag_rate,2.0,0.0,0.0,0.0,30
+main,Principle (accounts),10.0,control_calm,flag_rate,4.0,0.0,0.0,0.0,30
+main,Principle (accounts),10.0,control_calm,flag_rate,8.0,0.0,0.0,0.0,30
+main,Principle (accounts),10.0,control_calm,flag_rate,16.0,0.0,0.0,0.0,30
+main,Principle (accounts),10.0,layer_calm,catch_rate,1.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,layer_calm,catch_rate_when_it_paid,1.0,0.0,,,41
+main,Principle (accounts),10.0,layer_calm,auc_vs_genuine,1.0,0.8833333333333333,0.8333333333333334,0.9333333333333333,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_reversal,1.0,0.8833333333333333,0.825,0.9333333333333333,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_withdrawal,1.0,0.8833333333333333,0.825,0.9333333333333333,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_normal,1.0,0.4036382113821138,0.36680259146341465,0.44103124999999993,60
+main,Principle (accounts),10.0,layer_calm,catch_rate,2.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,layer_calm,catch_rate_when_it_paid,2.0,0.0,,,34
+main,Principle (accounts),10.0,layer_calm,auc_vs_genuine,2.0,0.8166666666666667,0.758125,0.875,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_reversal,2.0,0.6568055555555555,0.536611111111111,0.7688090277777778,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_withdrawal,2.0,0.8166666666666667,0.7583333333333333,0.875,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_normal,2.0,0.5918495934959349,0.5202848069105691,0.6563902439024389,60
+main,Principle (accounts),10.0,layer_calm,catch_rate,4.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,layer_calm,catch_rate_when_it_paid,4.0,0.0,,,46
+main,Principle (accounts),10.0,layer_calm,auc_vs_genuine,4.0,0.9,0.85,0.9416666666666667,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_reversal,4.0,0.45444444444444443,0.37902430555555555,0.51878125,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_withdrawal,4.0,0.9,0.8416666666666667,0.95,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_normal,4.0,0.7900304878048781,0.7119194613821138,0.8580947662601626,60
+main,Principle (accounts),10.0,layer_calm,catch_rate,8.0,0.85,0.7666666666666667,0.9333333333333333,60
+main,Principle (accounts),10.0,layer_calm,catch_rate_when_it_paid,8.0,0.9803921568627451,,,51
+main,Principle (accounts),10.0,layer_calm,auc_vs_genuine,8.0,0.925,0.875,0.9666666666666667,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_reversal,8.0,0.48333333333333334,0.4166666666666667,0.5416666666666666,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_withdrawal,8.0,0.925,0.875,0.9666666666666667,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_normal,8.0,0.8781097560975609,0.8098963414634147,0.943060975609756,60
+main,Principle (accounts),10.0,layer_calm,catch_rate,16.0,0.85,0.75,0.9333333333333333,60
+main,Principle (accounts),10.0,layer_calm,catch_rate_when_it_paid,16.0,0.9803921568627451,,,51
+main,Principle (accounts),10.0,layer_calm,auc_vs_genuine,16.0,0.925,0.875,0.9666666666666667,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_reversal,16.0,0.4666666666666667,0.4083333333333333,0.525,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_withdrawal,16.0,0.925,0.8747916666666667,0.9666666666666667,60
+main,Principle (accounts),10.0,layer_calm,auc_vs_normal,16.0,0.8801829268292682,0.7902926829268293,0.9466747967479675,60
+main,Principle (accounts),10.0,reversal_calm,flag_rate,1.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,reversal_calm,flag_rate,2.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,reversal_calm,flag_rate,4.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,reversal_calm,flag_rate,8.0,0.8833333333333333,0.8,0.95,60
+main,Principle (accounts),10.0,reversal_calm,flag_rate,16.0,0.9166666666666666,0.85,0.9833333333333333,60
+main,Principle (accounts),10.0,spoof_calm,catch_rate,1.0,0.0,0.0,0.0,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate_when_it_paid,1.0,0.0,,,59
+main,Principle (accounts),10.0,spoof_calm,auc_vs_genuine,1.0,0.5,0.5,0.5,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_reversal,1.0,0.5,0.5,0.5,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_withdrawal,1.0,0.5,0.5,0.5,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_normal,1.0,0.20121951219512196,0.18414634146341463,0.21707317073170732,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate,2.0,0.0,0.0,0.0,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate_when_it_paid,2.0,0.0,,,56
+main,Principle (accounts),10.0,spoof_calm,auc_vs_genuine,2.0,0.8625,0.81875,0.9125,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_reversal,2.0,0.4685416666666667,0.39364583333333336,0.5439583333333333,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_withdrawal,2.0,0.8625,0.81875,0.9125,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_normal,2.0,0.5491310975609756,0.5018382240853658,0.6012978277439025,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate,4.0,0.0,0.0,0.0,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate_when_it_paid,4.0,0.0,,,55
+main,Principle (accounts),10.0,spoof_calm,auc_vs_genuine,4.0,0.85625,0.80625,0.90625,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_reversal,4.0,0.41572916666666665,0.3459947916666667,0.483125,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_withdrawal,4.0,0.85625,0.8,0.90625,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_normal,4.0,0.7295121951219512,0.6588326981707316,0.8008765243902438,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate,8.0,0.8125,0.725,0.9,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate_when_it_paid,8.0,0.9846153846153847,,,65
+main,Principle (accounts),10.0,spoof_calm,auc_vs_genuine,8.0,0.90625,0.8625,0.95,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_reversal,8.0,0.46458333333333335,0.40828125,0.52296875,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_withdrawal,8.0,0.90625,0.8625,0.95,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_normal,8.0,0.8482469512195122,0.7907778201219513,0.914577743902439,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate,16.0,0.925,0.8625,0.975,80
+main,Principle (accounts),10.0,spoof_calm,catch_rate_when_it_paid,16.0,1.0,,,72
+main,Principle (accounts),10.0,spoof_calm,auc_vs_genuine,16.0,0.9625,0.93125,0.9875,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_reversal,16.0,0.5041666666666667,0.4583333333333333,0.5520833333333334,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_withdrawal,16.0,0.9625,0.93125,0.9875,80
+main,Principle (accounts),10.0,spoof_calm,auc_vs_normal,16.0,0.9400914634146341,0.8914190167682927,0.9800621189024391,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate,1.0,0.0,0.0,0.0,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate_when_it_paid,1.0,0.0,,,58
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_genuine,1.0,0.5,0.5,0.5,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_reversal,1.0,0.5,0.5,0.5,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_withdrawal,1.0,0.5,0.5,0.5,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_normal,1.0,0.20121951219512196,0.18414634146341463,0.21707317073170732,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate,2.0,0.0,0.0,0.0,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate_when_it_paid,2.0,0.0,,,52
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_genuine,2.0,0.81875,0.76234375,0.875,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_reversal,2.0,0.4240625,0.34621093750000004,0.49583333333333335,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_withdrawal,2.0,0.81875,0.7625,0.875,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_normal,2.0,0.507141768292683,0.4528664253048781,0.5663370807926829,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate,4.0,0.0,0.0,0.0,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate_when_it_paid,4.0,0.0,,,59
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_genuine,4.0,0.86875,0.81875,0.9125,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_reversal,4.0,0.42885416666666665,0.36833333333333335,0.4916848958333333,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_withdrawal,4.0,0.86875,0.81875,0.91875,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_normal,4.0,0.7480487804878049,0.6787761051829269,0.8186067073170732,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate,8.0,0.7,0.6,0.8,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate_when_it_paid,8.0,0.9491525423728814,,,59
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_genuine,8.0,0.85,0.7998437500000001,0.9,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_reversal,8.0,0.4083333333333333,0.34578125,0.47708333333333336,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_withdrawal,8.0,0.85,0.79375,0.9,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_normal,8.0,0.7586585365853659,0.6731040396341464,0.839155487804878,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate,16.0,0.825,0.7375,0.9,80
+main,Principle (accounts),10.0,spoof_volatile,catch_rate_when_it_paid,16.0,0.9848484848484849,,,66
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_genuine,16.0,0.9125,0.8625,0.95625,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_reversal,16.0,0.45416666666666666,0.40406250000000005,0.5042708333333332,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_withdrawal,16.0,0.9125,0.86875,0.95,80
+main,Principle (accounts),10.0,spoof_volatile,auc_vs_normal,16.0,0.8602134146341464,0.7907682926829268,0.9295771722560976,80
+main,Principle (accounts),10.0,withdrawal_calm,flag_rate,1.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,withdrawal_calm,flag_rate,2.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,withdrawal_calm,flag_rate,4.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,60
+main,Principle (accounts),10.0,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,normal_calm,false_alarm_windows,,0.01946107784431138,0.012574850299401197,0.026646706586826347,20
+main,Untaught IForest (accounts),0.7748598995209728,normal_volatile,false_alarm_windows,,0.06646706586826348,0.0562874251497006,0.07664670658682635,20
+main,Untaught IForest (accounts),0.7748598995209728,control_calm,flag_rate,1.0,0.0,0.0,0.0,30
+main,Untaught IForest (accounts),0.7748598995209728,control_calm,flag_rate,2.0,0.0,0.0,0.0,30
+main,Untaught IForest (accounts),0.7748598995209728,control_calm,flag_rate,4.0,0.0,0.0,0.0,30
+main,Untaught IForest (accounts),0.7748598995209728,control_calm,flag_rate,8.0,0.0,0.0,0.0,30
+main,Untaught IForest (accounts),0.7748598995209728,control_calm,flag_rate,16.0,0.0,0.0,0.0,30
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate,1.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate_when_it_paid,1.0,0.0,,,41
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_genuine,1.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_reversal,1.0,0.8369444444444445,0.7371388888888889,0.9130625,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_withdrawal,1.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_normal,1.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate,2.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate_when_it_paid,2.0,0.0,,,34
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_genuine,2.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_reversal,2.0,0.9016666666666666,0.8310833333333334,0.9591944444444443,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_withdrawal,2.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_normal,2.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate,4.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate_when_it_paid,4.0,0.0,,,46
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_genuine,4.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_reversal,4.0,0.7877777777777778,0.6905347222222222,0.8888958333333333,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_withdrawal,4.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_normal,4.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate,8.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate_when_it_paid,8.0,0.0,,,51
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_reversal,8.0,0.7363888888888889,0.6188888888888889,0.8425763888888889,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_normal,8.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate,16.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,catch_rate_when_it_paid,16.0,0.0,,,51
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_reversal,16.0,0.7980555555555555,0.7013680555555555,0.8869583333333333,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,60
+main,Untaught IForest (accounts),0.7748598995209728,layer_calm,auc_vs_normal,16.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,reversal_calm,flag_rate,1.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,reversal_calm,flag_rate,2.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,reversal_calm,flag_rate,4.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,reversal_calm,flag_rate,8.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,reversal_calm,flag_rate,16.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate,1.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate_when_it_paid,1.0,0.0,,,59
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_genuine,1.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_reversal,1.0,0.8079166666666666,0.7107916666666667,0.8958541666666667,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_withdrawal,1.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_normal,1.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate,2.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate_when_it_paid,2.0,0.0,,,56
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_genuine,2.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_reversal,2.0,0.8058333333333333,0.70665625,0.8975572916666665,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_withdrawal,2.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_normal,2.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate,4.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate_when_it_paid,4.0,0.0,,,55
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_genuine,4.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_reversal,4.0,0.6739583333333333,0.571828125,0.76834375,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_withdrawal,4.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_normal,4.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate,8.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate_when_it_paid,8.0,0.0,,,65
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_reversal,8.0,0.315,0.212421875,0.43958854166666667,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_normal,8.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate,16.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,catch_rate_when_it_paid,16.0,0.0,,,72
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_reversal,16.0,0.6314583333333333,0.5268750000000001,0.740015625,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_calm,auc_vs_normal,16.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate,1.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate_when_it_paid,1.0,0.0,,,58
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_genuine,1.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_reversal,1.0,0.8079166666666666,0.7123750000000001,0.8941666666666667,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_withdrawal,1.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_normal,1.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate,2.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate_when_it_paid,2.0,0.0,,,52
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_genuine,2.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_reversal,2.0,0.811875,0.7185208333333333,0.8992135416666667,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_withdrawal,2.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_normal,2.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate,4.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate_when_it_paid,4.0,0.0,,,59
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_genuine,4.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_reversal,4.0,0.6795833333333333,0.5845208333333334,0.7773177083333334,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_withdrawal,4.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_normal,4.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate,8.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate_when_it_paid,8.0,0.0,,,59
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_genuine,8.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_reversal,8.0,0.33979166666666666,0.23847916666666671,0.4615208333333333,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_withdrawal,8.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_normal,8.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate,16.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,catch_rate_when_it_paid,16.0,0.0,,,66
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_genuine,16.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_reversal,16.0,0.6625,0.5713229166666667,0.7696041666666666,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_withdrawal,16.0,1.0,1.0,1.0,80
+main,Untaught IForest (accounts),0.7748598995209728,spoof_volatile,auc_vs_normal,16.0,0.0,0.0,0.0,80
+main,Untaught IForest (accounts),0.7748598995209728,withdrawal_calm,flag_rate,1.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,withdrawal_calm,flag_rate,2.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,withdrawal_calm,flag_rate,4.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,60
+main,Untaught IForest (accounts),0.7748598995209728,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,60

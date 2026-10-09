@@ -1,0 +1,249 @@
+setting,detector,threshold,test,metric,size_mult,value,ci_low,ci_high,n
+fewer book-readers,Principle (accounts),10.0,normal_calm,false_alarm_windows,,0.004491017964071856,0.0004990019960079841,0.008982035928143714,12
+fewer book-readers,Principle (accounts),10.0,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+fewer book-readers,Principle (accounts),10.0,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+fewer book-readers,Principle (accounts),10.0,layer_calm,catch_rate,8.0,0.725,0.6,0.85,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,catch_rate_when_it_paid,8.0,0.9666666666666667,,,30
+fewer book-readers,Principle (accounts),10.0,layer_calm,auc_vs_genuine,8.0,0.8625,0.7996875000000001,0.925,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,auc_vs_reversal,8.0,0.4875,0.38333333333333336,0.5878124999999997,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,auc_vs_withdrawal,8.0,0.8625,0.7996875000000001,0.925,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,auc_vs_normal,8.0,0.7716717479674797,0.6682317073170733,0.8762271341463415,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,catch_rate,16.0,0.9,0.8,0.975,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,catch_rate_when_it_paid,16.0,1.0,,,33
+fewer book-readers,Principle (accounts),10.0,layer_calm,auc_vs_genuine,16.0,0.95,0.9,0.9875,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,auc_vs_reversal,16.0,0.48020833333333335,0.4124348958333333,0.5542708333333333,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,auc_vs_withdrawal,16.0,0.95,0.9,0.9875,40
+fewer book-readers,Principle (accounts),10.0,layer_calm,auc_vs_normal,16.0,0.9165650406504066,0.8306847052845528,0.9795503048780487,40
+fewer book-readers,Principle (accounts),10.0,reversal_calm,flag_rate,8.0,0.75,0.5833333333333334,0.9166666666666666,24
+fewer book-readers,Principle (accounts),10.0,reversal_calm,flag_rate,16.0,0.9166666666666666,0.7916666666666666,1.0,24
+fewer book-readers,Principle (accounts),10.0,spoof_calm,catch_rate,8.0,0.78,0.66,0.88,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,catch_rate_when_it_paid,8.0,1.0,,,37
+fewer book-readers,Principle (accounts),10.0,spoof_calm,auc_vs_genuine,8.0,0.89,0.83,0.95,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,auc_vs_reversal,8.0,0.515,0.4124583333333333,0.6083333333333333,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,auc_vs_withdrawal,8.0,0.89,0.83,0.95,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,auc_vs_normal,8.0,0.8173373983739838,0.7249507113821139,0.900609756097561,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,catch_rate,16.0,0.8,0.68,0.9,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,catch_rate_when_it_paid,16.0,0.9736842105263158,,,38
+fewer book-readers,Principle (accounts),10.0,spoof_calm,auc_vs_genuine,16.0,0.9,0.84,0.95,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,auc_vs_reversal,16.0,0.44166666666666665,0.36,0.5225208333333333,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,auc_vs_withdrawal,16.0,0.9,0.84,0.95,50
+fewer book-readers,Principle (accounts),10.0,spoof_calm,auc_vs_normal,16.0,0.8339430894308943,0.7416504065040651,0.9184563008130078,50
+fewer book-readers,Principle (accounts),10.0,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+fewer book-readers,Principle (accounts),10.0,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,normal_calm,false_alarm_windows,,0.008982035928143712,0.003992015968063873,0.014471057884231538,12
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,catch_rate,8.0,0.0,0.0,0.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,catch_rate_when_it_paid,8.0,0.0,,,30
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,auc_vs_reversal,8.0,0.75625,0.5826562500000003,0.9177083333333333,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,auc_vs_normal,8.0,0.0,0.0,0.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,catch_rate,16.0,0.0,0.0,0.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,catch_rate_when_it_paid,16.0,0.0,,,33
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,auc_vs_reversal,16.0,0.921875,0.80515625,1.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,layer_calm,auc_vs_normal,16.0,0.0,0.0,0.0,40
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,reversal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,reversal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,catch_rate,8.0,0.0,0.0,0.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,catch_rate_when_it_paid,8.0,0.0,,,37
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,auc_vs_reversal,8.0,0.6075,0.40075,0.8041875,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,auc_vs_normal,8.0,0.0,0.0,0.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,catch_rate,16.0,0.0,0.0,0.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,catch_rate_when_it_paid,16.0,0.0,,,38
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,auc_vs_reversal,16.0,0.8808333333333334,0.7258333333333333,1.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,spoof_calm,auc_vs_normal,16.0,0.0,0.0,0.0,50
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+fewer book-readers,Untaught IForest (accounts),0.7693746806732717,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+more book-readers,Principle (accounts),7.0,normal_calm,false_alarm_windows,,0.021457085828343315,0.013473053892215571,0.02944111776447106,12
+more book-readers,Principle (accounts),7.0,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+more book-readers,Principle (accounts),7.0,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+more book-readers,Principle (accounts),7.0,layer_calm,catch_rate,8.0,0.9,0.8,0.975,40
+more book-readers,Principle (accounts),7.0,layer_calm,catch_rate_when_it_paid,8.0,1.0,,,35
+more book-readers,Principle (accounts),7.0,layer_calm,auc_vs_genuine,8.0,0.9625,0.9246875000000001,1.0,40
+more book-readers,Principle (accounts),7.0,layer_calm,auc_vs_reversal,8.0,0.4713541666666667,0.4125,0.5375390624999999,40
+more book-readers,Principle (accounts),7.0,layer_calm,auc_vs_withdrawal,8.0,0.9625,0.9246875000000001,1.0,40
+more book-readers,Principle (accounts),7.0,layer_calm,auc_vs_normal,8.0,0.9350101626016261,0.8592752794715448,0.9963503556910569,40
+more book-readers,Principle (accounts),7.0,layer_calm,catch_rate,16.0,0.9,0.8,0.975,40
+more book-readers,Principle (accounts),7.0,layer_calm,catch_rate_when_it_paid,16.0,1.0,,,35
+more book-readers,Principle (accounts),7.0,layer_calm,auc_vs_genuine,16.0,0.95,0.9,0.9875,40
+more book-readers,Principle (accounts),7.0,layer_calm,auc_vs_reversal,16.0,0.5125,0.43333333333333335,0.6,40
+more book-readers,Principle (accounts),7.0,layer_calm,auc_vs_withdrawal,16.0,0.95,0.9,0.9875,40
+more book-readers,Principle (accounts),7.0,layer_calm,auc_vs_normal,16.0,0.9183943089430894,0.8369817073170732,0.9798532774390244,40
+more book-readers,Principle (accounts),7.0,reversal_calm,flag_rate,8.0,0.9583333333333334,0.875,1.0,24
+more book-readers,Principle (accounts),7.0,reversal_calm,flag_rate,16.0,0.875,0.75,1.0,24
+more book-readers,Principle (accounts),7.0,spoof_calm,catch_rate,8.0,0.86,0.76,0.94,50
+more book-readers,Principle (accounts),7.0,spoof_calm,catch_rate_when_it_paid,8.0,0.9767441860465116,,,43
+more book-readers,Principle (accounts),7.0,spoof_calm,auc_vs_genuine,8.0,0.93,0.88,0.98,50
+more book-readers,Principle (accounts),7.0,spoof_calm,auc_vs_reversal,8.0,0.4508333333333333,0.4,0.5116875000000001,50
+more book-readers,Principle (accounts),7.0,spoof_calm,auc_vs_withdrawal,8.0,0.93,0.88,0.98,50
+more book-readers,Principle (accounts),7.0,spoof_calm,auc_vs_normal,8.0,0.8857520325203252,0.8053475609756098,0.9510396341463415,50
+more book-readers,Principle (accounts),7.0,spoof_calm,catch_rate,16.0,0.96,0.9,1.0,50
+more book-readers,Principle (accounts),7.0,spoof_calm,catch_rate_when_it_paid,16.0,1.0,,,48
+more book-readers,Principle (accounts),7.0,spoof_calm,auc_vs_genuine,16.0,0.98,0.95,1.0,50
+more book-readers,Principle (accounts),7.0,spoof_calm,auc_vs_reversal,16.0,0.5425,0.48,0.615,50
+more book-readers,Principle (accounts),7.0,spoof_calm,auc_vs_withdrawal,16.0,0.98,0.95,1.0,50
+more book-readers,Principle (accounts),7.0,spoof_calm,auc_vs_normal,16.0,0.9673577235772358,0.9183841463414634,1.0,50
+more book-readers,Principle (accounts),7.0,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+more book-readers,Principle (accounts),7.0,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+more book-readers,Untaught IForest (accounts),0.7701033722929312,normal_calm,false_alarm_windows,,0.007984031936127746,0.0054890219560878245,0.010479041916167664,12
+more book-readers,Untaught IForest (accounts),0.7701033722929312,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+more book-readers,Untaught IForest (accounts),0.7701033722929312,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,catch_rate,8.0,0.0,0.0,0.0,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,catch_rate_when_it_paid,8.0,0.0,,,35
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,auc_vs_reversal,8.0,0.684375,0.5247135416666668,0.8458854166666666,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,auc_vs_normal,8.0,0.0,0.0,0.0,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,catch_rate,16.0,0.0,0.0,0.0,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,catch_rate_when_it_paid,16.0,0.0,,,35
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,auc_vs_reversal,16.0,0.721875,0.5509375,0.8812760416666666,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,layer_calm,auc_vs_normal,16.0,0.0,0.0,0.0,40
+more book-readers,Untaught IForest (accounts),0.7701033722929312,reversal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+more book-readers,Untaught IForest (accounts),0.7701033722929312,reversal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,catch_rate,8.0,0.0,0.0,0.0,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,catch_rate_when_it_paid,8.0,0.0,,,43
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,auc_vs_reversal,8.0,0.6491666666666667,0.4438125000000001,0.8209166666666665,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,auc_vs_normal,8.0,0.0,0.0,0.0,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,catch_rate,16.0,0.0,0.0,0.0,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,catch_rate_when_it_paid,16.0,0.0,,,48
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,auc_vs_reversal,16.0,0.7033333333333334,0.5348750000000001,0.8784583333333332,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,spoof_calm,auc_vs_normal,16.0,0.0,0.0,0.0,50
+more book-readers,Untaught IForest (accounts),0.7701033722929312,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+more book-readers,Untaught IForest (accounts),0.7701033722929312,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+thinner book,Principle (accounts),6.0,normal_calm,false_alarm_windows,,0.01347305389221557,0.006487025948103793,0.02145708582834331,12
+thinner book,Principle (accounts),6.0,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+thinner book,Principle (accounts),6.0,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+thinner book,Principle (accounts),6.0,layer_calm,catch_rate,8.0,0.775,0.65,0.9,40
+thinner book,Principle (accounts),6.0,layer_calm,catch_rate_when_it_paid,8.0,1.0,,,31
+thinner book,Principle (accounts),6.0,layer_calm,auc_vs_genuine,8.0,0.8875,0.825,0.95,40
+thinner book,Principle (accounts),6.0,layer_calm,auc_vs_reversal,8.0,0.45,0.35833333333333334,0.5376041666666665,40
+thinner book,Principle (accounts),6.0,layer_calm,auc_vs_withdrawal,8.0,0.8875,0.825,0.95,40
+thinner book,Principle (accounts),6.0,layer_calm,auc_vs_normal,8.0,0.8392530487804878,0.736547256097561,0.9285772357723577,40
+thinner book,Principle (accounts),6.0,layer_calm,catch_rate,16.0,0.85,0.725,0.95,40
+thinner book,Principle (accounts),6.0,layer_calm,catch_rate_when_it_paid,16.0,0.9444444444444444,,,36
+thinner book,Principle (accounts),6.0,layer_calm,auc_vs_genuine,16.0,0.925,0.875,0.975,40
+thinner book,Principle (accounts),6.0,layer_calm,auc_vs_reversal,16.0,0.44583333333333336,0.38729166666666676,0.5166666666666667,40
+thinner book,Principle (accounts),6.0,layer_calm,auc_vs_withdrawal,16.0,0.925,0.875,0.975,40
+thinner book,Principle (accounts),6.0,layer_calm,auc_vs_normal,16.0,0.8928353658536585,0.805166412601626,0.9646875,40
+thinner book,Principle (accounts),6.0,reversal_calm,flag_rate,8.0,0.875,0.75,1.0,24
+thinner book,Principle (accounts),6.0,reversal_calm,flag_rate,16.0,0.9583333333333334,0.875,1.0,24
+thinner book,Principle (accounts),6.0,spoof_calm,catch_rate,8.0,0.76,0.64,0.88,50
+thinner book,Principle (accounts),6.0,spoof_calm,catch_rate_when_it_paid,8.0,0.9736842105263158,,,38
+thinner book,Principle (accounts),6.0,spoof_calm,auc_vs_genuine,8.0,0.88,0.82,0.9302499999999998,50
+thinner book,Principle (accounts),6.0,spoof_calm,auc_vs_reversal,8.0,0.4425,0.34977083333333336,0.5341875,50
+thinner book,Principle (accounts),6.0,spoof_calm,auc_vs_withdrawal,8.0,0.88,0.82,0.9302499999999998,50
+thinner book,Principle (accounts),6.0,spoof_calm,auc_vs_normal,8.0,0.8285365853658536,0.7405640243902439,0.9118780487804878,50
+thinner book,Principle (accounts),6.0,spoof_calm,catch_rate,16.0,0.9,0.8,0.98,50
+thinner book,Principle (accounts),6.0,spoof_calm,catch_rate_when_it_paid,16.0,0.9777777777777777,,,45
+thinner book,Principle (accounts),6.0,spoof_calm,auc_vs_genuine,16.0,0.95,0.9097500000000002,0.99,50
+thinner book,Principle (accounts),6.0,spoof_calm,auc_vs_reversal,16.0,0.4708333333333333,0.41,0.5325208333333333,50
+thinner book,Principle (accounts),6.0,spoof_calm,auc_vs_withdrawal,16.0,0.95,0.9097500000000002,0.99,50
+thinner book,Principle (accounts),6.0,spoof_calm,auc_vs_normal,16.0,0.9285569105691057,0.872125,0.9719115853658536,50
+thinner book,Principle (accounts),6.0,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+thinner book,Principle (accounts),6.0,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+thinner book,Untaught IForest (accounts),0.7533872342205649,normal_calm,false_alarm_windows,,0.007984031936127746,0.0034930139720558886,0.013473053892215566,12
+thinner book,Untaught IForest (accounts),0.7533872342205649,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+thinner book,Untaught IForest (accounts),0.7533872342205649,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,catch_rate,8.0,0.0,0.0,0.0,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,catch_rate_when_it_paid,8.0,0.0,,,31
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,auc_vs_reversal,8.0,0.5927083333333333,0.4166666666666667,0.7958593749999999,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,auc_vs_normal,8.0,0.0,0.0,0.0,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,catch_rate,16.0,0.0,0.0,0.0,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,catch_rate_when_it_paid,16.0,0.0,,,36
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,auc_vs_reversal,16.0,0.65625,0.4904947916666667,0.8104427083333333,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,layer_calm,auc_vs_normal,16.0,0.0001524390243902439,0.0,0.0006097560975609756,40
+thinner book,Untaught IForest (accounts),0.7533872342205649,reversal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+thinner book,Untaught IForest (accounts),0.7533872342205649,reversal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,catch_rate,8.0,0.0,0.0,0.0,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,catch_rate_when_it_paid,8.0,0.0,,,38
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,auc_vs_reversal,8.0,0.6,0.406625,0.7779166666666663,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,auc_vs_normal,8.0,0.0,0.0,0.0,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,catch_rate,16.0,0.0,0.0,0.0,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,catch_rate_when_it_paid,16.0,0.0,,,45
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,auc_vs_reversal,16.0,0.5491666666666667,0.3744583333333335,0.7516666666666667,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,spoof_calm,auc_vs_normal,16.0,0.0,0.0,0.0,50
+thinner book,Untaught IForest (accounts),0.7533872342205649,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+thinner book,Untaught IForest (accounts),0.7533872342205649,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+impatient traders,Principle (accounts),14.0,normal_calm,false_alarm_windows,,0.0019960079840319364,0.0,0.00499001996007984,12
+impatient traders,Principle (accounts),14.0,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+impatient traders,Principle (accounts),14.0,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+impatient traders,Principle (accounts),14.0,layer_calm,catch_rate,8.0,0.975,0.925,1.0,40
+impatient traders,Principle (accounts),14.0,layer_calm,catch_rate_when_it_paid,8.0,1.0,,,37
+impatient traders,Principle (accounts),14.0,layer_calm,auc_vs_genuine,8.0,0.9875,0.9625,1.0,40
+impatient traders,Principle (accounts),14.0,layer_calm,auc_vs_reversal,8.0,0.5291666666666667,0.4791666666666667,0.5833333333333334,40
+impatient traders,Principle (accounts),14.0,layer_calm,auc_vs_withdrawal,8.0,0.9875,0.9625,1.0,40
+impatient traders,Principle (accounts),14.0,layer_calm,auc_vs_normal,8.0,0.9790142276422764,0.9355945121951219,1.0,40
+impatient traders,Principle (accounts),14.0,layer_calm,catch_rate,16.0,0.875,0.775,0.975,40
+impatient traders,Principle (accounts),14.0,layer_calm,catch_rate_when_it_paid,16.0,1.0,,,34
+impatient traders,Principle (accounts),14.0,layer_calm,auc_vs_genuine,16.0,0.9375,0.8875,0.9875,40
+impatient traders,Principle (accounts),14.0,layer_calm,auc_vs_reversal,16.0,0.571875,0.4869140625,0.6786848958333332,40
+impatient traders,Principle (accounts),14.0,layer_calm,auc_vs_withdrawal,16.0,0.9375,0.8875,0.9875,40
+impatient traders,Principle (accounts),14.0,layer_calm,auc_vs_normal,16.0,0.8950711382113821,0.8104249237804878,0.9592403455284548,40
+impatient traders,Principle (accounts),14.0,reversal_calm,flag_rate,8.0,0.9166666666666666,0.7916666666666666,1.0,24
+impatient traders,Principle (accounts),14.0,reversal_calm,flag_rate,16.0,0.7083333333333334,0.5,0.875,24
+impatient traders,Principle (accounts),14.0,spoof_calm,catch_rate,8.0,0.8,0.68,0.9,50
+impatient traders,Principle (accounts),14.0,spoof_calm,catch_rate_when_it_paid,8.0,1.0,,,39
+impatient traders,Principle (accounts),14.0,spoof_calm,auc_vs_genuine,8.0,0.9,0.8497500000000001,0.95,50
+impatient traders,Principle (accounts),14.0,spoof_calm,auc_vs_reversal,8.0,0.44166666666666665,0.37,0.5225416666666666,50
+impatient traders,Principle (accounts),14.0,spoof_calm,auc_vs_withdrawal,8.0,0.9,0.8497500000000001,0.95,50
+impatient traders,Principle (accounts),14.0,spoof_calm,auc_vs_normal,8.0,0.8321138211382114,0.7372032520325202,0.9169791666666667,50
+impatient traders,Principle (accounts),14.0,spoof_calm,catch_rate,16.0,0.88,0.78,0.96,50
+impatient traders,Principle (accounts),14.0,spoof_calm,catch_rate_when_it_paid,16.0,0.9767441860465116,,,43
+impatient traders,Principle (accounts),14.0,spoof_calm,auc_vs_genuine,16.0,0.94,0.89,0.98,50
+impatient traders,Principle (accounts),14.0,spoof_calm,auc_vs_reversal,16.0,0.5833333333333334,0.4824791666666667,0.6759166666666665,50
+impatient traders,Principle (accounts),14.0,spoof_calm,auc_vs_withdrawal,16.0,0.94,0.89,0.98,50
+impatient traders,Principle (accounts),14.0,spoof_calm,auc_vs_normal,16.0,0.8992682926829269,0.8153252032520325,0.9667134146341463,50
+impatient traders,Principle (accounts),14.0,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+impatient traders,Principle (accounts),14.0,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+impatient traders,Untaught IForest (accounts),0.762637225223639,normal_calm,false_alarm_windows,,0.00998003992015968,0.004990019960079841,0.01596806387225549,12
+impatient traders,Untaught IForest (accounts),0.762637225223639,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+impatient traders,Untaught IForest (accounts),0.762637225223639,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,catch_rate,8.0,0.0,0.0,0.0,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,catch_rate_when_it_paid,8.0,0.0,,,37
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,auc_vs_reversal,8.0,0.80625,0.664453125,0.911484375,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,auc_vs_normal,8.0,0.0,0.0,0.0,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,catch_rate,16.0,0.0,0.0,0.0,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,catch_rate_when_it_paid,16.0,0.0,,,34
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,auc_vs_reversal,16.0,0.7583333333333333,0.5780468750000001,0.8979166666666667,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,layer_calm,auc_vs_normal,16.0,0.0,0.0,0.0,40
+impatient traders,Untaught IForest (accounts),0.762637225223639,reversal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+impatient traders,Untaught IForest (accounts),0.762637225223639,reversal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,catch_rate,8.0,0.0,0.0,0.0,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,catch_rate_when_it_paid,8.0,0.0,,,39
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,auc_vs_reversal,8.0,0.5941666666666666,0.4380000000000001,0.7449583333333326,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,auc_vs_withdrawal,8.0,1.0,1.0,1.0,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,auc_vs_normal,8.0,0.0,0.0,0.0,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,catch_rate,16.0,0.0,0.0,0.0,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,catch_rate_when_it_paid,16.0,0.0,,,43
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,auc_vs_genuine,16.0,1.0,1.0,1.0,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,auc_vs_reversal,16.0,0.5658333333333333,0.39164583333333336,0.7292083333333332,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,auc_vs_withdrawal,16.0,1.0,1.0,1.0,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,spoof_calm,auc_vs_normal,16.0,0.0,0.0,0.0,50
+impatient traders,Untaught IForest (accounts),0.762637225223639,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+impatient traders,Untaught IForest (accounts),0.762637225223639,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24

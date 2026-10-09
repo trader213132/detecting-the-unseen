@@ -547,3 +547,12 @@ details.data-table .table-wrap { margin: 0.6rem 0 0; }
   .rise { opacity: 1; transform: none; filter: none; }
   .chart.is-drawing path.line { stroke-dashoffset: 0; }
 }
+
+/* ---------- Part 2 ---------- */
+.ladder-steps { counter-reset: rung -1; list-style: none; padding: 0; margin: 1.2rem 0 1.6rem; display: grid; gap: 0.55rem; }
+.ladder-steps li { counter-increment: rung; display: grid; grid-template-columns: 2rem 1fr; gap: 0.6rem; align-items: baseline; }
+.ladder-steps li::before {
+  content: counter(rung); font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-2);
+  border: 1px solid var(--line); border-radius: 6px; text-align: center; padding: 0.05rem 0;
+}
+.figure__controls { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: flex-end; }

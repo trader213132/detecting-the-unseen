@@ -232,3 +232,34 @@ def auc_genuine(aucs, path):
     fig.tight_layout(rect=(0, 0.13, 1, 0.96))
     fig.savefig(path, dpi=200)
     plt.close(fig)
+
+
+def ladder_of_teaching(rows, path):
+    """Part 2. rows: list of (rung label, [(value, low, high) or None] x 5) for the five tests."""
+    tests = ["Spoofs caught", "Layered spoofs caught", "Honest large orders\nflagged",
+             "Honest quick\nwithdrawals flagged", "Honest changes of mind\nflagged"]
+    colours = ["#c42a68", "#c42a68", INK_2, INK_2, MUTED]
+    fig, axes = plt.subplots(1, 5, figsize=(11.6, 3.5), sharey=True)
+    y = np.arange(len(rows))[::-1]
+    for j, ax in enumerate(axes):
+        for i, (_, cells) in enumerate(rows):
+            cell = cells[j]
+            if cell is None:
+                continue
+            value, low, high = cell
+            ax.barh(y[i], value, height=0.55, color=colours[j])
+            ax.plot([low, high], [y[i], y[i]], color=INK, linewidth=1, alpha=0.6)
+            ax.text(min(max(value, high), 1) + 0.04, y[i], f"{value:.0%}", va="center", fontsize=8.5, color=INK)
+        ax.set_xlim(0, 1.3)
+        ax.set_axisbelow(True)
+        ax.set_xticks([0, 0.5, 1])
+        ax.set_xticklabels(["0%", "50%", "100%"])
+        ax.set_title(tests[j], fontsize=9)
+        ax.grid(axis="x", color=GRID, linewidth=0.6)
+        ax.grid(axis="y", visible=False)
+    axes[0].set_yticks(y)
+    axes[0].set_yticklabels([label for label, _ in rows])
+    fig.suptitle("The ladder of teaching (16× orders, calm market)", x=0.01, ha="left", fontweight="bold", fontsize=10)
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)

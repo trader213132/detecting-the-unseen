@@ -244,6 +244,32 @@ def extensions_payload():
     return out
 
 
+def teaching_payload():
+    """Part 2 (run_teaching.py): the ladder of teaching, if it has been run."""
+    def records(df, digits=4):
+        return [{k: (round(v, digits) if isinstance(v, float) else v) for k, v in r.items()
+                 if not (isinstance(v, float) and np.isnan(v))} for r in df.to_dict("records")]
+
+    out = {}
+    for key, name in [("principle", "teaching_principle.csv"), ("paired", "teaching_paired.csv"),
+                      ("reversal", "teaching_reversal_main.csv"), ("markets", "teaching_markets.csv"),
+                      ("accounts", "teaching_accounts.csv"), ("evasion", "teaching_evasion.csv")]:
+        if (RESULTS / name).exists():
+            df = pd.read_csv(RESULTS / name)
+            if key == "reversal":
+                df = df[df.metric == "flag_rate"][["detector", "test", "size_mult", "value", "ci_low", "ci_high", "n"]]
+            out[key] = records(df)
+    if (RESULTS / "teaching_examples.csv").exists():
+        ex = pd.read_csv(RESULTS / "teaching_examples.csv")
+        cols = ["spoof_walls_caught", "layered_caught", "genuine_flagged", "withdrawal_flagged", "reversal_flagged",
+                "auc_spoof_vs_genuine", "auc_layered_vs_genuine"]
+        out["examples"] = [{"variant": v, "k": int(k), "size_mult": int(m),
+                            **{c: [round(q[c].median(), 4), round(q[c].quantile(0.1), 4), round(q[c].quantile(0.9), 4)]
+                               for c in cols if c in q}}
+                           for (v, k, m), q in ex.groupby(["variant", "k", "size_mult"])]
+    return out
+
+
 def write_js(path, name, payload):
     text = json.dumps(payload, separators=(",", ":"), default=lambda x: x.item())   # numpy scalars
     path.write_text(f"window.{name} = {text};\n", encoding="utf-8")
@@ -253,6 +279,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     write_js(OUT / "results.js", "RESULTS", results_payload())
     write_js(OUT / "extensions.js", "EXTENSIONS", extensions_payload())
+    write_js(OUT / "teaching.js", "TEACHING", teaching_payload())
     if "--data-only" in __import__("sys").argv:
         return
     fitted = fitted_detectors()

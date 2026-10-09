@@ -47,7 +47,8 @@ def mark_special_orders(table, session):
     for ep in session.episodes:
         for order_id, _ in ep.get("walls", []):
             if order_id in role.index:
-                role[order_id] = {"spoof": "spoof wall", "layer": "layered piece", "control": "genuine large"}[ep["kind"]]
+                role[order_id] = {"spoof": "spoof wall", "layer": "layered piece", "control": "genuine large",
+                                  "reversal": "honest reversal", "withdrawal": "honest withdrawal"}[ep["kind"]]
     table = table.copy()
     table["role"] = role
     return table

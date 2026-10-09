@@ -1,0 +1,94 @@
+setting,detector,threshold,test,metric,size_mult,value,ci_low,ci_high,n
+two accounts; checked one account at a time,Principle (accounts),11.0,normal_calm,false_alarm_windows,,0.010479041916167664,0.004491017964071857,0.01746506986027944,12
+two accounts; checked one account at a time,Principle (accounts),11.0,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+two accounts; checked one account at a time,Principle (accounts),11.0,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,catch_rate,8.0,0.0,0.0,0.0,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,catch_rate_when_it_paid,8.0,0.0,,,37
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,auc_vs_genuine,8.0,0.5,0.5,0.5,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,auc_vs_reversal,8.0,0.0625,0.0,0.125,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,auc_vs_withdrawal,8.0,0.5,0.5,0.5,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,auc_vs_normal,8.0,0.17784552845528456,0.15645325203252033,0.19817073170731708,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,catch_rate,16.0,0.0,0.0,0.0,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,catch_rate_when_it_paid,16.0,0.0,,,34
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,auc_vs_genuine,16.0,0.5,0.5,0.5,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,auc_vs_reversal,16.0,0.10416666666666667,0.020833333333333332,0.1875,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,auc_vs_withdrawal,16.0,0.5,0.5,0.5,40
+two accounts; checked one account at a time,Principle (accounts),11.0,layer_calm,auc_vs_normal,16.0,0.17784552845528456,0.15645325203252033,0.19817073170731708,40
+two accounts; checked one account at a time,Principle (accounts),11.0,reversal_calm,flag_rate,8.0,0.875,0.75,1.0,24
+two accounts; checked one account at a time,Principle (accounts),11.0,reversal_calm,flag_rate,16.0,0.7916666666666666,0.625,0.9583333333333334,24
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,catch_rate,8.0,0.0,0.0,0.0,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,catch_rate_when_it_paid,8.0,0.0,,,41
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,auc_vs_genuine,8.0,0.5,0.5,0.5,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,auc_vs_reversal,8.0,0.0625,0.0,0.125,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,auc_vs_withdrawal,8.0,0.5,0.5,0.5,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,auc_vs_normal,8.0,0.17784552845528456,0.15548780487804878,0.1991869918699187,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,catch_rate,16.0,0.0,0.0,0.0,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,catch_rate_when_it_paid,16.0,0.0,,,39
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,auc_vs_genuine,16.0,0.5,0.5,0.5,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,auc_vs_reversal,16.0,0.10416666666666667,0.020833333333333332,0.1875,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,auc_vs_withdrawal,16.0,0.5,0.5,0.5,50
+two accounts; checked one account at a time,Principle (accounts),11.0,spoof_calm,auc_vs_normal,16.0,0.17784552845528456,0.15548780487804878,0.1991869918699187,50
+two accounts; checked one account at a time,Principle (accounts),11.0,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+two accounts; checked one account at a time,Principle (accounts),11.0,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,normal_calm,false_alarm_windows,,0.010479041916167664,0.004491017964071857,0.01746506986027944,12
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,control_calm,flag_rate,16.0,0.0,0.0,0.0,24
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,catch_rate,8.0,0.925,0.825,1.0,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,catch_rate_when_it_paid,8.0,0.972972972972973,,,37
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,auc_vs_genuine,8.0,0.9625,0.925,1.0,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,auc_vs_reversal,8.0,0.525,0.45,0.6084374999999999,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,auc_vs_withdrawal,8.0,0.9625,0.925,1.0,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,auc_vs_normal,8.0,0.9383384146341464,0.8566565040650407,1.0,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,catch_rate,16.0,0.875,0.75,0.975,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,catch_rate_when_it_paid,16.0,1.0,,,34
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,auc_vs_genuine,16.0,0.9375,0.875,0.9875,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,auc_vs_reversal,16.0,0.5416666666666666,0.44572916666666673,0.6375,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,auc_vs_withdrawal,16.0,0.9375,0.875,0.9875,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,layer_calm,auc_vs_normal,16.0,0.8972306910569106,0.7939469004065041,0.9792975101626016,40
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,reversal_calm,flag_rate,8.0,0.875,0.75,1.0,24
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,reversal_calm,flag_rate,16.0,0.7916666666666666,0.625,0.9583333333333334,24
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,catch_rate,8.0,0.88,0.78,0.96,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,catch_rate_when_it_paid,8.0,1.0,,,41
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,auc_vs_genuine,8.0,0.94,0.89,0.98,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,auc_vs_reversal,8.0,0.5025,0.4216458333333334,0.5733333333333334,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,auc_vs_withdrawal,8.0,0.94,0.89,0.98,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,auc_vs_normal,8.0,0.9013414634146342,0.8200147357723577,0.9676839430894308,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,catch_rate,16.0,0.8,0.68,0.9,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,catch_rate_when_it_paid,16.0,1.0,,,39
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,auc_vs_genuine,16.0,0.9,0.84,0.95,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,auc_vs_reversal,16.0,0.5041666666666667,0.41141666666666676,0.6166666666666667,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,auc_vs_withdrawal,16.0,0.9,0.84,0.95,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,spoof_calm,auc_vs_normal,16.0,0.8355691056910569,0.7637149390243902,0.9197444105691054,50
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,withdrawal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+two accounts; regulator links accounts to their owner,Principle (accounts),11.0,withdrawal_calm,flag_rate,16.0,0.0,0.0,0.0,24
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,normal_calm,false_alarm_windows,,0.004491017964071856,0.0,0.010978043912175649,12
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,control_calm,flag_rate,8.0,0.0,0.0,0.0,24
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,control_calm,flag_rate,16.0,0.041666666666666664,0.0,0.125,24
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,catch_rate,8.0,0.975,0.925,1.0,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,catch_rate_when_it_paid,8.0,0.972972972972973,,,37
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,auc_vs_reversal,8.0,0.9770833333333333,0.9123958333333333,1.0,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,auc_vs_withdrawal,8.0,0.571875,0.499921875,0.6554947916666664,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,auc_vs_normal,8.0,0.985594512195122,0.9736763211382113,0.9939024390243902,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,catch_rate,16.0,1.0,1.0,1.0,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,catch_rate_when_it_paid,16.0,1.0,,,34
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,auc_vs_genuine,16.0,0.9776041666666667,0.93125,1.0,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,auc_vs_reversal,16.0,0.9791666666666666,0.925,1.0,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,auc_vs_withdrawal,16.0,0.5484375,0.4586328125000001,0.6308463541666666,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,layer_calm,auc_vs_normal,16.0,1.0,1.0,1.0,40
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,reversal_calm,flag_rate,8.0,0.0,0.0,0.0,24
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,reversal_calm,flag_rate,16.0,1.0,1.0,1.0,24
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,catch_rate,8.0,0.98,0.94,1.0,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,catch_rate_when_it_paid,8.0,1.0,,,41
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,auc_vs_genuine,8.0,1.0,1.0,1.0,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,auc_vs_reversal,8.0,1.0,1.0,1.0,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,auc_vs_withdrawal,8.0,0.5666666666666667,0.4920833333333333,0.6458541666666667,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,auc_vs_normal,8.0,0.9876422764227643,0.9776153455284553,0.9958948170731707,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,catch_rate,16.0,1.0,1.0,1.0,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,catch_rate_when_it_paid,16.0,1.0,,,39
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,auc_vs_genuine,16.0,0.97875,0.93496875,1.0,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,auc_vs_reversal,16.0,0.9841666666666666,0.9449583333333333,1.0,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,auc_vs_withdrawal,16.0,0.5741666666666667,0.5049166666666667,0.6484166666666665,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,spoof_calm,auc_vs_normal,16.0,1.0,1.0,1.0,50
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,withdrawal_calm,flag_rate,8.0,0.8333333333333334,0.6666666666666666,0.9583333333333334,24
+"two accounts; every pair of accounts checked, no links",Principle (any two accounts),22.0,withdrawal_calm,flag_rate,16.0,1.0,1.0,1.0,24

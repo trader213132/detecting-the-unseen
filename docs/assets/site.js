@@ -1,5 +1,5 @@
 /* Detecting the Unseen: page behaviour.
-   Data: window.RESULTS, REPLAY, EXTENSIONS (written by build_site.py) and PROGRESS (progress.js). */
+   Data: window.RESULTS, REPLAY, EXTENSIONS, TEACHING (written by build_site.py) and PROGRESS (progress.js). */
 (function () {
   "use strict";
 
@@ -9,6 +9,7 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const R = window.RESULTS;
   const E = window.EXTENSIONS || {};
+  const T = window.TEACHING || {};
   const COND = "calm-trained";
 
   // Every detector keeps one look everywhere: colour = model family, shape = what it sees,
@@ -120,6 +121,67 @@
       n.resLstmNormal = dec(resRow("LSTM-AE (generic)").auc_spoof_vs_normal_16);
       n.resLstmGenuine = dec(resRow("LSTM-AE (generic)").auc_spoof_vs_genuine_16);
     }
+    if (T.principle) {
+      const P = "Principle (accounts)", U = "Untaught IForest (accounts)";
+      const tp = (det, test, metric, m) => (T.principle.find((r) => r.setting === "main" && r.detector === det && r.test === test &&
+        r.metric === metric && (m === undefined || r.size_mult === m)) || {}).value;
+      n.prSpoof8 = pct(tp(P, "spoof_calm", "catch_rate", 8));
+      n.prSpoof16 = pct(tp(P, "spoof_calm", "catch_rate", 16));
+      n.prLayer8 = pct(tp(P, "layer_calm", "catch_rate", 8));
+      n.prLayer16 = pct(tp(P, "layer_calm", "catch_rate", 16));
+      n.prPaid16 = pct(tp(P, "spoof_calm", "catch_rate_when_it_paid", 16));
+      n.prPaid8 = pct(tp(P, "spoof_calm", "catch_rate_when_it_paid", 8));
+      n.prGenuine16 = pct(tp(P, "control_calm", "flag_rate", 16));
+      n.prRev16 = pct(tp(P, "reversal_calm", "flag_rate", 16));
+      n.prAucRev16 = dec(tp(P, "spoof_calm", "auc_vs_reversal", 16));
+      n.prAucGen16 = dec(tp(P, "spoof_calm", "auc_vs_genuine", 16));
+      n.prFprCalm = pct(tp(P, "normal_calm", "false_alarm_windows"), 1);
+      n.prFprVol = pct(tp(P, "normal_volatile", "false_alarm_windows"), 1);
+      n.prVol16 = pct(tp(P, "spoof_volatile", "catch_rate", 16));
+      n.prThr = String(Math.round((T.principle.find((r) => r.setting === "main" && r.detector === P) || {}).threshold));
+      n.uaCatch16 = pct(tp(U, "spoof_calm", "catch_rate", 16));
+      n.uaAucGen16 = dec(tp(U, "spoof_calm", "auc_vs_genuine", 16));
+      n.uaAucNormal16 = dec(tp(U, "spoof_calm", "auc_vs_normal", 16));
+      n.uaFprVol = pct(tp(U, "normal_volatile", "false_alarm_windows"), 1);
+      const pr = (T.paired || []).find((r) => r.b === "Rule" && r.test === "layer_calm" && r.size_mult === 16);
+      if (pr) { n.prVsRuleLayer16 = `+${Math.round(pr.difference * 100)}`; n.prVsRuleP = pr.p_value < 0.001 ? "p < 0.001" : `p = ${pr.p_value.toFixed(3)}`; }
+      const ex = (variant, m) => (T.examples || []).find((r) => r.variant === variant && r.k === EXAMPLES_K && r.size_mult === m);
+      if (ex("spoofs only", 16)) {
+        n.exOnlyGenuine16 = pct(ex("spoofs only", 16).genuine_flagged[0]);
+        n.exOnlyLayer16 = pct(ex("spoofs only", 16).layered_caught[0]);
+        n.exBothWalls16 = pct(ex("spoofs and honest large orders", 16).spoof_walls_caught[0]);
+        n.exBothLayer16 = pct(ex("spoofs and honest large orders", 16).layered_caught[0]);
+        n.exBothLayer8 = pct(ex("spoofs and honest large orders", 8).layered_caught[0]);
+        n.exBothGenuine16 = pct(ex("spoofs and honest large orders", 16).genuine_flagged[0]);
+        n.exK = String(EXAMPLES_K);
+      }
+      const rv = (det, test = "reversal_calm") => (T.reversal || []).find((r) => r.detector === det && r.test === test && r.size_mult === 16);
+      if (rv("Rule")) { n.ruleRev16 = pct(rv("Rule").value); n.lstmRev16 = pct(rv("LSTM-AE (generic)").value); }
+      if (rv("Rule", "withdrawal_calm")) n.ruleWd16 = pct(rv("Rule", "withdrawal_calm").value);
+      n.prWd16 = pct(tp(P, "withdrawal_calm", "flag_rate", 16));
+      if (ex("spoofs and honest large orders", 16) && ex("spoofs and honest large orders", 16).withdrawal_flagged)
+        n.exBothWd16 = pct(ex("spoofs and honest large orders", 16).withdrawal_flagged[0]);
+      if (T.evasion) {
+        const ev = (label, test, m, metric) => T.evasion.find((r) => r.setting.includes(label) && r.test === test &&
+          (m === undefined || r.size_mult === m) && r.metric === metric) || {};
+        n.evOne16 = pct(ev("one account at a time", "spoof_calm", 16, "catch_rate").value);
+        n.evLinked16 = pct(ev("links accounts", "spoof_calm", 16, "catch_rate").value);
+        n.evPairs16 = pct(ev("every pair", "spoof_calm", 16, "catch_rate").value);
+        n.evPairsWd16 = pct(ev("every pair", "withdrawal_calm", 16, "flag_rate").value);
+        n.evLinkedWd16 = pct(ev("links accounts", "withdrawal_calm", 16, "flag_rate").value);
+        n.evOneThr = String(Math.round(ev("one account at a time", "normal_calm", undefined, "false_alarm_windows").threshold));
+        n.evPairsThr = String(Math.round(ev("every pair", "normal_calm", undefined, "false_alarm_windows").threshold));
+      }
+      if (T.accounts) {
+        const ac = (label, test, m, metric) => T.accounts.find((r) => r.setting === label && r.test === test && r.size_mult === m && r.metric === metric) || {};
+        const pool = T.accounts.filter((r) => r.setting.includes("accounts per trader type") && r.test === "spoof_calm" &&
+          r.size_mult === 8 && r.metric === "catch_rate").map((r) => r.value);
+        if (pool.length) n.poolRange = Math.min(...pool) === Math.max(...pool) ? pct(pool[0]) : `${pct(Math.min(...pool))} to ${pct(Math.max(...pool))}`;
+        const omni = "spoofer inside an omnibus account carrying 20% of all orders";
+        n.omni20_8 = pct(ac(omni, "spoof_calm", 8, "catch_rate").value);
+        n.omni20_16 = pct(ac(omni, "spoof_calm", 16, "catch_rate").value);
+      }
+    }
     return n;
   }
   function bindNumbers() {
@@ -202,10 +264,10 @@
       new IntersectionObserver(([e]) => bar.classList.toggle("is-solid", !e.isIntersecting && e.boundingClientRect.top < 0))
         .observe(sentinel);
     }
-    const ids = ["question", "method", "results", "robustness", "answer", "progress", "references"];
+    const ids = ["question", "method", "results", "robustness", "teaching", "answer", "progress", "references"];
     const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
     // The top bar has fewer links than the contents, so some sections light up their parent link.
-    const topFor = { question: "question", method: "method", results: "results", robustness: "results", answer: "results",
+    const topFor = { question: "question", method: "method", results: "results", robustness: "results", teaching: "results", answer: "results",
       progress: "progress", references: "progress" };
     const visible = new Map();
     const io = new IntersectionObserver((entries) => {
@@ -773,6 +835,140 @@
         pct(r.fill_wall), pct(r.fill_honest), `${r.shift[0] >= 0 ? "+" : ""}${r.shift[0].toFixed(2)}`])), 2);
   }
 
+  /* ---------- Figure 8: the ladder of teaching ---------- */
+  // Rows: how much a detector was told. Columns: what it caught, and which honest behaviour it flagged.
+  const LADDER_TESTS = [
+    { key: "spoof", label: "Spoofs caught", short: "Spoofs", want: "high" },
+    { key: "layer", label: "Layered spoofs caught", short: "Layered", want: "high" },
+    { key: "genuine", label: "Honest large orders flagged", short: "Honest large", want: "low" },
+    { key: "withdrawal", label: "Quick withdrawals flagged", short: "Withdrawals", want: "low" },
+    { key: "reversal", label: "Changes of mind flagged", short: "Changes of mind", want: "none" },
+  ];
+  const EXAMPLES_K = 10;
+  function ladderRows(size, shown) {
+    const pr = (test, metric) => (T.principle || []).find((r) => r.setting === "main" && r.detector === "Principle (accounts)" &&
+      r.test === test && r.metric === metric && r.size_mult === size);
+    const rev = (det, test = "reversal_calm") => (T.reversal || []).find((r) => r.detector === det && r.test === test && r.size_mult === size);
+    const ex = (T.examples || []).find((r) => r.variant === shown && r.k === EXAMPLES_K && r.size_mult === size);
+    const fromR = (det, test) => { const r = R.catch[COND][test][det][iSize(size)]; return [r[0], r[1], r[2]]; };
+    const ci = (r) => (r ? [r.value, r.ci_low, r.ci_high] : null);
+    return [
+      { rung: "0", name: "Nothing", who: "LSTM autoencoder: learns what normal trading looks like",
+        cells: [fromR("LSTM-AE (generic)", "spoof_calm"), fromR("LSTM-AE (generic)", "layer_calm"),
+          fromR("LSTM-AE (generic)", "control_calm"), ci(rev("LSTM-AE (generic)", "withdrawal_calm")), ci(rev("LSTM-AE (generic)"))] },
+      { rung: "1", name: "Examples", who: shown === "spoofs only" ? `A classifier shown ${EXAMPLES_K} labelled spoofs`
+          : `A classifier shown ${EXAMPLES_K} labelled spoofs and ${EXAMPLES_K} honest large orders`,
+        cells: ex ? [ex.spoof_walls_caught, ex.layered_caught, ex.genuine_flagged, ex.withdrawal_flagged || null, ex.reversal_flagged]
+          : [null, null, null, null, null],
+        range: true },
+      { rung: "2", name: "A pattern", who: "The rule: a large order cancelled quickly",
+        cells: [fromR("Rule", "spoof_calm"), fromR("Rule", "layer_calm"), fromR("Rule", "control_calm"),
+          ci(rev("Rule", "withdrawal_calm")), ci(rev("Rule"))] },
+      { rung: "3", name: "A principle", who: "The legal definition, checked account by account",
+        cells: [ci(pr("spoof_calm", "catch_rate")), ci(pr("layer_calm", "catch_rate")),
+          ci(pr("control_calm", "flag_rate")), ci(pr("withdrawal_calm", "flag_rate")), ci(pr("reversal_calm", "flag_rate"))] },
+    ];
+  }
+  function initFig8() {
+    const box = $('[data-chart="fig8"]');
+    if (!box || !R || !T.principle) return;
+    let size = 16, shown = "spoofs and honest large orders", cancel = () => {};
+    let current = ladderRows(size, shown);
+    const tooltip = tooltipFor(box);
+    const colour = (t) => (t.want === "high" ? "var(--mark)" : t.want === "low" ? "var(--ink-2)" : "var(--ink-3)");
+    function draw(rows) {
+      const w = box.clientWidth;
+      if (w < 240) return;
+      const wide = w >= 680;
+      const n = LADDER_TESTS.length;
+      const labelW = wide ? Math.min(220, w * 0.24) : 0;
+      const colGap = wide ? 14 : 0, headH = wide ? 50 : 0;
+      const rowH = wide ? 74 : n * 30 + 44;
+      const h = headH + rowH * rows.length + 4;
+      const colW = wide ? (w - labelW - colGap * (n - 1)) / n : w - 104;
+      box.querySelectorAll("svg").forEach((s) => s.remove());
+      const s = svg("svg", { viewBox: `0 0 ${w} ${h}`, width: w, height: h, role: "img",
+        "aria-label": "Grid: for each level of teaching, the share of spoofs and layered spoofs caught and of honest behaviour flagged. Data table below." });
+      box.prepend(s);
+      if (wide) LADDER_TESTS.forEach((t, j) => {
+        const x0 = labelW + j * (colW + colGap);
+        const head = svg("text", { class: "tick-label", x: x0, y: 12, style: "fill: var(--ink); font-size: 12px; font-weight: 600" }, s);
+        head.textContent = t.label;
+        const lines = wrapSvgText(head, colW - 6, 14);
+        svg("text", { class: "tick-label", x: x0, y: 12 + 14 * lines }, s).textContent =
+          t.want === "high" ? "higher is better" : t.want === "low" ? "lower is better" : "honest, looks like a spoof";
+      });
+      rows.forEach((row, i) => {
+        const y0 = headH + rowH * i;
+        if (i > 0) svg("line", { class: "gridline", x1: 0, x2: w, y1: y0, y2: y0 }, s);
+        const title = svg("text", { x: 0, y: y0 + 22, style: "fill: var(--ink); font-size: 14px; font-weight: 700" }, s);
+        title.textContent = `${row.rung}  ${row.name}`;
+        const sub = svg("text", { class: "tick-label", x: 0, y: y0 + 40 }, s);
+        sub.textContent = row.who;
+        if (wide) wrapSvgText(sub, labelW - 14, 13);
+        LADDER_TESTS.forEach((t, j) => {
+          const v = row.cells[j];
+          const x0 = wide ? labelW + j * (colW + colGap) : 104;
+          const by = wide ? y0 + 22 : y0 + 52 + j * 30;
+          if (!wide) svg("text", { class: "tick-label", x: 0, y: by + 11 }, s).textContent = t.short;
+          const bw = colW - 40;
+          svg("rect", { x: x0, y: by, width: bw, height: 14, rx: 3, fill: "var(--paper-2)" }, s);
+          if (!v) { svg("text", { class: "tick-label", x: x0 + 4, y: by + 11 }, s).textContent = "not run"; return; }
+          svg("rect", { x: x0, y: by, width: Math.max(1.5, bw * v[0]), height: 14, rx: 3, fill: colour(t) }, s);
+          svg("line", { x1: x0 + bw * v[1], x2: x0 + bw * v[2], y1: by + 7, y2: by + 7, stroke: "var(--ink)", "stroke-width": 1.2, opacity: 0.55 }, s);
+          svg("text", { class: "tick-label", x: x0 + bw + 6, y: by + 11, style: "fill: var(--ink); font-weight: 600" }, s).textContent = pct(v[0]);
+          const hit = svg("rect", { class: "hit", x: x0, y: by - 6, width: colW, height: 26 }, s);
+          const range = row.range ? "middle 80% of 30 random sets of examples" : "95% confidence interval";
+          hit.addEventListener("pointerenter", () => tooltip.show(x0 + bw * v[0], by,
+            `<b>${row.name}</b>, ${size}×<br>${t.label}: ${pct(v[0])}<span class="tt-sub">${pct(v[1])} to ${pct(v[2])} (${range})</span>`));
+          hit.addEventListener("pointerleave", () => tooltip.hide());
+        });
+      });
+    }
+    function update() {
+      const from = current, to = ladderRows(size, shown);
+      cancel();
+      cancel = tween(380, (k) => {
+        current = to.map((row, i) => ({ ...row, cells: row.cells.map((c, j) => {
+          const f = from[i].cells[j];
+          return c && f ? c.map((x, q) => f[q] + (x - f[q]) * k) : c;
+        }) }));
+        draw(current);
+      });
+    }
+    draw(current);
+    onResize(box, () => draw(current));
+    window.addEventListener("themechange", () => draw(current));
+    onTabs($("[data-fig8-size]"), "size", (v) => { size = Number(v); update(); });
+    onTabs($("[data-fig8-shown]"), "shown", (v) => { shown = v; update(); });
+    const tableRows = [];
+    [8, 16].forEach((m) => ["spoofs only", "spoofs and honest large orders"].forEach((sh) => ladderRows(m, sh).forEach((row) => {
+      if (row.rung !== "1" && sh === "spoofs only") return;
+      const name = row.rung === "1" ? `${row.name} (${sh === "spoofs only" ? "spoofs only" : "spoofs + honest"})` : row.name;
+      tableRows.push([name, `${m}×`, ...row.cells.map((c) => (c ? pct(c[0]) : "n/a"))]);
+    })));
+    table($('[data-table="fig8"]'), ["Teaching", "Size", ...LADDER_TESTS.map((t) => t.label)], tableRows, 1);
+  }
+  // Breaks an SVG text into lines of at most maxWidth pixels. Returns the number of lines.
+  function wrapSvgText(node, maxWidth, lineHeight) {
+    const words = node.textContent.split(" ");
+    const x = node.getAttribute("x");
+    node.textContent = "";
+    let line = [], tspan = svg("tspan", { x, dy: 0 }, node);
+    words.forEach((word) => {
+      line.push(word);
+      tspan.textContent = line.join(" ");
+      if (tspan.getComputedTextLength() > maxWidth && line.length > 1) {
+        line.pop();
+        tspan.textContent = line.join(" ");
+        line = [word];
+        tspan = svg("tspan", { x, dy: lineHeight }, node);
+        tspan.textContent = word;
+      }
+    });
+    return node.childNodes.length;
+  }
+
   /* ---------- Figure 7: order-level flags ---------- */
   function initFig7() {
     const box = $('[data-chart="fig7"]');
@@ -834,6 +1030,39 @@
       const t = table($('[data-table="sensitivity"]'), ["Claim", ...markets.map((m) => m.replace("main experiment", "Main"))],
         E.checks.map((r) => [r.claim, ...markets.map((m) => ({ text: r[m] === "holds" ? "Holds" : r[m] === "fails" ? "Fails" : "n/a", cls: r[m] === "fails" ? "fails" : "" }))]), 1);
       if (t) { const cap = document.createElement("caption"); cap.innerHTML = "<b>Table 4.</b> Each claim checked in the main market and four alternatives. The claim marked as added afterwards was written after seeing the results."; t.prepend(cap); }
+    }
+    if (T.principle && (T.markets || T.accounts)) {
+      // Table 5: the principle detector under every stress test, one row per setting.
+      const P = "Principle (accounts)";
+      const rows = [];
+      const add = (records, setting, label) => {
+        const v = (test, m, metric) => (records.find((r) => r.setting === setting && r.detector === P && r.test === test &&
+          (m === undefined || r.size_mult === m) && (metric === undefined || r.metric === metric)) || {}).value;
+        rows.push([label, pct(v("spoof_calm", 8, "catch_rate")), pct(v("spoof_calm", 16, "catch_rate")), pct(v("layer_calm", 16, "catch_rate")),
+          pct(v("control_calm", 16, "flag_rate")), pct(v("withdrawal_calm", 16, "flag_rate")), pct(v("reversal_calm", 16, "flag_rate")),
+          pct(v("normal_calm", undefined, "false_alarm_windows"), 1)]);
+      };
+      add(T.principle, "main", "Main market");
+      const settings = (records) => [...new Set((records || []).map((r) => r.setting))];
+      settings(T.markets).forEach((m) => add(T.markets, m, `Market: ${m}`));
+      settings(T.accounts).forEach((m) => add(T.accounts, m, m.charAt(0).toUpperCase() + m.slice(1)));
+      const t = table($('[data-table="stress"]'), ["Setting", "Spoofs, 8×", "Spoofs, 16×", "Layered, 16×", "Honest large flagged, 16×",
+        "Quick withdrawals flagged, 16×", "Changes of mind flagged, 16×", "False-alarm windows"], rows, 1);
+      if (t) { const cap = document.createElement("caption"); cap.innerHTML = "<b>Table 5.</b> The principle detector under every stress test. Each setting sets its own threshold on its own normal trading."; t.prepend(cap); }
+    }
+    if (T.evasion) {
+      // Table 6: a spoofer who splits the trick across two accounts.
+      const rows = [...new Set(T.evasion.map((r) => r.setting))].map((setting) => {
+        const v = (test, m, metric) => (T.evasion.find((r) => r.setting === setting && r.test === test &&
+          (m === undefined || r.size_mult === m) && r.metric === metric) || {});
+        const label = setting.replace("two accounts; ", "");
+        return [label.charAt(0).toUpperCase() + label.slice(1), pct(v("spoof_calm", 8, "catch_rate").value), pct(v("spoof_calm", 16, "catch_rate").value),
+          pct(v("layer_calm", 16, "catch_rate").value), pct(v("control_calm", 16, "flag_rate").value),
+          pct(v("withdrawal_calm", 16, "flag_rate").value), `${Math.round(v("normal_calm", undefined, "false_alarm_windows").threshold)} lots`];
+      });
+      const t = table($('[data-table="evasion"]'), ["Detector", "Spoofs, 8×", "Spoofs, 16×", "Layered, 16×", "Honest large flagged, 16×",
+        "Quick withdrawals flagged, 16×", "Alert threshold"], rows, 1);
+      if (t) { const cap = document.createElement("caption"); cap.innerHTML = "<b>Table 6.</b> A spoofer who shows the wall from one account and trades from another. Every version keeps false alarms to 1% of normal windows, so a higher threshold is the price of a wider search."; t.prepend(cap); }
     }
   }
 
@@ -915,6 +1144,7 @@
   initFig5();
   initFig6();
   initFig7();
+  initFig8();
   initTables();
   initProgress();
   initFooter();

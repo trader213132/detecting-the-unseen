@@ -24,6 +24,17 @@ TEST sessions can also contain scheduled "special" episodes:
                the same seed in both modes measures what the wall itself did.
   * "control": a legitimate large order of the same size and placement as a spoof
                wall, which stays on the book for a long time.
+  * "reversal": an honest trader rests the same large order, then a few steps later
+               changes their mind (as if on news): they cancel it and trade a small
+               amount on the OTHER side. Its footprint matches a spoof's; only the
+               intent differs. It is the hardest honest case there is.
+  * "withdrawal": the same, but the trader simply cancels and trades nothing: an honest
+               large order cancelled quickly, exactly what the rule looks for.
+
+Every order carries an account number, as in the order data a regulator receives.
+Background traders share pools of accounts; the institution, the spoofer and the
+controls have their own. Account numbers come from a separate random stream, so they
+never change what happens in the market.
 """
 import heapq
 from dataclasses import dataclass, replace
@@ -34,8 +45,9 @@ import pandas as pd
 from . import config as C
 from .orderbook import BUY, LOG_COLUMNS, SELL, OrderBook
 
-# Agent ids are only used to label episodes afterwards. Detectors never see them.
-ZI, REACTIVE, MARKET_MAKER, INSTITUTION, SPOOFER, CONTROL = range(6)
+# Account numbers. The market-wide detectors never see them; the account-level detectors
+# (src/accounts.py) only group orders by them and never read what kind of trader it is.
+ZI, REACTIVE, MARKET_MAKER, INSTITUTION, SPOOFER, CONTROL, BROKER = range(7)
 
 
 def agent_id(kind, index=0):
@@ -61,6 +73,7 @@ def plan_episodes(seed, n, steps):
     """Choose when special episodes happen. Uses its own random generator, so a
     spoof session and its honest twin get exactly the same schedule."""
     rng = np.random.default_rng([seed, 99])
+    extra = np.random.default_rng([seed, 98])      # added later: kept separate so schedules stay the same
     starts = []
     while len(starts) < n:
         start = int(rng.integers(300, steps - 150))
@@ -73,6 +86,7 @@ def plan_episodes(seed, n, steps):
             "wall_side": int(rng.choice([BUY, SELL])),
             "distance": int(rng.integers(1, 3)),    # 1 or 2 ticks behind the touch
             "control_life": int(rng.integers(*C.CONTROL_LIFE)),
+            "reverse_after": int(extra.integers(*C.REVERSAL_AFTER)),
         })
     return plans
 
@@ -85,6 +99,7 @@ def run_session(seed, regime="calm", specials=(), overrides=None):
     """
     cfg = replace(C.REGIMES[regime], **(overrides or {}))
     rng = np.random.default_rng(seed)
+    ids = np.random.default_rng([seed, 31])        # account numbers only: never affects the market
     book = OrderBook()
     expiries = []                                  # heap of (cancel_time, order_id)
     mm_orders = [[] for _ in range(cfg.n_market_makers)]
@@ -124,7 +139,7 @@ def run_session(seed, regime="calm", specials=(), overrides=None):
 
         # 4. Background traders arrive.
         for _ in range(rng.poisson(cfg.arrival_rate)):
-            _background_trader(book, cfg, rng, value, t, expiries)
+            _background_trader(book, cfg, rng, value, t, expiries, ids)
 
         # 5. Now and then the institution rests a genuinely large order.
         institution_draws = rng.random(5)
@@ -142,7 +157,7 @@ def run_session(seed, regime="calm", specials=(), overrides=None):
         # 6. Special episodes (test sessions only).
         while queued and queued[0]["start"] == t:
             episode = queued.pop(0)
-            if _start_episode(book, episode, value, t):
+            if _start_episode(book, cfg, episode, t):
                 active.append(episode)
         for episode in list(active):
             if _update_episode(book, episode, t):
@@ -181,7 +196,7 @@ def _requote(book, cfg, rng, value, t, i, mm_orders):
                 mm_orders[i].append(order_id)
 
 
-def _background_trader(book, cfg, rng, value, t, expiries):
+def _background_trader(book, cfg, rng, value, t, expiries, ids):
     # Every trader makes the same random draws, which keeps paired runs aligned.
     is_reactive, side_draw, surplus_draw, patience = rng.random(4)
     size = int(rng.geometric(cfg.size_p))
@@ -197,13 +212,15 @@ def _background_trader(book, cfg, rng, value, t, expiries):
     side = BUY if side_draw < p_buy else SELL
     surplus = cfg.surplus_min + surplus_draw * (cfg.surplus_max - cfg.surplus_min)
     price = round(estimate - side * surplus)
-    order_id = book.submit(agent_id(kind), side, price, size, t)
+    route, slot = ids.random(), int(ids.integers(cfg.accounts_per_kind))
+    account = agent_id(BROKER) if route < cfg.omnibus_share else agent_id(kind, slot)
+    order_id = book.submit(account, side, price, size, t)
     if order_id is not None:
         wait = -cfg.mean_patience * np.log(1 - patience)          # exponential waiting time
         heapq.heappush(expiries, (t + max(1, int(wait)), order_id))
 
 
-def _start_episode(book, ep, value, t):
+def _start_episode(book, cfg, ep, t):
     wall_side = ep["wall_side"]
     genuine_side = -wall_side
     touch = book.best(wall_side)
@@ -212,7 +229,7 @@ def _start_episode(book, ep, value, t):
         return False
     ep.update(start=t, end=None, walls=[], small_id=None, small_filled=False, fill_time=None)
     total = round(ep["size_mult"] * C.TYPICAL_SIZE)
-    if ep["kind"] in ("spoof", "control"):
+    if ep["kind"] in ("spoof", "control", "reversal", "withdrawal"):
         # One big order, one or two ticks behind the best price.
         orders = [(touch - wall_side * ep["distance"], total)]
     elif ep["kind"] == "layer":
@@ -221,14 +238,19 @@ def _start_episode(book, ep, value, t):
         orders = [(touch - wall_side * (ep["distance"] + k), piece) for k in range(C.LAYERS)]
     else:
         orders = []
-    owner = CONTROL if ep["kind"] == "control" else SPOOFER
+    if ep["kind"] in ("control", "reversal", "withdrawal"):
+        owner = agent_id(CONTROL)
+    else:                                   # through the broker's shared account, if there is one
+        owner = agent_id(BROKER) if cfg.omnibus_share > 0 else agent_id(SPOOFER)
+    # An evasive spoofer places the small order from a second account of their own.
+    small_owner = agent_id(SPOOFER, 1) if cfg.spoofer_accounts > 1 and owner == agent_id(SPOOFER) else owner
+    ep["account"], ep["accounts"] = owner, sorted({owner, small_owner})
     for price, size in orders:
-        order_id = book.submit(agent_id(owner), wall_side, price, size, t)
+        order_id = book.submit(owner, wall_side, price, size, t)
         if order_id is not None:
             ep["walls"].append((order_id, price))
     if ep["kind"] in ("spoof", "layer", "honest"):
-        ep["small_id"] = book.submit(agent_id(SPOOFER), genuine_side, opposite_touch,
-                                     C.TYPICAL_SIZE, t)
+        ep["small_id"] = book.submit(small_owner, genuine_side, opposite_touch, C.TYPICAL_SIZE, t)
         if ep["small_id"] is None:          # traded immediately
             ep["small_filled"], ep["fill_time"] = True, t
     return True
@@ -236,6 +258,21 @@ def _start_episode(book, ep, value, t):
 
 def _update_episode(book, ep, t):
     """Advance an active episode by one step. Returns True when it has finished."""
+    if ep["kind"] in ("reversal", "withdrawal"):
+        if t - ep["start"] >= ep["reverse_after"]:
+            # Change of mind: withdraw the large order and (reversal only) sell or buy a little
+            # the other way, crossing the spread so it trades at once.
+            for order_id, _ in ep["walls"]:
+                book.cancel(order_id, t)
+            touch = book.best(ep["wall_side"])
+            if touch is not None and ep["kind"] == "reversal":
+                left = book.submit(ep["account"], -ep["wall_side"], touch, C.TYPICAL_SIZE, t)
+                if left is not None:            # not all of it traded: do not leave it resting
+                    book.cancel(left, t)
+                ep["small_filled"], ep["fill_time"] = left is None, t
+            ep["end"] = t
+            return True
+        return False
     if ep["kind"] == "control":
         still_resting = any(order_id in book.orders for order_id, _ in ep["walls"])
         if t - ep["start"] >= ep["control_life"] or not still_resting:

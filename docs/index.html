@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=4"><link rel="stylesheet" href="assets/lake.css?v=4"><link rel="stylesheet" href="assets/masthead.css?v=4">
+  <link rel="stylesheet" href="assets/site.css?v=6"><link rel="stylesheet" href="assets/lake.css?v=6"><link rel="stylesheet" href="assets/masthead.css?v=6">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="lake-at-top"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div><button class="lake-toggle" type="button" data-lake-toggle aria-pressed="false" hidden>Pause motion</button>
@@ -49,13 +49,13 @@
               <a class="dd-item is-active" href="#findings" data-img="0"><strong>The short answer</strong><span>Untaught detectors found honest orders stranger than spoofs.</span></a>
               <a class="dd-item" href="#figure-6" data-img="1"><strong>Does spoofing work?</strong><span>A fake wall lifts the spoofer's real fill chance.</span></a>
               <a class="dd-item" href="#figure-2" data-img="2"><strong>Seven detectors</strong><span>Catch rates, from a hand-written rule to an LSTM.</span></a>
-              <a class="dd-item" href="#figure-7" data-img="3"><strong>Order by order</strong><span>Every honest large order ranked above every spoof.</span></a>
+              <a class="dd-item" href="#teaching" data-img="3"><strong>The ladder of teaching</strong><span>Told what spoofing is, not what it looks like.</span></a>
             </div>
             <div class="dd-media" aria-hidden="true">
               <img class="is-active" src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async">
               <img src="assets/menu/works.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
               <img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
-              <img src="assets/menu/orders.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
             </div>
           </div>
           <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
@@ -88,7 +88,7 @@
       <a href="#findings">The short answer</a>
       <a href="#figure-6">Does spoofing work?</a>
       <a href="#figure-2">Seven detectors</a>
-      <a href="#figure-7">Order by order</a>
+      <a href="#teaching">The ladder of teaching</a>
       <h3>Explore</h3>
       <a href="#replay">Watch one spoof</a>
       <a href="analytics.html">Analytics explorer</a>
@@ -125,14 +125,14 @@
     <section class="answer" id="findings" aria-labelledby="answer-title">
       <div class="answer__grid">
         <div>
-          <h2 class="answer__lead" id="answer-title">Not yet. And the reason is specific.</h2>
-          <p class="answer__abstract">Spoofing means placing large orders you never intend to trade, so that other traders misread supply and demand. Real examples are rare and hard to label, which makes one idea attractive: train a detector only on normal trading and let it flag whatever looks unusual. This project tests that idea in a simulated market where spoofing measurably works, with seven detectors ranging from a hand-written rule to an LSTM neural network. The detectors that were never told what spoofing looks like could not tell a spoof from an honest large order, in five different markets and even when they examined individual orders. They found the honest orders <mark>more</mark> unusual, because a spoof is unusual only in its size, while its quick cancellation looks like ordinary market-making. The one signal that separated them, a large order cancelled quickly, came from what the detectors were told, and it stopped working as soon as the same spoof was split into smaller pieces.</p>
+          <h2 class="answer__lead" id="answer-title">Not by looking for the unusual. Yes, by knowing the purpose.</h2>
+          <p class="answer__abstract">Spoofing means placing large orders you never intend to trade, so that other traders misread supply and demand. Real examples are rare and hard to label, which makes one idea attractive: train a detector only on normal trading and let it flag whatever looks unusual. This project tests that idea in a simulated market where spoofing measurably works, with seven detectors ranging from a hand-written rule to an LSTM neural network. The detectors that were never told what spoofing looks like could not tell a spoof from an honest large order, in five different markets and even when they examined individual orders. They found the honest orders <mark>more</mark> unusual, because a spoof is unusual only in its size, while its quick cancellation looks like ordinary market-making. The one signal that separated them, a large order cancelled quickly, came from what the detectors were told, and it stopped working as soon as the same spoof was split into smaller pieces. A second experiment asked what kind of teaching does work. Examples and patterns teach what spoofing looks like, and fail the same way. A detector built only from the legal definition, which asks whether a trader showed interest it then withdrew while trading the other way, caught both kinds of spoof without a single example and flagged no honest large orders. What it cannot do is tell a spoof from an honest change of mind: that takes intent, which no data shows.</p>
         </div>
         <ol class="findings" aria-label="Key findings">
           <li><b>+<span data-num="fill8"></span> points</b>more chance that the spoofer's genuine order fills when an 8× fake wall is up. The spoofing works.</li>
           <li><b>AUC <span data-num="lstmAuc16"></span></b>for the LSTM neural network telling spoofs from honest orders of the same size. 0.5 means no difference; lower means the honest orders looked stranger.</li>
-          <li><b>AUC <span data-num="ordersAuc16"></span></b>when an untaught detector examined every individual order: it ranked every honest large order above every spoof.</li>
           <li><b><span data-num="rule16"></span> to <span data-num="ruleLayer16"></span></b>the rule's catch rate, before and after the same spoof was split into four smaller orders.</li>
+          <li><b><span data-num="prLayer16"></span></b>of those layered spoofs caught by a detector given only the legal definition and no examples, while it flagged <span data-num="prGenuine16"></span> of honest large orders.</li>
         </ol>
       </div>
     </section>
@@ -199,6 +199,7 @@
           <li><a href="#method">The experiment</a></li>
           <li><a href="#results">Results</a></li>
           <li><a href="#robustness">Robustness</a></li>
+          <li><a href="#teaching">Part 2: teaching</a></li>
           <li><a href="#answer">What it means</a></li>
           <li><a href="#progress">Progress</a></li>
           <li><a href="#references">References</a></li>
@@ -213,6 +214,7 @@
             <li><a href="#method">The experiment</a></li>
             <li><a href="#results">Results</a></li>
             <li><a href="#robustness">Robustness</a></li>
+            <li><a href="#teaching">Part 2: teaching</a></li>
             <li><a href="#answer">What it means</a></li>
             <li><a href="#progress">Progress</a></li>
             <li><a href="#references">References</a></li>
@@ -385,13 +387,71 @@
           <p>It noticed that spoof orders are unusual compared with ordinary ones (AUC <span data-num="ordersNormal16"></span>), but it ranked every honest large order above every spoof (AUC <span data-num="ordersAuc16"></span>). Take size out of its description and spoofs stop standing out almost entirely (AUC <span data-num="ordersNoSize"></span> against ordinary orders). <mark>Size is the only unusual thing about a spoof.</mark> Its quick cancellation looks exactly like the market makers who cancel all day, while an honest large order is big <i>and</i> patient, which is rarer.</p>
         </section>
 
+        <section id="teaching" aria-labelledby="teaching-title">
+          <h2 class="section-title" id="teaching-title">Part 2: what kind of teaching works?</h2>
+          <p>Part 1 found that learning what normal trading looks like is not enough. But the title's question has a second half: if a detector must be taught, what should it be taught? I gave detectors four levels of prior knowledge, a ladder, and tested every level on the same spoofs, the same honest orders, and one new case built to be as hard as possible.</p>
+          <ol class="ladder-steps">
+            <li><b>Nothing.</b> Unusualness alone: the detectors of Part 1.</li>
+            <li><b>Examples.</b> A classifier shown labelled spoofs. In a fairer version it is also shown labelled honest large orders.</li>
+            <li><b>A pattern.</b> The surveillance rule: a large order cancelled quickly.</li>
+            <li><b>A principle.</b> The legal definition of the offence, and nothing else.</li>
+          </ol>
+
+          <h3>Turning the law into a detector</h3>
+          <p>UK law does not define spoofing by what it looks like. The Market Abuse Regulation defines manipulation by its effect: orders that give, or are likely to give, false or misleading signals about supply or demand.<button class="sn-ref" type="button" aria-expanded="false" aria-controls="sn-9">9</button><span class="sidenote" id="sn-9" role="note"><span class="sn-num">9</span><b>Market Abuse Regulation</b> (EU) No 596/2014, Article 12(1)(a), retained in UK law. Its Annex I lists warning signs, including orders that are cancelled before they execute.</span> That becomes three questions about one account over 40 steps. Did it <b>show</b> interest on one side? Was that interest <b>withdrawn</b> rather than traded? And did the same account <b>trade the other way</b>? If all three answers are yes, the score is the size of the false signal in lots. Nothing in it mentions size, timing, distance from the price or any example of spoofing, and nothing is learned: only its alert threshold is set on normal trading, at <span data-num="prThr"></span> lots.</p>
+          <p>A market maker quotes the same amount on both sides, so it shows no direction at all, however often it cancels. That one word, <i>direction</i>, is why the busiest traders in the market score zero.</p>
+          <p>The principle needs one thing the earlier detectors never had: who placed each order. Regulators and exchanges have it, because trading venues must keep order records that identify the client.<button class="sn-ref" type="button" aria-expanded="false" aria-controls="sn-10">10</button><span class="sidenote" id="sn-10" role="note"><span class="sn-num">10</span><b>Commission Delegated Regulation (EU) 2017/580</b> ("RTS 24") on keeping records of orders, retained in UK law. Anyone reading the public order book sees no names.</span> So the fair comparison is an untaught Isolation Forest given exactly the same account-by-account data. If it did as well, the data would deserve the credit, not the principle.</p>
+
+          <figure class="figure figure--wide" id="figure-8" aria-labelledby="figure-8-cap">
+            <div class="figure__top">
+              <p class="fig-label">Figure 8 <span>The ladder of teaching</span></p>
+              <div class="figure__controls">
+                <div class="segmented" role="tablist" aria-label="Examples shown to the classifier" data-fig8-shown>
+                  <span class="segmented__pill" aria-hidden="true"></span>
+                  <button type="button" role="tab" aria-selected="false" data-shown="spoofs only">Spoofs only</button>
+                  <button type="button" role="tab" aria-selected="true" data-shown="spoofs and honest large orders">Spoofs + honest</button>
+                </div>
+                <div class="segmented" role="tablist" aria-label="Size" data-fig8-size>
+                  <span class="segmented__pill" aria-hidden="true"></span>
+                  <button type="button" role="tab" aria-selected="false" data-size="8">8×</button>
+                  <button type="button" role="tab" aria-selected="true" data-size="16">16×</button>
+                </div>
+              </div>
+            </div>
+            <div class="chart" data-chart="fig8"></div>
+            <figcaption class="figcaption" id="figure-8-cap"><b>Figure 8.</b> Each row is a level of teaching, each column a test (calm market). Bars show the share caught or flagged; lines show 95% confidence intervals, or for the classifier the middle 80% of 30 random sets of <span data-num="exK"></span> examples. Rows 0 and 2 use the same spoofs as Part 1 and row 3 re-simulates them exactly. The classifier works on individual orders and is tested on held-out sessions.</figcaption>
+            <details class="data-table"><summary><i class="ph ph-table" aria-hidden="true"></i>Show the data for Figure 8</summary><div class="table-wrap" data-table="fig8"></div></details>
+          </figure>
+
+          <h3>Examples and patterns teach the look</h3>
+          <p>Shown only spoofs, the classifier learned "large order". It caught every wall, but it also flagged <span data-num="exOnlyGenuine16"></span> of honest large orders, and it caught <span data-num="exOnlyLayer16"></span> of layered spoofs. Shown honest large orders as well, it learned "large and short-lived": it stopped flagging honest orders (<span data-num="exBothGenuine16"></span>) but caught only <span data-num="exBothLayer16"></span> of layered spoofs at 16× and <span data-num="exBothLayer8"></span> at 8×, because a layered piece is smaller than anything it was shown. More examples did not change this. It is the rule's failure again: both learned what spoofs <i>look like</i>, so a spoof that looks different walks past. And both flagged honest traders who simply cancelled a large order quickly, without trading at all: the rule <span data-num="ruleWd16"></span> of them, the classifier <span data-num="exBothWd16"></span>. To a pattern, an honest quick cancellation and a spoof are the same thing.</p>
+
+          <h3>A principle teaches the purpose</h3>
+          <p>The principle caught <span data-num="prSpoof8"></span> of single-wall spoofs at 8× and <span data-num="prSpoof16"></span> at 16×, and <span data-num="prLayer8"></span> and <span data-num="prLayer16"></span> of layered ones: splitting a wall does not change what the trader showed, withdrew and traded. On the very same layered spoofs that is <span data-num="prVsRuleLayer16"></span> points over the rule at 16× (<span data-num="prVsRuleP"></span>). Almost every spoof it missed never paid off, because its small order never traded; of the spoofs that worked it caught <span data-num="prPaid16"></span>. It flagged <span data-num="prGenuine16"></span> of honest large orders and <span data-num="prWd16"></span> of honest quick withdrawals: cancelling quickly is not the offence, cancelling to help a trade on the other side is. When the market turned volatile its false alarms barely moved, from <span data-num="prFprCalm"></span> to <span data-num="prFprVol"></span> of windows, where Part 1's learned detectors went from 1% to as much as half of all bars.</p>
+          <p><mark>It is the principle, not the data.</mark> The untaught Isolation Forest on the same account data caught <span data-num="uaCatch16"></span>. It does rank spoofers as stranger than honest large traders (AUC <span data-num="uaAucGen16"></span>), but some honest trader is always stranger still, so a spoofer never reaches the top of its list (AUC <span data-num="uaAucNormal16"></span> against ordinary trading).</p>
+
+          <h3>The case nothing can solve</h3>
+          <p>An honest trader rests a large order. Then news changes their mind: they cancel it and trade a little the other way. Every action matches a spoof; only the reason differs. The principle flagged <span data-num="prRev16"></span> of these at 16× and could not tell them from spoofs at all (AUC <span data-num="prAucRev16"></span>). The rule flagged <span data-num="ruleRev16"></span>. This is not a flaw to engineer away. Behaviour can show that a signal was false, but not why it was sent. That is why the law asks for intent to be proved, and why an alert should start an investigation, not end one.</p>
+
+          <h3>Trying to break it</h3>
+          <p>The principle was re-run in the four alternative markets from Part 1, with fewer or more traders sharing each account, with the spoofer hidden inside a broker's shared "omnibus" account, and with shorter and longer windows. Account numbers change nothing in the simulated trading itself, only the record of who did what.</p>
+          <div class="table-wrap" data-table="stress"></div>
+          <p>How many traders share an account made no difference: from 10 to 800 accounts per trader type, the share of 8× spoofs caught stayed at <span data-num="poolRange"></span>. Windows from 40 to 160 steps changed little. The real weakness is the omnibus account. When the spoofer's orders went through a broker account that also carried 20% of everyone else's orders, other clients' trading diluted the signal, and the detector caught only <span data-num="omni20_8"></span> of 8× spoofs and <span data-num="omni20_16"></span> of 16× ones. Real surveillance has the same problem with orders that brokers group together for several clients.</p>
+
+          <h3>A spoofer with two accounts</h3>
+          <p>The obvious attack on a check of each account is to use two: show the wall from one and trade from the other. Then neither account breaks the definition on its own, and the detector caught <span data-num="evOne16"></span> of these spoofs. There are two repairs. If the regulator knows that both accounts belong to one person, merging them brings the catch rate back to <span data-num="evLinked16"></span> at 16×. Without that link, the only option is to pair every account with every other, which throws away the third question. That caught <span data-num="evPairs16"></span>, but it also flagged <span data-num="evPairsWd16"></span> of honest traders who cancelled a large order quickly, and it needed a higher alert threshold (<span data-num="evPairsThr"></span> lots, against <span data-num="evOneThr"></span>). <mark>The third question, whether the same person traded the other way, is what separates spoofing from an honest cancellation, and only knowing who owns which account lets a detector ask it.</mark></p>
+          <div class="table-wrap" data-table="evasion"></div>
+        </section>
+
         <section id="answer" aria-labelledby="answer-title-2">
           <h2 class="section-title" id="answer-title-2">What it means</h2>
-          <p class="verdict__big">An untaught detector cannot see a spoof, because a spoof is designed not to look unusual.</p>
-          <p>The starting hypothesis was that a label-free model would beat a hand-written rule. It is <b>not supported</b>, and the failure is robust: across five markets, two time resolutions, per-bar and sequence models, a neural network, and a detector that examined every single order. Everything that detected spoofing well had been taught the pattern, by a rule or by a feature chosen with spoofing in mind, and it failed when the pattern changed. The untaught detectors were not fooled by the change only because they were never detecting spoofs in the first place. They were detecting size, and honest orders are big for longer.</p>
-          <p>That turns the original question around. "Unusual" is the wrong target, because a working spoof is only unusual in one way, and the rest of it is built to look like everyday trading. What makes it suspicious is a <i>combination</i>, large and quickly cancelled and placed to be seen, and that combination only becomes suspicious once someone says so. The useful question for the next stage is therefore not whether a detector can be untaught, but <b>how little teaching is enough</b>: whether a detector given the general idea, or a single example, can recognise variants it has never seen, and how quickly it falls behind a spoofer that adapts to it.</p>
+          <p class="verdict__big">A detector cannot find manipulation by looking for the unusual. It can find it by looking for the purpose.</p>
+          <p>The starting hypothesis was that a label-free model would beat a hand-written rule. It is <b>not supported</b>, and the failure is robust: across five markets, two time resolutions, per-bar and sequence models, a neural network, and a detector that examined every single order. A spoof is only unusual in its size, and honest orders are big too.</p>
+          <p>Part 2 shows what does work, and it is not more data or a bigger model. Examples and patterns teach a detector what spoofing <i>looks like</i>, and a spoofer who splits the wall into smaller orders no longer looks like that. The legal definition teaches what spoofing <i>does</i>: it shows interest that it withdraws, to help a trade on the other side. A detector built from that definition, with no examples and no training, caught single-wall and layered spoofs alike, flagged no honest large orders and no honest quick cancellations, and kept its false alarms low when the market changed. Given the same data without the definition, an untaught model caught none.</p>
+          <p>So the answer to the title question has two halves. <b>Can AI detect manipulation without being taught what it looks like?</b> Not by learning normal trading and flagging what is unusual. But it does not need to be shown what manipulation looks like either: told what it <i>is</i>, and shown who placed each order, it can. What no detector here could do is tell a spoof from an honest change of mind, because the actions are identical and only the intention differs. Detection can say that a signal was false; it takes an investigation to say why.</p>
+          <p>It has known weaknesses, shown above: a spoofer hidden in a busy broker account is harder to see, and one who uses two accounts can only be caught if the regulator knows who owns them. The next stage is real order data, where accounts are messier than in any simulation, and a spoofer who adapts to the detector.</p>
           <h3>Limitations</h3>
-          <p>These results describe a simulation, not real markets. The market and the spoofer were both designed for this project, the traders are simplified, and there is no latency. The rule's success is partly circular, since it was written knowing the pattern, which is why the layered test exists. Samples are around 80 spoof episodes per size, so intervals are wide at small sizes. An alert is never evidence of intent, only a reason to look closer. All spoofing in this project happens inside an offline simulation.</p>
+          <p>These results describe a simulation, not real markets. The market and the spoofer were both designed for this project, the traders are simplified, and there is no latency. The rule's success is partly circular, since it was written knowing the pattern, which is why the layered test exists. The principle detector was designed after Part 1, by someone who knew how the spoofer worked; it encodes the law rather than the spoofer's settings, and it was tested on layering, new markets and account structures it was not tuned for, but it is still one person's reading of the law. It also relies on account data that only regulators and exchanges hold, and the simulation's accounts are cleaner than real ones. Samples are around 80 spoof episodes per size, so intervals are wide at small sizes. An alert is never evidence of intent, only a reason to look closer. All spoofing in this project happens inside an offline simulation.</p>
         </section>
 
         <section id="progress" aria-labelledby="progress-title">
@@ -408,12 +468,14 @@
           <h2 class="section-title" id="references-title">References</h2>
           <ol>
             <li>Cao, Y., Li, Y., Coleman, S., Belatreche, A. &amp; McGinnity, T. M. (2015). Adaptive hidden Markov model with anomaly states for price manipulation detection. <i>IEEE Transactions on Neural Networks and Learning Systems</i>, 26(2), 318-330.</li>
+            <li>Commission Delegated Regulation (EU) 2017/580 (RTS 24) on the maintenance of relevant data relating to orders in financial instruments, as retained in UK law. <a href="https://www.legislation.gov.uk/eur/2017/580">legislation.gov.uk</a>.</li>
             <li>Fabre, T. &amp; Challet, D. (2025). Learning the spoofability of limit order books with interpretable probabilistic neural networks. <a href="https://arxiv.org/abs/2504.15908">arXiv:2504.15908</a>.</li>
             <li>Financial Conduct Authority (2024). <a href="https://www.fca.org.uk/firms/techsprints/market-abuse-surveillance-techsprint">Market Abuse Surveillance TechSprint</a>.</li>
             <li>Hochreiter, S. &amp; Schmidhuber, J. (1997). Long short-term memory. <i>Neural Computation</i>, 9(8), 1735-1780.</li>
             <li>Leangarun, T., Tangamchit, P. &amp; Thajchayapong, S. (2018). Stock price manipulation detection using generative adversarial networks. <i>IEEE Symposium Series on Computational Intelligence</i>.</li>
             <li>Liu, F. T., Ting, K. M. &amp; Zhou, Z.-H. (2008). Isolation Forest. <i>IEEE International Conference on Data Mining</i>.</li>
             <li>Malhotra, P., Ramakrishnan, A., Anand, G., Vig, L., Agarwal, P. &amp; Shroff, G. (2016). LSTM-based encoder-decoder for multi-sensor anomaly detection. <a href="https://arxiv.org/abs/1607.00148">arXiv:1607.00148</a>.</li>
+            <li>Regulation (EU) No 596/2014 on market abuse (Market Abuse Regulation), <a href="https://www.legislation.gov.uk/eur/2014/596/article/12">Article 12</a> and Annex I, as retained in UK law.</li>
             <li><i>Urra, Lopez Gonzalez &amp; Sheth v Financial Conduct Authority</i> (2025). Upper Tribunal (Tax and Chancery Chamber), <a href="https://assets.publishing.service.gov.uk/media/6863d8ebb466cce1bb121ac7/UT_Final_-_Decision__Lopez_Gonzalez_Sheth_Urra_v_The_FCA.pdf">decision of 1 July 2025</a>.</li>
             <li>Wang, X. &amp; Wellman, M. P. (2017). Spoofing the limit order book: an agent-based model. <i>Proceedings of AAMAS 2017</i>.</li>
             <li>Wang, X., Hoang, C., Vorobeychik, Y. &amp; Wellman, M. P. (2021). Spoofing the limit order book: a strategic agent-based analysis. <i>Games</i>, 12(2), 46.</li>
@@ -434,10 +496,11 @@
   <script src="data/replay.js"></script>
   
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
+  <script src="data/teaching.js" onerror="window.TEACHING = null"></script>
   <script src="progress.js"></script>
-  <script src="assets/site.js?v=4"></script>
-  <script src="assets/masthead.js?v=4"></script>
-  <script type="module" src="assets/lake.js?v=4"></script>
+  <script src="assets/site.js?v=6"></script>
+  <script src="assets/masthead.js?v=6"></script>
+  <script type="module" src="assets/lake.js?v=6"></script>
 </body>
 </html>
 
