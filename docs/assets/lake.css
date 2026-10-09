@@ -1,0 +1,28 @@
+/* The same water surface continues beneath both the journal and analytics. */
+body{isolation:isolate}
+main,.footer{position:relative;z-index:1}
+.lake-scene{position:fixed;inset:0;z-index:0;pointer-events:none;background:#273e4d url(lake.png) 50% 50%/cover no-repeat}
+.lake-scene canvas{width:100%;height:100%;opacity:0}
+.lake-scene[data-render="live"] canvas{opacity:1}
+.lake-toggle{position:fixed;z-index:40;bottom:18px;right:var(--gutter);padding:10px 16px;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);font:500 .75rem var(--font-display);cursor:pointer;min-height:40px}
+.lake-toggle[hidden]{display:none}
+.hero{background:transparent;color:#f8fafc;min-height:max(780px,100svh)}
+.hero::after{background:linear-gradient(90deg,rgba(9,23,33,.8),rgba(9,23,33,.43) 40%,rgba(9,23,33,.02) 75%)}
+.hero__title em{color:#ff88b3}
+.hero__dek,.hero .byline,.hero .byline strong,.hero__legend{color:#f2f5f7}
+.hero .pill{background:#f8fafc;color:#132532;border-color:#f8fafc}
+.hero .pill--quiet{background:rgba(9,23,33,.45);color:#f8fafc;border-color:#c7d2da}
+.hero__foot{bottom:32px;right:180px}
+.hero__legend{max-width:30rem}
+.lake-at-top .topbar{background:linear-gradient(#10212dda,transparent);color:#fff}
+.lake-at-top .topbar a,.lake-at-top .topbar button{color:#fff}
+.lake-at-top .topnav ul{background:#173144c9;border-color:#8b9ca8}
+.lake-at-top .topbar .pill,.lake-at-top .topbar .icon-button{background:#173144a8;border-color:#8b9ca8}
+.topbar::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--mark);transform:scaleX(var(--reading-progress,0));transform-origin:left}
+.motion-paused *{animation-play-state:paused!important}
+.footer{padding-bottom:6rem}
+@media(min-width:900px){.hero__text{max-width:44rem}.hero__title{max-width:44rem}}
+@media(max-width:899px){.hero{min-height:max(950px,110svh)}.hero__inner{padding-bottom:340px}.hero::after{background:linear-gradient(180deg,#0c1f30d9 0%,#0c1f30a8 52%,#0c1f3022 78%)}.lake-scene{background-position:70% 50%}.hero__foot{bottom:70px;right:var(--gutter)}}
+@media(max-width:600px){.topbar__actions [data-repo-link]{display:none}.topbar__actions .analytics-link{font-size:.75rem;padding:.55rem .75rem}.wordmark{max-width:175px;white-space:normal;line-height:1.15}.lake-toggle{right:12px;bottom:12px}.hero__legend{font-size:.75rem}.analytics-page .wordmark{max-width:130px}}
+@media(max-width:360px){.wordmark{font-size:.85rem;max-width:140px}.analytics-page .topbar__actions .pill{max-width:85px;text-align:center}}
+@media(prefers-reduced-motion:reduce){.lake-scene canvas{transition:none}}

@@ -1,0 +1,17 @@
+detector,mode,test,size_mult,catch_rate,auc_vs_normal,auc_vs_genuine
+Seq-PCA (generic),intact,spoof_calm,8,0.08,0.5286825396825396,0.4175
+Seq-PCA (generic),intact,layer_calm,8,0.1,0.5268849206349207,0.415625
+Seq-PCA (generic),intact,spoof_calm,16,0.16,0.5424761904761904,0.32
+Seq-PCA (generic),intact,layer_calm,16,0.1,0.5106547619047619,0.26145833333333335
+Seq-PCA (generic),shuffled,spoof_calm,8,1.0,0.545968253968254,0.4275
+Seq-PCA (generic),shuffled,layer_calm,8,1.0,0.5774206349206349,0.47604166666666664
+Seq-PCA (generic),shuffled,spoof_calm,16,1.0,0.5562698412698412,0.16083333333333333
+Seq-PCA (generic),shuffled,layer_calm,16,1.0,0.48549603174603173,0.13229166666666667
+LSTM-AE (generic),intact,spoof_calm,8,0.04,0.5280952380952381,0.385
+LSTM-AE (generic),intact,layer_calm,8,0.075,0.5832936507936508,0.4552083333333333
+LSTM-AE (generic),intact,spoof_calm,16,0.08,0.5184603174603175,0.18666666666666668
+LSTM-AE (generic),intact,layer_calm,16,0.05,0.4932936507936508,0.15833333333333333
+LSTM-AE (generic),shuffled,spoof_calm,8,0.06,0.5338333333333334,0.4125
+LSTM-AE (generic),shuffled,layer_calm,8,0.175,0.5903968253968254,0.465625
+LSTM-AE (generic),shuffled,spoof_calm,16,0.1,0.5252222222222223,0.17333333333333334
+LSTM-AE (generic),shuffled,layer_calm,16,0.075,0.47271825396825395,0.12916666666666668

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analytics · Detecting the Unseen</title>
+  <meta name="description" content="Explore the simulated market experiment: detector catch rates, false alarms, AUC, and robustness checks.">
+  <script>try { const t=localStorage.getItem('dtu-theme'); if(t==='dark'||t==='light')document.documentElement.dataset.theme=t; } catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+  <link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/analytics.css"><link rel="stylesheet" href="assets/lake.css">
+</head>
+<body class="analytics-page"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div><button class="lake-toggle" type="button" data-lake-toggle aria-pressed="false" hidden>Pause motion</button>
+  <a class="skip-link" href="#comparison">Skip to the comparison</a>
+  <header class="topbar is-solid"><div class="topbar__inner">
+    <a class="wordmark" href="index.html" aria-label="Detecting the Unseen, research journal"><span class="wordmark__glyph" aria-hidden="true"><span></span><span></span><span></span></span>Detecting the Unseen</a>
+    <nav class="topnav" aria-label="Pages"><ul><li><a href="index.html">Research journal</a></li><li><a href="analytics.html" aria-current="page">Analytics</a></li></ul></nav>
+    <div class="topbar__actions"><a class="pill pill--quiet" href="index.html">Back to journal</a><button class="icon-button" type="button" id="analytics-theme" aria-label="Switch between light and dark theme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/></svg></button></div>
+  </div></header>
+  <main class="analytics-shell">
+    <div class="analytics-title"><div><h1>Analytics</h1><p>Explore what the detectors actually found.</p></div><span class="data-stamp" data-analytics-generated></span></div>
+    <p class="analytics-scope">Offline simulation · Preliminary research results. Alerts indicate unusual activity, not proof of manipulation.</p>
+    <form class="analytics-filters" aria-label="Comparison filters">
+      <label>Training market<select id="training" aria-label="Training market"><option value="calm-trained">Calm only</option><option value="mixed-trained">Calm + volatile</option></select></label>
+      <label>Spoof pattern<select id="pattern" aria-label="Spoof pattern"><option value="spoof_calm">Single wall</option><option value="layer_calm">Layered</option></select></label>
+      <label>Order size<select id="size" aria-label="Order size"><option value="1">1× typical</option><option value="2">2× typical</option><option value="4">4× typical</option><option value="8">8× typical</option><option value="16" selected>16× typical</option></select></label>
+      <button class="pill pill--quiet" type="reset">Reset filters</button>
+    </form>
+    <p class="analytics-sample" data-sample></p>
+    <p class="analytics-reading" data-analytics-reading aria-live="polite"></p>
+    <div class="analytics-grid" id="comparison">
+      <section class="analytics-panel"><h2>Detection and false accusations</h2><p>Share of spoof episodes caught versus matched honest orders flagged. Both use the same alert window.</p><div class="analytics-key"><span><i class="key-solid"></i>Spoofs caught</span><span><i class="key-outline"></i>Honest orders flagged</span></div><div data-analytics-chart="catch"></div></section>
+      <section class="analytics-panel"><h2>Can it tell them apart?</h2><p>AUC compares spoof scores with same-size honest orders. Above 0.5 favours spoofs; below 0.5 means honest orders look stranger.</p><div class="analytics-key">Whiskers: 95% bootstrap confidence intervals.</div><div data-analytics-chart="auc"></div></section>
+      <section class="analytics-panel"><h2>Normal markets, false alarms</h2><p>Share of ordinary bars flagged, with no spoofing. This chart follows the training filter; spoof pattern and size do not apply.</p><div class="analytics-key"><span><i class="key-solid"></i>Calm market</span><span><i class="key-outline"></i>Volatile market</span></div><div data-analytics-chart="fpr"></div></section>
+      <section class="analytics-panel impact-panel"><h2>Does the wall help the spoofer?</h2><p>Extra chance the genuine order fills, compared with its honest twin in the calm market. Follows pattern and size; independent of detector training.</p><div data-impact></div><p class="panel-source">Source: impact.csv. Paired sessions share a random seed; the wall is the intervention.</p></section>
+    </div>
+    <section class="analytics-records"><div class="section-tools"><h2>Compare the exact values</h2><button class="pill pill--quiet" type="button" id="download-comparison">Download this view (CSV)</button></div><p>Same filters as the charts. Detection uses an eight-bar episode window. Normal-market false alarms use individual bars. Confidence intervals are 95% bootstrap intervals.</p><div class="table-wrap" data-comparison-table></div><p class="panel-source">Sources: metrics.csv and auc.csv, exported by build_site.py. Display values are rounded; the CSV download retains the precision of the website export.</p></section>
+    <section class="analytics-records"><h2>Robustness checks</h2><p>These follow-up experiments have their own fixed settings and do not change with the filters above.</p>
+      <details open><summary>Do the claims survive different markets?</summary><div class="table-wrap" data-robustness-table></div><p class="panel-source">Sources: sensitivity.csv and the main experiment. “Holds” means the stated check passes in that simulated market; it is not a claim of real-world validity.</p></details>
+      <details><summary>Individual orders: size, lifetime, fill rate and position</summary><div class="table-wrap" data-order-table></div><p class="panel-source">Source: orders.csv. The order-level threshold is calibrated to flag 0.1% of ordinary validation orders. Its population and threshold differ from the bar-level comparison above.</p></details>
+      <details><summary>Finer time resolution</summary><div class="table-wrap" data-resolution-table></div><p class="panel-source">Source: resolution.csv. Features computed every step; sequence models read 24-step windows. Results below use 16× orders.</p></details>
+    </section>
+    <p class="analytics-return"><a href="index.html#results">Read the interpretation in the research journal →</a></p>
+    <noscript><p>JavaScript is required to explore the exported results. The research journal explains the experiment and findings.</p></noscript>
+  </main>
+  <script src="data/results.js"></script><script src="data/extensions.js"></script><script src="assets/analytics.js"></script>
+<script type="module" src="assets/lake.js"></script></body>
+</html>
+
+
