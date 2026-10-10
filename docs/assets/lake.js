@@ -1,15 +1,17 @@
-/* A still lake, and one drop.
-   The lake (lake-still.jpg) is perfectly still and clear. Once, as the opening sequence finishes, a
-   single drop of water falls into the sun's reflection, splashes, sends rings across the surface,
-   and the water settles back to stillness. It falls again only when the reader returns to the top,
-   or taps the water. Decorative only: it carries no research data. */
+/* A still lake, and a drop.
+   The lake (lake-still.jpg) is perfectly still and clear. As the opening sequence finishes, a single
+   drop of water falls into the sun's reflection, splashes, sends rings across the surface, and the
+   water settles back to stillness. While the reader stays at the top, another drop follows after a
+   few seconds of still water; it also falls when the reader returns to the top or taps the water.
+   Decorative only: it carries no research data. */
 (() => {
   const canvas = document.querySelector("[data-lake]"), scene = document.querySelector(".lake-scene");
   if (!canvas || !scene) return;
   const hero = document.querySelector(".hero"), toggle = document.querySelector("[data-lake-toggle]");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const IMG_ASPECT = 3840 / 2160, HORIZON = 262 / 2160;      // where the waterline sits in the image
-  const FALL = 0.85, SETTLE = 6.2;                             // seconds: drop falling, water settling
+  const FALL = 1.05, SETTLE = 6.2;                             // seconds: drop falling, water settling
+  const STILL_GAP = 9;                                         // seconds of perfectly still water between drops
   const freeze = parseFloat(new URLSearchParams(location.search).get("lake-t"));   // for checking one frame
 
   // ---- scroll: fade the lake as the article begins ----
@@ -234,11 +236,18 @@ void main(){
   function frame(now) {
     if (startedAt < 0 || paused || lost) return;
     const tt = (now - startedAt) / 1000;
-    if (tt > FALL + SETTLE) { startedAt = -1; draw(STILL); return; }   // still again: stop drawing frames
+    if (tt > FALL + SETTLE) {                                       // still again: stop drawing frames
+      startedAt = -1; draw(STILL);
+      clearTimeout(nextDrop);
+      nextDrop = setTimeout(() => fallOnce(), STILL_GAP * 1000);     // another drop, while the reader is still here
+      return;
+    }
     draw(tt);
     raf = requestAnimationFrame(frame);
   }
+  let nextDrop = 0;
   function fallOnce(x, y) {
+    clearTimeout(nextDrop);
     if (!ready || lost || paused || reduced.matches || document.hidden) return;
     if (hero && hero.getBoundingClientRect().bottom < innerHeight * 0.5) return;   // nobody is looking at the water
     if (x !== undefined) setImpact(x, y); else setImpact(...landing());
