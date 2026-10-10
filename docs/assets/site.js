@@ -511,6 +511,15 @@
   }
 
   /* ---------- Chart parts ---------- */
+  // On a touch screen a finger "leaves" the moment it lifts, so hiding a tooltip on leave would
+  // make it flash and vanish. After a tap, tooltips stay until the next tap somewhere else.
+  let lastPointer = "mouse";
+  document.addEventListener("pointerdown", (e) => {
+    lastPointer = e.pointerType;
+    if (e.pointerType === "mouse") return;
+    $$(".chart-tooltip.is-on").forEach((t) => { if (!t.parentElement.contains(e.target)) t.classList.remove("is-on"); });
+  }, true);
+  const HIT_R = window.matchMedia("(pointer: coarse)").matches ? 18 : 12;     // bigger targets for fingers
   function tooltipFor(container) {
     let tip = $(".chart-tooltip", container);
     if (!tip) tip = html("div", { class: "chart-tooltip", role: "status" }, container);
@@ -522,7 +531,7 @@
         tip.style.left = `${Math.min(Math.max(0, x - tw / 2), container.clientWidth - tw)}px`;
         tip.style.top = `${Math.max(0, y - tip.offsetHeight - 14)}px`;
       },
-      hide() { tip.classList.remove("is-on"); },
+      hide() { if (lastPointer === "mouse") tip.classList.remove("is-on"); },
     };
   }
   function shape(kind, x, y, size, attrs, parent) {
@@ -630,7 +639,7 @@
       });
       const hits = svg("g", {}, s);
       dets.forEach((det) => (vals[det] || []).forEach((r, i) => {
-        const c = svg("circle", { class: "hit", cx: x(i), cy: y(r[0]), r: 12 }, hits);
+        const c = svg("circle", { class: "hit", cx: x(i), cy: y(r[0]), r: HIT_R }, hits);
         c.addEventListener("pointerenter", () => tooltip.show(x(i), y(r[0]), tip(det, i, r)));
         c.addEventListener("pointerleave", () => tooltip.hide());
       }));
@@ -685,7 +694,7 @@
         shape(mm.shape, x(r.b), y, 5.5, { class: "dot", fill: mm.colour, stroke: "var(--paper)", "stroke-width": 2 }, s);
         svg("text", { class: "tick-label", x: x(Math.max(r.a, r.b)) + 11, y: y + 4, style: "fill: var(--ink)" }, s).textContent = xFmt(r.b, true);
         [["a", r.a, labels[0]], ["b", r.b, labels[1]]].forEach(([k, v, lab]) => {
-          const c = svg("circle", { class: "hit", cx: x(v), cy: y, r: 12 }, s);
+          const c = svg("circle", { class: "hit", cx: x(v), cy: y, r: HIT_R }, s);
           c.addEventListener("pointerenter", () => tooltip.show(x(v), y, tip(r, k, lab)));
           c.addEventListener("pointerleave", () => tooltip.hide());
         });
@@ -969,6 +978,63 @@
     return node.childNodes.length;
   }
 
+  /* ---------- Summary page: every detector, side by side ---------- */
+  function initScoreboard() {
+    const box = $("[data-scoreboard]");
+    if (!box || !R || !T.principle) return;
+    const m = 16, i = iSize(m);
+    const part1 = (det) => {
+      const caught = (test) => R.catch[COND][test][det][i][0];
+      const honest = (test) => ((T.reversal || []).find((r) => r.detector === det && r.test === test && r.size_mult === m) || {}).value;
+      return [caught("spoof_calm"), caught("layer_calm"), caught("control_calm"), honest("withdrawal_calm"), honest("reversal_calm")];
+    };
+    const accounts = (det) => {
+      const v = (test, metric) => (T.principle.find((r) => r.setting === "main" && r.detector === det && r.test === test &&
+        r.metric === metric && r.size_mult === m) || {}).value;
+      return [v("spoof_calm", "catch_rate"), v("layer_calm", "catch_rate"), v("control_calm", "flag_rate"),
+        v("withdrawal_calm", "flag_rate"), v("reversal_calm", "flag_rate")];
+    };
+    const ex = (T.examples || []).find((r) => r.variant === "spoofs and honest large orders" && r.k === EXAMPLES_K && r.size_mult === m);
+    const groups = [
+      ["Taught nothing: learns what normal trading looks like", [
+        ["PCA", part1("PCA (generic)")], ["Isolation Forest", part1("IForest (generic)")],
+        ["Sequence PCA", part1("Seq-PCA (generic)")], ["LSTM neural network", part1("LSTM-AE (generic)")]]],
+      ["Hidden teaching: features chosen with spoofing in mind", [
+        ["PCA, spoof-informed", part1("PCA (informed)")], ["Isolation Forest, spoof-informed", part1("IForest (informed)")]]],
+      ["Taught examples", [[`Classifier shown ${EXAMPLES_K} spoofs and ${EXAMPLES_K} honest orders`,
+        ex ? ["spoof_walls_caught", "layered_caught", "genuine_flagged", "withdrawal_flagged", "reversal_flagged"].map((k) => (ex[k] || [])[0]) : []]]],
+      ["Taught a pattern", [["The rule: a large order cancelled quickly", part1("Rule")]]],
+      ["Taught a principle", [["The legal definition, checked per account", accounts("Principle (accounts)"), true]]],
+      ["Control: the same account data, taught nothing", [["Isolation Forest on accounts", accounts("Untaught IForest (accounts)")]]],
+    ];
+    const cols = [["Spoofs caught", "catch"], ["Layered spoofs caught", "catch"], ["Honest large orders flagged", "flag"],
+      ["Quick withdrawals flagged", "flag"], ["Changes of mind flagged", "flag"]];
+    const t = html("table", { class: "scoreboard" }, box);
+    html("caption", { class: "visually-hidden" }, t, "Every detector at 16 times a typical order size: share of spoofs caught and of honest behaviour flagged.");
+    const hr = html("tr", {}, html("thead", {}, t));
+    html("th", { scope: "col" }, hr, "Detector");
+    cols.forEach(([label]) => html("th", { scope: "col" }, hr, label));
+    groups.forEach(([name, rows]) => {
+      const tb = html("tbody", {}, t);
+      html("th", { scope: "colgroup", colspan: String(cols.length + 1) }, html("tr", { class: "scoreboard__group" }, tb), name);
+      rows.forEach(([label, values, highlight]) => {
+        const tr = html("tr", highlight ? { class: "is-highlight" } : {}, tb);
+        html("th", { scope: "row" }, tr, label);
+        cols.forEach(([col, kind], j) => {
+          const v = values[j];
+          const td = html("td", { "data-label": col }, tr);
+          const meter = html("span", { class: `meter meter--${kind}`, "aria-hidden": "true" }, td);
+          html("i", { style: `--w: ${v === undefined ? 0 : Math.max(1.5, v * 100)}%` }, meter);
+          html("span", { class: "meter__v" }, td, v === undefined ? "n/a" : pct(v));
+        });
+      });
+    });
+    // The bars grow when the table first scrolls into view.
+    if (reduceMotion.matches) { t.classList.add("is-in"); return; }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { t.classList.add("is-in"); io.disconnect(); } }, { threshold: 0.2 });
+    io.observe(t);
+  }
+
   /* ---------- Figure 7: order-level flags ---------- */
   function initFig7() {
     const box = $('[data-chart="fig7"]');
@@ -1145,6 +1211,7 @@
   initFig6();
   initFig7();
   initFig8();
+  initScoreboard();
   initTables();
   initProgress();
   initFooter();

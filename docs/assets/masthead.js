@@ -95,7 +95,8 @@
       requestAnimationFrame(() => panels[t.dataset.menu].querySelector("a")?.focus());
     });
   });
-  document.getElementById("progress-link")?.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") scheduleClose(60); });
+  nav.querySelectorAll(".menu__plain").forEach((a) =>
+    a.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") scheduleClose(60); }));
   nav.addEventListener("pointerenter", () => clearTimeout(closeTimer));
   nav.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") scheduleClose(); });
   nav.addEventListener("focusout", (e) => { if (!nav.contains(e.relatedTarget)) scheduleClose(0); });
@@ -103,10 +104,12 @@
   document.addEventListener("pointerdown", (e) => { if (current && !nav.contains(e.target)) close(); });
   addEventListener("resize", () => { if (current) place(current); }, { passive: true });
 
-  // The preview images wait until the page has settled, or until someone reaches for the menu.
-  const warm = () => dd.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
+  // The preview images (in the dropdown and the phone menu) wait until the page has settled,
+  // or until someone reaches for a menu.
+  const warm = () => header.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
   nav.addEventListener("pointerenter", warm, { once: true });
   nav.addEventListener("focusin", warm, { once: true });
+  header.querySelector(".menu-btn")?.addEventListener("pointerdown", warm, { once: true });
   addEventListener("load", () => setTimeout(warm, 2500), { once: true });
 
   // Findings rows: hovering or focusing one brings up its figure.
@@ -119,6 +122,7 @@
 
   /* ---------- Small screens: the sheet ---------- */
   const btn = header.querySelector(".menu-btn"), sheet = document.getElementById("sheet");
+  if (sheet) [...sheet.children].forEach((child, i) => child.style.setProperty("--i", i));   // staggered entrance
   const setSheet = (on) => {
     if (!btn || !sheet) return;
     sheet.classList.toggle("open", on);

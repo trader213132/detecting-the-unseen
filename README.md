@@ -45,7 +45,7 @@ Results land in `results/summary.md` (tables), `results/metrics.csv` (every numb
 | `src/plots.py` | The figures. |
 | `run_experiments.py` | Runs everything end to end. |
 | `build_site.py` | Writes `docs/data/*.js` for the website: the results, plus two real spoofs replayed step by step. |
-| `docs/` | The project website (served by GitHub Pages). Edit `docs/progress.js` to update the progress tracker. |
+| `docs/` | The project website (served by GitHub Pages): the full journal (`index.html`), every result on one page (`summary.html`) and the data explorer (`analytics.html`). Edit `docs/progress.js` to update the progress tracker. |
 | `tests/` | Checks that the order book matches orders correctly, that Isolation Forest isolates outliers, that features are computed correctly, that account numbers never change the market, and that the principle scores spoofs, layering, market makers and two-account spoofers as the definition says. |
 
 ---

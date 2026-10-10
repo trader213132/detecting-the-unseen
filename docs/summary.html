@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Results at a glance · Detecting the Unseen</title>
+  <meta name="description" content="Every result of the Detecting the Unseen project on one page: the answer, six key numbers, every detector side by side, and what it means.">
+  <meta property="og:title" content="Detecting the Unseen: results at a glance">
+  <meta property="og:description" content="Can AI spot market manipulation it was never shown? A simulated market, seven detectors and an honest answer.">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#dbe4ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0e13" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314171f'/%3E%3Crect x='7' y='9' width='12' height='4' rx='2' fill='%23858d9b'/%3E%3Crect x='7' y='15' width='18' height='4' rx='2' fill='%23ee5f95'/%3E%3Crect x='7' y='21' width='9' height='4' rx='2' fill='%23a3abbb'/%3E%3C/svg%3E">
+  <script>
+    try { var t = localStorage.getItem("dtu-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=7"><link rel="stylesheet" href="assets/lake.css?v=7"><link rel="stylesheet" href="assets/masthead.css?v=7">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+</head>
+<body class="summary-page"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
+  <a class="skip-link" href="#main">Skip to the results</a>
+
+  <header class="topbar is-solid" data-topbar>
+    <div class="topbar__inner">
+      <a class="wordmark" href="index.html" aria-label="Detecting the Unseen, the full research journal">
+        <span class="wordmark__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        Detecting the Unseen
+      </a>
+      <nav class="menu" id="menu" aria-label="Sections">
+        <ul class="menu__links">
+          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">Findings<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><a class="menu__plain" href="summary.html" aria-current="page">Summary</a></li>
+          <li><a class="menu__plain" href="index.html#progress" id="progress-link">Progress</a></li>
+        </ul>
+
+        <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
+        <div class="dd" id="dd">
+          <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
+            <div class="dd-list">
+              <a class="dd-item is-active" href="index.html#findings" data-img="0"><strong>The short answer</strong><span>Untaught detectors found honest orders stranger than spoofs.</span></a>
+              <a class="dd-item" href="index.html#figure-6" data-img="1"><strong>Does spoofing work?</strong><span>A fake wall lifts the spoofer's real fill chance.</span></a>
+              <a class="dd-item" href="index.html#figure-2" data-img="2"><strong>Seven detectors</strong><span>Catch rates, from a hand-written rule to an LSTM.</span></a>
+              <a class="dd-item" href="index.html#teaching" data-img="3"><strong>The ladder of teaching</strong><span>Told what spoofing is, not what it looks like.</span></a>
+            </div>
+            <div class="dd-media" aria-hidden="true">
+              <img class="is-active" src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async">
+              <img src="assets/menu/works.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+            </div>
+          </div>
+          <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
+            <a class="dd-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><span>The wall goes up, the order fills, the wall vanishes.</span></a>
+            <a class="dd-card" href="analytics.html"><img src="assets/menu/analytics.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Analytics explorer</strong><span>Every detector, market and threshold, side by side.</span></a>
+          </div>
+          <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
+            <a class="dd-link" href="index.html#question">The question</a>
+            <a class="dd-link" href="index.html#method">The experiment</a>
+            <a class="dd-link" href="index.html#answer">What it means</a>
+            <a class="dd-link" href="index.html#references">References</a>
+          </div>
+        </div>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch between light and dark theme">
+          <i class="ph ph-moon theme-icon-light" aria-hidden="true"></i>
+          <i class="ph ph-sun theme-icon-dark" aria-hidden="true"></i>
+        </button>
+        <a class="icon-button" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link aria-label="Code on GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a>
+        <a class="pill cta analytics-link" href="analytics.html">Analytics</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5h12M2 10.5h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="sheet" id="sheet">
+      <a class="sheet-summary" href="summary.html"><span><strong>All the results on one page</strong><small>The answer, six numbers and every detector side by side</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <h3>Findings</h3>
+      <div class="sheet-list">
+        <a class="sheet-item" href="index.html#findings"><img src="assets/menu/answer.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>The short answer</strong><small>Untaught detectors found honest orders stranger than spoofs.</small></span></a>
+        <a class="sheet-item" href="index.html#figure-6"><img src="assets/menu/works.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>Does spoofing work?</strong><small>A fake wall lifts the spoofer's real fill chance.</small></span></a>
+        <a class="sheet-item" href="index.html#figure-2"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>Seven detectors</strong><small>Catch rates, from a hand-written rule to an LSTM.</small></span></a>
+        <a class="sheet-item" href="index.html#teaching"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>The ladder of teaching</strong><small>Told what spoofing is, not what it looks like.</small></span></a>
+      </div>
+      <h3>Explore</h3>
+      <div class="sheet-cards">
+        <a class="sheet-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" loading="lazy" decoding="async"><strong>Watch one spoof</strong><small>The wall goes up, the order fills, the wall vanishes.</small></a>
+        <a class="sheet-card" href="analytics.html"><img src="assets/menu/analytics.webp" alt="" width="432" height="588" loading="lazy" decoding="async"><strong>Analytics explorer</strong><small>Every detector, market and threshold.</small></a>
+      </div>
+      <h3>The paper</h3>
+      <div class="sheet-links">
+        <a href="index.html#question">The question</a>
+        <a href="index.html#method">The experiment</a>
+        <a href="index.html#answer">What it means</a>
+        <a href="index.html#references">References</a>
+      </div>
+      <h3>Project</h3>
+      <div class="sheet-links">
+        <a href="index.html#progress">Progress</a>
+        <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="summary">
+    <section class="summary__intro" aria-labelledby="summary-title">
+      <p class="summary__kicker rise" style="--i:0">Results at a glance · preliminary, updated <time id="updated-date" datetime="2026-10-09">9 October 2026</time></p>
+      <h1 class="summary__title rise" id="summary-title" style="--i:1">Can AI detect hidden market manipulation without being taught what it looks like?</h1>
+      <p class="summary__answer rise" style="--i:2">Not by looking for the unusual. <em>Yes, by knowing the purpose.</em></p>
+      <p class="summary__lede rise" style="--i:3">I built a simulated stock market in which spoofing measurably works: a large fake order on one side really does help the spoofer's genuine order on the other side get filled. Then I tested detectors with different amounts of prior knowledge. Detectors that only learned what normal trading looks like could not tell a spoof from an honest large order. Detectors taught examples or a pattern caught the spoofs they were shown, and missed the same spoof split into smaller orders. A detector built only from the legal definition of the offence caught both, without a single example. No detector could tell a spoof from an honest change of mind.</p>
+      <div class="summary__actions rise" style="--i:4">
+        <a class="pill" href="index.html#findings">Read the full journal</a>
+        <a class="pill pill--quiet" href="analytics.html">Explore the data</a>
+      </div>
+    </section>
+
+    <section class="summary__block" aria-labelledby="numbers-title">
+      <h2 class="section-title" id="numbers-title">Six numbers</h2>
+      <ol class="stat-grid">
+        <li><b>+<span data-num="fill8"></span> pts</b><span>Spoofing works. An 8× fake wall raises the chance that the spoofer's genuine order fills.</span></li>
+        <li><b>AUC <span data-num="lstmAuc16"></span></b><span>The LSTM neural network telling spoofs from honest orders of the same size. 0.5 is a coin toss: it found the honest orders stranger.</span></li>
+        <li><b><span data-num="rule16"></span> → <span data-num="ruleLayer16"></span></b><span>The hand-written rule, before and after the same spoof was split into four smaller orders.</span></li>
+        <li><b><span data-num="prLayer16"></span></b><span>Layered spoofs caught by a detector built only from the legal definition, with no examples. It flagged <span data-num="prGenuine16"></span> of honest large orders.</span></li>
+        <li><b><span data-num="uaCatch16"></span></b><span>Spoofs caught by an untaught model given exactly the same account data. The principle did the work, not the data.</span></li>
+        <li><b>AUC <span data-num="prAucRev16"></span></b><span>Spoofs against honest traders who changed their mind. The actions are identical; only the intention differs.</span></li>
+      </ol>
+    </section>
+
+    <section class="summary__block" aria-labelledby="board-title">
+      <h2 class="section-title" id="board-title">Every detector, side by side</h2>
+      <p class="summary__note">Orders 16 times a typical size, calm market. <span class="key key--catch" aria-hidden="true"></span>Share of spoofs caught: higher is better. <span class="key key--flag" aria-hidden="true"></span>Share of honest behaviour flagged: lower is better. A quick withdrawal is an honest large order cancelled within seconds; a change of mind is the same, followed by a small trade the other way.</p>
+      <div class="scoreboard-wrap" data-scoreboard></div>
+    </section>
+
+    <section class="summary__block" aria-labelledby="ladder-title">
+      <h2 class="section-title" id="ladder-title">The ladder of teaching</h2>
+      <figure class="figure" id="figure-8" aria-labelledby="figure-8-cap">
+        <div class="figure__top">
+          <p class="fig-label">Figure 8 <span>How much a detector was told, and what it caught</span></p>
+          <div class="figure__controls">
+            <div class="segmented" role="tablist" aria-label="Examples shown to the classifier" data-fig8-shown>
+              <span class="segmented__pill" aria-hidden="true"></span>
+              <button type="button" role="tab" aria-selected="false" data-shown="spoofs only">Spoofs only</button>
+              <button type="button" role="tab" aria-selected="true" data-shown="spoofs and honest large orders">Spoofs + honest</button>
+            </div>
+            <div class="segmented" role="tablist" aria-label="Size" data-fig8-size>
+              <span class="segmented__pill" aria-hidden="true"></span>
+              <button type="button" role="tab" aria-selected="false" data-size="8">8×</button>
+              <button type="button" role="tab" aria-selected="true" data-size="16">16×</button>
+            </div>
+          </div>
+        </div>
+        <div class="chart" data-chart="fig8"></div>
+        <figcaption class="figcaption" id="figure-8-cap"><b>Figure 8.</b> Each row is a level of teaching, each column a test. Lines show 95% confidence intervals, or for the classifier the middle 80% of 30 random sets of <span data-num="exK"></span> examples. <a href="index.html#teaching">How each detector works</a>.</figcaption>
+        <details class="data-table"><summary><i class="ph ph-table" aria-hidden="true"></i>Show the data for Figure 8</summary><div class="table-wrap" data-table="fig8"></div></details>
+      </figure>
+    </section>
+
+    <section class="summary__block summary__prose" aria-labelledby="means-title">
+      <h2 class="section-title" id="means-title">What it means</h2>
+      <p>The starting hypothesis, that a detector which never sees an example would beat a hand-written rule, is <b>not supported</b>. A spoof is unusual only in its size, and honest large orders are just as big, so a detector looking for the unusual finds honest traders first. That held in five markets, at two time resolutions, for a neural network, and order by order.</p>
+      <p>What did work was telling a detector what the offence <i>is</i>. UK law defines it by its effect: a false signal about supply or demand. Asked of each trader, that becomes three questions: did they show interest on one side, withdraw it rather than trade it, and trade the other way? That detector caught single-wall and layered spoofs alike and left honest large orders and honest quick cancellations alone. It needs to know who placed each order, which regulators and exchanges do.</p>
+      <h3>What it does not show</h3>
+      <ul class="summary__limits">
+        <li><b>It is a simulation.</b> I designed the market and the spoofer; real markets, traders and accounts are messier.</li>
+        <li><b>Intent stays invisible.</b> An honest change of mind looks exactly like a spoof, so an alert is a reason to investigate, never proof.</li>
+        <li><b>Accounts matter.</b> A spoofer hidden in a busy broker account was caught less often (<span data-num="omni20_16"></span> at 16×), and one using two accounts escaped unless the regulator knew who owned them.</li>
+        <li><b>The principle detector came second.</b> It was designed after the first experiment by someone who knew the spoofer, then tested on cases it was not tuned for.</li>
+      </ul>
+    </section>
+
+    <section class="summary__block" aria-labelledby="status-title">
+      <h2 class="section-title" id="status-title">Where the project stands</h2>
+      <p class="status-line" data-status-line></p>
+      <p class="summary__links"><a href="index.html#progress">Progress tracker and lab notebook</a> · <a href="index.html#references">References</a> · <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p>Research use only. Every spoof on this page happened inside an offline simulation, and an alert is never evidence of intent.</p>
+      <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+    </div>
+  </footer>
+
+  <script src="data/results.js"></script>
+  <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
+  <script src="data/teaching.js" onerror="window.TEACHING = null"></script>
+  <script src="progress.js"></script>
+  <script src="assets/site.js?v=7"></script>
+  <script src="assets/masthead.js?v=7"></script>
+  <script type="module" src="assets/lake.js?v=7"></script>
+</body>
+</html>

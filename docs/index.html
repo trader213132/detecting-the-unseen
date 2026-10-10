@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=6"><link rel="stylesheet" href="assets/lake.css?v=6"><link rel="stylesheet" href="assets/masthead.css?v=6">
+  <link rel="stylesheet" href="assets/site.css?v=7"><link rel="stylesheet" href="assets/lake.css?v=7"><link rel="stylesheet" href="assets/masthead.css?v=7">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="lake-at-top"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div><button class="lake-toggle" type="button" data-lake-toggle aria-pressed="false" hidden>Pause motion</button>
@@ -39,6 +39,7 @@
           <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">Findings<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
           <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
           <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><a class="menu__plain" href="summary.html">Summary</a></li>
           <li><a class="menu__plain" href="#progress" id="progress-link">Progress</a></li>
         </ul>
 
@@ -84,31 +85,40 @@
     </div>
 
     <div class="sheet" id="sheet">
+      <a class="sheet-summary" href="summary.html"><span><strong>All the results on one page</strong><small>The answer, six numbers and every detector side by side</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
       <h3>Findings</h3>
-      <a href="#findings">The short answer</a>
-      <a href="#figure-6">Does spoofing work?</a>
-      <a href="#figure-2">Seven detectors</a>
-      <a href="#teaching">The ladder of teaching</a>
+      <div class="sheet-list">
+        <a class="sheet-item" href="#findings"><img src="assets/menu/answer.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>The short answer</strong><small>Untaught detectors found honest orders stranger than spoofs.</small></span></a>
+        <a class="sheet-item" href="#figure-6"><img src="assets/menu/works.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>Does spoofing work?</strong><small>A fake wall lifts the spoofer's real fill chance.</small></span></a>
+        <a class="sheet-item" href="#figure-2"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>Seven detectors</strong><small>Catch rates, from a hand-written rule to an LSTM.</small></span></a>
+        <a class="sheet-item" href="#teaching"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>The ladder of teaching</strong><small>Told what spoofing is, not what it looks like.</small></span></a>
+      </div>
       <h3>Explore</h3>
-      <a href="#replay">Watch one spoof</a>
-      <a href="analytics.html">Analytics explorer</a>
+      <div class="sheet-cards">
+        <a class="sheet-card" href="#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" loading="lazy" decoding="async"><strong>Watch one spoof</strong><small>The wall goes up, the order fills, the wall vanishes.</small></a>
+        <a class="sheet-card" href="analytics.html"><img src="assets/menu/analytics.webp" alt="" width="432" height="588" loading="lazy" decoding="async"><strong>Analytics explorer</strong><small>Every detector, market and threshold.</small></a>
+      </div>
       <h3>The paper</h3>
-      <a href="#question">The question</a>
-      <a href="#method">The experiment</a>
-      <a href="#answer">What it means</a>
-      <a href="#references">References</a>
+      <div class="sheet-links">
+        <a href="#question">The question</a>
+        <a href="#method">The experiment</a>
+        <a href="#answer">What it means</a>
+        <a href="#references">References</a>
+      </div>
       <h3>Project</h3>
-      <a href="#progress">Progress</a>
-      <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
+      <div class="sheet-links">
+        <a href="#progress">Progress</a>
+        <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
+      </div>
     </div>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="title">
       <div class="hero__stack">
-        <a class="eyebrow" href="#progress">
+        <a class="eyebrow" href="summary.html">
           <span class="eyebrow__chip">Preliminary</span>
-          <span class="eyebrow__label">Results updated <time id="updated-date" datetime="2026-10-08">8 October 2026</time></span>
+          <span class="eyebrow__label">All the results on one page</span>
           <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg>
         </a>
         <h1 class="hero__title" id="title"><span class="ln"><span class="ln-i">Detecting</span></span><span class="ln"><span class="ln-i">the <em>Unseen</em></span></span></h1>
@@ -498,9 +508,9 @@
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
   <script src="data/teaching.js" onerror="window.TEACHING = null"></script>
   <script src="progress.js"></script>
-  <script src="assets/site.js?v=6"></script>
-  <script src="assets/masthead.js?v=6"></script>
-  <script type="module" src="assets/lake.js?v=6"></script>
+  <script src="assets/site.js?v=7"></script>
+  <script src="assets/masthead.js?v=7"></script>
+  <script type="module" src="assets/lake.js?v=7"></script>
 </body>
 </html>
 
