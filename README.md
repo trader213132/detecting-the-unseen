@@ -2,6 +2,8 @@
 
 **Can artificial intelligence detect hidden market manipulation without being taught what manipulation looks like?**
 
+**Website:** https://detecting-the-unseen.vercel.app (all the results on one page: [summary](https://detecting-the-unseen.vercel.app/summary.html))
+
 This is a preliminary experiment. I simulate a stock market's limit-order book and insert synthetic spoofing modelled on a real 2025 UK Upper Tribunal case. Then I test detectors that were trained **only on normal trading** and never shown a single example of spoofing.
 
 > **Research-use constraint.** The spoofing agents exist only inside this offline simulation, for evaluating detectors. The project has no connection to any broker or exchange. An anomaly score is *not* evidence of illegal intent; at most it is a reason to look more closely.
