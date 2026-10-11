@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What kind of teaching works? · Detecting the Unseen</title>
+  <meta name="description" content="Can AI spot market manipulation it was never shown? A simulated market, seven detectors from a hand-written rule to an LSTM neural network, and an honest answer. A Habs Research Scholarship project by Ebrahim.">
+  <meta property="og:title" content="Detecting the Unseen">
+  <meta property="og:description" content="Can AI spot market manipulation it was never shown? A simulated market, seven detectors and an honest answer.">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#dbe4ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0e13" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314171f'/%3E%3Crect x='7' y='9' width='12' height='4' rx='2' fill='%23858d9b'/%3E%3Crect x='7' y='15' width='18' height='4' rx='2' fill='%23ee5f95'/%3E%3Crect x='7' y='21' width='9' height='4' rx='2' fill='%23a3abbb'/%3E%3C/svg%3E">
+  <script>
+    try { var t = localStorage.getItem("dtu-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=9"><link rel="stylesheet" href="assets/lake.css?v=9"><link rel="stylesheet" href="assets/masthead.css?v=9">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+</head>
+<body class="subpage"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
+  <a class="skip-link" href="#article">Skip to the text</a>
+
+  <!-- header:start -->
+  <header class="topbar is-solid" data-topbar>
+    <div class="topbar__inner">
+      <a class="wordmark" href="index.html" aria-label="Detecting the Unseen, home">
+        <span class="wordmark__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        Detecting the Unseen
+      </a>
+      <nav class="menu" id="menu" aria-label="Main">
+        <ul class="menu__links">
+          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">The study<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><a class="menu__plain" href="lab.html">Lab</a></li>
+          <li><a class="menu__plain" href="progress.html">Progress</a></li>
+        </ul>
+        <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
+        <div class="dd" id="dd">
+          <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
+            <div class="dd-list">
+              <a class="dd-item is-active" href="experiment.html" data-img="0"><strong>The experiment</strong><span>A market where spoofing works, and seven detectors.</span></a>
+              <a class="dd-item" href="results.html" data-img="1"><strong>Results</strong><span>Spoofs against honest look-alikes and volatile markets.</span></a>
+              <a class="dd-item" href="teaching.html" data-img="2" aria-current="page"><strong>What kind of teaching works?</strong><span>Examples, a rule, or the law. And how to dodge it.</span></a>
+              <a class="dd-item" href="conclusion.html" data-img="3"><strong>What it means</strong><span>The answer, its limits and the sources.</span></a>
+            </div>
+            <div class="dd-media" aria-hidden="true">
+              <img class="is-active" src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async">
+              <img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+            </div>
+          </div>
+          <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
+            <a class="dd-card" href="lab.html"><img src="assets/menu/lab.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Research Lab</strong><span>Pick a market situation and see how every detector reacts.</span></a>
+            <a class="dd-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><span>The wall goes up, the order fills, the wall vanishes.</span></a>
+          </div>
+          <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
+            <a class="dd-link" href="report.html">Research report</a>
+            <a class="dd-link" href="summary.html">All results on one page</a>
+            <a class="dd-link" href="analytics.html">Analytics explorer</a>
+            <a class="dd-link" href="conclusion.html#references">References</a>
+          </div>
+        </div>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch between light and dark theme">
+          <i class="ph ph-moon theme-icon-light" aria-hidden="true"></i>
+          <i class="ph ph-sun theme-icon-dark" aria-hidden="true"></i>
+        </button>
+        <a class="icon-button" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link aria-label="Code on GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a>
+        <a class="pill cta" href="report.html">Report</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5h12M2 10.5h12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sheet" id="sheet">
+      <a class="sheet-summary" href="summary.html"><span><strong>All the results on one page</strong><small>The answer, six numbers and every detector side by side</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <h3>The study</h3>
+      <div class="sheet-list">
+        <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The experiment</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
+        <a class="sheet-item" href="results.html"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>Results</strong><small>Spoofs against honest look-alikes and volatile markets.</small></span></a>
+        <a class="sheet-item" href="teaching.html"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What kind of teaching works?</strong><small>Examples, a rule, or the law. And how to dodge it.</small></span></a>
+        <a class="sheet-item" href="conclusion.html"><img src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What it means</strong><small>The answer, its limits and the sources.</small></span></a>
+      </div>
+      <h3>Explore</h3>
+      <div class="sheet-cards">
+        <a class="sheet-card" href="lab.html"><img src="assets/menu/lab.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Research Lab</strong><small>Pick a market situation and see how every detector reacts.</small></a>
+        <a class="sheet-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><small>The wall goes up, the order fills, the wall vanishes.</small></a>
+      </div>
+      <h3>The paper</h3>
+      <div class="sheet-links">
+        <a href="report.html">Research report</a>
+        <a href="summary.html">All results on one page</a>
+        <a href="analytics.html">Analytics explorer</a>
+        <a href="conclusion.html#references">References</a>
+        <a href="progress.html">Progress</a>
+        <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
+      </div>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="top">
+    <header class="pagehead">
+      <p class="pagehead__kicker">Chapter 3 of 5</p>
+      <h1 class="pagehead__title">What kind of teaching works?</h1>
+      <p class="pagehead__dek">Examples, a pattern or the law itself, and what it costs a spoofer to dodge the law.</p>
+    </header>
+    <div class="page">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol><li><a href="#teaching">Part 2: teaching</a></li><li><a href="#evasion">Part 3: evasion</a></li></ol>
+      </nav>
+      <article class="article" id="article">
+        <section id="teaching" aria-labelledby="teaching-title">
+          <h2 class="section-title" id="teaching-title">Part 2: what kind of teaching works?</h2>
+          <p>Part 1 found that learning what normal trading looks like is not enough. But the title's question has a second half: if a detector must be taught, what should it be taught? I gave detectors four levels of prior knowledge, a ladder, and tested every level on the same spoofs, the same honest orders, and one new case built to be as hard as possible.</p>
+          <ol class="ladder-steps">
+            <li><b>Nothing.</b> Unusualness alone: the detectors of Part 1.</li>
+            <li><b>Examples.</b> A classifier shown labelled spoofs. In a fairer version it is also shown labelled honest large orders.</li>
+            <li><b>A pattern.</b> The surveillance rule: a large order cancelled quickly.</li>
+            <li><b>A principle.</b> The legal definition of the offence, and nothing else.</li>
+          </ol>
+
+          <h3>Turning the law into a detector</h3>
+          <p>UK law does not define spoofing by what it looks like. The Market Abuse Regulation defines manipulation by its effect: orders that give, or are likely to give, false or misleading signals about supply or demand.<button class="sn-ref" type="button" aria-expanded="false" aria-controls="sn-9">9</button><span class="sidenote" id="sn-9" role="note"><span class="sn-num">9</span><b>Market Abuse Regulation</b> (EU) No 596/2014, Article 12(1)(a), retained in UK law. Its Annex I lists warning signs, including orders that are cancelled before they execute.</span> That becomes three questions about one account over 40 steps. Did it <b>show</b> interest on one side? Was that interest <b>withdrawn</b> rather than traded? And did the same account <b>trade the other way</b>? If all three answers are yes, the score is the size of the false signal in lots. Nothing in it mentions size, timing, distance from the price or any example of spoofing, and nothing is learned: only its alert threshold is set on normal trading, at <span data-num="prThr"></span> lots.</p>
+          <p>A market maker quotes the same amount on both sides, so it shows no direction at all, however often it cancels. That one word, <i>direction</i>, is why the busiest traders in the market score zero.</p>
+          <p>The principle needs one thing the earlier detectors never had: who placed each order. Regulators and exchanges have it, because trading venues must keep order records that identify the client.<button class="sn-ref" type="button" aria-expanded="false" aria-controls="sn-10">10</button><span class="sidenote" id="sn-10" role="note"><span class="sn-num">10</span><b>Commission Delegated Regulation (EU) 2017/580</b> ("RTS 24") on keeping records of orders, retained in UK law. Anyone reading the public order book sees no names.</span> So the fair comparison is an untaught Isolation Forest given exactly the same account-by-account data. If it did as well, the data would deserve the credit, not the principle.</p>
+
+          <figure class="figure figure--wide" id="figure-8" aria-labelledby="figure-8-cap">
+            <div class="figure__top">
+              <p class="fig-label">Figure 8 <span>The ladder of teaching</span></p>
+              <div class="figure__controls">
+                <div class="segmented" role="tablist" aria-label="Examples shown to the classifier" data-fig8-shown>
+                  <span class="segmented__pill" aria-hidden="true"></span>
+                  <button type="button" role="tab" aria-selected="false" data-shown="spoofs only">Spoofs only</button>
+                  <button type="button" role="tab" aria-selected="true" data-shown="spoofs and honest large orders">Spoofs + honest</button>
+                </div>
+                <div class="segmented" role="tablist" aria-label="Size" data-fig8-size>
+                  <span class="segmented__pill" aria-hidden="true"></span>
+                  <button type="button" role="tab" aria-selected="false" data-size="8">8×</button>
+                  <button type="button" role="tab" aria-selected="true" data-size="16">16×</button>
+                </div>
+              </div>
+            </div>
+            <div class="chart" data-chart="fig8"></div>
+            <figcaption class="figcaption" id="figure-8-cap"><b>Figure 8.</b> Each row is a level of teaching, each column a test (calm market). Bars show the share caught or flagged; lines show 95% confidence intervals, or for the classifier the middle 80% of 30 random sets of <span data-num="exK"></span> examples. Rows 0 and 2 use the same spoofs as Part 1 and row 3 re-simulates them exactly. The classifier works on individual orders and is tested on held-out sessions.</figcaption>
+            <details class="data-table"><summary><i class="ph ph-table" aria-hidden="true"></i>Show the data for Figure 8</summary><div class="table-wrap" data-table="fig8"></div></details>
+          </figure>
+
+          <h3>Examples and patterns teach the look</h3>
+          <p>Shown only spoofs, the classifier learned "large order". It caught every wall, but it also flagged <span data-num="exOnlyGenuine16"></span> of honest large orders, and it caught <span data-num="exOnlyLayer16"></span> of layered spoofs. Shown honest large orders as well, it learned "large and short-lived": it stopped flagging honest orders (<span data-num="exBothGenuine16"></span>) but caught only <span data-num="exBothLayer16"></span> of layered spoofs at 16× and <span data-num="exBothLayer8"></span> at 8×, because a layered piece is smaller than anything it was shown. More examples did not change this. It is the rule's failure again: both learned what spoofs <i>look like</i>, so a spoof that looks different walks past. And both flagged honest traders who simply cancelled a large order quickly, without trading at all: the rule <span data-num="ruleWd16"></span> of them, the classifier <span data-num="exBothWd16"></span>. To a pattern, an honest quick cancellation and a spoof are the same thing.</p>
+
+          <h3>A principle teaches the purpose</h3>
+          <p>The principle caught <span data-num="prSpoof8"></span> of single-wall spoofs at 8× and <span data-num="prSpoof16"></span> at 16×, and <span data-num="prLayer8"></span> and <span data-num="prLayer16"></span> of layered ones: splitting a wall does not change what the trader showed, withdrew and traded. On the very same layered spoofs that is <span data-num="prVsRuleLayer16"></span> points over the rule at 16× (<span data-num="prVsRuleP"></span>). Almost every spoof it missed never paid off, because its small order never traded; of the spoofs that worked it caught <span data-num="prPaid16"></span>. It flagged <span data-num="prGenuine16"></span> of honest large orders and <span data-num="prWd16"></span> of honest quick withdrawals: cancelling quickly is not the offence, cancelling to help a trade on the other side is. When the market turned volatile its false alarms barely moved, from <span data-num="prFprCalm"></span> to <span data-num="prFprVol"></span> of windows, where Part 1's learned detectors went from 1% to as much as half of all bars.</p>
+          <p><mark>It is the principle, not the data.</mark> The untaught Isolation Forest on the same account data caught <span data-num="uaCatch16"></span>. It does rank spoofers as stranger than honest large traders (AUC <span data-num="uaAucGen16"></span>), but some honest trader is always stranger still, so a spoofer never reaches the top of its list (AUC <span data-num="uaAucNormal16"></span> against ordinary trading).</p>
+
+          <h3>The case nothing can solve</h3>
+          <p>An honest trader rests a large order. Then news changes their mind: they cancel it and trade a little the other way. Every action matches a spoof; only the reason differs. The principle flagged <span data-num="prRev16"></span> of these at 16× and could not tell them from spoofs at all (AUC <span data-num="prAucRev16"></span>). The rule flagged <span data-num="ruleRev16"></span>. This is not a flaw to engineer away. Behaviour can show that a signal was false, but not why it was sent. That is why the law asks for intent to be proved, and why an alert should start an investigation, not end one.</p>
+
+          <h3>Trying to break it</h3>
+          <p>The principle was re-run in the four alternative markets from Part 1, with fewer or more traders sharing each account, with the spoofer hidden inside a broker's shared "omnibus" account, and with shorter and longer windows. Account numbers change nothing in the simulated trading itself, only the record of who did what.</p>
+          <div class="table-wrap" data-table="stress"></div>
+          <p>How many traders share an account made no difference: from 10 to 800 accounts per trader type, the share of 8× spoofs caught stayed at <span data-num="poolRange"></span>. Windows from 40 to 160 steps changed little. The real weakness is the omnibus account. When the spoofer's orders went through a broker account that also carried 20% of everyone else's orders, other clients' trading diluted the signal, and the detector caught only <span data-num="omni20_8"></span> of 8× spoofs and <span data-num="omni20_16"></span> of 16× ones. Real surveillance has the same problem with orders that brokers group together for several clients.</p>
+
+          <h3>A spoofer with two accounts</h3>
+          <p>The obvious attack on a check of each account is to use two: show the wall from one and trade from the other. Then neither account breaks the definition on its own, and the detector caught <span data-num="evOne16"></span> of these spoofs. There are two repairs. If the regulator knows that both accounts belong to one person, merging them brings the catch rate back to <span data-num="evLinked16"></span> at 16×. Without that link, the only option is to pair every account with every other, which throws away the third question. That caught <span data-num="evPairs16"></span>, but it also flagged <span data-num="evPairsWd16"></span> of honest traders who cancelled a large order quickly, and it needed a higher alert threshold (<span data-num="evPairsThr"></span> lots, against <span data-num="evOneThr"></span>). <mark>The third question, whether the same person traded the other way, is what separates spoofing from an honest cancellation, and only knowing who owns which account lets a detector ask it.</mark></p>
+          <div class="table-wrap" data-table="evasion"></div>
+        </section>
+        <section id="evasion" aria-labelledby="evasion-title">
+          <h2 class="section-title" id="evasion-title">Part 3: the price of evasion</h2>
+          <p>A detector built from the law is only useful if a spoofer cannot simply step around it. So I gave the spoofer the obvious dodges and measured two things for each: how often it was still caught, and what the dodge cost it. The benefit is how many more lots the spoofer managed to trade the way it wanted than its honest twin, the same session with no wall.</p>
+          <h3>Waiting before pulling the wall</h3>
+          <p>A patient spoofer leaves the wall up for a while after its real order trades, so that withdrawing it looks unconnected to the trade. Against the 40-step windows of Part 2 this worked, at almost no cost: leaving a 16× wall up 40 steps longer cut the catch rate from <span data-num="evNone40"></span> to <span data-num="evPat40w40"></span>. Longer windows help only until the spoofer waits longer still (<span data-num="evPat160w160"></span> with 160-step windows against a 160-step wait). The fix is to drop windows altogether and judge every withdrawn order over its own life, from the step it was placed to the step it was withdrawn: the wall was alive while the real order traded, however long the wait. That version caught <span data-num="evPat160life"></span> of the most patient spoofers. On honest trading it kept false alarms at <span data-num="hFprCalm"></span> of windows (<span data-num="hFprVol"></span> when volatile) and flagged <span data-num="hGen"></span> of honest large orders and <span data-num="hWd"></span> of honest quick withdrawals.</p>
+          <h3>Buying back what was sold</h3>
+          <p>A spoofer can also trade a little on the wall's own side, so that its account no longer traded only one way. Buying back one or two of its three lots made no difference: it was still caught (<span data-num="evCov1"></span> and <span data-num="evCov2"></span>). Buying back all three escaped most of the time (<span data-num="evCov3"></span> caught), but only by undoing the very trade the spoof was for. It ended <span data-num="evCov3Lots"></span> lots worse off than its honest twin and paid about <span data-num="evCov3Cost"></span> ticks per lot to get there.</p>
+          <figure class="figure" id="figure-9" aria-labelledby="figure-9-cap">
+            <div class="figure__top"><p class="fig-label">Figure 9 <span>What each dodge keeps, and how often it is still caught</span></p></div>
+            <img class="figure__img" src="report-figures/fig8_price_of_evasion.png" alt="Scatter chart: for each way of dodging the detector, the share of spoofs still caught against the extra lots the spoofer traded compared with its honest twin. Only two unlinked accounts keep the benefit and escape." loading="lazy">
+            <figcaption class="figcaption" id="figure-9-cap"><b>Figure 9.</b> 16× walls, calm market. Detection uses the principle judged over each order's own life. Smaller walls are shown with the windowed detector of Part 2. The shaded corner is what a spoofer wants.</figcaption>
+            <details class="data-table"><summary><i class="ph ph-table" aria-hidden="true"></i>Show the data for Figure 9</summary><div class="table-wrap" data-table="price"></div></details>
+          </figure>
+          <p><mark>Every dodge tried here either throws away what the spoof was for, or needs two accounts that the regulator cannot link.</mark> Smaller walls escape too, but below 8× a wall did not help the spoofer at all (Part 1). That leaves account ownership as the real battleground, which is where regulators already put their effort.</p>
+        </section>
+      </article>
+    </div>
+    <nav class="chapter-nav" aria-label="Chapters"><a class="chapter-nav__prev" href="results.html"><small>Chapter 2</small>Results</a><a class="chapter-nav__next" href="conclusion.html"><small>Chapter 4</small>What it means</a></nav>
+  </main>
+
+  <!-- footer:start -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__links"><a href="index.html">Home</a> · <a href="experiment.html">The experiment</a> · <a href="results.html">Results</a> · <a href="teaching.html" aria-current=page>Teaching</a> · <a href="conclusion.html">What it means</a> · <a href="progress.html">Progress</a> · <a href="lab.html">Research Lab</a> · <a href="summary.html">Summary</a> · <a href="analytics.html">Analytics</a> · <a href="report.html">Report</a> · <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code</a></p>
+      <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
+      <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+    </div>
+  </footer>
+  <!-- footer:end -->
+
+
+  <script src="data/results.js"></script>
+  <script src="data/replay.js"></script>
+  
+  <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
+  <script src="data/teaching.js" onerror="window.TEACHING = null"></script>
+  <script src="progress.js"></script>
+  <script src="assets/site.js?v=9"></script>
+  <script src="assets/masthead.js?v=9"></script>
+  <script type="module" src="assets/lake.js?v=9"></script>
+</body>
+</html>

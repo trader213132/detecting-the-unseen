@@ -1,0 +1,1281 @@
+strategy,size_mult,seed,start,caught_principle40,caught_principle160,caught_rule,caught_lifetime,lots_as_intended,twin_lots,wall_lots_traded,cover_cost_ticks
+no evasion,8,10800,764,True,True,True,True,3,3,0,
+no evasion,8,10800,1609,True,True,True,True,3,0,0,
+no evasion,8,10801,341,True,True,True,False,3,3,0,
+no evasion,8,10801,1686,True,True,True,True,3,0,0,
+no evasion,8,10802,785,True,True,True,True,3,3,0,
+no evasion,8,10802,1245,True,True,True,True,3,0,0,
+no evasion,8,10803,486,False,False,True,False,0,0,0,
+no evasion,8,10803,1052,False,False,True,False,0,0,0,
+no evasion,8,10804,519,True,True,True,True,3,3,0,
+no evasion,8,10804,1712,True,True,True,True,3,0,0,
+no evasion,8,10805,1190,True,True,True,False,3,3,0,
+no evasion,8,10805,1778,True,True,True,True,3,3,0,
+no evasion,8,10806,419,True,True,True,True,3,3,0,
+no evasion,8,10806,678,True,True,True,True,3,3,0,
+no evasion,8,10807,403,True,True,True,True,3,3,0,
+no evasion,8,10807,1634,False,False,True,False,0,0,0,
+no evasion,8,10808,431,True,True,True,True,3,3,0,
+no evasion,8,10808,711,True,True,True,True,3,3,0,
+no evasion,8,10809,949,False,False,True,False,0,0,0,
+no evasion,8,10809,1556,True,True,True,True,3,3,0,
+no evasion,8,10810,555,True,True,True,False,3,0,0,
+no evasion,8,10810,866,False,False,True,False,0,0,0,
+no evasion,8,10811,774,True,True,True,True,3,3,0,
+no evasion,8,10811,1444,True,True,True,True,3,3,0,
+no evasion,8,10812,320,True,True,True,True,3,3,0,
+no evasion,8,10812,905,True,True,True,True,3,3,0,
+no evasion,8,10813,1430,True,True,True,True,3,3,0,
+no evasion,8,10813,1718,True,True,True,True,3,3,0,
+no evasion,8,10814,817,True,True,True,True,3,3,0,
+no evasion,8,10814,1551,True,True,True,True,3,3,0,
+no evasion,8,10815,962,True,True,True,True,3,3,0,
+no evasion,8,10815,1714,True,True,True,True,3,3,0,
+no evasion,8,10816,504,True,True,True,True,3,3,0,
+no evasion,8,10816,1440,True,True,True,True,3,3,0,
+no evasion,8,10817,782,True,True,True,True,3,3,0,
+no evasion,8,10817,1245,True,True,True,True,3,3,0,
+no evasion,8,10818,360,True,True,True,True,3,3,0,
+no evasion,8,10818,1834,False,False,True,False,0,0,1,
+no evasion,8,10819,921,True,True,True,True,3,3,0,
+no evasion,8,10819,1334,False,False,True,False,0,0,0,
+no evasion,8,10820,618,True,True,True,True,3,3,0,
+no evasion,8,10820,1593,True,True,True,True,3,3,0,
+no evasion,8,10821,457,False,False,True,False,0,0,0,
+no evasion,8,10821,898,True,True,True,True,3,3,0,
+no evasion,8,10822,362,True,True,True,False,3,3,0,
+no evasion,8,10822,1815,True,True,True,True,3,3,0,
+no evasion,8,10823,820,False,False,True,False,0,0,0,
+no evasion,8,10823,1205,True,True,True,True,3,3,0,
+no evasion,8,10824,654,True,True,True,True,3,3,0,
+no evasion,8,10824,1534,True,True,True,True,3,3,0,
+no evasion,8,10825,1002,False,False,True,False,2,0,2,
+no evasion,8,10825,1822,True,True,True,True,3,3,0,
+no evasion,8,10826,601,True,True,True,True,3,3,0,
+no evasion,8,10826,1578,True,True,True,True,3,3,0,
+no evasion,8,10827,812,True,True,True,False,3,3,0,
+no evasion,8,10827,1212,True,True,True,True,3,3,0,
+no evasion,8,10828,415,True,True,True,True,2,2,0,
+no evasion,8,10828,788,True,True,True,False,3,2,0,
+no evasion,8,10829,603,True,True,True,True,3,3,0,
+no evasion,8,10829,1562,False,False,True,False,3,0,3,
+no evasion,8,10830,513,False,False,True,False,0,0,0,
+no evasion,8,10830,1809,True,True,True,True,3,3,0,
+no evasion,8,10831,1231,True,True,True,False,3,3,0,
+no evasion,8,10831,1762,False,False,True,False,0,0,0,
+no evasion,8,10832,744,True,True,True,True,3,0,0,
+no evasion,8,10832,1832,True,True,True,True,3,3,0,
+no evasion,8,10833,1176,True,True,True,True,3,3,0,
+no evasion,8,10833,1801,False,False,True,False,0,0,0,
+no evasion,8,10834,402,False,False,True,False,0,0,0,
+no evasion,8,10834,1755,True,True,True,True,3,0,0,
+no evasion,8,10835,596,True,True,True,True,3,3,0,
+no evasion,8,10835,873,True,True,True,True,3,3,0,
+no evasion,8,10836,648,True,True,True,True,3,3,0,
+no evasion,8,10836,1202,True,True,True,True,3,3,0,
+no evasion,8,10837,945,True,True,True,True,3,3,0,
+no evasion,8,10837,1217,True,True,True,True,3,3,0,
+no evasion,8,10838,838,True,True,True,True,3,3,0,
+no evasion,8,10838,1376,True,True,True,True,3,3,0,
+no evasion,8,10839,716,True,True,True,False,3,0,2,
+no evasion,8,10839,1607,True,True,True,True,3,3,0,
+patient: 15 steps,8,10800,764,True,True,True,True,3,3,0,
+patient: 15 steps,8,10800,1609,True,True,True,True,3,0,0,
+patient: 15 steps,8,10801,341,True,True,True,False,3,3,0,
+patient: 15 steps,8,10801,1686,True,True,True,True,3,0,0,
+patient: 15 steps,8,10802,785,True,True,True,True,3,3,0,
+patient: 15 steps,8,10802,1245,False,True,True,True,3,0,0,
+patient: 15 steps,8,10803,486,False,False,True,False,0,0,0,
+patient: 15 steps,8,10803,1052,False,False,True,False,0,0,0,
+patient: 15 steps,8,10804,519,True,True,True,True,3,3,0,
+patient: 15 steps,8,10804,1712,True,True,True,True,3,0,0,
+patient: 15 steps,8,10805,1190,True,True,True,False,3,3,0,
+patient: 15 steps,8,10805,1778,True,True,True,True,3,3,0,
+patient: 15 steps,8,10806,419,True,True,True,True,3,3,0,
+patient: 15 steps,8,10806,678,True,True,True,True,3,3,0,
+patient: 15 steps,8,10807,403,True,True,True,True,3,3,0,
+patient: 15 steps,8,10807,1634,False,False,True,False,0,0,0,
+patient: 15 steps,8,10808,431,True,True,True,True,3,3,0,
+patient: 15 steps,8,10808,711,True,True,True,True,3,3,0,
+patient: 15 steps,8,10809,949,False,False,True,False,0,0,0,
+patient: 15 steps,8,10809,1556,True,True,True,True,3,3,0,
+patient: 15 steps,8,10810,555,True,True,True,False,3,0,0,
+patient: 15 steps,8,10810,866,False,False,True,False,0,0,0,
+patient: 15 steps,8,10811,774,True,True,True,True,3,3,0,
+patient: 15 steps,8,10811,1444,False,False,True,False,3,3,4,
+patient: 15 steps,8,10812,320,True,True,True,True,3,3,0,
+patient: 15 steps,8,10812,905,True,True,True,True,3,3,0,
+patient: 15 steps,8,10813,1430,False,False,False,False,3,3,11,
+patient: 15 steps,8,10813,1718,True,True,True,True,3,3,0,
+patient: 15 steps,8,10814,817,True,True,True,True,3,3,0,
+patient: 15 steps,8,10814,1551,True,True,True,True,3,3,0,
+patient: 15 steps,8,10815,962,True,True,True,True,3,3,0,
+patient: 15 steps,8,10815,1714,True,True,True,True,3,3,1,
+patient: 15 steps,8,10816,504,True,True,True,True,3,3,0,
+patient: 15 steps,8,10816,1440,True,True,True,True,3,3,0,
+patient: 15 steps,8,10817,782,True,True,True,True,3,3,0,
+patient: 15 steps,8,10817,1245,True,True,True,True,3,3,0,
+patient: 15 steps,8,10818,360,True,True,True,True,3,3,0,
+patient: 15 steps,8,10818,1834,False,False,True,False,0,0,0,
+patient: 15 steps,8,10819,921,True,True,True,True,3,3,0,
+patient: 15 steps,8,10819,1334,False,False,True,False,0,0,0,
+patient: 15 steps,8,10820,618,True,True,True,True,3,3,0,
+patient: 15 steps,8,10820,1593,True,True,True,True,3,3,0,
+patient: 15 steps,8,10821,457,False,False,True,False,0,0,0,
+patient: 15 steps,8,10821,898,True,True,True,True,3,3,0,
+patient: 15 steps,8,10822,362,True,True,True,False,3,3,0,
+patient: 15 steps,8,10822,1815,True,True,True,True,3,3,0,
+patient: 15 steps,8,10823,820,False,False,True,False,0,0,0,
+patient: 15 steps,8,10823,1205,True,True,True,True,3,3,0,
+patient: 15 steps,8,10824,654,True,True,True,True,3,3,0,
+patient: 15 steps,8,10824,1534,True,True,True,True,3,3,0,
+patient: 15 steps,8,10825,1002,False,False,True,False,2,0,2,
+patient: 15 steps,8,10825,1822,True,True,True,True,3,3,0,
+patient: 15 steps,8,10826,601,True,True,True,True,3,3,0,
+patient: 15 steps,8,10826,1578,True,True,True,True,3,3,0,
+patient: 15 steps,8,10827,812,True,True,True,False,3,3,0,
+patient: 15 steps,8,10827,1212,True,True,True,True,3,3,0,
+patient: 15 steps,8,10828,415,True,True,True,True,2,2,0,
+patient: 15 steps,8,10828,788,True,True,True,False,3,2,0,
+patient: 15 steps,8,10829,603,True,True,True,True,3,3,0,
+patient: 15 steps,8,10829,1562,False,False,True,False,3,0,3,
+patient: 15 steps,8,10830,513,False,False,True,False,0,0,0,
+patient: 15 steps,8,10830,1809,True,True,True,True,3,3,0,
+patient: 15 steps,8,10831,1231,True,True,True,False,3,3,0,
+patient: 15 steps,8,10831,1762,False,False,True,False,0,0,0,
+patient: 15 steps,8,10832,744,True,True,True,True,3,0,0,
+patient: 15 steps,8,10832,1832,True,True,True,True,3,3,0,
+patient: 15 steps,8,10833,1176,True,True,True,True,3,3,0,
+patient: 15 steps,8,10833,1801,False,False,True,False,0,0,0,
+patient: 15 steps,8,10834,402,False,False,True,False,0,0,0,
+patient: 15 steps,8,10834,1755,True,True,True,True,3,0,0,
+patient: 15 steps,8,10835,596,False,True,True,False,3,3,3,
+patient: 15 steps,8,10835,873,True,True,True,True,3,3,0,
+patient: 15 steps,8,10836,648,True,True,True,True,3,3,0,
+patient: 15 steps,8,10836,1202,True,True,True,True,3,3,0,
+patient: 15 steps,8,10837,945,True,True,True,True,3,3,0,
+patient: 15 steps,8,10837,1217,True,True,True,True,3,3,0,
+patient: 15 steps,8,10838,838,True,True,True,True,3,3,0,
+patient: 15 steps,8,10838,1376,True,True,True,True,3,3,0,
+patient: 15 steps,8,10839,716,True,True,True,False,3,0,2,
+patient: 15 steps,8,10839,1607,True,True,True,True,3,3,0,
+patient: 40 steps,8,10800,764,False,True,False,True,3,3,0,
+patient: 40 steps,8,10800,1609,False,False,True,False,0,0,3,
+patient: 40 steps,8,10801,341,True,True,True,False,3,3,0,
+patient: 40 steps,8,10801,1686,True,True,True,True,3,0,0,
+patient: 40 steps,8,10802,785,False,True,True,True,3,3,0,
+patient: 40 steps,8,10802,1245,False,True,True,True,3,0,0,
+patient: 40 steps,8,10803,486,False,False,True,False,0,0,0,
+patient: 40 steps,8,10803,1052,False,False,True,False,0,0,0,
+patient: 40 steps,8,10804,519,False,True,True,True,3,3,0,
+patient: 40 steps,8,10804,1712,False,True,True,True,3,0,0,
+patient: 40 steps,8,10805,1190,True,True,True,False,3,3,0,
+patient: 40 steps,8,10805,1778,False,True,True,True,3,3,0,
+patient: 40 steps,8,10806,419,False,True,True,True,3,3,0,
+patient: 40 steps,8,10806,678,False,True,True,True,3,3,0,
+patient: 40 steps,8,10807,403,False,True,True,True,3,3,0,
+patient: 40 steps,8,10807,1634,False,False,True,False,0,0,0,
+patient: 40 steps,8,10808,431,False,True,True,True,3,3,0,
+patient: 40 steps,8,10808,711,False,True,True,True,3,3,0,
+patient: 40 steps,8,10809,949,False,False,True,False,0,0,0,
+patient: 40 steps,8,10809,1556,True,True,True,True,3,3,0,
+patient: 40 steps,8,10810,555,True,True,True,False,3,0,0,
+patient: 40 steps,8,10810,866,False,False,True,False,0,0,0,
+patient: 40 steps,8,10811,774,False,True,True,True,3,3,0,
+patient: 40 steps,8,10811,1444,False,False,True,False,3,3,4,
+patient: 40 steps,8,10812,320,False,True,True,True,3,3,0,
+patient: 40 steps,8,10812,905,False,True,True,True,3,3,0,
+patient: 40 steps,8,10813,1430,False,False,False,False,3,3,11,
+patient: 40 steps,8,10813,1718,False,True,True,True,3,3,0,
+patient: 40 steps,8,10814,817,False,True,True,True,3,3,0,
+patient: 40 steps,8,10814,1551,True,True,True,True,3,3,0,
+patient: 40 steps,8,10815,962,True,True,True,True,3,3,0,
+patient: 40 steps,8,10815,1714,True,True,True,True,3,3,1,
+patient: 40 steps,8,10816,504,False,True,True,True,3,3,0,
+patient: 40 steps,8,10816,1440,False,True,True,True,3,3,0,
+patient: 40 steps,8,10817,782,False,True,False,True,3,3,0,
+patient: 40 steps,8,10817,1245,False,True,True,True,3,3,0,
+patient: 40 steps,8,10818,360,False,True,True,True,3,3,0,
+patient: 40 steps,8,10818,1834,False,False,True,False,0,0,0,
+patient: 40 steps,8,10819,921,False,True,True,True,3,3,0,
+patient: 40 steps,8,10819,1334,True,True,True,True,1,0,0,
+patient: 40 steps,8,10820,618,False,True,True,True,3,3,0,
+patient: 40 steps,8,10820,1593,False,True,True,True,3,3,0,
+patient: 40 steps,8,10821,457,False,False,True,False,0,0,0,
+patient: 40 steps,8,10821,898,False,True,True,True,3,3,0,
+patient: 40 steps,8,10822,362,True,True,True,False,3,3,0,
+patient: 40 steps,8,10822,1815,False,True,True,True,3,3,0,
+patient: 40 steps,8,10823,820,False,False,True,False,0,0,0,
+patient: 40 steps,8,10823,1205,True,True,True,True,3,3,0,
+patient: 40 steps,8,10824,654,False,True,True,True,3,3,0,
+patient: 40 steps,8,10824,1534,False,True,True,True,3,3,0,
+patient: 40 steps,8,10825,1002,False,False,True,False,2,0,2,
+patient: 40 steps,8,10825,1822,False,True,True,True,3,3,0,
+patient: 40 steps,8,10826,601,False,True,True,True,3,3,0,
+patient: 40 steps,8,10826,1578,True,True,True,False,3,3,0,
+patient: 40 steps,8,10827,812,True,True,True,False,3,3,0,
+patient: 40 steps,8,10827,1212,False,True,True,True,3,3,0,
+patient: 40 steps,8,10828,415,True,True,True,True,2,2,0,
+patient: 40 steps,8,10828,788,True,True,True,False,3,2,0,
+patient: 40 steps,8,10829,603,False,True,True,True,3,3,0,
+patient: 40 steps,8,10829,1562,False,False,True,False,3,0,3,
+patient: 40 steps,8,10830,513,False,False,True,False,0,0,0,
+patient: 40 steps,8,10830,1809,True,True,True,True,3,3,0,
+patient: 40 steps,8,10831,1231,True,True,True,False,3,3,0,
+patient: 40 steps,8,10831,1762,False,False,True,False,0,0,0,
+patient: 40 steps,8,10832,744,False,True,True,True,3,0,0,
+patient: 40 steps,8,10832,1832,False,True,False,True,3,3,0,
+patient: 40 steps,8,10833,1176,False,True,True,True,3,3,0,
+patient: 40 steps,8,10833,1801,False,False,True,False,0,0,0,
+patient: 40 steps,8,10834,402,False,False,True,False,0,0,0,
+patient: 40 steps,8,10834,1755,True,True,True,True,3,0,0,
+patient: 40 steps,8,10835,596,False,False,True,False,3,3,3,
+patient: 40 steps,8,10835,873,False,True,True,True,3,3,0,
+patient: 40 steps,8,10836,648,True,True,True,True,3,3,0,
+patient: 40 steps,8,10836,1202,False,True,True,True,3,3,0,
+patient: 40 steps,8,10837,945,True,True,True,True,3,3,0,
+patient: 40 steps,8,10837,1217,True,True,True,True,3,3,0,
+patient: 40 steps,8,10838,838,False,True,True,True,3,3,0,
+patient: 40 steps,8,10838,1376,True,True,True,True,3,3,0,
+patient: 40 steps,8,10839,716,True,True,True,False,3,0,2,
+patient: 40 steps,8,10839,1607,False,True,True,True,3,3,0,
+patient: 80 steps,8,10800,764,False,True,False,True,3,3,0,
+patient: 80 steps,8,10800,1609,True,True,True,True,3,0,1,
+patient: 80 steps,8,10801,341,True,True,True,False,3,3,0,
+patient: 80 steps,8,10801,1686,True,True,True,True,3,0,0,
+patient: 80 steps,8,10802,785,False,True,False,True,3,3,0,
+patient: 80 steps,8,10802,1245,False,True,True,True,3,0,0,
+patient: 80 steps,8,10803,486,False,False,True,False,0,0,0,
+patient: 80 steps,8,10803,1052,False,False,True,False,0,0,0,
+patient: 80 steps,8,10804,519,False,True,False,True,3,3,0,
+patient: 80 steps,8,10804,1712,False,True,True,True,3,0,0,
+patient: 80 steps,8,10805,1190,True,True,True,False,3,3,0,
+patient: 80 steps,8,10805,1778,False,True,False,True,3,3,0,
+patient: 80 steps,8,10806,419,False,True,True,True,3,3,0,
+patient: 80 steps,8,10806,678,False,True,False,True,3,3,0,
+patient: 80 steps,8,10807,403,False,True,True,True,3,3,0,
+patient: 80 steps,8,10807,1634,False,False,True,False,0,0,0,
+patient: 80 steps,8,10808,431,False,True,False,True,3,3,0,
+patient: 80 steps,8,10808,711,False,False,True,False,3,3,5,
+patient: 80 steps,8,10809,949,False,False,True,False,0,0,0,
+patient: 80 steps,8,10809,1556,True,True,True,True,3,3,0,
+patient: 80 steps,8,10810,555,True,True,True,False,3,0,0,
+patient: 80 steps,8,10810,866,False,False,True,False,0,0,0,
+patient: 80 steps,8,10811,774,False,True,False,True,3,3,0,
+patient: 80 steps,8,10811,1444,True,True,True,True,3,3,0,
+patient: 80 steps,8,10812,320,False,True,True,True,3,3,0,
+patient: 80 steps,8,10812,905,False,True,False,True,3,3,0,
+patient: 80 steps,8,10813,1430,False,False,False,False,3,3,11,
+patient: 80 steps,8,10813,1718,False,True,False,True,3,3,0,
+patient: 80 steps,8,10814,817,False,True,True,True,3,3,0,
+patient: 80 steps,8,10814,1551,True,True,True,True,3,3,0,
+patient: 80 steps,8,10815,962,True,True,True,True,3,3,0,
+patient: 80 steps,8,10815,1714,True,True,True,True,3,3,1,
+patient: 80 steps,8,10816,504,False,True,False,True,3,3,0,
+patient: 80 steps,8,10816,1440,False,True,False,True,3,3,0,
+patient: 80 steps,8,10817,782,False,True,False,True,3,3,0,
+patient: 80 steps,8,10817,1245,False,True,True,True,3,3,0,
+patient: 80 steps,8,10818,360,False,True,True,True,3,3,0,
+patient: 80 steps,8,10818,1834,False,False,True,False,0,0,1,
+patient: 80 steps,8,10819,921,False,True,False,True,3,3,0,
+patient: 80 steps,8,10819,1334,False,False,True,False,0,0,0,
+patient: 80 steps,8,10820,618,False,True,False,True,3,3,0,
+patient: 80 steps,8,10820,1593,False,True,False,True,3,3,0,
+patient: 80 steps,8,10821,457,False,False,True,False,0,0,0,
+patient: 80 steps,8,10821,898,False,True,False,True,3,3,0,
+patient: 80 steps,8,10822,362,True,True,True,False,3,3,0,
+patient: 80 steps,8,10822,1815,False,True,False,True,3,3,0,
+patient: 80 steps,8,10823,820,False,False,True,False,0,0,0,
+patient: 80 steps,8,10823,1205,True,True,True,True,3,3,0,
+patient: 80 steps,8,10824,654,False,True,False,True,3,3,0,
+patient: 80 steps,8,10824,1534,False,True,True,True,3,3,0,
+patient: 80 steps,8,10825,1002,False,False,True,False,2,0,2,
+patient: 80 steps,8,10825,1822,False,True,False,True,3,3,0,
+patient: 80 steps,8,10826,601,False,True,False,True,3,3,0,
+patient: 80 steps,8,10826,1578,True,True,True,False,3,3,0,
+patient: 80 steps,8,10827,812,True,True,True,False,3,3,0,
+patient: 80 steps,8,10827,1212,False,True,False,True,3,3,0,
+patient: 80 steps,8,10828,415,True,True,True,True,2,2,0,
+patient: 80 steps,8,10828,788,True,True,True,False,3,2,0,
+patient: 80 steps,8,10829,603,False,True,False,True,3,3,0,
+patient: 80 steps,8,10829,1562,False,False,True,False,3,0,3,
+patient: 80 steps,8,10830,513,False,False,True,False,0,0,0,
+patient: 80 steps,8,10830,1809,True,True,True,True,3,3,0,
+patient: 80 steps,8,10831,1231,True,True,True,False,3,3,0,
+patient: 80 steps,8,10831,1762,False,False,True,False,0,0,0,
+patient: 80 steps,8,10832,744,False,True,False,True,3,0,0,
+patient: 80 steps,8,10832,1832,False,True,False,True,3,3,0,
+patient: 80 steps,8,10833,1176,False,True,False,True,3,3,2,
+patient: 80 steps,8,10833,1801,False,False,True,False,0,0,0,
+patient: 80 steps,8,10834,402,False,False,True,False,0,0,0,
+patient: 80 steps,8,10834,1755,True,True,True,True,3,0,0,
+patient: 80 steps,8,10835,596,False,False,True,False,3,3,3,
+patient: 80 steps,8,10835,873,False,True,False,True,3,3,0,
+patient: 80 steps,8,10836,648,True,True,True,True,3,3,0,
+patient: 80 steps,8,10836,1202,False,True,False,True,3,3,0,
+patient: 80 steps,8,10837,945,True,True,True,True,3,3,0,
+patient: 80 steps,8,10837,1217,True,True,True,True,3,3,0,
+patient: 80 steps,8,10838,838,False,True,False,True,3,3,0,
+patient: 80 steps,8,10838,1376,True,True,True,True,3,3,0,
+patient: 80 steps,8,10839,716,True,True,True,False,3,0,2,
+patient: 80 steps,8,10839,1607,False,True,True,True,3,3,0,
+patient: 160 steps,8,10800,764,False,False,False,True,3,3,0,
+patient: 160 steps,8,10800,1609,True,True,True,True,3,0,0,
+patient: 160 steps,8,10801,341,True,True,True,False,3,3,0,
+patient: 160 steps,8,10801,1686,True,True,True,True,3,0,0,
+patient: 160 steps,8,10802,785,False,True,False,True,3,3,0,
+patient: 160 steps,8,10802,1245,False,True,True,True,3,0,0,
+patient: 160 steps,8,10803,486,False,False,True,False,0,0,0,
+patient: 160 steps,8,10803,1052,False,False,True,False,0,0,0,
+patient: 160 steps,8,10804,519,False,False,False,True,3,3,0,
+patient: 160 steps,8,10804,1712,False,True,True,True,3,0,0,
+patient: 160 steps,8,10805,1190,True,True,True,False,3,3,0,
+patient: 160 steps,8,10805,1778,False,False,False,True,3,3,0,
+patient: 160 steps,8,10806,419,False,False,True,True,3,3,0,
+patient: 160 steps,8,10806,678,False,False,False,True,3,3,0,
+patient: 160 steps,8,10807,403,False,False,True,True,3,3,0,
+patient: 160 steps,8,10807,1634,False,False,True,False,0,0,0,
+patient: 160 steps,8,10808,431,False,True,False,True,3,3,0,
+patient: 160 steps,8,10808,711,False,False,True,False,3,3,5,
+patient: 160 steps,8,10809,949,False,False,True,False,0,0,0,
+patient: 160 steps,8,10809,1556,True,True,True,True,3,3,0,
+patient: 160 steps,8,10810,555,True,True,True,False,3,0,0,
+patient: 160 steps,8,10810,866,False,False,True,False,0,0,0,
+patient: 160 steps,8,10811,774,False,False,False,True,3,3,0,
+patient: 160 steps,8,10811,1444,True,True,True,True,3,3,0,
+patient: 160 steps,8,10812,320,False,True,True,True,3,3,0,
+patient: 160 steps,8,10812,905,False,True,False,True,3,3,0,
+patient: 160 steps,8,10813,1430,False,False,False,False,3,3,11,
+patient: 160 steps,8,10813,1718,False,False,False,True,3,3,0,
+patient: 160 steps,8,10814,817,False,False,True,True,3,3,0,
+patient: 160 steps,8,10814,1551,True,True,True,True,3,3,0,
+patient: 160 steps,8,10815,962,True,True,True,True,3,3,0,
+patient: 160 steps,8,10815,1714,True,True,True,True,3,3,1,
+patient: 160 steps,8,10816,504,False,True,False,True,3,3,0,
+patient: 160 steps,8,10816,1440,False,False,False,True,3,3,0,
+patient: 160 steps,8,10817,782,False,True,False,True,3,3,0,
+patient: 160 steps,8,10817,1245,False,True,True,True,3,3,0,
+patient: 160 steps,8,10818,360,False,False,True,True,3,3,0,
+patient: 160 steps,8,10818,1834,False,False,True,False,0,0,1,
+patient: 160 steps,8,10819,921,False,False,False,True,3,3,0,
+patient: 160 steps,8,10819,1334,False,False,True,False,0,0,0,
+patient: 160 steps,8,10820,618,False,False,False,True,3,3,0,
+patient: 160 steps,8,10820,1593,False,False,False,True,3,3,0,
+patient: 160 steps,8,10821,457,False,False,True,False,0,0,0,
+patient: 160 steps,8,10821,898,False,False,False,True,3,3,0,
+patient: 160 steps,8,10822,362,True,True,True,False,3,3,0,
+patient: 160 steps,8,10822,1815,False,True,False,True,3,3,0,
+patient: 160 steps,8,10823,820,False,False,True,False,0,0,0,
+patient: 160 steps,8,10823,1205,True,True,True,True,3,3,0,
+patient: 160 steps,8,10824,654,False,False,False,True,3,3,0,
+patient: 160 steps,8,10824,1534,False,True,False,True,3,3,0,
+patient: 160 steps,8,10825,1002,False,False,True,False,2,0,2,
+patient: 160 steps,8,10825,1822,False,False,False,True,3,3,0,
+patient: 160 steps,8,10826,601,False,False,False,True,3,3,0,
+patient: 160 steps,8,10826,1578,True,True,True,False,3,3,0,
+patient: 160 steps,8,10827,812,True,True,True,False,3,3,0,
+patient: 160 steps,8,10827,1212,False,True,False,True,3,3,0,
+patient: 160 steps,8,10828,415,True,True,True,True,2,2,0,
+patient: 160 steps,8,10828,788,True,True,True,False,3,2,0,
+patient: 160 steps,8,10829,603,False,False,False,True,3,3,0,
+patient: 160 steps,8,10829,1562,False,True,True,True,3,0,0,
+patient: 160 steps,8,10830,513,False,False,True,False,0,0,0,
+patient: 160 steps,8,10830,1809,True,True,True,True,3,3,0,
+patient: 160 steps,8,10831,1231,True,True,True,False,3,3,0,
+patient: 160 steps,8,10831,1762,False,False,True,False,0,0,0,
+patient: 160 steps,8,10832,744,False,False,False,True,3,0,0,
+patient: 160 steps,8,10832,1832,False,False,False,False,3,3,0,
+patient: 160 steps,8,10833,1176,False,True,False,True,3,3,2,
+patient: 160 steps,8,10833,1801,False,False,True,False,0,0,0,
+patient: 160 steps,8,10834,402,False,False,True,False,0,0,0,
+patient: 160 steps,8,10834,1755,True,True,True,True,3,0,0,
+patient: 160 steps,8,10835,596,False,False,True,False,3,3,3,
+patient: 160 steps,8,10835,873,False,True,False,True,3,3,0,
+patient: 160 steps,8,10836,648,True,True,True,True,3,3,0,
+patient: 160 steps,8,10836,1202,False,False,False,True,3,3,0,
+patient: 160 steps,8,10837,945,True,True,True,True,3,3,0,
+patient: 160 steps,8,10837,1217,True,True,True,True,3,3,0,
+patient: 160 steps,8,10838,838,False,False,False,True,3,3,0,
+patient: 160 steps,8,10838,1376,True,True,True,True,3,3,0,
+patient: 160 steps,8,10839,716,True,True,True,False,3,0,2,
+patient: 160 steps,8,10839,1607,False,True,True,True,3,3,0,
+buys back 1 of 3 lots,8,10800,764,True,True,True,True,2,3,0,-0.0
+buys back 1 of 3 lots,8,10800,1609,True,True,True,True,2,0,0,-1.0
+buys back 1 of 3 lots,8,10801,341,True,True,True,False,2,3,0,1.0
+buys back 1 of 3 lots,8,10801,1686,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10802,785,True,True,True,True,2,3,0,-0.0
+buys back 1 of 3 lots,8,10802,1245,True,True,True,True,2,0,0,-0.0
+buys back 1 of 3 lots,8,10803,486,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10803,1052,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10804,519,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10804,1712,True,True,True,True,2,0,0,0.0
+buys back 1 of 3 lots,8,10805,1190,True,True,True,False,2,3,0,1.0
+buys back 1 of 3 lots,8,10805,1778,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10806,419,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10806,678,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10807,403,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10807,1634,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10808,431,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10808,711,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10809,949,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10809,1556,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10810,555,True,True,True,False,2,0,0,-0.0
+buys back 1 of 3 lots,8,10810,866,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10811,774,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10811,1444,True,True,True,True,2,3,0,-1.0
+buys back 1 of 3 lots,8,10812,320,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10812,905,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10813,1430,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10813,1718,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10814,817,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10814,1551,True,True,True,True,2,3,0,-0.0
+buys back 1 of 3 lots,8,10815,962,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10815,1714,True,True,True,True,2,3,0,-0.0
+buys back 1 of 3 lots,8,10816,504,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10816,1440,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,8,10817,782,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10817,1245,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10818,360,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,8,10818,1834,False,False,True,False,0,0,1,
+buys back 1 of 3 lots,8,10819,921,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,8,10819,1334,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10820,618,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10820,1593,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10821,457,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10821,898,True,True,True,True,2,3,0,-0.0
+buys back 1 of 3 lots,8,10822,362,True,True,True,False,2,3,0,2.0
+buys back 1 of 3 lots,8,10822,1815,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,8,10823,820,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10823,1205,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10824,654,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10824,1534,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10825,1002,False,False,True,False,2,0,2,
+buys back 1 of 3 lots,8,10825,1822,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,8,10826,601,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10826,1578,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,8,10827,812,True,True,True,False,2,3,0,0.0
+buys back 1 of 3 lots,8,10827,1212,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,8,10828,415,True,True,True,True,2,2,0,
+buys back 1 of 3 lots,8,10828,788,True,True,True,False,2,2,0,0.0
+buys back 1 of 3 lots,8,10829,603,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10829,1562,False,False,True,False,2,0,3,0.0
+buys back 1 of 3 lots,8,10830,513,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10830,1809,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10831,1231,True,True,True,False,2,3,0,0.0
+buys back 1 of 3 lots,8,10831,1762,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10832,744,True,True,True,True,2,0,0,-0.0
+buys back 1 of 3 lots,8,10832,1832,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,8,10833,1176,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10833,1801,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10834,402,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,8,10834,1755,True,True,True,True,2,0,0,1.0
+buys back 1 of 3 lots,8,10835,596,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10835,873,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10836,648,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10836,1202,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10837,945,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10837,1217,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10838,838,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,8,10838,1376,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,8,10839,716,False,False,True,False,2,0,2,0.0
+buys back 1 of 3 lots,8,10839,1607,True,True,True,True,2,3,0,1.0
+buys back 2 of 3 lots,8,10800,764,True,True,True,True,1,3,0,-0.0
+buys back 2 of 3 lots,8,10800,1609,True,True,True,True,2,0,0,-1.0
+buys back 2 of 3 lots,8,10801,341,True,True,True,False,1,3,0,1.0
+buys back 2 of 3 lots,8,10801,1686,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10802,785,True,True,True,True,1,3,0,-0.0
+buys back 2 of 3 lots,8,10802,1245,True,True,True,True,2,0,0,-0.0
+buys back 2 of 3 lots,8,10803,486,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10803,1052,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10804,519,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10804,1712,True,True,True,True,1,0,0,0.0
+buys back 2 of 3 lots,8,10805,1190,True,True,True,False,1,3,0,1.0
+buys back 2 of 3 lots,8,10805,1778,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10806,419,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10806,678,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10807,403,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10807,1634,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10808,431,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10808,711,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10809,949,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10809,1556,True,True,True,True,2,3,0,1.0
+buys back 2 of 3 lots,8,10810,555,True,True,True,False,1,0,0,-0.0
+buys back 2 of 3 lots,8,10810,866,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10811,774,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10811,1444,True,True,True,True,2,3,0,-1.0
+buys back 2 of 3 lots,8,10812,320,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10812,905,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10813,1430,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10813,1718,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10814,817,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10814,1551,True,True,True,True,1,3,0,-0.0
+buys back 2 of 3 lots,8,10815,962,True,True,True,True,2,3,0,1.0
+buys back 2 of 3 lots,8,10815,1714,True,True,True,True,2,3,0,-0.0
+buys back 2 of 3 lots,8,10816,504,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10816,1440,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,8,10817,782,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10817,1245,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10818,360,True,True,True,True,1,3,0,2.0
+buys back 2 of 3 lots,8,10818,1834,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10819,921,True,True,True,True,1,3,0,2.0
+buys back 2 of 3 lots,8,10819,1334,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10820,618,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10820,1593,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10821,457,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10821,898,True,True,True,True,1,3,0,-0.0
+buys back 2 of 3 lots,8,10822,362,True,True,True,False,2,3,0,2.0
+buys back 2 of 3 lots,8,10822,1815,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,8,10823,820,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10823,1205,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10824,654,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10824,1534,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10825,1002,False,False,True,False,2,0,2,
+buys back 2 of 3 lots,8,10825,1822,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,8,10826,601,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10826,1578,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,8,10827,812,True,True,True,False,1,3,0,0.0
+buys back 2 of 3 lots,8,10827,1212,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,8,10828,415,True,True,True,True,2,2,0,
+buys back 2 of 3 lots,8,10828,788,True,True,True,False,1,2,0,0.0
+buys back 2 of 3 lots,8,10829,603,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10829,1562,False,False,True,False,1,0,3,0.0
+buys back 2 of 3 lots,8,10830,513,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10830,1809,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10831,1231,True,True,True,False,1,3,0,0.0
+buys back 2 of 3 lots,8,10831,1762,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10832,744,True,True,True,True,1,0,0,-0.0
+buys back 2 of 3 lots,8,10832,1832,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,8,10833,1176,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10833,1801,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10834,402,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,8,10834,1755,True,True,True,True,1,0,0,1.0
+buys back 2 of 3 lots,8,10835,596,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10835,873,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10836,648,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10836,1202,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10837,945,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10837,1217,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10838,838,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,8,10838,1376,True,True,True,True,2,3,0,0.0
+buys back 2 of 3 lots,8,10839,716,False,False,True,False,1,0,2,0.0
+buys back 2 of 3 lots,8,10839,1607,True,True,True,True,1,3,0,1.0
+buys back all 3 lots,8,10800,764,False,False,True,False,0,3,0,-0.0
+buys back all 3 lots,8,10800,1609,True,True,True,True,2,0,0,-1.0
+buys back all 3 lots,8,10801,341,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10801,1686,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10802,785,False,False,True,False,0,3,0,-0.0
+buys back all 3 lots,8,10802,1245,True,True,True,True,2,0,0,-0.0
+buys back all 3 lots,8,10803,486,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10803,1052,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10804,519,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10804,1712,False,False,True,False,0,0,0,0.0
+buys back all 3 lots,8,10805,1190,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10805,1778,True,True,True,True,1,3,0,1.0
+buys back all 3 lots,8,10806,419,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10806,678,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10807,403,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10807,1634,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10808,431,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10808,711,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10809,949,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10809,1556,True,True,True,True,2,3,0,1.0
+buys back all 3 lots,8,10810,555,True,True,True,False,1,0,0,-0.0
+buys back all 3 lots,8,10810,866,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10811,774,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10811,1444,True,True,True,True,2,3,0,-1.0
+buys back all 3 lots,8,10812,320,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10812,905,True,True,True,True,1,3,0,1.0
+buys back all 3 lots,8,10813,1430,False,True,True,False,0,3,0,1.0
+buys back all 3 lots,8,10813,1718,True,True,True,True,1,3,0,1.0
+buys back all 3 lots,8,10814,817,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10814,1551,False,False,True,False,0,3,0,-0.0
+buys back all 3 lots,8,10815,962,True,True,True,True,2,3,0,1.0
+buys back all 3 lots,8,10815,1714,True,True,True,True,2,3,0,-0.0
+buys back all 3 lots,8,10816,504,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10816,1440,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,8,10817,782,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10817,1245,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10818,360,False,False,True,False,0,3,0,2.0
+buys back all 3 lots,8,10818,1834,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10819,921,False,False,True,False,0,3,0,2.0
+buys back all 3 lots,8,10819,1334,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10820,618,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10820,1593,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10821,457,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10821,898,False,False,True,False,0,3,0,-0.0
+buys back all 3 lots,8,10822,362,True,True,True,False,2,3,0,2.0
+buys back all 3 lots,8,10822,1815,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,8,10823,820,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10823,1205,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10824,654,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10824,1534,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10825,1002,False,False,True,False,2,0,2,
+buys back all 3 lots,8,10825,1822,True,True,True,True,1,3,0,0.0
+buys back all 3 lots,8,10826,601,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10826,1578,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,8,10827,812,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,8,10827,1212,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,8,10828,415,True,True,True,True,2,2,0,
+buys back all 3 lots,8,10828,788,False,False,True,False,0,2,0,0.0
+buys back all 3 lots,8,10829,603,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10829,1562,False,False,True,False,1,0,3,0.0
+buys back all 3 lots,8,10830,513,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10830,1809,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10831,1231,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,8,10831,1762,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10832,744,False,False,True,False,0,0,0,-0.0
+buys back all 3 lots,8,10832,1832,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,8,10833,1176,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10833,1801,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10834,402,False,False,True,False,0,0,0,
+buys back all 3 lots,8,10834,1755,False,False,True,False,0,0,0,1.0
+buys back all 3 lots,8,10835,596,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10835,873,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10836,648,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10836,1202,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10837,945,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10837,1217,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10838,838,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,8,10838,1376,True,True,True,True,2,3,0,0.0
+buys back all 3 lots,8,10839,716,False,False,True,False,0,0,2,0.0
+buys back all 3 lots,8,10839,1607,False,False,True,False,0,3,0,1.0
+no evasion,16,11600,504,True,True,True,True,3,3,0,
+no evasion,16,11600,995,True,True,True,False,3,3,0,
+no evasion,16,11601,614,True,True,True,True,3,0,0,
+no evasion,16,11601,1456,True,True,True,False,3,3,0,
+no evasion,16,11602,533,True,True,True,True,3,3,0,
+no evasion,16,11602,1754,False,False,True,False,0,0,0,
+no evasion,16,11603,385,True,True,True,True,3,3,0,
+no evasion,16,11603,943,True,True,True,True,3,3,0,
+no evasion,16,11604,780,True,True,True,True,3,2,0,
+no evasion,16,11604,1821,True,True,True,True,3,3,0,
+no evasion,16,11605,499,True,True,True,True,3,3,0,
+no evasion,16,11605,1044,False,False,True,False,0,0,0,
+no evasion,16,11606,1150,True,True,True,True,3,3,0,
+no evasion,16,11606,1645,True,True,True,True,3,3,0,
+no evasion,16,11607,448,True,True,True,False,3,3,0,
+no evasion,16,11607,920,True,True,True,True,3,3,0,
+no evasion,16,11608,479,True,True,True,False,3,2,0,
+no evasion,16,11608,976,True,True,True,True,1,0,0,
+no evasion,16,11609,507,True,True,True,True,3,3,0,
+no evasion,16,11609,1099,True,True,True,True,3,3,0,
+no evasion,16,11610,918,True,True,True,False,3,0,0,
+no evasion,16,11610,1839,True,True,True,True,3,3,0,
+no evasion,16,11611,323,True,True,True,True,3,3,0,
+no evasion,16,11611,893,True,True,True,True,1,3,0,
+no evasion,16,11612,824,True,True,True,True,3,3,0,
+no evasion,16,11612,1384,True,True,True,True,3,3,0,
+no evasion,16,11613,624,True,True,True,True,3,3,0,
+no evasion,16,11613,1714,False,False,True,False,0,0,0,
+no evasion,16,11614,345,True,True,True,True,3,3,0,
+no evasion,16,11614,1153,True,True,True,True,3,3,0,
+no evasion,16,11615,563,True,True,True,True,3,3,0,
+no evasion,16,11615,1684,True,True,True,True,3,0,0,
+no evasion,16,11616,1093,True,True,True,True,3,3,0,
+no evasion,16,11616,1751,True,True,True,True,3,3,0,
+no evasion,16,11617,1143,False,False,True,False,0,0,0,
+no evasion,16,11617,1651,False,False,True,False,0,2,0,
+no evasion,16,11618,1347,True,True,True,True,3,1,0,
+no evasion,16,11618,1765,True,True,True,True,3,0,0,
+no evasion,16,11619,729,True,True,True,True,3,3,0,
+no evasion,16,11619,1405,True,True,True,True,3,0,0,
+no evasion,16,11620,575,True,True,True,True,3,3,0,
+no evasion,16,11620,1748,True,True,True,True,3,3,0,
+no evasion,16,11621,602,True,True,True,True,3,3,0,
+no evasion,16,11621,1423,True,True,True,True,3,3,0,
+no evasion,16,11622,573,True,True,True,True,3,3,0,
+no evasion,16,11622,1292,False,False,True,False,0,0,7,
+no evasion,16,11623,533,True,True,True,True,3,3,0,
+no evasion,16,11623,1587,True,True,True,True,3,0,0,
+no evasion,16,11624,1056,True,True,True,True,3,0,0,
+no evasion,16,11624,1688,True,True,True,True,3,3,0,
+no evasion,16,11625,874,True,True,True,True,3,3,0,
+no evasion,16,11625,1375,True,True,True,True,3,3,0,
+no evasion,16,11626,1183,True,True,True,True,3,3,0,
+no evasion,16,11626,1822,True,True,True,True,3,3,0,
+no evasion,16,11627,768,True,True,True,True,3,3,0,
+no evasion,16,11627,1125,True,True,True,True,3,3,0,
+no evasion,16,11628,462,True,True,True,True,3,0,0,
+no evasion,16,11628,1757,True,True,True,True,3,3,0,
+no evasion,16,11629,636,True,True,True,True,3,0,0,
+no evasion,16,11629,1620,True,True,True,True,3,3,0,
+no evasion,16,11630,1487,True,True,True,True,3,3,0,
+no evasion,16,11630,1751,True,True,True,True,3,3,0,
+no evasion,16,11631,1283,True,True,True,True,3,3,0,
+no evasion,16,11631,1736,True,True,True,True,3,3,0,
+no evasion,16,11632,667,True,True,True,True,3,3,0,
+no evasion,16,11632,924,True,True,True,True,3,3,0,
+no evasion,16,11633,513,True,True,True,True,3,3,0,
+no evasion,16,11633,799,True,True,True,True,3,3,0,
+no evasion,16,11634,879,True,True,True,True,3,3,0,
+no evasion,16,11634,1733,True,True,True,True,3,0,0,
+no evasion,16,11635,523,True,True,True,True,3,3,0,
+no evasion,16,11635,1043,True,True,True,True,3,3,0,
+no evasion,16,11636,801,True,True,True,True,3,3,0,
+no evasion,16,11636,1422,True,True,True,False,3,3,0,
+no evasion,16,11637,807,True,True,True,True,3,1,0,
+no evasion,16,11637,1598,True,True,True,True,3,3,0,
+no evasion,16,11638,998,True,True,True,True,3,3,0,
+no evasion,16,11638,1735,True,True,True,True,3,3,0,
+no evasion,16,11639,909,True,True,True,True,3,3,0,
+no evasion,16,11639,1306,True,True,True,True,3,3,0,
+patient: 15 steps,16,11600,504,True,True,True,True,3,3,0,
+patient: 15 steps,16,11600,995,True,True,True,True,3,3,0,
+patient: 15 steps,16,11601,614,True,True,True,True,3,0,0,
+patient: 15 steps,16,11601,1456,True,True,True,False,3,3,0,
+patient: 15 steps,16,11602,533,True,True,True,True,3,3,0,
+patient: 15 steps,16,11602,1754,False,False,True,False,0,0,0,
+patient: 15 steps,16,11603,385,False,True,True,True,3,3,0,
+patient: 15 steps,16,11603,943,True,True,True,True,3,3,0,
+patient: 15 steps,16,11604,780,True,True,True,True,3,2,0,
+patient: 15 steps,16,11604,1821,True,True,True,True,3,3,0,
+patient: 15 steps,16,11605,499,True,True,True,True,3,3,0,
+patient: 15 steps,16,11605,1044,False,False,True,False,0,0,0,
+patient: 15 steps,16,11606,1150,True,True,True,True,3,3,0,
+patient: 15 steps,16,11606,1645,True,True,True,True,3,3,0,
+patient: 15 steps,16,11607,448,True,True,True,False,3,3,0,
+patient: 15 steps,16,11607,920,True,True,True,True,3,3,0,
+patient: 15 steps,16,11608,479,True,True,True,False,3,2,0,
+patient: 15 steps,16,11608,976,True,True,True,True,1,0,0,
+patient: 15 steps,16,11609,507,True,True,True,True,3,3,0,
+patient: 15 steps,16,11609,1099,True,True,True,True,3,3,0,
+patient: 15 steps,16,11610,918,True,True,True,False,3,0,0,
+patient: 15 steps,16,11610,1839,True,True,True,True,3,3,0,
+patient: 15 steps,16,11611,323,True,True,True,True,3,3,0,
+patient: 15 steps,16,11611,893,True,True,True,True,3,3,0,
+patient: 15 steps,16,11612,824,True,True,True,True,3,3,0,
+patient: 15 steps,16,11612,1384,True,True,True,True,3,3,0,
+patient: 15 steps,16,11613,624,True,True,True,True,3,3,0,
+patient: 15 steps,16,11613,1714,False,False,True,False,0,0,0,
+patient: 15 steps,16,11614,345,True,True,True,True,3,3,0,
+patient: 15 steps,16,11614,1153,True,True,True,True,3,3,0,
+patient: 15 steps,16,11615,563,True,True,True,True,3,3,1,
+patient: 15 steps,16,11615,1684,True,True,True,True,3,0,0,
+patient: 15 steps,16,11616,1093,True,True,True,True,3,3,0,
+patient: 15 steps,16,11616,1751,True,True,True,True,3,3,0,
+patient: 15 steps,16,11617,1143,False,False,True,False,0,0,0,
+patient: 15 steps,16,11617,1651,False,False,True,False,0,2,0,
+patient: 15 steps,16,11618,1347,True,True,True,True,3,1,0,
+patient: 15 steps,16,11618,1765,True,True,True,True,3,0,0,
+patient: 15 steps,16,11619,729,True,True,True,True,3,3,0,
+patient: 15 steps,16,11619,1405,True,True,True,False,3,0,0,
+patient: 15 steps,16,11620,575,True,True,True,True,3,3,0,
+patient: 15 steps,16,11620,1748,True,True,True,True,3,3,0,
+patient: 15 steps,16,11621,602,True,True,True,True,3,3,0,
+patient: 15 steps,16,11621,1423,True,True,True,True,3,3,0,
+patient: 15 steps,16,11622,573,True,True,True,True,3,3,0,
+patient: 15 steps,16,11622,1292,False,False,True,False,0,0,7,
+patient: 15 steps,16,11623,533,True,True,True,True,3,3,0,
+patient: 15 steps,16,11623,1587,True,True,True,True,3,0,0,
+patient: 15 steps,16,11624,1056,True,True,True,True,3,0,0,
+patient: 15 steps,16,11624,1688,True,True,True,True,3,3,0,
+patient: 15 steps,16,11625,874,True,True,True,True,3,3,0,
+patient: 15 steps,16,11625,1375,True,True,True,True,3,3,0,
+patient: 15 steps,16,11626,1183,True,True,True,True,3,3,0,
+patient: 15 steps,16,11626,1822,True,True,True,True,3,3,0,
+patient: 15 steps,16,11627,768,True,True,True,True,3,3,0,
+patient: 15 steps,16,11627,1125,True,True,True,True,3,3,0,
+patient: 15 steps,16,11628,462,True,True,True,True,3,0,0,
+patient: 15 steps,16,11628,1757,True,True,True,True,3,3,0,
+patient: 15 steps,16,11629,636,True,True,True,True,3,0,0,
+patient: 15 steps,16,11629,1620,True,True,True,True,3,3,0,
+patient: 15 steps,16,11630,1487,True,True,True,True,3,3,0,
+patient: 15 steps,16,11630,1751,True,True,True,True,3,3,0,
+patient: 15 steps,16,11631,1283,True,True,True,True,3,3,0,
+patient: 15 steps,16,11631,1736,True,True,True,True,3,3,0,
+patient: 15 steps,16,11632,667,True,True,True,True,3,3,0,
+patient: 15 steps,16,11632,924,True,True,True,True,3,3,0,
+patient: 15 steps,16,11633,513,True,True,True,True,3,3,0,
+patient: 15 steps,16,11633,799,True,True,True,True,3,3,0,
+patient: 15 steps,16,11634,879,True,True,True,True,3,3,0,
+patient: 15 steps,16,11634,1733,True,True,True,True,3,0,0,
+patient: 15 steps,16,11635,523,True,True,True,True,3,3,0,
+patient: 15 steps,16,11635,1043,True,True,True,True,3,3,0,
+patient: 15 steps,16,11636,801,True,True,True,True,3,3,0,
+patient: 15 steps,16,11636,1422,True,True,True,False,3,3,0,
+patient: 15 steps,16,11637,807,True,True,True,True,3,1,0,
+patient: 15 steps,16,11637,1598,True,True,True,True,3,3,0,
+patient: 15 steps,16,11638,998,True,True,True,True,3,3,0,
+patient: 15 steps,16,11638,1735,True,True,True,True,3,3,0,
+patient: 15 steps,16,11639,909,True,True,True,True,3,3,0,
+patient: 15 steps,16,11639,1306,True,True,True,False,3,3,0,
+patient: 40 steps,16,11600,504,False,True,True,True,3,3,0,
+patient: 40 steps,16,11600,995,True,True,True,True,3,3,0,
+patient: 40 steps,16,11601,614,False,True,True,True,3,0,0,
+patient: 40 steps,16,11601,1456,True,True,True,False,3,3,0,
+patient: 40 steps,16,11602,533,True,True,True,True,3,3,0,
+patient: 40 steps,16,11602,1754,False,False,True,False,0,0,0,
+patient: 40 steps,16,11603,385,False,True,False,True,3,3,0,
+patient: 40 steps,16,11603,943,False,True,True,True,3,3,0,
+patient: 40 steps,16,11604,780,True,True,True,True,3,2,0,
+patient: 40 steps,16,11604,1821,False,True,True,True,3,3,0,
+patient: 40 steps,16,11605,499,False,True,True,True,3,3,0,
+patient: 40 steps,16,11605,1044,False,False,True,False,0,0,0,
+patient: 40 steps,16,11606,1150,True,True,True,True,3,3,0,
+patient: 40 steps,16,11606,1645,False,True,True,True,3,3,0,
+patient: 40 steps,16,11607,448,True,True,True,False,3,3,0,
+patient: 40 steps,16,11607,920,False,True,True,True,3,3,0,
+patient: 40 steps,16,11608,479,True,True,True,False,3,2,0,
+patient: 40 steps,16,11608,976,True,True,True,True,1,0,0,
+patient: 40 steps,16,11609,507,False,True,True,True,3,3,0,
+patient: 40 steps,16,11609,1099,False,True,True,True,3,3,0,
+patient: 40 steps,16,11610,918,True,True,True,False,3,0,0,
+patient: 40 steps,16,11610,1839,False,True,True,True,3,3,0,
+patient: 40 steps,16,11611,323,False,True,False,True,3,3,0,
+patient: 40 steps,16,11611,893,True,True,True,True,3,3,0,
+patient: 40 steps,16,11612,824,False,True,True,True,3,3,0,
+patient: 40 steps,16,11612,1384,False,True,True,True,3,3,0,
+patient: 40 steps,16,11613,624,False,True,True,True,3,3,0,
+patient: 40 steps,16,11613,1714,False,False,True,False,0,0,0,
+patient: 40 steps,16,11614,345,True,True,True,True,3,3,0,
+patient: 40 steps,16,11614,1153,False,True,True,True,3,3,0,
+patient: 40 steps,16,11615,563,True,True,True,True,3,3,1,
+patient: 40 steps,16,11615,1684,True,True,True,True,3,0,0,
+patient: 40 steps,16,11616,1093,False,True,True,True,3,3,0,
+patient: 40 steps,16,11616,1751,False,True,True,True,3,3,0,
+patient: 40 steps,16,11617,1143,False,False,True,False,0,0,0,
+patient: 40 steps,16,11617,1651,False,False,True,False,0,2,0,
+patient: 40 steps,16,11618,1347,False,True,True,True,3,1,0,
+patient: 40 steps,16,11618,1765,False,True,True,True,3,0,0,
+patient: 40 steps,16,11619,729,False,True,True,True,3,3,0,
+patient: 40 steps,16,11619,1405,True,True,True,False,3,0,0,
+patient: 40 steps,16,11620,575,True,True,True,True,3,3,0,
+patient: 40 steps,16,11620,1748,False,False,True,False,3,3,8,
+patient: 40 steps,16,11621,602,False,True,True,True,3,3,0,
+patient: 40 steps,16,11621,1423,False,True,True,True,3,3,0,
+patient: 40 steps,16,11622,573,False,True,True,True,3,3,0,
+patient: 40 steps,16,11622,1292,False,False,True,False,0,0,8,
+patient: 40 steps,16,11623,533,False,True,True,True,3,3,0,
+patient: 40 steps,16,11623,1587,False,True,True,True,3,0,0,
+patient: 40 steps,16,11624,1056,True,True,True,True,3,0,1,
+patient: 40 steps,16,11624,1688,False,True,True,True,3,3,0,
+patient: 40 steps,16,11625,874,False,True,True,True,3,3,0,
+patient: 40 steps,16,11625,1375,False,True,False,True,3,3,0,
+patient: 40 steps,16,11626,1183,False,True,True,True,3,3,0,
+patient: 40 steps,16,11626,1822,True,True,True,True,3,3,0,
+patient: 40 steps,16,11627,768,False,True,True,True,3,3,0,
+patient: 40 steps,16,11627,1125,False,True,False,True,3,3,0,
+patient: 40 steps,16,11628,462,True,True,True,True,3,0,0,
+patient: 40 steps,16,11628,1757,False,True,False,True,3,3,0,
+patient: 40 steps,16,11629,636,True,True,True,True,3,0,0,
+patient: 40 steps,16,11629,1620,False,True,True,True,3,3,0,
+patient: 40 steps,16,11630,1487,False,True,True,True,3,3,0,
+patient: 40 steps,16,11630,1751,False,True,True,True,3,3,0,
+patient: 40 steps,16,11631,1283,False,True,True,True,3,3,0,
+patient: 40 steps,16,11631,1736,False,True,True,True,3,3,0,
+patient: 40 steps,16,11632,667,False,True,True,True,3,3,0,
+patient: 40 steps,16,11632,924,False,True,True,True,3,3,0,
+patient: 40 steps,16,11633,513,False,True,True,True,3,3,0,
+patient: 40 steps,16,11633,799,False,True,True,True,3,3,0,
+patient: 40 steps,16,11634,879,False,True,False,True,3,3,0,
+patient: 40 steps,16,11634,1733,True,True,True,True,3,0,0,
+patient: 40 steps,16,11635,523,False,True,True,True,3,3,0,
+patient: 40 steps,16,11635,1043,False,True,True,True,3,3,0,
+patient: 40 steps,16,11636,801,False,True,True,True,3,3,0,
+patient: 40 steps,16,11636,1422,True,True,True,False,3,3,0,
+patient: 40 steps,16,11637,807,False,True,False,True,3,1,0,
+patient: 40 steps,16,11637,1598,True,True,True,True,3,3,0,
+patient: 40 steps,16,11638,998,False,True,True,True,3,3,0,
+patient: 40 steps,16,11638,1735,False,True,True,True,3,3,0,
+patient: 40 steps,16,11639,909,False,False,True,False,3,3,3,
+patient: 40 steps,16,11639,1306,True,True,True,False,3,3,0,
+patient: 80 steps,16,11600,504,False,True,False,True,3,3,0,
+patient: 80 steps,16,11600,995,True,True,True,True,3,3,0,
+patient: 80 steps,16,11601,614,False,True,True,True,3,0,0,
+patient: 80 steps,16,11601,1456,True,True,True,False,3,3,0,
+patient: 80 steps,16,11602,533,True,True,True,True,3,3,0,
+patient: 80 steps,16,11602,1754,False,False,True,False,0,0,0,
+patient: 80 steps,16,11603,385,False,True,False,True,3,3,0,
+patient: 80 steps,16,11603,943,False,True,False,True,3,3,0,
+patient: 80 steps,16,11604,780,True,True,True,True,3,2,0,
+patient: 80 steps,16,11604,1821,False,True,False,True,3,3,0,
+patient: 80 steps,16,11605,499,False,True,True,True,3,3,0,
+patient: 80 steps,16,11605,1044,False,False,True,False,0,0,0,
+patient: 80 steps,16,11606,1150,True,True,True,True,3,3,0,
+patient: 80 steps,16,11606,1645,False,True,False,True,3,3,0,
+patient: 80 steps,16,11607,448,True,True,True,False,3,3,0,
+patient: 80 steps,16,11607,920,False,True,False,True,3,3,0,
+patient: 80 steps,16,11608,479,True,True,True,False,3,2,0,
+patient: 80 steps,16,11608,976,True,True,True,True,1,0,0,
+patient: 80 steps,16,11609,507,False,True,False,True,3,3,0,
+patient: 80 steps,16,11609,1099,True,True,True,True,3,3,0,
+patient: 80 steps,16,11610,918,True,True,True,False,3,0,0,
+patient: 80 steps,16,11610,1839,False,True,False,True,3,3,0,
+patient: 80 steps,16,11611,323,False,True,False,True,3,3,0,
+patient: 80 steps,16,11611,893,True,True,True,True,3,3,0,
+patient: 80 steps,16,11612,824,False,True,False,True,3,3,0,
+patient: 80 steps,16,11612,1384,False,True,False,True,3,3,0,
+patient: 80 steps,16,11613,624,False,True,True,True,3,3,0,
+patient: 80 steps,16,11613,1714,False,False,True,False,0,0,0,
+patient: 80 steps,16,11614,345,True,True,True,True,3,3,0,
+patient: 80 steps,16,11614,1153,False,True,False,True,3,3,0,
+patient: 80 steps,16,11615,563,True,True,True,True,3,3,1,
+patient: 80 steps,16,11615,1684,True,True,True,True,3,0,0,
+patient: 80 steps,16,11616,1093,False,True,False,True,3,3,0,
+patient: 80 steps,16,11616,1751,False,True,False,True,3,3,0,
+patient: 80 steps,16,11617,1143,False,False,True,False,0,0,0,
+patient: 80 steps,16,11617,1651,False,False,True,False,0,2,0,
+patient: 80 steps,16,11618,1347,False,True,True,True,3,1,0,
+patient: 80 steps,16,11618,1765,False,True,False,True,3,0,0,
+patient: 80 steps,16,11619,729,False,True,False,True,3,3,0,
+patient: 80 steps,16,11619,1405,True,True,True,True,3,0,0,
+patient: 80 steps,16,11620,575,True,True,True,True,3,3,0,
+patient: 80 steps,16,11620,1748,False,False,True,False,3,3,8,
+patient: 80 steps,16,11621,602,False,True,True,True,3,3,0,
+patient: 80 steps,16,11621,1423,False,True,False,True,3,3,0,
+patient: 80 steps,16,11622,573,False,True,False,True,3,3,0,
+patient: 80 steps,16,11622,1292,False,False,True,False,0,0,8,
+patient: 80 steps,16,11623,533,False,True,False,True,3,3,0,
+patient: 80 steps,16,11623,1587,False,True,False,True,3,0,0,
+patient: 80 steps,16,11624,1056,True,True,True,True,3,0,1,
+patient: 80 steps,16,11624,1688,False,True,True,True,3,3,0,
+patient: 80 steps,16,11625,874,False,True,True,True,3,3,0,
+patient: 80 steps,16,11625,1375,False,True,False,True,3,3,0,
+patient: 80 steps,16,11626,1183,False,True,True,True,3,3,0,
+patient: 80 steps,16,11626,1822,True,True,True,True,3,3,0,
+patient: 80 steps,16,11627,768,False,True,True,True,3,3,0,
+patient: 80 steps,16,11627,1125,False,True,False,True,3,3,0,
+patient: 80 steps,16,11628,462,True,True,True,True,3,0,0,
+patient: 80 steps,16,11628,1757,False,True,False,True,3,3,0,
+patient: 80 steps,16,11629,636,True,True,True,True,3,0,0,
+patient: 80 steps,16,11629,1620,False,True,False,True,3,3,0,
+patient: 80 steps,16,11630,1487,False,True,False,True,3,3,0,
+patient: 80 steps,16,11630,1751,False,True,False,True,3,3,0,
+patient: 80 steps,16,11631,1283,False,True,False,True,3,3,0,
+patient: 80 steps,16,11631,1736,False,True,False,True,3,3,0,
+patient: 80 steps,16,11632,667,False,True,False,True,3,3,0,
+patient: 80 steps,16,11632,924,False,True,False,True,3,3,0,
+patient: 80 steps,16,11633,513,False,True,False,True,3,3,0,
+patient: 80 steps,16,11633,799,False,True,True,True,3,3,0,
+patient: 80 steps,16,11634,879,False,True,False,True,3,3,0,
+patient: 80 steps,16,11634,1733,True,True,True,True,3,0,0,
+patient: 80 steps,16,11635,523,False,True,False,True,3,3,0,
+patient: 80 steps,16,11635,1043,False,True,False,True,3,3,0,
+patient: 80 steps,16,11636,801,False,True,False,True,3,3,0,
+patient: 80 steps,16,11636,1422,True,True,True,False,3,3,0,
+patient: 80 steps,16,11637,807,False,True,False,True,3,1,0,
+patient: 80 steps,16,11637,1598,True,True,True,True,3,3,0,
+patient: 80 steps,16,11638,998,False,True,False,True,3,3,0,
+patient: 80 steps,16,11638,1735,False,True,False,True,3,3,0,
+patient: 80 steps,16,11639,909,False,False,True,False,3,3,3,
+patient: 80 steps,16,11639,1306,True,True,True,False,3,3,0,
+patient: 160 steps,16,11600,504,False,False,False,True,3,3,0,
+patient: 160 steps,16,11600,995,True,True,True,True,3,3,0,
+patient: 160 steps,16,11601,614,False,True,True,True,3,0,0,
+patient: 160 steps,16,11601,1456,True,True,True,False,3,3,0,
+patient: 160 steps,16,11602,533,True,True,True,True,3,3,0,
+patient: 160 steps,16,11602,1754,False,False,True,False,0,0,0,
+patient: 160 steps,16,11603,385,False,True,False,True,3,3,0,
+patient: 160 steps,16,11603,943,False,True,False,True,3,3,0,
+patient: 160 steps,16,11604,780,True,True,True,True,3,2,0,
+patient: 160 steps,16,11604,1821,False,False,False,True,3,3,0,
+patient: 160 steps,16,11605,499,False,True,True,True,3,3,0,
+patient: 160 steps,16,11605,1044,False,False,True,False,0,0,0,
+patient: 160 steps,16,11606,1150,True,True,True,True,3,3,0,
+patient: 160 steps,16,11606,1645,False,False,False,True,3,3,0,
+patient: 160 steps,16,11607,448,True,True,True,False,3,3,0,
+patient: 160 steps,16,11607,920,False,True,False,True,3,3,0,
+patient: 160 steps,16,11608,479,True,True,True,False,3,2,0,
+patient: 160 steps,16,11608,976,True,True,True,True,1,0,0,
+patient: 160 steps,16,11609,507,False,False,False,True,3,3,0,
+patient: 160 steps,16,11609,1099,False,True,False,True,3,3,0,
+patient: 160 steps,16,11610,918,True,True,True,False,3,0,0,
+patient: 160 steps,16,11610,1839,False,False,False,False,3,3,8,
+patient: 160 steps,16,11611,323,False,False,False,True,3,3,0,
+patient: 160 steps,16,11611,893,False,False,True,False,0,3,0,
+patient: 160 steps,16,11612,824,False,False,False,True,3,3,0,
+patient: 160 steps,16,11612,1384,False,False,False,True,3,3,0,
+patient: 160 steps,16,11613,624,False,True,True,True,3,3,0,
+patient: 160 steps,16,11613,1714,False,False,True,False,0,0,0,
+patient: 160 steps,16,11614,345,True,True,True,True,3,3,0,
+patient: 160 steps,16,11614,1153,False,False,False,True,3,3,0,
+patient: 160 steps,16,11615,563,True,True,True,True,3,3,1,
+patient: 160 steps,16,11615,1684,True,True,True,True,3,0,0,
+patient: 160 steps,16,11616,1093,False,True,False,True,3,3,0,
+patient: 160 steps,16,11616,1751,False,True,True,True,3,3,1,
+patient: 160 steps,16,11617,1143,False,False,True,False,0,0,0,
+patient: 160 steps,16,11617,1651,False,False,True,False,0,2,0,
+patient: 160 steps,16,11618,1347,False,True,True,True,3,1,0,
+patient: 160 steps,16,11618,1765,False,False,False,True,3,0,0,
+patient: 160 steps,16,11619,729,False,False,True,True,3,3,0,
+patient: 160 steps,16,11619,1405,True,True,True,True,3,0,0,
+patient: 160 steps,16,11620,575,True,True,True,True,3,3,0,
+patient: 160 steps,16,11620,1748,False,False,True,False,3,3,8,
+patient: 160 steps,16,11621,602,False,False,True,True,3,3,0,
+patient: 160 steps,16,11621,1423,False,False,True,False,3,3,5,
+patient: 160 steps,16,11622,573,False,False,False,True,3,3,0,
+patient: 160 steps,16,11622,1292,False,False,True,False,0,0,8,
+patient: 160 steps,16,11623,533,False,True,False,True,3,3,0,
+patient: 160 steps,16,11623,1587,False,False,False,True,3,0,0,
+patient: 160 steps,16,11624,1056,True,True,True,True,3,0,1,
+patient: 160 steps,16,11624,1688,False,True,True,True,3,3,0,
+patient: 160 steps,16,11625,874,False,True,True,True,3,3,0,
+patient: 160 steps,16,11625,1375,False,False,True,True,3,3,0,
+patient: 160 steps,16,11626,1183,False,True,True,True,3,3,0,
+patient: 160 steps,16,11626,1822,True,True,True,True,3,3,0,
+patient: 160 steps,16,11627,768,False,True,True,True,3,3,0,
+patient: 160 steps,16,11627,1125,False,False,False,True,3,3,0,
+patient: 160 steps,16,11628,462,True,True,True,True,3,0,0,
+patient: 160 steps,16,11628,1757,False,False,True,True,3,3,0,
+patient: 160 steps,16,11629,636,True,True,True,True,3,0,0,
+patient: 160 steps,16,11629,1620,False,False,False,True,3,3,0,
+patient: 160 steps,16,11630,1487,False,False,False,True,3,3,0,
+patient: 160 steps,16,11630,1751,False,False,False,True,3,3,0,
+patient: 160 steps,16,11631,1283,False,False,False,True,3,3,0,
+patient: 160 steps,16,11631,1736,False,True,False,True,3,3,1,
+patient: 160 steps,16,11632,667,False,False,False,True,3,3,0,
+patient: 160 steps,16,11632,924,False,False,False,False,3,3,5,
+patient: 160 steps,16,11633,513,False,False,False,True,3,3,0,
+patient: 160 steps,16,11633,799,False,True,True,True,3,3,0,
+patient: 160 steps,16,11634,879,False,True,True,True,3,3,0,
+patient: 160 steps,16,11634,1733,True,True,True,True,3,0,0,
+patient: 160 steps,16,11635,523,False,False,False,True,3,3,0,
+patient: 160 steps,16,11635,1043,False,False,False,True,3,3,0,
+patient: 160 steps,16,11636,801,False,False,False,True,3,3,0,
+patient: 160 steps,16,11636,1422,True,True,True,False,3,3,0,
+patient: 160 steps,16,11637,807,False,False,False,True,3,1,0,
+patient: 160 steps,16,11637,1598,False,True,True,True,3,3,0,
+patient: 160 steps,16,11638,998,False,True,False,True,3,3,0,
+patient: 160 steps,16,11638,1735,False,False,False,True,3,3,0,
+patient: 160 steps,16,11639,909,False,False,True,False,3,3,3,
+patient: 160 steps,16,11639,1306,True,True,True,False,3,3,0,
+buys back 1 of 3 lots,16,11600,504,True,True,True,True,2,3,0,3.0
+buys back 1 of 3 lots,16,11600,995,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11601,614,True,True,True,True,2,0,0,0.0
+buys back 1 of 3 lots,16,11601,1456,True,True,True,False,2,3,0,-0.0
+buys back 1 of 3 lots,16,11602,533,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11602,1754,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,16,11603,385,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11603,943,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11604,780,True,True,True,True,2,2,0,-0.0
+buys back 1 of 3 lots,16,11604,1821,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,16,11605,499,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11605,1044,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,16,11606,1150,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11606,1645,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11607,448,True,True,True,False,2,3,0,1.0
+buys back 1 of 3 lots,16,11607,920,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11608,479,True,True,True,False,2,2,0,0.0
+buys back 1 of 3 lots,16,11608,976,True,True,True,True,1,0,0,
+buys back 1 of 3 lots,16,11609,507,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11609,1099,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11610,918,True,True,True,False,2,0,0,-0.0
+buys back 1 of 3 lots,16,11610,1839,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11611,323,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11611,893,True,True,True,True,1,3,0,
+buys back 1 of 3 lots,16,11612,824,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11612,1384,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11613,624,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,16,11613,1714,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,16,11614,345,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11614,1153,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,16,11615,563,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11615,1684,True,True,True,True,2,0,0,0.0
+buys back 1 of 3 lots,16,11616,1093,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,16,11616,1751,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11617,1143,False,False,True,False,0,0,0,
+buys back 1 of 3 lots,16,11617,1651,False,False,True,False,0,2,0,
+buys back 1 of 3 lots,16,11618,1347,True,True,True,True,2,1,0,-0.0
+buys back 1 of 3 lots,16,11618,1765,True,True,True,True,2,0,0,1.0
+buys back 1 of 3 lots,16,11619,729,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11619,1405,True,True,True,True,2,0,0,1.0
+buys back 1 of 3 lots,16,11620,575,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11620,1748,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11621,602,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,16,11621,1423,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,16,11622,573,True,True,True,True,2,3,0,2.0
+buys back 1 of 3 lots,16,11622,1292,False,False,True,False,0,0,7,
+buys back 1 of 3 lots,16,11623,533,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11623,1587,True,True,True,True,2,0,0,1.0
+buys back 1 of 3 lots,16,11624,1056,True,True,True,True,2,0,0,1.0
+buys back 1 of 3 lots,16,11624,1688,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11625,874,True,True,True,True,2,3,0,-0.0
+buys back 1 of 3 lots,16,11625,1375,True,True,True,True,2,3,0,-0.0
+buys back 1 of 3 lots,16,11626,1183,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11626,1822,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11627,768,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11627,1125,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11628,462,True,True,True,True,2,0,0,1.0
+buys back 1 of 3 lots,16,11628,1757,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11629,636,True,True,True,True,2,0,0,-0.0
+buys back 1 of 3 lots,16,11629,1620,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11630,1487,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11630,1751,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11631,1283,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11631,1736,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11632,667,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11632,924,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11633,513,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11633,799,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11634,879,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11634,1733,True,True,True,True,2,0,0,-0.0
+buys back 1 of 3 lots,16,11635,523,True,True,True,True,2,3,0,-0.0
+buys back 1 of 3 lots,16,11635,1043,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11636,801,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11636,1422,True,True,True,False,2,3,0,0.0
+buys back 1 of 3 lots,16,11637,807,True,True,True,True,2,1,0,1.0
+buys back 1 of 3 lots,16,11637,1598,True,True,True,True,2,3,0,0.0
+buys back 1 of 3 lots,16,11638,998,True,True,True,True,2,3,0,3.0
+buys back 1 of 3 lots,16,11638,1735,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11639,909,True,True,True,True,2,3,0,1.0
+buys back 1 of 3 lots,16,11639,1306,True,True,True,True,2,3,0,1.0
+buys back 2 of 3 lots,16,11600,504,True,True,True,True,1,3,0,3.0
+buys back 2 of 3 lots,16,11600,995,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11601,614,True,True,True,True,1,0,0,0.0
+buys back 2 of 3 lots,16,11601,1456,True,True,True,False,1,3,0,-0.0
+buys back 2 of 3 lots,16,11602,533,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,16,11602,1754,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,16,11603,385,True,True,True,True,2,3,0,0.0
+buys back 2 of 3 lots,16,11603,943,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11604,780,True,True,True,True,1,2,0,-0.0
+buys back 2 of 3 lots,16,11604,1821,True,True,True,True,1,3,0,2.0
+buys back 2 of 3 lots,16,11605,499,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,16,11605,1044,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,16,11606,1150,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11606,1645,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11607,448,True,True,True,False,1,3,0,1.0
+buys back 2 of 3 lots,16,11607,920,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11608,479,True,True,True,False,1,2,0,0.0
+buys back 2 of 3 lots,16,11608,976,True,True,True,True,1,0,0,
+buys back 2 of 3 lots,16,11609,507,True,True,True,True,2,3,0,0.0
+buys back 2 of 3 lots,16,11609,1099,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11610,918,True,True,True,False,1,0,0,-0.0
+buys back 2 of 3 lots,16,11610,1839,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11611,323,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11611,893,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,16,11612,824,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11612,1384,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11613,624,True,True,True,True,2,3,0,2.0
+buys back 2 of 3 lots,16,11613,1714,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,16,11614,345,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11614,1153,True,True,True,True,1,3,0,2.0
+buys back 2 of 3 lots,16,11615,563,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11615,1684,True,True,True,True,1,0,0,0.0
+buys back 2 of 3 lots,16,11616,1093,True,True,True,True,1,3,0,2.0
+buys back 2 of 3 lots,16,11616,1751,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11617,1143,False,False,True,False,0,0,0,
+buys back 2 of 3 lots,16,11617,1651,False,False,True,False,0,2,0,
+buys back 2 of 3 lots,16,11618,1347,True,True,True,True,1,1,0,-0.0
+buys back 2 of 3 lots,16,11618,1765,True,True,True,True,1,0,0,1.0
+buys back 2 of 3 lots,16,11619,729,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,16,11619,1405,True,True,True,False,1,0,0,0.0
+buys back 2 of 3 lots,16,11620,575,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11620,1748,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11621,602,True,True,True,True,1,3,0,2.0
+buys back 2 of 3 lots,16,11621,1423,True,True,True,True,1,3,0,2.0
+buys back 2 of 3 lots,16,11622,573,True,True,True,True,1,3,0,2.0
+buys back 2 of 3 lots,16,11622,1292,False,False,True,False,0,0,7,
+buys back 2 of 3 lots,16,11623,533,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11623,1587,True,True,True,True,1,0,0,1.0
+buys back 2 of 3 lots,16,11624,1056,True,True,True,True,1,0,0,1.0
+buys back 2 of 3 lots,16,11624,1688,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11625,874,True,True,True,True,1,3,0,-0.0
+buys back 2 of 3 lots,16,11625,1375,True,True,True,True,1,3,0,-0.0
+buys back 2 of 3 lots,16,11626,1183,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11626,1822,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11627,768,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11627,1125,True,True,True,True,1,3,0,-0.0
+buys back 2 of 3 lots,16,11628,462,True,True,True,True,1,0,0,1.0
+buys back 2 of 3 lots,16,11628,1757,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,16,11629,636,True,True,True,True,1,0,0,-0.0
+buys back 2 of 3 lots,16,11629,1620,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11630,1487,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11630,1751,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11631,1283,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11631,1736,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11632,667,True,True,True,True,2,3,0,1.0
+buys back 2 of 3 lots,16,11632,924,True,True,True,True,2,3,0,1.0
+buys back 2 of 3 lots,16,11633,513,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,16,11633,799,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11634,879,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,16,11634,1733,True,True,True,True,2,0,0,-0.0
+buys back 2 of 3 lots,16,11635,523,True,True,True,True,1,3,0,-0.0
+buys back 2 of 3 lots,16,11635,1043,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11636,801,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11636,1422,True,True,True,False,1,3,0,0.0
+buys back 2 of 3 lots,16,11637,807,True,True,True,True,1,1,0,1.0
+buys back 2 of 3 lots,16,11637,1598,True,True,True,True,1,3,0,0.0
+buys back 2 of 3 lots,16,11638,998,True,True,True,True,1,3,0,3.0
+buys back 2 of 3 lots,16,11638,1735,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11639,909,True,True,True,True,1,3,0,1.0
+buys back 2 of 3 lots,16,11639,1306,True,True,True,True,1,3,0,1.0
+buys back all 3 lots,16,11600,504,False,False,True,False,0,3,0,3.0
+buys back all 3 lots,16,11600,995,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11601,614,False,False,True,False,0,0,0,0.0
+buys back all 3 lots,16,11601,1456,True,True,True,False,0,3,0,-0.0
+buys back all 3 lots,16,11602,533,True,True,True,True,1,3,0,0.0
+buys back all 3 lots,16,11602,1754,False,False,True,False,0,0,0,
+buys back all 3 lots,16,11603,385,True,True,True,True,2,3,0,0.0
+buys back all 3 lots,16,11603,943,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11604,780,True,True,True,True,1,2,0,-0.0
+buys back all 3 lots,16,11604,1821,False,False,True,False,0,3,0,2.0
+buys back all 3 lots,16,11605,499,True,True,True,True,1,3,0,0.0
+buys back all 3 lots,16,11605,1044,False,False,True,False,0,0,0,
+buys back all 3 lots,16,11606,1150,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11606,1645,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11607,448,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11607,920,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11608,479,False,False,True,False,0,2,0,0.0
+buys back all 3 lots,16,11608,976,True,True,True,True,1,0,0,
+buys back all 3 lots,16,11609,507,True,True,True,True,2,3,0,0.0
+buys back all 3 lots,16,11609,1099,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11610,918,True,True,True,False,0,0,0,-0.0
+buys back all 3 lots,16,11610,1839,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11611,323,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11611,893,True,True,True,True,1,3,0,0.0
+buys back all 3 lots,16,11612,824,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11612,1384,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11613,624,True,True,True,True,2,3,0,2.0
+buys back all 3 lots,16,11613,1714,False,False,True,False,0,0,0,
+buys back all 3 lots,16,11614,345,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11614,1153,False,False,True,False,0,3,0,2.0
+buys back all 3 lots,16,11615,563,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11615,1684,True,True,True,True,0,0,0,0.0
+buys back all 3 lots,16,11616,1093,False,False,True,False,0,3,0,2.0
+buys back all 3 lots,16,11616,1751,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11617,1143,False,False,True,False,0,0,0,
+buys back all 3 lots,16,11617,1651,False,False,True,False,0,2,0,
+buys back all 3 lots,16,11618,1347,False,False,True,False,0,1,0,-0.0
+buys back all 3 lots,16,11618,1765,False,False,True,False,0,0,0,1.0
+buys back all 3 lots,16,11619,729,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,16,11619,1405,False,False,True,False,0,0,0,1.0
+buys back all 3 lots,16,11620,575,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11620,1748,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11621,602,False,False,True,False,0,3,0,2.0
+buys back all 3 lots,16,11621,1423,False,False,True,False,0,3,0,2.0
+buys back all 3 lots,16,11622,573,True,True,True,True,1,3,0,2.0
+buys back all 3 lots,16,11622,1292,False,False,True,False,0,0,7,
+buys back all 3 lots,16,11623,533,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11623,1587,False,False,True,False,0,0,0,1.0
+buys back all 3 lots,16,11624,1056,False,False,True,False,0,0,0,1.0
+buys back all 3 lots,16,11624,1688,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11625,874,True,True,True,True,1,3,0,-0.0
+buys back all 3 lots,16,11625,1375,False,False,True,False,0,3,0,-0.0
+buys back all 3 lots,16,11626,1183,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11626,1822,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11627,768,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11627,1125,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11628,462,False,False,True,False,0,0,0,1.0
+buys back all 3 lots,16,11628,1757,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,16,11629,636,False,False,True,False,0,0,0,-0.0
+buys back all 3 lots,16,11629,1620,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11630,1487,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11630,1751,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11631,1283,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11631,1736,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11632,667,True,True,True,True,2,3,0,1.0
+buys back all 3 lots,16,11632,924,True,True,True,True,2,3,0,1.0
+buys back all 3 lots,16,11633,513,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,16,11633,799,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11634,879,True,True,True,True,1,3,0,0.0
+buys back all 3 lots,16,11634,1733,True,True,True,True,2,0,0,-0.0
+buys back all 3 lots,16,11635,523,False,False,True,False,0,3,0,-0.0
+buys back all 3 lots,16,11635,1043,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,16,11636,801,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11636,1422,True,True,True,False,1,3,0,0.0
+buys back all 3 lots,16,11637,807,False,False,True,False,0,1,0,1.0
+buys back all 3 lots,16,11637,1598,False,False,True,False,0,3,0,0.0
+buys back all 3 lots,16,11638,998,False,False,True,False,0,3,0,3.0
+buys back all 3 lots,16,11638,1735,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11639,909,False,False,True,False,0,3,0,1.0
+buys back all 3 lots,16,11639,1306,True,True,True,True,1,3,0,1.0

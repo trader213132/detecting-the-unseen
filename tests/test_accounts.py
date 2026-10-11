@@ -84,3 +84,26 @@ def test_two_account_spoofer_is_invisible_alone_and_visible_when_linked():
     assert A.episode_score(alone, A.principle_score(alone["X"]), ep["start"], ep["account"]) == 0
     assert A.episode_score(linked, A.principle_score(linked["X"]), ep["start"], ep["account"]) > 0
     assert A.episode_score(alone, A.pair_score(alone, alone["X"]), ep["start"], ep["account"]) > 0
+
+
+def test_evasion_settings_are_off_by_default_and_work_when_on():
+    plain = run_session(31, "calm", [("spoof", 16)])
+    patient = run_session(31, "calm", [("spoof", 16)], {"spoof_patience": 60})
+    ep, pep = plain.episodes[0], patient.episodes[0]
+    assert pep["start"] == ep["start"]
+    if pep["small_filled"]:
+        assert pep["end"] - pep["fill_time"] >= 60 or pep["end"] < pep["fill_time"] + 60     # waited, unless pulled early
+    covered = run_session(31, "calm", [("spoof", 16)], {"cover_lots": 3})
+    assert covered.episodes[0].get("covered") == covered.episodes[0]["small_filled"]
+
+
+def test_order_life_judging_sees_through_a_patient_spoofer():
+    for patience in (0, 120):
+        s = run_session(10_600, "calm", [("spoof", 16)], {"spoof_patience": patience})
+        c_time, c_acc, scores = A.lifetime_scores(s)
+        ep = s.episodes[0]
+        mine = (c_acc == ep["account"]) & (c_time >= ep["start"]) & (c_time <= ep["end"])
+        assert scores[mine].max() == 45, patience
+    honest = run_session(10_600, "calm", [("withdrawal", 16)])
+    c_time, c_acc, scores = A.lifetime_scores(honest)
+    assert scores[c_acc == honest.episodes[0]["account"]].max() == 0

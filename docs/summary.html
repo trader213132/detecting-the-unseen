@@ -17,52 +17,52 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=8"><link rel="stylesheet" href="assets/lake.css?v=8"><link rel="stylesheet" href="assets/masthead.css?v=8">
+  <link rel="stylesheet" href="assets/site.css?v=9"><link rel="stylesheet" href="assets/lake.css?v=9"><link rel="stylesheet" href="assets/masthead.css?v=9">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="summary-page"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
   <a class="skip-link" href="#main">Skip to the results</a>
 
+  <!-- header:start -->
   <header class="topbar is-solid" data-topbar>
     <div class="topbar__inner">
-      <a class="wordmark" href="index.html" aria-label="Detecting the Unseen, the full research journal">
+      <a class="wordmark" href="index.html" aria-label="Detecting the Unseen, home">
         <span class="wordmark__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         Detecting the Unseen
       </a>
-      <nav class="menu" id="menu" aria-label="Sections">
+      <nav class="menu" id="menu" aria-label="Main">
         <ul class="menu__links">
-          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">Findings<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">The study<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
           <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
           <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
-          <li><a class="menu__plain" href="summary.html" aria-current="page">Summary</a></li>
-          <li><a class="menu__plain" href="index.html#progress" id="progress-link">Progress</a></li>
+          <li><a class="menu__plain" href="lab.html">Lab</a></li>
+          <li><a class="menu__plain" href="progress.html">Progress</a></li>
         </ul>
-
         <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
         <div class="dd" id="dd">
           <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
             <div class="dd-list">
-              <a class="dd-item is-active" href="index.html#findings" data-img="0"><strong>The short answer</strong><span>Untaught detectors found honest orders stranger than spoofs.</span></a>
-              <a class="dd-item" href="index.html#figure-6" data-img="1"><strong>Does spoofing work?</strong><span>A fake wall lifts the spoofer's real fill chance.</span></a>
-              <a class="dd-item" href="index.html#figure-2" data-img="2"><strong>Seven detectors</strong><span>Catch rates, from a hand-written rule to an LSTM.</span></a>
-              <a class="dd-item" href="index.html#teaching" data-img="3"><strong>The ladder of teaching</strong><span>Told what spoofing is, not what it looks like.</span></a>
+              <a class="dd-item is-active" href="experiment.html" data-img="0"><strong>The experiment</strong><span>A market where spoofing works, and seven detectors.</span></a>
+              <a class="dd-item" href="results.html" data-img="1"><strong>Results</strong><span>Spoofs against honest look-alikes and volatile markets.</span></a>
+              <a class="dd-item" href="teaching.html" data-img="2"><strong>What kind of teaching works?</strong><span>Examples, a rule, or the law. And how to dodge it.</span></a>
+              <a class="dd-item" href="conclusion.html" data-img="3"><strong>What it means</strong><span>The answer, its limits and the sources.</span></a>
             </div>
             <div class="dd-media" aria-hidden="true">
-              <img class="is-active" src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async">
-              <img src="assets/menu/works.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img class="is-active" src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async">
               <img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
               <img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
             </div>
           </div>
           <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
+            <a class="dd-card" href="lab.html"><img src="assets/menu/lab.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Research Lab</strong><span>Pick a market situation and see how every detector reacts.</span></a>
             <a class="dd-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><span>The wall goes up, the order fills, the wall vanishes.</span></a>
-            <a class="dd-card" href="analytics.html"><img src="assets/menu/analytics.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Analytics explorer</strong><span>Every detector, market and threshold, side by side.</span></a>
           </div>
           <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
-            <a class="dd-link" href="index.html#question">The question</a>
-            <a class="dd-link" href="index.html#method">The experiment</a>
-            <a class="dd-link" href="index.html#answer">What it means</a>
-            <a class="dd-link" href="index.html#references">References</a>
+            <a class="dd-link" href="report.html">Research report</a>
+            <a class="dd-link" href="summary.html" aria-current="page">All results on one page</a>
+            <a class="dd-link" href="analytics.html">Analytics explorer</a>
+            <a class="dd-link" href="conclusion.html#references">References</a>
           </div>
         </div>
       </nav>
@@ -72,41 +72,38 @@
           <i class="ph ph-sun theme-icon-dark" aria-hidden="true"></i>
         </button>
         <a class="icon-button" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link aria-label="Code on GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a>
-        <a class="pill cta analytics-link" href="analytics.html">Analytics</a>
+        <a class="pill cta" href="report.html">Report</a>
         <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
           <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5h12M2 10.5h12"/></svg>
         </button>
       </div>
     </div>
-
     <div class="sheet" id="sheet">
       <a class="sheet-summary" href="summary.html"><span><strong>All the results on one page</strong><small>The answer, six numbers and every detector side by side</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
-      <h3>Findings</h3>
+      <h3>The study</h3>
       <div class="sheet-list">
-        <a class="sheet-item" href="index.html#findings"><img src="assets/menu/answer.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>The short answer</strong><small>Untaught detectors found honest orders stranger than spoofs.</small></span></a>
-        <a class="sheet-item" href="index.html#figure-6"><img src="assets/menu/works.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>Does spoofing work?</strong><small>A fake wall lifts the spoofer's real fill chance.</small></span></a>
-        <a class="sheet-item" href="index.html#figure-2"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>Seven detectors</strong><small>Catch rates, from a hand-written rule to an LSTM.</small></span></a>
-        <a class="sheet-item" href="index.html#teaching"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" loading="lazy" decoding="async"><span><strong>The ladder of teaching</strong><small>Told what spoofing is, not what it looks like.</small></span></a>
+        <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The experiment</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
+        <a class="sheet-item" href="results.html"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>Results</strong><small>Spoofs against honest look-alikes and volatile markets.</small></span></a>
+        <a class="sheet-item" href="teaching.html"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What kind of teaching works?</strong><small>Examples, a rule, or the law. And how to dodge it.</small></span></a>
+        <a class="sheet-item" href="conclusion.html"><img src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What it means</strong><small>The answer, its limits and the sources.</small></span></a>
       </div>
       <h3>Explore</h3>
       <div class="sheet-cards">
-        <a class="sheet-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" loading="lazy" decoding="async"><strong>Watch one spoof</strong><small>The wall goes up, the order fills, the wall vanishes.</small></a>
-        <a class="sheet-card" href="analytics.html"><img src="assets/menu/analytics.webp" alt="" width="432" height="588" loading="lazy" decoding="async"><strong>Analytics explorer</strong><small>Every detector, market and threshold.</small></a>
+        <a class="sheet-card" href="lab.html"><img src="assets/menu/lab.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Research Lab</strong><small>Pick a market situation and see how every detector reacts.</small></a>
+        <a class="sheet-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><small>The wall goes up, the order fills, the wall vanishes.</small></a>
       </div>
       <h3>The paper</h3>
       <div class="sheet-links">
-        <a href="index.html#question">The question</a>
-        <a href="index.html#method">The experiment</a>
-        <a href="index.html#answer">What it means</a>
-        <a href="index.html#references">References</a>
-      </div>
-      <h3>Project</h3>
-      <div class="sheet-links">
-        <a href="index.html#progress">Progress</a>
+        <a href="report.html">Research report</a>
+        <a href="summary.html">All results on one page</a>
+        <a href="analytics.html">Analytics explorer</a>
+        <a href="conclusion.html#references">References</a>
+        <a href="progress.html">Progress</a>
         <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
       </div>
     </div>
   </header>
+  <!-- header:end -->
 
   <main id="main" class="summary">
     <section class="summary__intro" aria-labelledby="summary-title">
@@ -182,19 +179,22 @@
     </section>
   </main>
 
+  <!-- footer:start -->
   <footer class="footer">
     <div class="footer__inner">
-      <p>Research use only. Every spoof on this page happened inside an offline simulation, and an alert is never evidence of intent.</p>
+      <p class="footer__links"><a href="index.html">Home</a> · <a href="experiment.html">The experiment</a> · <a href="results.html">Results</a> · <a href="teaching.html">Teaching</a> · <a href="conclusion.html">What it means</a> · <a href="progress.html">Progress</a> · <a href="lab.html">Research Lab</a> · <a href="summary.html" aria-current=page>Summary</a> · <a href="analytics.html">Analytics</a> · <a href="report.html">Report</a> · <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code</a></p>
+      <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
       <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
     </div>
   </footer>
+  <!-- footer:end -->
 
   <script src="data/results.js"></script>
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
   <script src="data/teaching.js" onerror="window.TEACHING = null"></script>
   <script src="progress.js"></script>
-  <script src="assets/site.js?v=8"></script>
-  <script src="assets/masthead.js?v=8"></script>
-  <script type="module" src="assets/lake.js?v=8"></script>
+  <script src="assets/site.js?v=9"></script>
+  <script src="assets/masthead.js?v=9"></script>
+  <script type="module" src="assets/lake.js?v=9"></script>
 </body>
 </html>

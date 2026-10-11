@@ -19,6 +19,9 @@ python run_experiments.py --fresh    # simulates ~1,100 sessions, fits detectors
 python run_experiments.py            # re-uses the simulated data in data/ (much faster)
 python run_extensions.py             # market sensitivity, finer bars, individual orders
 python run_teaching.py               # Part 2: the ladder of teaching (about 30 minutes)
+python run_evasion_cost.py           # Part 3: the price of evasion (about 10 minutes)
+python build_report.py               # the research report: docs/report.html and docs/report.pdf
+python build_pages.py                # the shared header and footer on every page of the website
 python build_site.py                 # refreshes the website's data from the latest results
 python -m http.server 8765 --directory docs --bind 127.0.0.1
 ```
@@ -41,6 +44,9 @@ Results land in `results/summary.md` (tables), `results/metrics.csv` (every numb
 | `src/detectors.py` | Rule, generic/informed PCA and Isolation Forest, sequence PCA and a PyTorch LSTM autoencoder: seven configurations. |
 | `src/orders.py` | Individual-order features and the order-level Isolation Forest experiment. |
 | `src/accounts.py` | Part 2: what each account did in each 40-step window, and the principle detector built from the legal definition. |
+| `run_evasion_cost.py` | Part 3: a spoofer that waits before pulling its wall, or buys back what it sold, against every detector; what each dodge costs it. |
+| `build_report.py` | Writes the research report (HTML and PDF) with every number and table read from `results/`. |
+| `build_pages.py` | Writes the shared header, menus and footer into every page of the website. |
 | `run_teaching.py` | Part 2: examples, pattern and principle compared; honest changes of mind; stress tests. Writes `results/teaching.md`. |
 | `run_extensions.py` | Market sensitivity, one-step resolution and order-level checks. |
 | `src/evaluate.py` | Fair-scoring rules: fixed thresholds, chance levels, bootstrap confidence intervals. |
@@ -142,6 +148,18 @@ Findings (`results/teaching.md`):
 4. **Nothing separates a spoof from an honest change of mind** (principle AUC 0.50; the rule flagged 98%). Behaviour can show a signal was false, not why it was sent. That is a job for investigators, and it is why intent must be proved.
 5. **Stress tests.** It held in all four alternative markets (76–96% of spoofs, 85–90% of layered spoofs at 16×, 0% of honest large orders or quick withdrawals) and whether 10 or 800 accounts per trader type were shared. Its real weakness is the omnibus account: inside a broker account carrying 20% of all orders it caught only 42% (8×) and 66% (16×).
 6. **Attack: a spoofer with two accounts** (wall from one, small order from the other). Checked one account at a time: 0% caught. With accounts linked to their owner: 80% at 16×. Pairing every account with every other, without links: 100% of spoofs, but also 100% of honest quick withdrawals, at double the alert threshold. The third question ("did the same person trade the other way?") is what separates spoofing from honest cancelling, and only owner-linked account data lets a detector ask it.
+
+## Part 3: the price of evasion
+
+A detector is only useful if a spoofer cannot simply step around it. `run_evasion_cost.py` gives the spoofer the obvious dodges (`src/market.py`: `spoof_patience`, `cover_lots`) and measures, for each, how often it is still caught and what it costs. Benefit is the extra lots traded the way the spoofer wanted, compared with its honest twin.
+
+![The price of evasion](results/figures/fig8_price_of_evasion.png)
+
+- **Waiting before pulling the wall** beat the 40-step windows of Part 2 at almost no cost (16× catch rate 92% → 29%). Judging every withdrawn order over **its own life** instead (`src/accounts.py`, `lifetime_scores`) closed the gap: 78% of spoofers who waited 160 steps were still caught, with false alarms at 0.7% (calm) and 1.3% (volatile) and 0% of honest large orders or quick withdrawals flagged.
+- **Buying back what was sold** did nothing until the spoofer bought back everything; that escaped (20% caught) but left it 2.0 lots worse off than its honest twin, after paying about 0.8 ticks per lot.
+- With Part 1 (walls below 8× do not help) and Part 2 (two accounts escape unless linked), every dodge tried either throws away the benefit or needs accounts the regulator cannot link.
+
+Full tables: `results/evasion_cost.md`. The research report (`docs/report.pdf`) covers all three parts.
 
 ---
 

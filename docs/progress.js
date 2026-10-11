@@ -3,7 +3,7 @@
 //   - add a new entry at the TOP of `log` whenever something happens
 //   - update `updated` to today's date
 window.PROGRESS = {
-  updated: "2026-10-09",
+  updated: "2026-10-11",
   deadline: { date: "2026-11-06", label: "Research Scholarship submission" },
   schedule: { from: "2026-10-08", to: "2026-11-06" },
   milestones: [
@@ -13,12 +13,18 @@ window.PROGRESS = {
     { label: "Sequence detectors, including an LSTM autoencoder", from: "2026-10-19", to: "2026-11-01", status: "done", doneOn: "2026-10-08" },
     { label: "Robustness: other markets, finer time, single orders", from: "2026-10-26", to: "2026-11-01", status: "done", doneOn: "2026-10-08" },
     { label: "Part 2: the ladder of teaching (examples, pattern, principle)", from: "2026-10-09", to: "2026-10-16", status: "done", doneOn: "2026-10-09" },
+    { label: "Part 3: the price of evasion, and the research report", from: "2026-10-11", to: "2026-10-18", status: "done", doneOn: "2026-10-11" },
     { label: "Understand every part of the code well enough to explain it", from: "2026-10-09", to: "2026-10-23", status: "now" },
     { label: "Write the proposal in my own words", from: "2026-10-24", to: "2026-11-03", status: "next" },
     { label: "Practise explaining the results out loud", from: "2026-10-30", to: "2026-11-05", status: "next" },
     { label: "Proofread and submit", from: "2026-11-05", to: "2026-11-06", status: "next" }
   ],
   log: [
+    {
+      date: "2026-10-11",
+      title: "Part 3: every dodge costs the spoofer its gain, and a written report",
+      text: "Gave the spoofer two dodges. Waiting before pulling the wall beat fixed time windows (92% caught fell to 29%), so the detector now judges each withdrawn order over its own life, which caught 78% of even the most patient spoofers with no extra false alarms. Buying back what was sold escaped only by leaving the spoofer worse off than an honest trader. Wrote the research report, added a Research Lab, and split the website into chapters."
+    },
     {
       date: "2026-10-09",
       title: "Part 2: a detector built from the law catches what examples and rules miss",

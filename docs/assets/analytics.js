@@ -51,7 +51,7 @@
     const csv=[headings,...rows].map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(',')).join('\r\n');
     const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=`detectors-${condition}-${test}-${size}x.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
-  $('#analytics-theme').addEventListener('click',()=>{const dark=document.documentElement.dataset.theme==='dark'||(!document.documentElement.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);const theme=dark?'light':'dark';document.documentElement.dataset.theme=theme;try{localStorage.setItem('dtu-theme',theme);}catch(_){}dispatchEvent(new Event('themechange'));});
+  $('#analytics-theme')?.addEventListener('click',()=>{const dark=document.documentElement.dataset.theme==='dark'||(!document.documentElement.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);const theme=dark?'light':'dark';document.documentElement.dataset.theme=theme;try{localStorage.setItem('dtu-theme',theme);}catch(_){}dispatchEvent(new Event('themechange'));});
   let resizeTimer;addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(render,100);});render();
 })();
 

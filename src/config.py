@@ -54,6 +54,8 @@ class MarketConfig:
     omnibus_share: float = 0.0              # share of background orders routed through one broker account;
                                             # if above zero, the spoofer trades through that account too
     spoofer_accounts: int = 1               # 2 = an evasive spoofer: wall from one account, small order from another
+    spoof_patience: int = 0                 # evasion: steps the wall stays up after the genuine order trades
+    cover_lots: int = 0                     # evasion: lots bought back on the wall's side after the genuine order trades
 
 
 # Market regimes. "volatile" has a jumpier fundamental value and wider market-maker quotes.

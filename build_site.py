@@ -87,11 +87,14 @@ def results_payload():
     ablation_out = [{k: (round(v, 3) if isinstance(v, float) else v) for k, v in r.items()}
                     for r in ablation.to_dict("records")]
     n_sessions = sum(len(pickle.loads(f.read_bytes())) for f in DATA.glob("*.pkl"))
+    # Per detector: how often a 40-step stretch of normal trading contains an alert (the Research Lab).
+    mc = m[(m.condition == "calm-trained") & (m.metric == "chance_catch_rate")]
+    chance_by_detector = {f"{r.detector}|{r.test}": round(r.value, 4) for r in mc.itertuples()}
     return {"generated": date.today().isoformat(), "sizes": list(C.SIZE_MULTIPLIERS),
             "detectors": detectors, "catch": catch, "fpr": fpr, "chance": chance,
             "impact": impact_out, "thresholds": thresholds, "typical_size": C.TYPICAL_SIZE,
             "auc": auc_out, "shuffle": shuffle_out, "paired": paired_out, "ablation": ablation_out,
-            "n_sessions": n_sessions}
+            "n_sessions": n_sessions, "chance_by_detector": chance_by_detector}
 
 
 # --- 2. Replays -----------------------------------------------------------------
@@ -253,7 +256,8 @@ def teaching_payload():
     out = {}
     for key, name in [("principle", "teaching_principle.csv"), ("paired", "teaching_paired.csv"),
                       ("reversal", "teaching_reversal_main.csv"), ("markets", "teaching_markets.csv"),
-                      ("accounts", "teaching_accounts.csv"), ("evasion", "teaching_evasion.csv")]:
+                      ("accounts", "teaching_accounts.csv"), ("evasion", "teaching_evasion.csv"),
+                      ("price", "evasion_cost.csv"), ("price_honest", "evasion_cost_honest.csv")]:
         if (RESULTS / name).exists():
             df = pd.read_csv(RESULTS / name)
             if key == "reversal":

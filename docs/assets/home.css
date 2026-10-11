@@ -1,0 +1,109 @@
+/* Home page sections below the replay: a sentence that lights up as you scroll, four stacked
+   finding cards, a slowly moving mosaic of figures and numbers, and the five chapters. */
+
+/* ---------- The idea in one sentence ---------- */
+.statement { position: relative; z-index: 1; max-width: 62rem; margin: 0 auto; padding: clamp(5rem, 12vw, 9rem) var(--gutter); }
+.statement__text {
+  margin: 0; font-family: var(--font-display); font-weight: 650; font-stretch: 108%;
+  font-size: clamp(1.5rem, 3.6vw, 2.7rem); line-height: 1.22; letter-spacing: -0.02em; text-wrap: balance;
+}
+.statement__text .w { opacity: var(--o, 1); transition: opacity 0.12s linear; }
+
+/* ---------- Four findings, stacking as you scroll ---------- */
+.stack { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; padding: 0 var(--gutter) clamp(4rem, 8vw, 6rem); }
+.stack__title, .chapters__title, .mosaic-band__title {
+  font-family: var(--font-display); font-weight: 780; font-stretch: 118%; text-transform: uppercase;
+  letter-spacing: -0.035em; line-height: 0.92; margin: 0;
+}
+.stack__title { font-size: clamp(2.6rem, 9vw, 7rem); margin-bottom: clamp(2rem, 5vw, 3.5rem); text-align: center; }
+.stack__cards { display: block; }
+.stack-card + .stack-card { margin-top: 32vh; }
+.stack-card {
+  position: sticky; top: calc(96px + var(--i) * 26px); transform-origin: 50% 0; transform: scale(var(--scale, 1));
+  display: grid; gap: clamp(1rem, 2.4vw, 1.6rem); padding: clamp(1rem, 2.6vw, 2rem);
+  border-radius: clamp(28px, 4vw, 48px); border: 2px solid var(--line); background: var(--paper);
+  box-shadow: 0 30px 60px -40px rgb(0 0 0 / 0.45);
+}
+.stack-card__top { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1rem, 3vw, 2.4rem); align-items: start; }
+.stack-card__num { font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.8; letter-spacing: -0.04em; color: var(--mark); }
+.stack-card__label { margin: 0 0 0.3rem; font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.stack-card h3 { margin: 0 0 0.5rem; font-family: var(--font-display); font-weight: 720; font-stretch: 108%; font-size: clamp(1.25rem, 2.4vw, 1.9rem); line-height: 1.12; letter-spacing: -0.015em; }
+.stack-card__head p:last-child { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--ink-2); max-width: 38rem; }
+.stack-card__btn {
+  align-self: start; white-space: nowrap; padding: 0.7rem 1.2rem; border-radius: 999px; border: 2px solid var(--ink);
+  font-family: var(--font-display); font-weight: 650; font-size: 0.86rem; letter-spacing: 0.02em; text-decoration: none; color: var(--ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+@media (hover: hover) and (pointer: fine) { .stack-card__btn:hover { background: var(--ink); color: var(--paper); } }
+.stack-card__media { display: grid; grid-template-columns: 2fr 3fr; gap: clamp(0.6rem, 1.4vw, 1rem); }
+.stack-card__media img {
+  width: 100%; height: clamp(150px, 24vw, 300px); object-fit: cover; object-position: 50% 0;
+  border-radius: clamp(20px, 3vw, 36px); background: var(--paper-2); border: 1px solid var(--line);
+}
+@media (max-width: 720px) {
+  .stack-card__top { grid-template-columns: auto 1fr; }
+  .stack-card__btn { grid-column: 1 / -1; justify-self: start; }
+  .stack-card__media { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- A mosaic that never stops moving ---------- */
+.mosaic-band {
+  position: relative; z-index: 1; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-rows: minmax(0, 1fr); align-items: center; gap: clamp(1.5rem, 4vw, 3.5rem); max-width: 80rem; margin: 0 auto;
+  height: min(88vh, 760px); min-height: 560px;
+  padding: 0 var(--gutter);
+}
+.mosaic-band__title { font-size: clamp(2.6rem, 6.4vw, 5.6rem); margin-bottom: 1.2rem; }
+.mosaic-band__text p { font-size: 1.08rem; line-height: 1.6; color: var(--ink-2); max-width: 30rem; margin: 0 0 1.6rem; }
+.mosaic-band__acts { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.mosaic {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; height: 100%; min-height: 0; align-self: stretch; overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
+}
+.mosaic__col { display: grid; gap: 12px; align-content: start; animation: col-down 15s linear infinite; }
+.mosaic__col:nth-child(2) { margin-top: -96px; }
+.mosaic__col--up { animation-name: col-up; }
+@keyframes col-down { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -50%, 0); } }
+@keyframes col-up { from { transform: translate3d(0, -50%, 0); } to { transform: translate3d(0, 0, 0); } }
+.tile {
+  height: 202px; border-radius: 22px; overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+  gap: 0.3rem; padding: 1rem; font-family: var(--font-display);
+}
+.tile b { font-weight: 780; font-stretch: 110%; font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1; letter-spacing: -0.02em; }
+.tile > span { font-size: 0.78rem; line-height: 1.3; opacity: 0.8; }
+.tile--img { padding: 0; background: var(--paper-2); }
+.tile--img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+.tile--mark { background: var(--mark); color: #fff; }
+.tile--dark { background: #14171f; color: #f3f4f6; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1); }
+.tile--paper { background: var(--paper-2); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.mosaic:hover .mosaic__col { animation-play-state: paused; }
+@media (max-width: 860px) {
+  .mosaic-band { grid-template-columns: 1fr; height: auto; padding-top: 3rem; }
+  .mosaic { height: 460px; }
+  .tile { height: 168px; }
+}
+@media (prefers-reduced-motion: reduce) { .mosaic__col { animation: none; } }
+
+/* ---------- The five chapters ---------- */
+.chapters {
+  position: relative; z-index: 1; background: var(--ink); color: var(--paper);
+  border-radius: clamp(32px, 5vw, 60px) clamp(32px, 5vw, 60px) 0 0; margin-top: clamp(3rem, 6vw, 5rem);
+  padding: clamp(4rem, 9vw, 7rem) var(--gutter) clamp(4rem, 8vw, 6rem);
+}
+.chapters__title { font-size: clamp(2.8rem, 11vw, 9rem); text-align: center; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+.chapters__list { list-style: none; margin: 0 auto; padding: 0; max-width: 64rem; }
+.chapters__list li { border-top: 1px solid color-mix(in srgb, var(--paper) 18%, transparent); }
+.chapters__list li:last-child { border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent); }
+.chapters__list a {
+  display: grid; grid-template-columns: clamp(4.5rem, 12vw, 9rem) 1fr; gap: clamp(1rem, 3vw, 2.5rem); align-items: center;
+  padding: clamp(1.4rem, 3vw, 2.2rem) 0; color: inherit; text-decoration: none;
+}
+.chapters__num { font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: clamp(2.6rem, 8vw, 6.5rem); line-height: 0.85; letter-spacing: -0.04em; transition: color 0.25s ease; }
+.chapters__body strong { display: block; font-family: var(--font-display); font-weight: 650; font-size: clamp(1.1rem, 2.2vw, 1.9rem); text-transform: uppercase; letter-spacing: -0.005em; margin-bottom: 0.35rem; }
+.chapters__body span { display: block; font-size: clamp(0.92rem, 1.4vw, 1.12rem); line-height: 1.5; opacity: 0.66; max-width: 40rem; }
+@media (hover: hover) and (pointer: fine) {
+  .chapters__list a:hover .chapters__num { color: var(--mark); }
+  .chapters__list a:hover .chapters__body span { opacity: 0.9; }
+}
+.chapters__list a:focus-visible { outline: 2px solid var(--mark); outline-offset: 4px; border-radius: 6px; }

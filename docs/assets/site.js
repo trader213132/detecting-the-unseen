@@ -172,6 +172,23 @@
         n.evOneThr = String(Math.round(ev("one account at a time", "normal_calm", undefined, "false_alarm_windows").threshold));
         n.evPairsThr = String(Math.round(ev("every pair", "normal_calm", undefined, "false_alarm_windows").threshold));
       }
+      if (T.price) {
+        const pc = (strategy, key, m = 16) => (T.price.find((r) => r.strategy === strategy && r.size_mult === m) || {})[key];
+        n.evNone40 = pct(pc("no evasion", "caught_principle40"));
+        n.evPat40w40 = pct(pc("patient: 40 steps", "caught_principle40"));
+        n.evPat160w160 = pct(pc("patient: 160 steps", "caught_principle160"));
+        n.evPat160life = pct(pc("patient: 160 steps", "caught_lifetime"));
+        n.evCov1 = pct(pc("buys back 1 of 3 lots", "caught_lifetime"));
+        n.evCov2 = pct(pc("buys back 2 of 3 lots", "caught_lifetime"));
+        n.evCov3 = pct(pc("buys back all 3 lots", "caught_lifetime"));
+        n.evCov3Lots = Math.abs(pc("buys back all 3 lots", "extra_lots_vs_twin")).toFixed(1);
+        n.evCov3Cost = pc("buys back all 3 lots", "cover_cost_ticks").toFixed(1);
+        const hv = (start) => ((T.price_honest || []).find((r) => r.test.startsWith(start)) || {}).value;
+        n.hFprCalm = pct(hv("false alarms, normal calm"), 1);
+        n.hFprVol = pct(hv("false alarms, normal volatile"), 1);
+        n.hGen = pct(hv("honest large"));
+        n.hWd = pct(hv("honest quick"));
+      }
       if (T.accounts) {
         const ac = (label, test, m, metric) => T.accounts.find((r) => r.setting === label && r.test === test && r.size_mult === m && r.metric === metric) || {};
         const pool = T.accounts.filter((r) => r.setting.includes("accounts per trader type") && r.test === "spoof_calm" &&
@@ -190,21 +207,6 @@
   }
 
   /* ---------- Theme ---------- */
-  function initTheme() {
-    const btn = $("#theme-toggle");
-    if (!btn) return;
-    const dark = () => {
-      const set = document.documentElement.dataset.theme;
-      return set ? set === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    };
-    btn.addEventListener("click", () => {
-      const next = dark() ? "light" : "dark";
-      document.documentElement.dataset.theme = next;
-      try { localStorage.setItem("dtu-theme", next); } catch (e) { /* storage unavailable */ }
-      window.dispatchEvent(new Event("themechange"));
-    });
-  }
-
   /* ---------- Segmented controls ---------- */
   function placePill(group) {
     const pill = $(".segmented__pill", group);
@@ -264,7 +266,7 @@
       new IntersectionObserver(([e]) => bar.classList.toggle("is-solid", !e.isIntersecting && e.boundingClientRect.top < 0))
         .observe(sentinel);
     }
-    const ids = ["question", "method", "results", "robustness", "teaching", "answer", "progress", "references"];
+    const ids = ["question", "method", "results", "robustness", "teaching", "evasion", "answer", "progress", "references"];
     const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
     // The top bar has fewer links than the contents, so some sections light up their parent link.
     const topFor = { question: "question", method: "method", results: "results", robustness: "results", teaching: "results", answer: "results",
@@ -1116,6 +1118,14 @@
         "Quick withdrawals flagged, 16×", "Changes of mind flagged, 16×", "False-alarm windows"], rows, 1);
       if (t) { const cap = document.createElement("caption"); cap.innerHTML = "<b>Table 5.</b> The principle detector under every stress test. Each setting sets its own threshold on its own normal trading."; t.prepend(cap); }
     }
+    if (T.price) {
+      // Figure 9's data: every dodge, both sizes.
+      table($('[data-table="price"]'), ["Dodge", "Size", "Extra lots vs honest twin", "Caught: 40-step windows", "Caught: 160-step windows",
+        "Caught: each order's life", "Caught: rule", "Buy-back cost (ticks per lot)"],
+      T.price.map((r) => [r.strategy, `${r.size_mult}×`, `${r.extra_lots_vs_twin >= 0 ? "+" : ""}${r.extra_lots_vs_twin.toFixed(2)}`,
+        pct(r.caught_principle40), pct(r.caught_principle160), pct(r.caught_lifetime), pct(r.caught_rule),
+        r.cover_cost_ticks === undefined ? "" : r.cover_cost_ticks.toFixed(2)]), 1);
+    }
     if (T.evasion) {
       // Table 6: a spoofer who splits the trick across two accounts.
       const rows = [...new Set(T.evasion.map((r) => r.setting))].map((setting) => {
@@ -1199,7 +1209,6 @@
     if (g && R) { g.textContent = fmtDate(R.generated); g.setAttribute("datetime", R.generated); }
   }
 
-  initTheme();
   initSegmented();
   initWayfinding();
   bindNumbers();

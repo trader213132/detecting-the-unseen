@@ -1,0 +1,6 @@
+test,value,n
+"false alarms, normal calm market (share of 40-step windows)",0.007142857142857143,20
+"false alarms, normal volatile market (share of 40-step windows)",0.013095238095238094,20
+"honest large orders flagged, 16x",0.0,30
+"honest quick withdrawals flagged, 16x",0.0,60
+"honest changes of mind flagged, 16x",0.9166666666666666,60

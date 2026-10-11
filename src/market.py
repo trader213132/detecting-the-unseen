@@ -160,7 +160,7 @@ def run_session(seed, regime="calm", specials=(), overrides=None):
             if _start_episode(book, cfg, episode, t):
                 active.append(episode)
         for episode in list(active):
-            if _update_episode(book, episode, t):
+            if _update_episode(book, cfg, episode, t):
                 active.remove(episode)
                 finished.append(episode)
 
@@ -256,7 +256,7 @@ def _start_episode(book, cfg, ep, t):
     return True
 
 
-def _update_episode(book, ep, t):
+def _update_episode(book, cfg, ep, t):
     """Advance an active episode by one step. Returns True when it has finished."""
     if ep["kind"] in ("reversal", "withdrawal"):
         if t - ep["start"] >= ep["reverse_after"]:
@@ -285,6 +285,16 @@ def _update_episode(book, ep, t):
     if not ep["small_filled"] and ep["small_id"] not in book.orders:
         ep["small_filled"], ep["fill_time"] = True, t
 
+    # Evasion (Part 3), off by default: buy back some of what was just sold, so the account
+    # no longer traded only the other way. It crosses the spread, so it costs the spoofer.
+    if ep["small_filled"] and cfg.cover_lots and not ep.get("covered") and ep["kind"] in ("spoof", "layer"):
+        ep["covered"] = True
+        touch = book.best(-ep["wall_side"])
+        if touch is not None:
+            left = book.submit(ep["account"], ep["wall_side"], touch, cfg.cover_lots, t)
+            if left is not None:
+                book.cancel(left, t)
+
     # Pull any wall order early if the price has moved onto it, so it would actually trade.
     for order_id, price in ep["walls"]:
         if order_id in book.orders:
@@ -292,7 +302,12 @@ def _update_episode(book, ep, t):
             if (touch - price) * ep["wall_side"] <= 0:
                 book.cancel(order_id, t)
 
-    done = ep["small_filled"] or t - ep["start"] >= C.MAX_EPISODE_STEPS
+    # Evasion (Part 3), off by default: a patient spoofer leaves the wall up for a while after
+    # the genuine order has traded, so that withdrawing it looks unconnected to the trade.
+    if ep["small_filled"]:
+        done = t - ep["fill_time"] >= cfg.spoof_patience
+    else:
+        done = t - ep["start"] >= C.MAX_EPISODE_STEPS
     if done:
         for order_id, _ in ep["walls"]:
             book.cancel(order_id, t)

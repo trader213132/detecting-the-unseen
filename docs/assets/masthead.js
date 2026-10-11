@@ -22,6 +22,16 @@
     setTimeout(start, 700);
   }
 
+  /* ---------- Light / dark theme (every page) ---------- */
+  const themeBtn = document.getElementById("theme-toggle");
+  themeBtn?.addEventListener("click", () => {
+    const set = root.dataset.theme;
+    const dark = set ? set === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("dtu-theme", root.dataset.theme); } catch (e) { /* storage unavailable */ }
+    dispatchEvent(new Event("themechange"));
+  });
+
   /* ---------- The dropdown: one container that morphs between three menus ---------- */
   const header = document.querySelector("[data-topbar]");
   const nav = document.getElementById("menu");

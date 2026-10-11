@@ -263,3 +263,40 @@ def ladder_of_teaching(rows, path):
     fig.tight_layout()
     fig.savefig(path, dpi=200)
     plt.close(fig)
+
+
+def price_of_evasion(points, path):
+    """Part 3. points: (label, family, share caught, extra lots traded vs the honest twin)."""
+    colours = {"no evasion": "#c42a68", "patient": "#2a78d6", "buys": "#eb6834", "smaller": MUTED, "accounts": "#1baf7a"}
+    names = {"no evasion": "No evasion", "patient": "Patient: wall left up\n15 to 160 steps longer", "buys": None,
+             "smaller": "Smaller walls (1×, 2×, 4×)", "accounts": "Two unlinked accounts"}
+    fig, ax = plt.subplots(figsize=(7.6, 4.8))
+    ax.add_patch(plt.Rectangle((-0.04, 0.15), 0.42, 0.55, color="#1baf7a", alpha=0.07, zorder=0, linewidth=0))
+    ax.text(-0.02, 0.66, "What a spoofer wants:\nbenefit kept, rarely caught", fontsize=7.5, color="#13795a", va="top")
+    groups = {}
+    for label, family, caught, gain in points:
+        if family == "smaller" and label.startswith(("8", "16")):
+            continue                                   # 8x and 16x walls are the no-evasion spoofs themselves
+        ax.scatter(caught, gain, s=44, color=colours[family], zorder=3)
+        groups.setdefault(family, []).append((label, caught, gain))
+        if family == "buys":
+            ax.annotate(label, (caught, gain), textcoords="offset points", xytext=(8, -3), fontsize=7.4, color=INK_2)
+    for family, pts in groups.items():
+        if names.get(family) is None:
+            continue
+        x = np.mean([c for _, c, _ in pts]); y = np.max([g for _, _, g in pts])
+        offset = {"patient": (-150, 14), "no evasion": (8, -16), "smaller": (12, -18), "accounts": (12, -12)}[family]
+        ax.annotate(names[family], (x, y), textcoords="offset points", xytext=offset, fontsize=7.6, color=colours[family],
+                    fontweight="bold", arrowprops=dict(arrowstyle="-", color=colours[family], lw=0.6) if family == "patient" else None)
+    ax.axhline(0, color=AXIS, linewidth=1)
+    ax.text(1.06, 0.02, "honest twin", fontsize=7, color=MUTED, ha="right", va="bottom")
+    ax.set_xlim(-0.04, 1.08)
+    ax.set_xticks([0, 0.25, 0.5, 0.75, 1])
+    ax.set_xticklabels(["0%", "25%", "50%", "75%", "100%"])
+    ax.set_xlabel("Spoofs caught by the principle detector (each order judged over its own life)")
+    ax.set_ylabel("Extra lots traded vs honest twin")
+    ax.grid(axis="x", color=GRID, linewidth=0.6)
+    ax.set_title("The price of evasion (16× walls)")
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)

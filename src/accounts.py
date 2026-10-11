@@ -123,6 +123,46 @@ def span_maxes(rows, scores, span=WINDOW, stride=STRIDE):
     return np.lib.stride_tricks.sliding_window_view(w, k).max(axis=1)[::span // stride]
 
 
+def lifetime_scores(session):
+    """The principle without any fixed window. For every withdrawn (cancelled) order, the three
+    clauses are measured for its owner over that order's own life, from the step it was placed
+    to the step it was withdrawn. A spoofer who waits before pulling the wall cannot escape:
+    the wall was alive while the genuine order traded, however long the wait.
+
+    Returns (cancel times, accounts, scores), one entry per cancellation."""
+    t, acc, field, lots = _activity(session.events)
+    ev = session.events
+    can = ev[ev.kind == "CANCEL"]
+    c_time, c_acc, c_placed = can.time.to_numpy(), can.agent_id.to_numpy(), can.order_time.to_numpy()
+    scores = np.zeros(len(can))
+    order = np.lexsort((t, acc))
+    t, acc, field, lots = t[order], acc[order], field[order], lots[order]
+    bounds = np.searchsorted(acc, np.unique(acc))
+    for a_id, lo in zip(np.unique(acc), bounds):
+        hi = np.searchsorted(acc, a_id, side="right")
+        mine = np.nonzero(c_acc == a_id)[0]
+        if len(mine) == 0:
+            continue
+        times = t[lo:hi]
+        steps = np.zeros((hi - lo + 1, len(FIELDS)))
+        steps[np.arange(1, hi - lo + 1), field[lo:hi]] = lots[lo:hi]
+        cum = np.cumsum(steps, axis=0)                           # cum[k] = this account's first k events
+        first = np.searchsorted(times, c_placed[mine], side="left")
+        last = np.searchsorted(times, c_time[mine], side="right")
+        scores[mine] = principle_score(cum[last] - cum[first])
+    return c_time, c_acc, scores
+
+
+def lifetime_window_max(session, c_time, scores, window=WINDOW, start=START):
+    """Highest order-life score among cancellations in each window (for the alert threshold)."""
+    n = (session.cfg.steps - start) // window
+    out = np.zeros(n)
+    k = (c_time - start) // window
+    ok = (k >= 0) & (k < n)
+    np.maximum.at(out, k[ok], scores[ok])
+    return out
+
+
 def pair_score(rows, X):
     """Without knowing who owns which account: an account's one-sided signal that it withdrew,
     counted if ANY OTHER account in the same window traded the other way on balance. It is
