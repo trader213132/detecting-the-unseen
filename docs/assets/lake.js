@@ -14,12 +14,17 @@
   const STILL_GAP = 9;                                         // seconds of perfectly still water between drops
   const freeze = parseFloat(new URLSearchParams(location.search).get("lake-t"));   // for checking one frame
 
-  // ---- scroll: fade the lake as the article begins ----
+  // On a phone the visible part of the picture is mostly dark water, so behind the text it reads as
+  // a dark tint: there the lake only shows at the top of the home page, and pages without it skip it.
+  const phone = () => innerWidth < 760;
+  if (!hero && phone()) { scene.style.display = "none"; return; }
+
+  // ---- scroll: fade the lake as the article begins (fully, on a phone) ----
   let scrollQueued = false;
   function position() {
     scrollQueued = false;
     const distance = hero ? Math.min(1, Math.max(0, scrollY / (hero.offsetHeight * 0.8))) : 1;
-    scene.style.opacity = String(1 - distance * 0.91);
+    scene.style.opacity = String(1 - distance * (phone() ? 1 : 0.91));
     document.body.classList.toggle("lake-at-top", !!hero && scrollY < 48);
     document.documentElement.style.setProperty("--reading-progress",
       String(scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight)));

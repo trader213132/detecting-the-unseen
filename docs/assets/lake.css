@@ -3,6 +3,9 @@ body{isolation:isolate}
 main,.footer{position:relative;z-index:1}
 .lake-scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#273e4d url(lake-still.jpg) 50% 0/cover no-repeat}
 .lake-scene canvas{width:100%;height:100%;opacity:0}
+/* Pages without the hero show the lake only as a faint mist, from the first frame (no flash of dark water); none at all on a phone. */
+.subpage .lake-scene,.summary-page .lake-scene,.analytics-page .lake-scene{opacity:.09}
+@media(max-width:759px){.subpage .lake-scene,.summary-page .lake-scene,.analytics-page .lake-scene{opacity:0;visibility:hidden}.hero::after{opacity:.55}}
 .lake-scene[data-render="live"] canvas{opacity:1}
 .lake-toggle{position:fixed;z-index:40;bottom:18px;right:var(--gutter);padding:10px 16px;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);font:500 .75rem var(--font-display);cursor:pointer;min-height:40px;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
 .lake-at-top .lake-toggle{background:rgba(9,18,24,.42);color:rgba(255,255,255,.86);border-color:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
