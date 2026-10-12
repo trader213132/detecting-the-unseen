@@ -18,13 +18,19 @@ STUDY = [("experiment.html", "The experiment", "A market where spoofing works, a
          ("results.html", "Results", "Spoofs against honest look-alikes and volatile markets.", "detectors"),
          ("teaching.html", "What kind of teaching works?", "Examples, a rule, or the law. And how to dodge it.", "ladder"),
          ("conclusion.html", "What it means", "The answer, its limits and the sources.", "answer")]
+CHALLENGER_READY = False       # Part 4's chapter is listed only once its results are in
+if CHALLENGER_READY:
+    STUDY.insert(3, ("challenger.html", "An AI challenger", "A search program hunts for spoofs the law-based detector misses.", "challenger"))
 EXPLORE = [("lab.html", "Research Lab", "Pick a market situation and see how every detector reacts.", "lab"),
            ("index.html#replay", "Watch one spoof", "The wall goes up, the order fills, the wall vanishes.", "replay")]
-PAPER = [("report.html", "Research report"), ("summary.html", "All results on one page"),
+PAPER = [("report.html", "Research report"), ("summary.html", "Summary: the project in five minutes"),
          ("analytics.html", "Analytics explorer"), ("conclusion.html#references", "References")]
 PAGES = {"index.html": "Home", "experiment.html": "The experiment", "results.html": "Results",
          "teaching.html": "Teaching", "conclusion.html": "What it means", "progress.html": "Progress",
          "lab.html": "Research Lab", "summary.html": "Summary", "analytics.html": "Analytics"}
+if CHALLENGER_READY:
+    PAGES = {**{k: v for k, v in PAGES.items() if k != "conclusion.html" and k not in ("progress.html", "lab.html", "summary.html", "analytics.html")},
+             "challenger.html": "Challenger", **{k: v for k, v in PAGES.items() if k in ("conclusion.html", "progress.html", "lab.html", "summary.html", "analytics.html")}}
 
 
 def img(name, w, h, lazy=True):
@@ -57,6 +63,7 @@ def header(page):
       </a>
       <nav class="menu" id="menu" aria-label="Main">
         <ul class="menu__links">
+          <li><a class="menu__plain" href="summary.html"{here("summary.html")}>Summary</a></li>
           <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">The study{CHEV}</button></li>
           <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore{CHEV}</button></li>
           <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper{CHEV}</button></li>
@@ -94,7 +101,7 @@ def header(page):
       </div>
     </div>
     <div class="sheet" id="sheet">
-      <a class="sheet-summary" href="summary.html"><span><strong>All the results on one page</strong><small>The answer, six numbers and every detector side by side</small></span>{ARROW}</a>
+      <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span>{ARROW}</a>
       <h3>The study</h3>
       <div class="sheet-list">
 {s_items}

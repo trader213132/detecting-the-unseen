@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Results at a glance · Detecting the Unseen</title>
+  <title>Summary · Detecting the Unseen</title>
   <meta name="description" content="Every result of the Detecting the Unseen project on one page: the answer, six key numbers, every detector side by side, and what it means.">
   <meta property="og:title" content="Detecting the Unseen: results at a glance">
   <meta property="og:description" content="Can AI spot market manipulation it was never shown? A simulated market, seven detectors and an honest answer.">
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=9"><link rel="stylesheet" href="assets/lake.css?v=9"><link rel="stylesheet" href="assets/masthead.css?v=9">
+  <link rel="stylesheet" href="assets/site.css?v=11"><link rel="stylesheet" href="assets/lake.css?v=9"><link rel="stylesheet" href="assets/masthead.css?v=10">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="summary-page"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
@@ -32,6 +32,7 @@
       </a>
       <nav class="menu" id="menu" aria-label="Main">
         <ul class="menu__links">
+          <li><a class="menu__plain" href="summary.html" aria-current="page">Summary</a></li>
           <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">The study<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
           <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
           <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
@@ -60,7 +61,7 @@
           </div>
           <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
             <a class="dd-link" href="report.html">Research report</a>
-            <a class="dd-link" href="summary.html" aria-current="page">All results on one page</a>
+            <a class="dd-link" href="summary.html" aria-current="page">Summary: the project in five minutes</a>
             <a class="dd-link" href="analytics.html">Analytics explorer</a>
             <a class="dd-link" href="conclusion.html#references">References</a>
           </div>
@@ -79,7 +80,7 @@
       </div>
     </div>
     <div class="sheet" id="sheet">
-      <a class="sheet-summary" href="summary.html"><span><strong>All the results on one page</strong><small>The answer, six numbers and every detector side by side</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
       <h3>The study</h3>
       <div class="sheet-list">
         <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The experiment</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
@@ -95,7 +96,7 @@
       <h3>The paper</h3>
       <div class="sheet-links">
         <a href="report.html">Research report</a>
-        <a href="summary.html">All results on one page</a>
+        <a href="summary.html">Summary: the project in five minutes</a>
         <a href="analytics.html">Analytics explorer</a>
         <a href="conclusion.html#references">References</a>
         <a href="progress.html">Progress</a>
@@ -107,75 +108,82 @@
 
   <main id="main" class="summary">
     <section class="summary__intro" aria-labelledby="summary-title">
-      <p class="summary__kicker rise" style="--i:0">Results at a glance · preliminary, updated <time id="updated-date" datetime="2026-10-09">9 October 2026</time></p>
-      <h1 class="summary__title rise" id="summary-title" style="--i:1">Can AI detect hidden market manipulation without being taught what it looks like?</h1>
-      <p class="summary__answer rise" style="--i:2">Not by looking for the unusual. <em>Yes, by knowing the purpose.</em></p>
-      <p class="summary__lede rise" style="--i:3">I built a simulated stock market in which spoofing measurably works: a large fake order on one side really does help the spoofer's genuine order on the other side get filled. Then I tested detectors with different amounts of prior knowledge. Detectors that only learned what normal trading looks like could not tell a spoof from an honest large order. Detectors taught examples or a pattern caught the spoofs they were shown, and missed the same spoof split into smaller orders. A detector built only from the legal definition of the offence caught both, without a single example. No detector could tell a spoof from an honest change of mind.</p>
-      <div class="summary__actions rise" style="--i:4">
-        <a class="pill" href="index.html#findings">Read the full journal</a>
-        <a class="pill pill--quiet" href="analytics.html">Explore the data</a>
-      </div>
+      <p class="summary__kicker rise" style="--i:0">Summary · the whole project in five minutes</p>
+      <h1 class="summary__title rise" id="summary-title" style="--i:1">Can AI catch market cheating it has never been shown?</h1>
+      <p class="summary__answer rise" style="--i:2">Not by looking for anything unusual. <em>Yes, if it is told what the cheating is for.</em></p>
+      <p class="summary__lede rise" style="--i:3">That is the short answer to the project's question: <i>Can Artificial Intelligence detect hidden market manipulation without being taught what manipulation looks like?</i> This page explains it in plain words. Every other page has the detail, the charts and the data behind it.</p>
     </section>
 
-    <section class="summary__block" aria-labelledby="numbers-title">
-      <h2 class="section-title" id="numbers-title">Six numbers</h2>
-      <ol class="stat-grid">
-        <li><b>+<span data-num="fill8"></span> pts</b><span>Spoofing works. An 8× fake wall raises the chance that the spoofer's genuine order fills.</span></li>
-        <li><b>AUC <span data-num="lstmAuc16"></span></b><span>The LSTM neural network telling spoofs from honest orders of the same size. 0.5 is a coin toss: it found the honest orders stranger.</span></li>
-        <li><b><span data-num="rule16"></span> → <span data-num="ruleLayer16"></span></b><span>The hand-written rule, before and after the same spoof was split into four smaller orders.</span></li>
-        <li><b><span data-num="prLayer16"></span></b><span>Layered spoofs caught by a detector built only from the legal definition, with no examples. It flagged <span data-num="prGenuine16"></span> of honest large orders.</span></li>
-        <li><b><span data-num="uaCatch16"></span></b><span>Spoofs caught by an untaught model given exactly the same account data. The principle did the work, not the data.</span></li>
-        <li><b>AUC <span data-num="prAucRev16"></span></b><span>Spoofs against honest traders who changed their mind. The actions are identical; only the intention differs.</span></li>
+    <section class="summary__block" aria-labelledby="q-title">
+      <h2 class="section-title" id="q-title">What the question is asking</h2>
+      <ol class="plain-cards">
+        <li data-reveal><span class="plain-cards__num">1</span><h3>The cheat</h3><p>In a stock market, everyone can see the orders waiting to buy and sell. A <b>spoofer</b> places a huge order they never mean to trade, so others think demand is changing. They trade the other way at a better price, then quietly cancel the huge order. It is illegal, and in 2025 three traders were fined for it in the UK.</p></li>
+        <li data-reveal><span class="plain-cards__num">2</span><h3>The problem</h3><p>To teach an AI to spot cheating you normally show it many proven examples. Those are rare and secret. So a popular idea is to show the AI only <i>normal</i> trading and let it flag anything unusual.</p></li>
+        <li data-reveal><span class="plain-cards__num">3</span><h3>The real question</h3><p>Does that work? Can an AI that has never seen a spoof tell one apart from <b>honest trading that looks the same</b>, such as a genuinely large order?</p></li>
       </ol>
     </section>
 
-    <section class="summary__block" aria-labelledby="board-title">
-      <h2 class="section-title" id="board-title">Every detector, side by side</h2>
-      <p class="summary__note">Orders 16 times a typical size, calm market. <span class="key key--catch" aria-hidden="true"></span>Share of spoofs caught: higher is better. <span class="key key--flag" aria-hidden="true"></span>Share of honest behaviour flagged: lower is better. A quick withdrawal is an honest large order cancelled within seconds; a change of mind is the same, followed by a small trade the other way.</p>
-      <div class="scoreboard-wrap" data-scoreboard></div>
+    <section class="summary__block" aria-labelledby="how-title">
+      <h2 class="section-title" id="how-title">How I tested it</h2>
+      <ol class="plain-steps">
+        <li data-reveal><b>I built a pretend stock market</b> on my laptop, with computer traders who react to the orders they see. Spoofing really works in it: a fake order made the spoofer's real order <span data-num="fill8"></span> percentage points more likely to go through.</li>
+        <li data-reveal><b>I gave detectors different amounts of teaching:</b> nothing at all (the AI only learns normal trading), labelled examples, a hand-written rule, and the legal definition of the offence.</li>
+        <li data-reveal><b>I tried to break the best one,</b> first with tricks I thought of, then with a search program that hunted for tricks on its own.</li>
+      </ol>
     </section>
 
-    <section class="summary__block" aria-labelledby="ladder-title">
-      <h2 class="section-title" id="ladder-title">The ladder of teaching</h2>
-      <figure class="figure" id="figure-8" aria-labelledby="figure-8-cap">
-        <div class="figure__top">
-          <p class="fig-label">Figure 8 <span>How much a detector was told, and what it caught</span></p>
-          <div class="figure__controls">
-            <div class="segmented" role="tablist" aria-label="Examples shown to the classifier" data-fig8-shown>
-              <span class="segmented__pill" aria-hidden="true"></span>
-              <button type="button" role="tab" aria-selected="false" data-shown="spoofs only">Spoofs only</button>
-              <button type="button" role="tab" aria-selected="true" data-shown="spoofs and honest large orders">Spoofs + honest</button>
-            </div>
-            <div class="segmented" role="tablist" aria-label="Size" data-fig8-size>
-              <span class="segmented__pill" aria-hidden="true"></span>
-              <button type="button" role="tab" aria-selected="false" data-size="8">8×</button>
-              <button type="button" role="tab" aria-selected="true" data-size="16">16×</button>
-            </div>
-          </div>
-        </div>
-        <div class="chart" data-chart="fig8"></div>
-        <figcaption class="figcaption" id="figure-8-cap"><b>Figure 8.</b> Each row is a level of teaching, each column a test. Lines show 95% confidence intervals, or for the classifier the middle 80% of 30 random sets of <span data-num="exK"></span> examples. <a href="index.html#teaching">How each detector works</a>.</figcaption>
-        <details class="data-table"><summary><i class="ph ph-table" aria-hidden="true"></i>Show the data for Figure 8</summary><div class="table-wrap" data-table="fig8"></div></details>
-      </figure>
+    <section class="summary__block" aria-labelledby="found-title">
+      <h2 class="section-title" id="found-title">What I found</h2>
+      <ol class="found">
+        <li data-reveal>
+          <p class="found__num">AUC <span data-num="lstmAuc16"></span></p>
+          <div><h3>An AI taught nothing cannot tell cheating from honest trading.</h3><p>It found spoofs unusual, but it found honest large orders even <i>more</i> unusual. A score of 0.5 would be a coin toss. A spoof is unusual in only one way, its size, and honest big orders are just as big.</p></div>
+        </li>
+        <li data-reveal>
+          <p class="found__num"><span data-num="rule16"></span> → <span data-num="ruleLayer16"></span></p>
+          <div><h3>Examples and rules learn what cheating looks like, so a disguise beats them.</h3><p>A hand-written rule caught every large spoof, until the same spoof was split into four smaller orders.</p></div>
+        </li>
+        <li data-reveal>
+          <p class="found__num"><span data-num="prLayer16"></span></p>
+          <div><h3>Telling it the purpose of the cheat works.</h3><p>The law says manipulation means giving a false signal. Turned into three simple questions (did a trader show interest, take it back, and trade the other way?) it caught split spoofs too, with no examples at all, and wrongly flagged <span data-num="prGenuine16"></span> of honest large orders.</p></div>
+        </li>
+        <li data-reveal>
+          <p class="found__num">2 holes</p>
+          <div><h3>A program hunting for loopholes found real ones, and fixing them made the detector closer to the law.</h3><p>It hid the fake order behind a decoy no trader could see, and it exploited a flaw in how I scored success. Each fix came from reading the law more carefully: a signal only counts if traders can see it.</p></div>
+        </li>
+        <li data-reveal>
+          <p class="found__num">AUC <span data-num="prAucRev16"></span></p>
+          <div><h3>No detector can read minds.</h3><p>An honest trader who changes their mind does exactly what a spoofer does. Only the reason differs, so an alert should start an investigation, never end one.</p></div>
+        </li>
+      </ol>
     </section>
 
     <section class="summary__block summary__prose" aria-labelledby="means-title">
-      <h2 class="section-title" id="means-title">What it means</h2>
-      <p>The starting hypothesis, that a detector which never sees an example would beat a hand-written rule, is <b>not supported</b>. A spoof is unusual only in its size, and honest large orders are just as big, so a detector looking for the unusual finds honest traders first. That held in five markets, at two time resolutions, for a neural network, and order by order.</p>
-      <p>What did work was telling a detector what the offence <i>is</i>. UK law defines it by its effect: a false signal about supply or demand. Asked of each trader, that becomes three questions: did they show interest on one side, withdraw it rather than trade it, and trade the other way? That detector caught single-wall and layered spoofs alike and left honest large orders and honest quick cancellations alone. It needs to know who placed each order, which regulators and exchanges do.</p>
+      <h2 class="section-title" id="means-title">So what is the answer?</h2>
+      <p class="summary__big" data-reveal>An AI that only looks for the <i>unusual</i> finds honest traders first. An AI that knows the <i>purpose</i> of the cheat, and who placed each order, catches it in disguises it has never seen. The useful kind of "teaching" turned out to be a principle, not examples.</p>
       <h3>What it does not show</h3>
       <ul class="summary__limits">
-        <li><b>It is a simulation.</b> I designed the market and the spoofer; real markets, traders and accounts are messier.</li>
-        <li><b>Intent stays invisible.</b> An honest change of mind looks exactly like a spoof, so an alert is a reason to investigate, never proof.</li>
-        <li><b>Accounts matter.</b> A spoofer hidden in a busy broker account was caught less often (<span data-num="omni20_16"></span> at 16×), and one using two accounts escaped unless the regulator knew who owned them.</li>
-        <li><b>The principle detector came second.</b> It was designed after the first experiment by someone who knew the spoofer, then tested on cases it was not tuned for.</li>
+        <li><b>It is a simulation.</b> I designed the market and the spoofer; real markets are messier.</li>
+        <li><b>It needs to know who placed each order.</b> Regulators have that; the public does not. A spoofer using two accounts the regulator cannot link escapes.</li>
+        <li><b>It is a school project.</b> The detector was designed after the first experiment by someone who knew the spoofer, then tested on cases it was not tuned for.</li>
       </ul>
     </section>
 
-    <section class="summary__block" aria-labelledby="status-title">
-      <h2 class="section-title" id="status-title">Where the project stands</h2>
+    <section class="summary__block" aria-labelledby="more-title">
+      <h2 class="section-title" id="more-title">Want the detail?</h2>
+      <div class="more-links">
+        <a href="experiment.html" data-reveal><strong>The experiment</strong><span>The market and the seven detectors</span></a>
+        <a href="results.html" data-reveal><strong>Results</strong><span>Every chart from Part 1</span></a>
+        <a href="teaching.html" data-reveal><strong>What kind of teaching works?</strong><span>Examples, a rule, or the law</span></a>
+        <a href="lab.html" data-reveal><strong>Research Lab</strong><span>Pick a situation, see every detector react</span></a>
+        <a href="report.html" data-reveal><strong>The report</strong><span>The full write-up, with every table</span></a>
+      </div>
+      <details class="data-table summary__board">
+        <summary><i class="ph ph-table" aria-hidden="true"></i>Every detector side by side</summary>
+        <p class="summary__note">Orders 16 times a typical size, calm market. <span class="key key--catch" aria-hidden="true"></span>Share of spoofs caught: higher is better. <span class="key key--flag" aria-hidden="true"></span>Share of honest behaviour flagged: lower is better.</p>
+        <div class="scoreboard-wrap" data-scoreboard></div>
+      </details>
       <p class="status-line" data-status-line></p>
-      <p class="summary__links"><a href="index.html#progress">Progress tracker and lab notebook</a> · <a href="index.html#references">References</a> · <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a></p>
     </section>
   </main>
 
@@ -191,10 +199,11 @@
 
   <script src="data/results.js"></script>
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
-  <script src="data/teaching.js" onerror="window.TEACHING = null"></script>
+  <script src="data/teaching.js?v=11" onerror="window.TEACHING = null"></script>
   <script src="progress.js"></script>
   <script src="assets/site.js?v=9"></script>
-  <script src="assets/masthead.js?v=9"></script>
+  <script src="assets/masthead.js?v=10"></script>
+  <script src="assets/summary.js?v=11"></script>
   <script type="module" src="assets/lake.js?v=9"></script>
 </body>
 </html>

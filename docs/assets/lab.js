@@ -27,6 +27,10 @@
   const ex = (key, m) => { const r = (T.examples || []).find((x) => x.variant === "spoofs and honest large orders" && x.k === 10 && x.size_mult === m); return r && r[key] ? r[key][0] : undefined; };
   const price = (strategy, key, m) => ((T.price || []).find((r) => r.strategy === strategy && r.size_mult === m) || {})[key];
   const honestLife = (start) => ((T.price_honest || []).find((r) => r.test.startsWith(start)) || {}).value;
+  // Part 4 (run_challenger.py): every account detector on the same honest cases, and the challenger's best dodge.
+  const h4 = (cas, det, m) => ((T.challenger_honest || []).find((r) => r.case === cas && r.detector === det &&
+    (m === undefined || r.size_mult === m)) || {}).value;
+  const champion = () => (T.challenger || []).filter((r) => r.target === "order-life" && r.rank > 0).sort((a, b) => b.payoff - a.payoff)[0];
   const evasion = (key, test, metric, m) => ((T.evasion || []).find((r) => r.setting.includes(key) && r.test === test &&
     r.size_mult === m && r.metric === metric) || {}).value;
 
@@ -43,6 +47,7 @@
     { group: "Taught a pattern", name: "The rule", id: "Rule", kind: "p1" },
     { group: "Taught a principle", name: "Legal definition, 40-step windows", kind: "pr" },
     { group: "Taught a principle", name: "Legal definition, each order's life", kind: "life" },
+    { group: "Taught a principle", name: "Legal definition, as the market sees it", kind: "seen" },
     { group: "Control", name: "Isolation Forest on account data", kind: "ua" },
   ];
 
@@ -69,10 +74,29 @@
       text: "A spoof followed by buying back all it sold, so the account no longer trades only one way. It escapes, but ends worse off than an honest trader." },
     { id: "twoacc", label: "Two-account spoofer", should: "alert", sized: true,
       text: "The wall comes from one account and the genuine order from another. Shown with the regulator checking accounts one at a time." },
+    { id: "skew", label: "Market maker working off a position", should: "quiet", sized: true,
+      text: "An honest market maker that has sold more than it wants quotes more on the buying side at the best price, cancelling and requoting every few steps while it may still be selling. A textbook habit that looks like the legal definition." },
+    { id: "champion", label: "The challenger's best dodge", should: "alert", sized: false,
+      text: "The strategy the search program found that kept the most profit against the order-life detector, re-tested on 40 sessions it never saw. Its settings are listed on the challenger page." },
   ];
 
+  const SEEN_CASE = { calm: "normal calm market", volatile: "normal volatile market", spoof: "spoof", layer: "layered spoof",
+    control: "honest large order", withdrawal: "honest quick cancel", reversal: "honest change of mind", skew: "market maker working off a position" };
   function value(det, sit, m) {
     const p1 = det.kind === "p1" ? det.id : null;
+    if (det.kind === "seen") {
+      if (sit.id === "champion") return (champion() || {}).caught_seen;
+      return SEEN_CASE[sit.id] ? h4(SEEN_CASE[sit.id], "seen", sit.sized ? m : undefined) : undefined;
+    }
+    if (sit.id === "skew") {
+      const d = p1 === "Rule" ? "rule" : { pr: "window", life: "order-life" }[det.kind];
+      return d ? h4(SEEN_CASE.skew, d, m) : undefined;
+    }
+    if (sit.id === "champion") {
+      const c = champion() || {};
+      if (p1 === "Rule") return c.caught_rule;
+      return { pr: c.caught_window, life: c["caught_order-life"] }[det.kind];
+    }
     switch (sit.id) {
       case "calm":
       case "volatile": {
@@ -116,6 +140,12 @@
   // Part 1's window-level chance rates (an alert anywhere in a 40-step stretch of normal trading),
   // written per detector by build_site.py into RESULTS.chance_by_detector.
   const chanceTable = R.chance_by_detector || {};
+
+  // Part 4's detector and situations appear only once run_challenger.py's results are on the site.
+  if (!T.challenger_honest) {
+    for (let i = DETECTORS.length - 1; i >= 0; i--) if (DETECTORS[i].kind === "seen") DETECTORS.splice(i, 1);
+    for (let i = SITUATIONS.length - 1; i >= 0; i--) if (["skew", "champion"].includes(SITUATIONS[i].id)) SITUATIONS.splice(i, 1);
+  }
 
   // ---- the controls ---------------------------------------------------------------------
   let sit = SITUATIONS[2], size = 16;

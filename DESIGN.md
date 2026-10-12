@@ -114,6 +114,12 @@ Pill silhouettes belong to controls and navigation. Selects have gently rounded 
 
 Primary pills reverse ink and paper; quiet pills use translucent paper and a visible border. Hover changes the surface, active presses scale gently, and keyboard focus uses a visible two-pixel outline with a three-pixel offset. The lake hero overrides pill colours for contrast. Analytics uses native selects with a minimum height of 44px; Reset filters restores the initial selection.
 
+### Motion additions
+
+Motion extends the existing presentation while preserving its colours, typography and layout. Chapter and Analytics headings enter over 650ms, with supporting text over 500ms after a 90ms delay. Section headings and chapter links reveal once on entering view over 620ms. Selected home actions respond only to a fine mouse pointer, with movement bounded to 5px horizontally and 4px vertically; focus, click and pointer exit restore their position. Chapter-link text shifts 6px on hover over 300ms. Native disclosures retain their behaviour and reveal opened content over 220ms.
+
+The shared Pause motion control and reduced-motion preference settle these additions, show all scroll-revealed words and restore finding-card scale. Hidden tabs cancel active reveals. The doubled mosaic columns loop seamlessly over 14.6 seconds, accounting for the tile gap, and stop when offscreen, hidden, paused or reduced motion is requested. Duplicate tiles are inert and hidden from assistive technology.
+
 ### Lake scene
 
 `docs/assets/lake.png` is the photographic source with embedded provenance. Preserve that metadata during asset processing. `lake.js` adds an accelerating drop, a smaller rebound, refraction, highlights and expanding elliptical waves in a nine-second cycle. It is decorative, not a fluid simulation or a chart, and is hidden from assistive technology.

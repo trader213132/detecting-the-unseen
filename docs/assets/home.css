@@ -61,11 +61,12 @@
   -webkit-mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
   mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
 }
-.mosaic__col { display: grid; gap: 12px; align-content: start; animation: col-down 15s linear infinite; }
+.mosaic__col { display: grid; gap: 12px; height: max-content; align-content: start; animation: col-down 14.6s linear infinite; }
 .mosaic__col:nth-child(2) { margin-top: -96px; }
 .mosaic__col--up { animation-name: col-up; }
-@keyframes col-down { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -50%, 0); } }
-@keyframes col-up { from { transform: translate3d(0, -50%, 0); } to { transform: translate3d(0, 0, 0); } }
+@keyframes col-down { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, calc(-50% - 6px), 0); } }
+@keyframes col-up { from { transform: translate3d(0, calc(-50% - 6px), 0); } to { transform: translate3d(0, 0, 0); } }
+.mosaic.motion-resting .mosaic__col { animation-play-state: paused; }
 .tile {
   height: 202px; border-radius: 22px; overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: flex-end;
   gap: 0.3rem; padding: 1rem; font-family: var(--font-display);
@@ -84,6 +85,8 @@
   .tile { height: 168px; }
 }
 @media (prefers-reduced-motion: reduce) { .mosaic__col { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .statement__text .w { opacity: 1; transition: none; } .stack-card { transform: none; } }
+.motion-paused .statement__text .w { opacity: 1; transition: none; }
 
 /* ---------- The five chapters ---------- */
 .chapters {

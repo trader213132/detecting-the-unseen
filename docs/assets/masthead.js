@@ -149,3 +149,63 @@
     if (sheet?.classList.contains("open")) { setSheet(false); btn?.focus(); }
   });
 })();
+
+/* Motion only: colours, type, layout and data remain unchanged. */
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const fine = matchMedia('(hover: hover) and (pointer: fine)');
+  const active = new Set();
+  const canMove = () => !reduced.matches && !document.hidden && document.documentElement.dataset.motion !== 'paused';
+  function play(node, frames, duration = 600, delay = 0) {
+    if (!canMove() || !node.animate) return;
+    const animation = node.animate(frames, { duration, delay, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'backwards' });
+    active.add(animation);
+    animation.finished.then(() => active.delete(animation), () => active.delete(animation));
+  }
+  document.querySelectorAll('.pagehead__title, .analytics-title h1').forEach(node =>
+    play(node, [{ opacity: 0.45, clipPath: 'inset(0 0 35% 0)', transform: 'translateY(14px)' },
+      { opacity: 1, clipPath: 'inset(0)', transform: 'none' }], 650));
+  document.querySelectorAll('.pagehead__dek, .analytics-title p').forEach(node =>
+    play(node, [{ opacity: 0.55, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], 500, 90));
+  // Leave figures to their existing data-driven animations; reveal chapter headings once.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        play(entry.target, [{ opacity: 0.4, transform: 'translateY(18px)' },
+          { opacity: 1, transform: 'none' }], 620);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -24px 0px' });
+    document.querySelectorAll('.section-title, .stack__title, .mosaic-band__title, .chapters__title, .chapters__list li').forEach(node => observer.observe(node));
+  }
+  // Individual translate composes with the existing hover and press transforms.
+  const magnets = [...document.querySelectorAll('.hero__cta .btn, .stack-card__btn, .mosaic-band__acts .pill')];
+  magnets.forEach(node => {
+    node.classList.add('motion-magnet');
+    node.addEventListener('pointermove', event => {
+      if (!canMove() || !fine.matches || event.pointerType !== 'mouse' || document.activeElement === node) return;
+      const rect = node.getBoundingClientRect();
+      const x = Math.max(-5, Math.min(5, (event.clientX - rect.left - rect.width / 2) / 9));
+      const y = Math.max(-4, Math.min(4, (event.clientY - rect.top - rect.height / 2) / 7));
+      node.style.translate = `${x}px ${y}px`;
+    }, { passive: true });
+    const reset = () => { node.style.translate = 'none'; };
+    ['pointerleave', 'pointercancel', 'focus', 'click'].forEach(event => node.addEventListener(event, reset));
+  });
+  document.querySelectorAll('details').forEach(detail => detail.addEventListener('toggle', () => {
+    if (!detail.open) return;
+    [...detail.children].filter(node => node.tagName !== 'SUMMARY').forEach(node =>
+      play(node, [{ opacity: 0.5, transform: 'translateY(-5px)' }, { opacity: 1, transform: 'none' }], 220));
+  }));
+  function settle() {
+    if (canMove()) return;
+    active.forEach(animation => animation.cancel());
+    active.clear();
+    magnets.forEach(node => { node.style.translate = 'none'; });
+  }
+  reduced.addEventListener('change', settle);
+  fine.addEventListener('change', () => magnets.forEach(node => { node.style.translate = 'none'; }));
+  addEventListener('motionchange', settle);
+  document.addEventListener('visibilitychange', settle);
+})();

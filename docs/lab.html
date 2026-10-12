@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=9"><link rel="stylesheet" href="assets/lake.css?v=9"><link rel="stylesheet" href="assets/masthead.css?v=9">
+  <link rel="stylesheet" href="assets/site.css?v=9"><link rel="stylesheet" href="assets/lake.css?v=9"><link rel="stylesheet" href="assets/masthead.css?v=10">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="subpage"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
@@ -32,6 +32,7 @@
       </a>
       <nav class="menu" id="menu" aria-label="Main">
         <ul class="menu__links">
+          <li><a class="menu__plain" href="summary.html">Summary</a></li>
           <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">The study<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
           <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
           <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
@@ -60,7 +61,7 @@
           </div>
           <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
             <a class="dd-link" href="report.html">Research report</a>
-            <a class="dd-link" href="summary.html">All results on one page</a>
+            <a class="dd-link" href="summary.html">Summary: the project in five minutes</a>
             <a class="dd-link" href="analytics.html">Analytics explorer</a>
             <a class="dd-link" href="conclusion.html#references">References</a>
           </div>
@@ -79,7 +80,7 @@
       </div>
     </div>
     <div class="sheet" id="sheet">
-      <a class="sheet-summary" href="summary.html"><span><strong>All the results on one page</strong><small>The answer, six numbers and every detector side by side</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
       <h3>The study</h3>
       <div class="sheet-list">
         <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The experiment</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
@@ -95,7 +96,7 @@
       <h3>The paper</h3>
       <div class="sheet-links">
         <a href="report.html">Research report</a>
-        <a href="summary.html">All results on one page</a>
+        <a href="summary.html">Summary: the project in five minutes</a>
         <a href="analytics.html">Analytics explorer</a>
         <a href="conclusion.html#references">References</a>
         <a href="progress.html">Progress</a>
@@ -109,7 +110,7 @@
     <header class="pagehead">
       <p class="pagehead__kicker">Research Lab</p>
       <h1 class="pagehead__title">Choose a situation. Watch every detector.</h1>
-      <p class="pagehead__dek">Ten market situations, eleven detectors, and every number taken from the experiments. Some situations are honest, so the right answer is silence; some are spoofs, so the right answer is an alert.</p>
+      <p class="pagehead__dek">Market situations from calm trading to determined spoofers, every detector, and every number taken from the experiments. Some situations are honest, so the right answer is silence; some are spoofs, so the right answer is an alert.</p>
     </header>
     <section class="lab" id="lab" data-lab aria-label="Research Lab">
       <div class="lab__controls">
@@ -147,12 +148,12 @@
   <!-- footer:end -->
 
   <script src="data/results.js"></script>
-  <script src="data/teaching.js" onerror="window.TEACHING = null"></script>
+  <script src="data/teaching.js?v=11" onerror="window.TEACHING = null"></script>
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
   <script src="progress.js"></script>
   <script src="assets/site.js?v=9"></script>
-  <script src="assets/lab.js?v=9"></script>
-  <script src="assets/masthead.js?v=9"></script>
+  <script src="assets/lab.js?v=11"></script>
+  <script src="assets/masthead.js?v=10"></script>
   <script type="module" src="assets/lake.js?v=9"></script>
 </body>
 </html>
