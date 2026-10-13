@@ -3,7 +3,7 @@
 //   - add a new entry at the TOP of `log` whenever something happens
 //   - update `updated` to today's date
 window.PROGRESS = {
-  updated: "2026-10-11",
+  updated: "2026-10-12",
   deadline: { date: "2026-11-06", label: "Research Scholarship submission" },
   schedule: { from: "2026-10-08", to: "2026-11-06" },
   milestones: [
@@ -14,12 +14,18 @@ window.PROGRESS = {
     { label: "Robustness: other markets, finer time, single orders", from: "2026-10-26", to: "2026-11-01", status: "done", doneOn: "2026-10-08" },
     { label: "Part 2: the ladder of teaching (examples, pattern, principle)", from: "2026-10-09", to: "2026-10-16", status: "done", doneOn: "2026-10-09" },
     { label: "Part 3: the price of evasion, and the research report", from: "2026-10-11", to: "2026-10-18", status: "done", doneOn: "2026-10-11" },
+    { label: "Parts 4 and 5: an AI challenger, adaptive thresholds and the alert budget", from: "2026-10-12", to: "2026-10-19", status: "done", doneOn: "2026-10-12" },
     { label: "Understand every part of the code well enough to explain it", from: "2026-10-09", to: "2026-10-23", status: "now" },
     { label: "Write the proposal in my own words", from: "2026-10-24", to: "2026-11-03", status: "next" },
     { label: "Practise explaining the results out loud", from: "2026-10-30", to: "2026-11-05", status: "next" },
     { label: "Proofread and submit", from: "2026-11-05", to: "2026-11-06", status: "next" }
   ],
   log: [
+    {
+      date: "2026-10-12",
+      title: "Parts 4 and 5: a search program attacks the detector, and the alert budget",
+      text: "Wrote a challenger: a genetic search over seven spoofing settings that tries to profit without being caught. It gamed my scoring twice before finding a real loophole: a large decoy order on the other side, too far from the price for traders to see, cancels the wall out of the legal definition's 'on balance' sums. Weighing each order by how visible it is, and leaving out orders at the best price, closed it and also stopped an honest market maker being flagged (98% to 0%). Adaptive thresholds cut volatile-market false alarms but did not help tell spoofs from honest orders. Counting alerts showed the base-rate problem: if a large spoof happens once in ten sessions, a quarter of the best detector's alerts are real."
+    },
     {
       date: "2026-10-11",
       title: "Part 3: every dodge costs the spoofer its gain, and a written report",

@@ -20,6 +20,8 @@ python run_experiments.py            # re-uses the simulated data in data/ (much
 python run_extensions.py             # market sensitivity, finer bars, individual orders
 python run_teaching.py               # Part 2: the ladder of teaching (about 30 minutes)
 python run_evasion_cost.py           # Part 3: the price of evasion (about 10 minutes)
+python run_challenger.py             # Part 4: an AI challenger searches for dodges (about 40 minutes on 8 cores)
+python run_thresholds.py             # Part 5: adaptive thresholds and the alert budget (about 10 minutes)
 python build_report.py               # the research report: docs/report.html and docs/report.pdf
 python build_pages.py                # the shared header and footer on every page of the website
 python build_site.py                 # refreshes the website's data from the latest results
@@ -45,6 +47,8 @@ Results land in `results/summary.md` (tables), `results/metrics.csv` (every numb
 | `src/orders.py` | Individual-order features and the order-level Isolation Forest experiment. |
 | `src/accounts.py` | Part 2: what each account did in each 40-step window, and the principle detector built from the legal definition. |
 | `run_evasion_cost.py` | Part 3: a spoofer that waits before pulling its wall, or buys back what it sold, against every detector; what each dodge costs it. |
+| `run_challenger.py` | Part 4: a genetic search over seven spoofing settings, run against each detector; the refined "as the market sees it" detector; an honest market maker working off a position. |
+| `run_thresholds.py` | Part 5: fixed vs adaptive alert thresholds in a volatile market, and how many of a desk's alerts would be real spoofs. |
 | `build_report.py` | Writes the research report (HTML and PDF) with every number and table read from `results/`. |
 | `build_pages.py` | Writes the shared header, menus and footer into every page of the website. |
 | `run_teaching.py` | Part 2: examples, pattern and principle compared; honest changes of mind; stress tests. Writes `results/teaching.md`. |
@@ -159,7 +163,33 @@ A detector is only useful if a spoofer cannot simply step around it. `run_evasio
 - **Buying back what was sold** did nothing until the spoofer bought back everything; that escaped (20% caught) but left it 2.0 lots worse off than its honest twin, after paying about 0.8 ticks per lot.
 - With Part 1 (walls below 8× do not help) and Part 2 (two accounts escape unless linked), every dodge tried either throws away the benefit or needs accounts the regulator cannot link.
 
-Full tables: `results/evasion_cost.md`. The research report (`docs/report.pdf`) covers all three parts.
+Full tables: `results/evasion_cost.md`.
+
+---
+
+## Part 4: an AI challenger
+
+Part 3 only tried dodges I thought of. `run_challenger.py` lets a genetic search look for them: seven settings a trader controls (wall size, distance, layers, patience, buy-back, and a decoy order's size and distance), 32 random strategies, keep the best 8, mutate, 15 rounds, one search per detector. Its score is what a spoofer wants: lots of its genuine order traded beyond an honest twin, with a caught spoof's profit confiscated. The best strategies are re-tested on 40 sessions the search never saw.
+
+![The challenger](results/figures/fig9_challenger.png)
+
+- **It gamed the scoring twice first** (selling more lots through a real order; a decoy that hurt the comparison twin). Both were holes in how success was measured, not in the detector.
+- **Then a real loophole:** a large decoy on the other side, too far from the price for traders to see, cancels the wall out of the legal definition's "on balance" sums. It kept +0.28 lots per spoof, the same as with no surveillance, and was never caught.
+- **The fix, from the law's wording** (a *signal* nobody can see is not a signal): weigh each order by how often traders can see a price that far from the best, at the closest it came while alive, and leave out orders at the best price (`src/accounts.py`, `signal_weights`). It caught 90% of the decoy trick and stopped flagging an honest market maker working off a position (98% → 0%).
+- **Against the fixed version** the best dodge kept +0.12 lots per spoof (45% of the unwatched best) by staying under the alert threshold; the older windowed version caught 85% of it, so the two versions cover each other.
+
+Full tables: `results/challenger.md`.
+
+## Part 5: thresholds that follow the market, and the alert budget
+
+`run_thresholds.py` compares fixed and adaptive alert thresholds for Part 1's detectors, and counts every detector's alerts in normal trading.
+
+![Thresholds and precision](results/figures/fig10_thresholds.png)
+
+- **Adaptive thresholds** cut false alarms in a volatile market from 11–51% of bars to 6–17%, still far above the 1% target, and did nothing to separate spoofs from honest large orders.
+- **The alert budget:** the refined legal definition raised 0.25 false alerts per session. If a large spoof happened once in ten sessions, 25% of its alerts would be real; once in a hundred, 3%. For the untaught detectors it would be about 1% at one in ten. When the offence is rare, even good detectors' alerts are mostly false.
+
+Full tables: `results/thresholds.md`. The research report (`docs/report.pdf`) covers all five parts.
 
 ---
 

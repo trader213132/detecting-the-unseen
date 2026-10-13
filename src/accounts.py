@@ -24,10 +24,20 @@ Two detectors read these rows:
     in FIELDS, log-scaled) and nothing else. It is the control: if it does as well as the
     principle, the success comes from the account data, not from the principle.
 
+SEEN BY THE MARKET (Part 4). The challenger found two holes in the principle as first written.
+A large order far from the best price, on the other side, cancels the wall out of the "net"
+sums while no trader can see it; and an honest market maker that quotes more on one side
+looks like a spoofer. So the refined version weighs every resting order by how often book-
+reading traders can actually see a price that far from the best (`weights`, measured on
+normal trading), at the closest the order came to the best price while it was alive, and
+leaves out orders placed AT the best price: those are the next to trade, a real offer
+rather than a signal. Pass weights to account_rows / lifetime_scores.
+
 pair_score() is the attack test's fallback: the same clauses when the "trading the other
 way" may happen in ANY other account, for a spoofer who splits the trick across two.
 """
 import numpy as np
+import pandas as pd
 
 WINDOW = 40          # steps: the same span as an episode window
 STRIDE = 10          # a window starts every 10 steps
@@ -39,16 +49,61 @@ A_BUY, A_SELL, C_BUY, C_SELL, T_BUY, T_SELL, G_BUY, G_SELL, N_ORDERS = range(len
 # submitted (so never rested); traded_*: all lots traded, resting or aggressive.
 
 
-def _activity(events):
-    """(time, account, field, lots) for every event, from each account's point of view."""
+def placement_distance(events):
+    """Ticks behind its own side's best price at which each event's order was placed
+    (0 = at or better than the best price). Cancels and trades inherit their order's value."""
+    add = events.kind.to_numpy() == "ADD"
+    side, price = events.side.to_numpy(), events.price.to_numpy(dtype=float)
+    best = np.where(side == 1, events.best_bid.to_numpy(dtype=float), events.best_ask.to_numpy(dtype=float))
+    d = np.clip(np.nan_to_num(side * (best - price), nan=0.0), 0, None)
+    ids = events.order_id.to_numpy()
+    lookup = dict(zip(ids[add], d[add]))
+    return np.array([lookup.get(i, 0.0) for i in ids]) if len(ids) else d
+
+
+def signal_weights(events, weights):
+    """How visible each event's order was as a signal to book-reading traders: weights[d] at the
+    CLOSEST distance d (ticks behind its side's best price, at least 1) that the order reached while
+    it was alive. An order far away that the price drifts towards becomes visible, so it counts.
+    An order placed at or better than the best price weighs 0: it is the next to trade, a real offer.
+    Cancels and trades inherit their order's weight."""
+    w = np.asarray(weights, float)
+    t, kind, ids = events.time.to_numpy(), events.kind.to_numpy(), events.order_id.to_numpy()
+    side, price = events.side.to_numpy(), events.price.to_numpy(dtype=float)
+    # The best bid and ask at every step (the last value recorded at or before it).
+    steps = int(t.max()) + 1 if len(t) else 1
+    at = np.searchsorted(t, np.arange(steps), side="right") - 1
+    best = {s: pd.Series(np.where(at >= 0, events[col].to_numpy(dtype=float)[np.maximum(at, 0)], np.nan)).ffill().to_numpy()
+            for s, col in ((1, "best_bid"), (-1, "best_ask"))}
+    last = pd.Series(t).groupby(ids).max()                       # when each order last appears (cancel, final trade)
+    placed = placement_distance(events)
+    out = {}
+    for i in np.nonzero(kind == "ADD")[0]:
+        if placed[i] < 1:
+            out[ids[i]] = 0.0
+            continue
+        life = best[side[i]][t[i]:last[ids[i]] + 1]
+        d = side[i] * (life - price[i])
+        closest = int(max(1, np.nanmin(d))) if np.isfinite(d).any() else int(placed[i])
+        out[ids[i]] = w[closest] if closest < len(w) else 0.0
+    return np.array([out.get(i, 0.0) for i in ids])
+
+
+def _activity(events, weights=None):
+    """(time, account, field, lots) for every event, from each account's point of view.
+    weights (optional): weights[d] multiplies the lots of resting orders placed d ticks behind
+    the best price, in the added and cancelled counts (orders beyond the list count 0)."""
     t, kind, acc, side, qty, agg = (events[c].to_numpy() for c in
                                     ["time", "kind", "agent_id", "side", "qty", "aggressor_id"])
     buy = side == 1
     parts = []
     add, can, trd = kind == "ADD", kind == "CANCEL", kind == "TRADE"
-    parts.append((t[add], acc[add], np.where(buy[add], A_BUY, A_SELL), qty[add]))
-    parts.append((t[add], acc[add], np.full(add.sum(), N_ORDERS), np.ones(add.sum(), int)))
-    parts.append((t[can], acc[can], np.where(buy[can], C_BUY, C_SELL), qty[can]))
+    shown = qty.astype(float)
+    if weights is not None:
+        shown = shown * signal_weights(events, weights)
+    parts.append((t[add], acc[add], np.where(buy[add], A_BUY, A_SELL), shown[add]))
+    parts.append((t[add], acc[add], np.full(add.sum(), N_ORDERS), np.ones(add.sum())))
+    parts.append((t[can], acc[can], np.where(buy[can], C_BUY, C_SELL), shown[can]))
     # A trade involves two accounts: the resting order's owner trades on its side,
     # the aggressor on the opposite side.
     parts.append((t[trd], acc[trd], np.where(buy[trd], T_BUY, T_SELL), qty[trd]))
@@ -57,13 +112,13 @@ def _activity(events):
     return [np.concatenate(x) for x in zip(*parts)]
 
 
-def account_rows(session, window=WINDOW, stride=STRIDE, start=START, owners=None):
+def account_rows(session, window=WINDOW, stride=STRIDE, start=START, owners=None, weights=None):
     """One row per (window, active account). `owners` optionally maps account numbers to the
     person who owns them (as a regulator could), so that one person's accounts count as one.
 
     Returns a dict: starts (window start times), win (window index of each row),
     account (account number of each row), X (one row of lot counts each, as in FIELDS)."""
-    t, acc, field, lots = _activity(session.events)
+    t, acc, field, lots = _activity(session.events, weights)
     for account, owner in (owners or {}).items():
         acc = np.where(acc == account, owner, acc)
     steps = session.cfg.steps
@@ -123,14 +178,14 @@ def span_maxes(rows, scores, span=WINDOW, stride=STRIDE):
     return np.lib.stride_tricks.sliding_window_view(w, k).max(axis=1)[::span // stride]
 
 
-def lifetime_scores(session):
+def lifetime_scores(session, weights=None):
     """The principle without any fixed window. For every withdrawn (cancelled) order, the three
     clauses are measured for its owner over that order's own life, from the step it was placed
     to the step it was withdrawn. A spoofer who waits before pulling the wall cannot escape:
     the wall was alive while the genuine order traded, however long the wait.
 
     Returns (cancel times, accounts, scores), one entry per cancellation."""
-    t, acc, field, lots = _activity(session.events)
+    t, acc, field, lots = _activity(session.events, weights)
     ev = session.events
     can = ev[ev.kind == "CANCEL"]
     c_time, c_acc, c_placed = can.time.to_numpy(), can.agent_id.to_numpy(), can.order_time.to_numpy()

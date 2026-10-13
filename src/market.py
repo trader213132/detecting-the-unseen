@@ -30,6 +30,16 @@ TEST sessions can also contain scheduled "special" episodes:
                intent differs. It is the hardest honest case there is.
   * "withdrawal": the same, but the trader simply cancels and trades nothing: an honest
                large order cancelled quickly, exactly what the rule looks for.
+  * "skew":    an honest market maker working off a position. It quotes at the best bid and
+               ask, cancelling and replacing every few steps, and quotes MORE on the side
+               that would close its position (it starts short, so its bids are bigger). Big
+               one-sided quotes that are withdrawn, from an account that may still be
+               selling: a textbook market-making habit that looks like the legal definition.
+
+The challenger of Part 4 (run_challenger.py) can also move a spoof's wall further from the
+best price, split it into layers, and add a "decoy": a large order on the genuine side, far
+from the best price, withdrawn with the wall (MarketConfig.spoof_distance, spoof_layers,
+decoy_frac, decoy_distance; all off by default).
 
 Every order carries an account number, as in the order data a regulator receives.
 Background traders share pools of accounts; the institution, the spoofer and the
@@ -227,18 +237,22 @@ def _start_episode(book, cfg, ep, t):
     opposite_touch = book.best(genuine_side)
     if touch is None or opposite_touch is None:
         return False
-    ep.update(start=t, end=None, walls=[], small_id=None, small_filled=False, fill_time=None)
+    ep.update(start=t, end=None, walls=[], decoys=[], small_id=None, small_filled=False, fill_time=None)
     total = round(ep["size_mult"] * C.TYPICAL_SIZE)
-    if ep["kind"] in ("spoof", "control", "reversal", "withdrawal"):
+    if ep["kind"] in ("control", "reversal", "withdrawal"):
         # One big order, one or two ticks behind the best price.
         orders = [(touch - wall_side * ep["distance"], total)]
-    elif ep["kind"] == "layer":
-        # Layering: the same total size split over several price levels.
-        piece = max(1, round(total / C.LAYERS))
-        orders = [(touch - wall_side * (ep["distance"] + k), piece) for k in range(C.LAYERS)]
+    elif ep["kind"] in ("spoof", "layer"):
+        # A spoof is one big order; layering splits the same total over several price levels.
+        distance = ep["distance"] if cfg.spoof_distance < 0 else cfg.spoof_distance
+        layers = cfg.spoof_layers or (C.LAYERS if ep["kind"] == "layer" else 1)
+        piece = total if layers == 1 else max(1, round(total / layers))
+        orders = [(touch - wall_side * (distance + k), piece) for k in range(layers)] if cfg.spoof_wall else []
     else:
         orders = []
-    if ep["kind"] in ("control", "reversal", "withdrawal"):
+    if ep["kind"] == "skew":
+        ep.update(inventory=-wall_side * total, quotes=[])      # short if it wants to buy back, long if to sell
+    if ep["kind"] in ("control", "reversal", "withdrawal", "skew"):
         owner = agent_id(CONTROL)
     else:                                   # through the broker's shared account, if there is one
         owner = agent_id(BROKER) if cfg.omnibus_share > 0 else agent_id(SPOOFER)
@@ -253,11 +267,43 @@ def _start_episode(book, cfg, ep, t):
         ep["small_id"] = book.submit(small_owner, genuine_side, opposite_touch, C.TYPICAL_SIZE, t)
         if ep["small_id"] is None:          # traded immediately
             ep["small_filled"], ep["fill_time"] = True, t
+    if ep["kind"] in ("spoof", "layer") and cfg.decoy_frac > 0:
+        # The challenger's decoy: a large order on the genuine side, far from the best price.
+        price = opposite_touch - genuine_side * cfg.decoy_distance
+        order_id = book.submit(owner, genuine_side, price, max(1, round(cfg.decoy_frac * total)), t)
+        if order_id is not None:
+            ep["decoys"].append((order_id, price))
     return True
+
+
+def _skew_quotes(book, cfg, ep, t):
+    """The honest market maker of a "skew" episode: requote every mm_period steps."""
+    if (t - ep["start"]) % cfg.mm_period:
+        return False
+    for order_id, side, size in ep["quotes"]:               # what traded since last time, then withdraw the rest
+        left = book.orders[order_id].qty if order_id in book.orders else 0
+        ep["inventory"] += side * (size - left)
+        book.cancel(order_id, t)
+    ep["quotes"] = []
+    if t - ep["start"] >= C.SKEW_LIFE:
+        ep["end"] = t
+        return True
+    cap = round(ep["size_mult"] * C.TYPICAL_SIZE)
+    for side in (BUY, SELL):
+        touch = book.best(side)
+        if touch is None:
+            continue
+        size = cfg.mm_size + int(np.clip(-side * ep["inventory"], 0, cap))   # more on the side that closes the position
+        order_id = book.submit(ep["account"], side, touch, size, t)
+        if order_id is not None:
+            ep["quotes"].append((order_id, side, size))
+    return False
 
 
 def _update_episode(book, cfg, ep, t):
     """Advance an active episode by one step. Returns True when it has finished."""
+    if ep["kind"] == "skew":
+        return _skew_quotes(book, cfg, ep, t)
     if ep["kind"] in ("reversal", "withdrawal"):
         if t - ep["start"] >= ep["reverse_after"]:
             # Change of mind: withdraw the large order and (reversal only) sell or buy a little
@@ -301,6 +347,11 @@ def _update_episode(book, cfg, ep, t):
             touch = book.best(ep["wall_side"])
             if (touch - price) * ep["wall_side"] <= 0:
                 book.cancel(order_id, t)
+    for order_id, price in ep["decoys"]:                    # the same for a decoy, on the other side
+        if order_id in book.orders:
+            touch = book.best(-ep["wall_side"])
+            if (touch - price) * -ep["wall_side"] <= 0:
+                book.cancel(order_id, t)
 
     # Evasion (Part 3), off by default: a patient spoofer leaves the wall up for a while after
     # the genuine order has traded, so that withdrawing it looks unconnected to the trade.
@@ -309,7 +360,7 @@ def _update_episode(book, cfg, ep, t):
     else:
         done = t - ep["start"] >= C.MAX_EPISODE_STEPS
     if done:
-        for order_id, _ in ep["walls"]:
+        for order_id, _ in ep["walls"] + ep["decoys"]:
             book.cancel(order_id, t)
         if ep["small_id"] is not None:
             book.cancel(ep["small_id"], t)

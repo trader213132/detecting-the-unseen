@@ -56,6 +56,12 @@ class MarketConfig:
     spoofer_accounts: int = 1               # 2 = an evasive spoofer: wall from one account, small order from another
     spoof_patience: int = 0                 # evasion: steps the wall stays up after the genuine order trades
     cover_lots: int = 0                     # evasion: lots bought back on the wall's side after the genuine order trades
+    # The challenger's extra controls (Part 4), all off by default:
+    spoof_distance: int = -1                # ticks behind the best price for the wall (-1 = the scheduled 1 or 2)
+    spoof_layers: int = 0                   # split the wall over this many price levels (0 = 1 for a spoof, LAYERS for a layer)
+    decoy_frac: float = 0.0                 # a second large order on the genuine side, as a share of the wall's size,
+    decoy_distance: int = 8                 # this many ticks behind that side's best price; withdrawn with the wall
+    spoof_wall: bool = True                 # False = the same episode with no wall: the challenger's fair twin
 
 
 # Market regimes. "volatile" has a jumpier fundamental value and wider market-maker quotes.
@@ -72,6 +78,7 @@ LAYERS = 4                  # a layered spoof splits its wall over this many pri
 SIZE_MULTIPLIERS = (1, 2, 4, 8, 16)
 CONTROL_LIFE = (150, 400)   # legitimate large orders in control sessions stay this long
 REVERSAL_AFTER = (5, 25)    # an honest trader who changes their mind does so this many steps after placing
+SKEW_LIFE = 150             # an honest market maker working off a position quotes for this many steps
 
 # --- Detection ----------------------------------------------------------------
 # The rule-writer's definition of a "quick" cancellation. This is domain

@@ -300,3 +300,88 @@ def price_of_evasion(points, path):
     fig.tight_layout()
     fig.savefig(path, dpi=200)
     plt.close(fig)
+
+
+TARGET_COLOUR = {"nobody": MUTED, "rule": "#2a78d6", "window": "#eb6834", "order-life": "#c42a68", "seen": "#1baf7a"}
+TARGET_NAME = {"nobody": "No surveillance", "rule": "The rule", "window": "Legal definition, 40-step windows",
+               "order-life": "Legal definition, each order's life", "seen": "Legal definition, as the market sees it"}
+
+
+def challenger(finals, progress, targets, path):
+    """Part 4. Left: the search learning, round by round. Right: on unseen sessions, the plain
+    spoof's payoff against each detector and the best strategy the challenger found."""
+    fig, (a, b) = plt.subplots(1, 2, figsize=(9.6, 4.4), gridspec_kw={"width_ratios": [1, 1.25]})
+    for t in targets:
+        q = progress[progress.target == t]
+        a.plot(q.generation, q.best_search_score, color=TARGET_COLOUR[t], label=TARGET_NAME[t])
+    a.set_xlabel("Round of the search")
+    a.set_ylabel("Best payoff so far (lots per spoof)")
+    a.set_title("The challenger learning")
+    a.legend(fontsize=7, loc="lower right")
+    for i, t in enumerate(targets[::-1]):
+        q = finals[finals.target == t]
+        plain = q[q["rank"] == 0].iloc[0]
+        best = q[q["rank"] > 0].sort_values("payoff", ascending=False).iloc[0]
+        y = i
+        b.plot([plain.payoff, best.payoff], [y, y], color=AXIS, linewidth=1.2, zorder=1)
+        b.scatter(plain.payoff, y, s=40, facecolor=SURFACE, edgecolor=TARGET_COLOUR[t], linewidth=1.5, zorder=3)
+        b.errorbar(best.payoff, y, xerr=[[best.payoff - best.payoff_ci_low], [best.payoff_ci_high - best.payoff]],
+                   fmt="o", color=TARGET_COLOUR[t], markersize=6.5, capsize=2.5, zorder=4)
+    b.set_yticks(range(len(targets)))
+    b.set_yticklabels([TARGET_NAME[t] for t in targets[::-1]], fontsize=7.6)
+    b.axvline(0, color=AXIS, linewidth=1)
+    b.set_xlabel("Payoff on 40 unseen sessions (lots per spoof; caught = profit confiscated)")
+    b.set_title("What the best strategy keeps")
+    b.grid(axis="x", color=GRID, linewidth=0.6)
+    b.grid(axis="y", visible=False)
+    b.scatter([], [], s=40, facecolor=SURFACE, edgecolor=INK_2, label="ordinary spoof")
+    b.scatter([], [], s=40, color=INK_2, label="best found by the challenger")
+    b.legend(fontsize=7, loc="lower right")
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
+
+
+def thresholds_figure(market, budget, path):
+    """Part 5. Left: fixed vs adaptive thresholds in a volatile market. Right: precision of a desk's alerts."""
+    fig, (a, b) = plt.subplots(1, 2, figsize=(9.8, 4.4), gridspec_kw={"width_ratios": [1.15, 1]})
+    dets = list(market.detector.unique())
+    y = np.arange(len(dets))[::-1]
+    for i, d in enumerate(dets):
+        q = market[market.detector == d]
+        v = lambda mode, test, metric, m=None: q[(q["mode"] == mode) & (q.test == test) & (q.metric == metric) &
+                                                 ((q.size_mult == m) if m else q.size_mult.isna())].value.iloc[0]
+        for mode, dy, colour in (("fixed", 0.14, MUTED), ("adaptive", -0.14, "#1baf7a")):
+            fa, catch = v(mode, "normal_volatile", "false_alarm_rate"), v(mode, "spoof_volatile", "catch_rate", 16)
+            a.barh(y[i] + dy, fa, height=0.26, color=colour, label=f"{mode} threshold" if i == 0 else None)
+            a.text(fa + 0.004, y[i] + dy, f"{fa:.0%} false alarms · {catch:.0%} of spoofs caught", va="center", fontsize=6.8, color=INK_2)
+    a.set_yticks(y)
+    a.set_yticklabels([display_name(d) for d in dets], fontsize=7.6)
+    a.set_xlabel("Share of bars alerting in a volatile market (target: 1%)")
+    a.set_title("Fixed vs adaptive thresholds")
+    a.grid(axis="x", color=GRID, linewidth=0.6)
+    a.grid(axis="y", visible=False)
+    a.set_xlim(0, max(0.05, a.get_xlim()[1] * 1.9))
+    a.legend(fontsize=7, loc="lower right")
+    xs = [1, 10, 100]
+    for r in budget.itertuples():
+        colour = {"Legal definition, as the market sees it": "#1baf7a", "Legal definition, each order's life": "#c42a68",
+                  "Legal definition, 40-step windows": "#eb6834"}.get(r.detector, AXIS)
+        lw = 2.2 if colour != AXIS else 1.0
+        vals = [getattr(r, f"precision_1_in_{n}") for n in xs]
+        b.plot(xs, vals, marker="o", color=colour, linewidth=lw, markersize=4 if colour == AXIS else 5.5,
+               label=r.detector if colour != AXIS else None, zorder=3 if colour != AXIS else 2)
+    b.plot([], [], color=AXIS, marker="o", markersize=4, linewidth=1, label="Detectors taught nothing, and the rule")
+    b.set_xscale("log")
+    b.set_xticks(xs)
+    b.set_xticklabels(["every session", "1 in 10", "1 in 100"])
+    b.set_ylim(-0.02, 1.02)
+    b.set_yticks([0, 0.25, 0.5, 0.75, 1])
+    b.set_yticklabels(["0%", "25%", "50%", "75%", "100%"])
+    b.set_xlabel("How often a 16× spoof happens")
+    b.set_ylabel("Alerts that are real spoofs (precision)")
+    b.set_title("Of a desk's alerts, how many are real?")
+    b.legend(fontsize=6.8, loc="upper right")
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)

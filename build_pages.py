@@ -18,7 +18,7 @@ STUDY = [("experiment.html", "The experiment", "A market where spoofing works, a
          ("results.html", "Results", "Spoofs against honest look-alikes and volatile markets.", "detectors"),
          ("teaching.html", "What kind of teaching works?", "Examples, a rule, or the law. And how to dodge it.", "ladder"),
          ("conclusion.html", "What it means", "The answer, its limits and the sources.", "answer")]
-CHALLENGER_READY = False       # Part 4's chapter is listed only once its results are in
+CHALLENGER_READY = True       # Part 4's chapter is listed only once its results are in
 if CHALLENGER_READY:
     STUDY.insert(3, ("challenger.html", "An AI challenger", "A search program hunts for spoofs the law-based detector misses.", "challenger"))
 EXPLORE = [("lab.html", "Research Lab", "Pick a market situation and see how every detector reacts.", "lab"),

@@ -1,0 +1,31 @@
+target,rank,strategy,size,distance,layers,patience,cover,decoy,decoy_at,search_score,payoff,payoff_ci_low,payoff_ci_high,gain,gain_ci_low,gain_ci_high,caught_rule,caught_window,caught_order-life,caught_seen,n
+nobody,0,"16x wall, 1-2 ticks back",16,-1,1,0,0,0.0,0,0.5,0.1,-0.2375,0.3875,0.1,-0.2375,0.3875,1.0,0.8875,0.775,0.775,80
+nobody,1,"12x wall, 3 ticks back, kept 1 step after the trade, decoy 20% of the wall, 12 ticks back on the other side",12,3,1,1,0,0.2,12,0.5833333333333334,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.9,0.9,0.9,80
+nobody,2,"12x wall, 3 ticks back, kept 1 step after the trade, decoy 40% of the wall, 12 ticks back on the other side",12,3,1,1,0,0.4,12,0.5833333333333334,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.9,0.9,0.9,80
+nobody,3,"12x wall, 3 ticks back, kept 1 step after the trade, decoy 10% of the wall, 12 ticks back on the other side",12,3,1,1,0,0.1,12,0.5833333333333334,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.9,0.9,0.9,80
+nobody,4,"12x wall, 3 ticks back, kept 1 step after the trade, decoy 10% of the wall, 9 ticks back on the other side",12,3,1,1,0,0.1,9,0.5833333333333334,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.9,0.9,0.9,80
+nobody,5,"12x wall, 3 ticks back, kept 1 step after the trade",12,3,1,1,0,0.0,10,0.5833333333333334,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.9,0.9,0.9,80
+rule,0,"16x wall, 1-2 ticks back",16,-1,1,0,0,0.0,0,0.0,-0.1875,-0.4625,0.0,0.1,-0.2375,0.3875,1.0,0.8875,0.775,0.775,80
+rule,1,"16x wall, 1-2 ticks back, in 4 layers",16,-1,4,0,0,0.0,3,0.5,0.1125,-0.2125,0.375,0.1125,-0.2125,0.375,0.0,0.9,0.9,0.9,80
+rule,2,"12x wall, 2 ticks back, in 3 layers",12,2,3,0,0,0.0,0,0.5,0.25,0.0875,0.45,0.25,0.0875,0.45,0.0,0.9,0.9,0.9,80
+rule,3,"16x wall, 1 ticks back, in 4 layers",16,1,4,0,0,0.0,3,0.5,0.125,-0.2,0.4,0.125,-0.2,0.4,0.0,0.9,0.9,0.9,80
+rule,4,"16x wall, 1 ticks back, in 3 layers",16,1,3,0,0,0.0,0,0.4583333333333333,0.125,-0.2125,0.4125,0.125,-0.2125,0.4125,0.0,0.9,0.9,0.9,80
+rule,5,"13x wall, 2 ticks back, in 3 layers",13,2,3,0,0,0.0,9,0.4583333333333333,0.2,0.0375,0.3878124999999983,0.2,0.0375,0.3878124999999983,0.0,0.8875,0.8875,0.8875,80
+window,0,"16x wall, 1-2 ticks back",16,-1,1,0,0,0.0,0,0.0,-0.1875,-0.4625,0.0,0.1,-0.2375,0.3875,1.0,0.8875,0.775,0.775,80
+window,1,"12x wall, 3 ticks back, kept 1 step after the trade, decoy 70% of the wall, 12 ticks back on the other side",12,3,1,1,0,0.7,12,0.5833333333333334,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.0,0.0,0.9,80
+window,2,"13x wall, 2 ticks back, decoy 140% of the wall, 7 ticks back on the other side",13,2,1,0,0,1.4,7,0.5,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.0,0.0,0.9,80
+window,3,"13x wall, 2 ticks back, in 2 layers, decoy 140% of the wall, 9 ticks back on the other side",13,2,2,0,0,1.4,9,0.5,0.2125,0.0125,0.425,0.2125,0.0125,0.425,1.0,0.025,0.025,0.9,80
+window,4,"13x wall, 2 ticks back, decoy 150% of the wall, 7 ticks back on the other side",13,2,1,0,0,1.5,7,0.5,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.0,0.0,0.9,80
+window,5,"13x wall, 2 ticks back, in 3 layers, decoy 140% of the wall, 7 ticks back on the other side",13,2,3,0,0,1.4,7,0.4583333333333333,0.2,0.0375,0.3878124999999983,0.2,0.0375,0.3878124999999983,1.0,0.0125,0.0125,0.8875,80
+order-life,0,"16x wall, 1-2 ticks back",16,-1,1,0,0,0.0,0,0.0833333333333333,-0.15,-0.4375,0.05,0.1,-0.2375,0.3875,1.0,0.8875,0.775,0.775,80
+order-life,1,"12x wall, 3 ticks back, kept 1 step after the trade, decoy 70% of the wall, 12 ticks back on the other side",12,3,1,1,0,0.7,12,0.5833333333333334,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.0,0.0,0.9,80
+order-life,2,"13x wall, 2 ticks back, decoy 140% of the wall, 7 ticks back on the other side",13,2,1,0,0,1.4,7,0.5,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.0,0.0,0.9,80
+order-life,3,"13x wall, 2 ticks back, in 2 layers, decoy 140% of the wall, 9 ticks back on the other side",13,2,2,0,0,1.4,9,0.5,0.2125,0.0125,0.425,0.2125,0.0125,0.425,1.0,0.025,0.025,0.9,80
+order-life,4,"13x wall, 2 ticks back, decoy 150% of the wall, 7 ticks back on the other side",13,2,1,0,0,1.5,7,0.5,0.275,0.1125,0.4625,0.275,0.1125,0.4625,1.0,0.0,0.0,0.9,80
+order-life,5,"13x wall, 2 ticks back, in 3 layers, decoy 140% of the wall, 7 ticks back on the other side",13,2,3,0,0,1.4,7,0.4583333333333333,0.2,0.0375,0.3878124999999983,0.2,0.0375,0.3878124999999983,1.0,0.0125,0.0125,0.8875,80
+seen,0,"16x wall, 1-2 ticks back",16,-1,1,0,0,0.0,0,0.0833333333333333,-0.15,-0.4375,0.05,0.1,-0.2375,0.3875,1.0,0.8875,0.775,0.775,80
+seen,1,"4x wall, 3 ticks back, decoy 130% of the wall, 12 ticks back on the other side",4,3,1,0,0,1.3,12,0.4166666666666667,0.1125,0.0125,0.2375,0.1125,0.0125,0.2375,0.0,0.0,0.0,0.0,80
+seen,2,"4x wall, 3 ticks back, decoy 10% of the wall, 7 ticks back on the other side",4,3,1,0,0,0.1,7,0.4166666666666667,0.1125,0.0125,0.2375,0.1125,0.0125,0.2375,0.0,0.0,0.0,0.0,80
+seen,3,"4x wall, 4 ticks back, decoy 150% of the wall, 12 ticks back on the other side",4,4,1,0,0,1.5,12,0.375,0.075,0.0125,0.175,0.075,0.0125,0.175,1.0,0.0,0.0,0.0,80
+seen,4,"5x wall, 3 ticks back, in 4 layers, decoy 10% of the wall, 7 ticks back on the other side",5,3,4,0,0,0.1,7,0.2916666666666667,0.125,0.025,0.2625,0.125,0.025,0.2625,0.0,0.85,0.0,0.075,80
+seen,5,"4x wall, 4 ticks back, in 3 layers, kept 55 steps after the trade, decoy 10% of the wall, 7 ticks back on the other side",4,4,3,55,0,0.1,7,0.2916666666666667,-0.0625,-0.225,0.075,-0.0625,-0.225,0.075,0.0875,0.0,0.0,0.0,80

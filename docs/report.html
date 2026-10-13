@@ -39,7 +39,7 @@ a { color: var(--mark); }
 </style></head><body><main class=page>
 <h1>Detecting the Unseen</h1>
 <p class=sub>Can artificial intelligence detect hidden market manipulation without being taught what manipulation looks like?</p>
-<div class=meta>Ebrahim · Habs Research Scholarship · Technical report on preliminary results · 11 October 2026
+<div class=meta>Ebrahim · Habs Research Scholarship · Technical report on preliminary results · 13 October 2026
 <span class=noprint> · <a href="report.pdf">PDF</a> · <a href="index.html">Website</a> · <a href="https://github.com/trader213132/detecting-the-unseen">Code and data</a></span></div>
 
 <section class=abstract><h2>Abstract</h2>
@@ -54,8 +54,13 @@ orders. A second experiment gave detectors increasing amounts of prior knowledge
 spoofs look like and missed the split version. A detector built only from the legal definition of the offence, which asks whether a
 trader showed interest on one side, withdrew it and traded the other way, caught 85% of split spoofs with no examples at all,
 flagged 0% of honest large orders, and kept its false alarms at 0.9% in a volatile market. A third experiment
-tried to dodge it: every dodge tested either gave up the spoofer's gain or needed two accounts the regulator could not link. No detector could
-distinguish a spoof from an honest trader who changes their mind, because only the intention differs.</p>
+tried to dodge it: every dodge tested either gave up the spoofer's gain or needed two accounts the regulator could not link. In a fourth, a
+search program looked for dodges itself. After twice gaming my scoring, it found a real loophole: a large decoy order too far from the price
+for traders to see hid a spoof completely. Measuring the signal the way the market sees it closed that gap and stopped an honest market
+maker being flagged, leaving a spoofer at most 45% of its benefit, and only by spoofing small. A fifth showed that thresholds which
+adapt to the market cut false alarms but do not help tell spoofs from honest orders, and that because spoofing is rare, most alerts from
+even the best detector are false. No detector could distinguish a spoof from an honest trader who changes their mind, because only the
+intention differs.</p>
 <p class=answer>Answer: not by looking for the unusual; yes, by knowing the purpose, given who placed each order.</p></section>
 
 <h2>1. Introduction</h2>
@@ -66,8 +71,12 @@ cancelled the large orders within seconds, often just after the small order trad
 <p>Supervised machine learning needs many labelled examples of manipulation, which regulators rarely have. Unsupervised anomaly
 detection avoids labels: it learns normal behaviour and flags departures from it. Earlier work used generative and recurrent models
 trained on normal data [5, 7] and hidden Markov models with anomaly states [1]; Wang and Wellman built agent-based models in which
-spoofing is profitable [10, 11]; Fabre and Challet modelled how spoofable a book is [2]. The question here is narrower and, I think,
-more basic: is <i>unusual</i> the right target at all?</p>
+spoofing is profitable [10, 11]; Fabre and Challet modelled how spoofable a book is [2]. The closest study is Poutré, Chételat and
+Morales [12], who trained a Transformer autoencoder on normal order-book data from five NASDAQ stocks, inserted synthetic quote stuffing,
+layering and pump-and-dump, and detected them "without requiring any prior knowledge of manipulation patterns". DeLise [13] found that
+adding a few labelled frauds to such a detector improves it greatly. Those studies compare manipulation with ordinary trading. This one
+adds the comparison a regulator most needs: honest orders that look the same. The question is narrower and, I think, more basic: is
+<i>unusual</i> the right target at all?</p>
 
 <h2>2. Research question and hypotheses</h2>
 <p><b>Question.</b> Can a detector that is never shown an example of spoofing tell spoofing apart from honest trading?</p>
@@ -75,7 +84,10 @@ more basic: is <i>unusual</i> the right target at all?</p>
 reliably than a hand-written surveillance rule, especially on variants the rule was not written for.<br>
 <b>H2.</b> Detectors that read a sequence of time steps will do better than detectors that read one step at a time.<br>
 <b>H3 (added after Part 1).</b> A detector given the definition of the offence, but no examples, will separate spoofs from honest
-large orders where unusualness-based detectors could not.<br><b>H4 (added after Part 2).</b> A spoofer who knows about that detector cannot dodge it without giving up what the spoof was for.</p>
+large orders where unusualness-based detectors could not.<br><b>H4 (added after Part 2).</b> A spoofer who knows about that detector cannot dodge it without giving up what the spoof was for.<br>
+<b>H5 (added before Part 4).</b> A search program that looks for dodges itself will find none that keeps the spoof's benefit.<br>
+<b>H6 (added before Part 5).</b> Thresholds that adapt to current market conditions will cut false alarms in a volatile market without
+losing spoofs, but will not help tell spoofs from honest orders of the same size.</p>
 <p>Because "catching" is meaningless without false alarms, every detector is also tested on honest large orders, on a volatile but
 honest market, and in Part 2 on honest traders who cancel quickly or change their mind.</p>
 
@@ -85,7 +97,7 @@ honest market, and in Part 2 on honest traders who cancel quickly or change thei
 book with four kinds of normal trader: zero-intelligence traders who trade around a noisy estimate of value; book-reading traders who
 lean towards buying when bids outweigh asks (after Wang and Wellman's book-reading agents [10]); two market makers who quote both sides
 and cancel and replace every five steps, so quick cancellations are normal; and an institution that occasionally rests a genuinely large
-order. A calm and a volatile regime differ in how noisy and jumpy the underlying value is. In total 1,095 sessions of 2,000
+order. A calm and a volatile regime differ in how noisy and jumpy the underlying value is. In total 2,048 sessions of 2,000
 steps were simulated for Part 1, each with its own random seed; training, threshold-setting and test sessions never share a seed.</p>
 <h3>3.2 Spoofing and honest episodes</h3>
 <p><b>Spoof:</b> a large wall one or two ticks behind the best price and a small genuine order (3 lots) at the best price on the other
@@ -208,6 +220,57 @@ unless linked to their owner), every dodge tried either throws away the benefit 
 <figure class=tbl><figcaption>Table 11. The order-life version of the principle on honest trading.</figcaption><table><thead><tr><th>Order-life principle on honest trading</th><th class=num>Value</th></tr></thead><tbody><tr><td>false alarms, normal calm market (share of 40-step windows)</td><td class=num>0.7%</td></tr><tr><td>false alarms, normal volatile market (share of 40-step windows)</td><td class=num>1.3%</td></tr><tr><td>honest large orders flagged, 16x</td><td class=num>0.0%</td></tr><tr><td>honest quick withdrawals flagged, 16x</td><td class=num>0.0%</td></tr><tr><td>honest changes of mind flagged, 16x</td><td class=num>91.7%</td></tr></tbody></table></figure>
 <figure class=fig><img src='report-figures/fig8_price_of_evasion.png' alt=''><figcaption>Figure 5. The price of evasion (16× walls): what each dodge keeps against how often it is still caught.</figcaption></figure>
 
+<h3>4.10 Part 4: an AI challenger</h3>
+<p>Part 3 tested dodges I thought of. To test dodges I had not, I wrote a challenger: a genetic search over seven settings a trader
+controls (wall size, distance from the best price, number of layers, how long the wall stays up after the trade, how much is bought back,
+and the size and distance of a decoy order on the other side). It starts from 32 random strategies, keeps the best 8, mutates and mixes
+them, and repeats for 15 rounds, learning only from one detector's alerts at a time. Its score is what a spoofer wants: lots of its
+genuine order that traded, minus anything bought back or any of its wall that traded, beyond an honest twin with only the genuine order;
+a caught spoof has its profit confiscated. Four searches (no surveillance, the rule, and two versions of the legal definition) used 12
+practice sessions; every strategy ever tried was then scored against every detector and the five best re-tested on 40 unseen sessions.</p>
+<p><b>The challenger gamed the scoring before the detector.</b> When every lot the account sold counted, it added a real order near the price
+and simply sold more. When the twin ran the same strategy without the wall, it added a decoy that hurt the twin, so the wall only undid
+self-inflicted harm. Each version found a hole in how success was measured, not in the detector; the score above is the third.</p>
+<p><b>Then it found a real loophole.</b> The legal definition as written in Part 2 counts interest <i>on balance</i>, which is what lets
+it ignore market makers. A large decoy on the other side, far from the price, cancels the wall out of those sums, while book-reading
+traders, who look only at the five nearest price levels, never see the decoy. Against the order-life detector the challenger's best
+strategy (12x wall, 3 ticks back, kept 1 step after the trade, decoy 70% of the wall, 12 ticks back on the other side) kept +0.28 lots per spoof, as much as anything found with no surveillance at all (+0.28,
++0.11 to +0.46), and was never caught. The fix follows the law's own wording: manipulation is a false or misleading <i>signal</i>, and a
+signal nobody can see is not one. The refined detector weighs every order by how often traders can see a price that far from the best,
+measured on normal trading (always up to four ticks, 15% at five, almost never beyond), at the closest the order came while alive,
+and leaves out orders placed at the best price, which are the next to trade. It caught 90% of that strategy.</p>
+<p>The same change fixed a false accusation. An honest market maker working off a position quotes more on one side at the best price and
+cancels and requotes every few steps, sometimes while still trading the other way: the order-life detector flagged 98% of them,
+the refined one 0%. It kept the rest of the earlier results: 85% of 16× spoofs and 85% of layered
+spoofs caught, no honest large orders or quick cancels flagged, and false alarms of 0.6% (1.2% when volatile) (Table 13).</p>
+<p>Against the refined detector the best strategy found was 5x wall, 3 ticks back, in 4 layers, decoy 10% of the wall, 7 ticks back on the other side: it kept +0.12 lots per spoof (+0.03 to +0.26),
+45% of the unwatched best, by staying small enough to sit under the alert threshold (8% caught). The windowed
+version of the definition caught 85% of it, and the refined version caught 90% of the dodge that beat the windowed
+one, so running both closes each other's gap. <b>H5 is not supported as stated</b>: a search found a dodge that kept the whole benefit
+against the original definition. Fixing it from the law left a spoofer able to keep less than half, and only by spoofing small.</p>
+<figure class=tbl><figcaption>Table 12. The challenger's best strategy against each detector, re-tested on 40 sessions it never saw (80 spoofs). Payoff: lots of the spoofer's genuine order that traded, minus any bought back or any of its wall that traded, beyond an honest twin with only the genuine order, per spoof; a caught spoof's profit is confiscated.</figcaption><table><thead><tr><th>Played against</th><th>Strategy</th><th class=num>Payoff (95% CI)</th><th class=num>Gain if never caught</th><th class=num>Caught: rule</th><th class=num>windows</th><th class=num>order life</th><th class=num>as seen</th></tr></thead><tbody><tr><td>No surveillance</td><td>ordinary 16× spoof</td><td class=num>+0.10 (-0.24 to +0.39)</td><td class=num>+0.10</td><td class=num>100%</td><td class=num>89%</td><td class=num>78%</td><td class=num>78%</td></tr><tr><td>No surveillance</td><td>12x wall, 3 ticks back, kept 1 step after the trade, decoy 20% of the wall, 12 ticks back on the other side</td><td class=num>+0.28 (+0.11 to +0.46)</td><td class=num>+0.28</td><td class=num>100%</td><td class=num>90%</td><td class=num>90%</td><td class=num>90%</td></tr><tr><td>The rule</td><td>ordinary 16× spoof</td><td class=num>-0.19 (-0.46 to +0.00)</td><td class=num>+0.10</td><td class=num>100%</td><td class=num>89%</td><td class=num>78%</td><td class=num>78%</td></tr><tr><td>The rule</td><td>12x wall, 2 ticks back, in 3 layers</td><td class=num>+0.25 (+0.09 to +0.45)</td><td class=num>+0.25</td><td class=num>0%</td><td class=num>90%</td><td class=num>90%</td><td class=num>90%</td></tr><tr><td>Definition, 40-step windows</td><td>ordinary 16× spoof</td><td class=num>-0.19 (-0.46 to +0.00)</td><td class=num>+0.10</td><td class=num>100%</td><td class=num>89%</td><td class=num>78%</td><td class=num>78%</td></tr><tr><td>Definition, 40-step windows</td><td>12x wall, 3 ticks back, kept 1 step after the trade, decoy 70% of the wall, 12 ticks back on the other side</td><td class=num>+0.28 (+0.11 to +0.46)</td><td class=num>+0.28</td><td class=num>100%</td><td class=num>0%</td><td class=num>0%</td><td class=num>90%</td></tr><tr><td>Definition, each order's life</td><td>ordinary 16× spoof</td><td class=num>-0.15 (-0.44 to +0.05)</td><td class=num>+0.10</td><td class=num>100%</td><td class=num>89%</td><td class=num>78%</td><td class=num>78%</td></tr><tr><td>Definition, each order's life</td><td>12x wall, 3 ticks back, kept 1 step after the trade, decoy 70% of the wall, 12 ticks back on the other side</td><td class=num>+0.28 (+0.11 to +0.46)</td><td class=num>+0.28</td><td class=num>100%</td><td class=num>0%</td><td class=num>0%</td><td class=num>90%</td></tr><tr><td>Definition, as the market sees it</td><td>ordinary 16× spoof</td><td class=num>-0.15 (-0.44 to +0.05)</td><td class=num>+0.10</td><td class=num>100%</td><td class=num>89%</td><td class=num>78%</td><td class=num>78%</td></tr><tr><td>Definition, as the market sees it</td><td>5x wall, 3 ticks back, in 4 layers, decoy 10% of the wall, 7 ticks back on the other side</td><td class=num>+0.12 (+0.03 to +0.26)</td><td class=num>+0.12</td><td class=num>0%</td><td class=num>85%</td><td class=num>0%</td><td class=num>8%</td></tr></tbody></table></figure>
+<figure class=tbl><figcaption>Table 13. Every account-level detector on the same spoofs and honest cases, calm market. Each threshold lets about 1% of normal 40-step windows alert.</figcaption><table><thead><tr><th>Case (16×)</th><th class=num>Rule</th><th class=num>40-step windows</th><th class=num>Order life</th><th class=num>As the market sees it</th></tr></thead><tbody><tr><td>Spoof</td><td class=num>100%</td><td class=num>92%</td><td class=num>85%</td><td class=num>85%</td></tr><tr><td>Layered spoof</td><td class=num>5%</td><td class=num>85%</td><td class=num>85%</td><td class=num>85%</td></tr><tr><td>Honest large order</td><td class=num>13%</td><td class=num>0%</td><td class=num>0%</td><td class=num>0%</td></tr><tr><td>Honest quick cancel</td><td class=num>100%</td><td class=num>0%</td><td class=num>0%</td><td class=num>0%</td></tr><tr><td>Honest change of mind</td><td class=num>98%</td><td class=num>92%</td><td class=num>92%</td><td class=num>92%</td></tr><tr><td>Market maker working off a position</td><td class=num>100%</td><td class=num>100%</td><td class=num>98%</td><td class=num>0%</td></tr><tr><td>False alarms, calm (windows)</td><td class=num></td><td class=num></td><td class=num>0.7%</td><td class=num>0.6%</td></tr><tr><td>False alarms, volatile</td><td class=num></td><td class=num></td><td class=num>1.3%</td><td class=num>1.2%</td></tr></tbody></table></figure>
+<figure class=fig><img src='report-figures/fig9_challenger.png' alt=''><figcaption>Figure 6. Left: the best payoff each search had found, round by round. Right: on 40 unseen sessions, an ordinary 16× spoof (hollow) and the best strategy the challenger found against each detector (filled, 95% CI).</figcaption></figure>
+
+
+<h3>4.11 Part 5: thresholds that follow the market, and the alert budget</h3>
+<p>Every detector so far had one fixed threshold, set on calm trading. A threshold that adapts to current conditions, rising in
+proportion to how busy the detector's own recent scores are (never falling below the calm level), cut the untaught detectors' false
+alarms in a volatile market from 11%–51% of bars to 6%–17%: better, but still far above the 1% target (Table 14). The
+volatile-market spoofs they had seemed to catch (61%–91%) fell to 29%–44%, because most of those catches were false
+alarms that happened to land on a spoof, and honest large orders were flagged as often as before (23%–50% fixed,
+23%–50% adaptive). <b>H6 is supported</b>: an adaptive threshold helps with volatility and does nothing for the deeper problem.</p>
+<figure class=tbl><figcaption>Table 14. Fixed against adaptive thresholds for the Part 1 detectors. Both let about 1% of calm validation bars alert; the adaptive one rises with the detector's own recent scores. A session is 2,000 steps.</figcaption><table><thead><tr><th>Detector</th><th>Threshold</th><th class=num>False alarms, calm</th><th class=num>False alarms, volatile</th><th class=num>False alerts per session, volatile</th><th class=num>Spoofs 16×, volatile</th><th class=num>Honest large 16×</th></tr></thead><tbody><tr><td>Rule</td><td>fixed</td><td class=num>0.7%</td><td class=num>0.7%</td><td class=num>2.4</td><td class=num>100%</td><td class=num>0%</td></tr><tr><td>Rule</td><td>adaptive</td><td class=num>0.7%</td><td class=num>0.7%</td><td class=num>2.4</td><td class=num>100%</td><td class=num>0%</td></tr><tr><td>PCA</td><td>fixed</td><td class=num>0.8%</td><td class=num>24.3%</td><td class=num>11.3</td><td class=num>91%</td><td class=num>47%</td></tr><tr><td>PCA</td><td>adaptive</td><td class=num>1.1%</td><td class=num>8.9%</td><td class=num>11.9</td><td class=num>42%</td><td class=num>47%</td></tr><tr><td>Isolation Forest</td><td>fixed</td><td class=num>0.7%</td><td class=num>11.1%</td><td class=num>13.9</td><td class=num>61%</td><td class=num>23%</td></tr><tr><td>Isolation Forest</td><td>adaptive</td><td class=num>0.9%</td><td class=num>6.2%</td><td class=num>10.7</td><td class=num>44%</td><td class=num>40%</td></tr><tr><td>Sequence PCA</td><td>fixed</td><td class=num>0.4%</td><td class=num>51.2%</td><td class=num>8.4</td><td class=num>91%</td><td class=num>37%</td></tr><tr><td>Sequence PCA</td><td>adaptive</td><td class=num>0.4%</td><td class=num>14.4%</td><td class=num>6.0</td><td class=num>29%</td><td class=num>23%</td></tr><tr><td>LSTM autoencoder</td><td>fixed</td><td class=num>0.6%</td><td class=num>38.8%</td><td class=num>9.8</td><td class=num>86%</td><td class=num>50%</td></tr><tr><td>LSTM autoencoder</td><td>adaptive</td><td class=num>0.5%</td><td class=num>16.7%</td><td class=num>6.5</td><td class=num>41%</td><td class=num>50%</td></tr></tbody></table></figure>
+<p>A surveillance desk sees alerts, not percentages of bars, and each one has to be investigated. Counting alerts in normal trading
+(alerts close together count once) turns into <i>precision</i>, the share of a desk's alerts that are real spoofs, which depends on how
+common spoofing is (Table 15). The refined legal definition raised 0.25 false alerts per session: if one large spoof happened in
+every session, 77% of its alerts would be real; one in ten sessions, 25%; one in a hundred, 3%. The
+untaught detectors raised 0.5–2.2 false alerts per session and, at one spoof in ten sessions, only 1% of their alerts would
+be real. This is the base-rate problem of every rare-event test: when the offence is rare, even a good detector's alerts are mostly
+false, which is one more reason an alert can only start an investigation.</p>
+<figure class=tbl><figcaption>Table 15. The alert budget (calm market, fixed thresholds). Precision is the share of a desk's alerts that are real spoofs, if one 16× spoof happens in every session, one in ten, or one in a hundred.</figcaption><table><thead><tr><th>Detector</th><th class=num>Spoofs 16×</th><th class=num>Honest large 16×</th><th class=num>False alerts per session</th><th class=num>Precision: 1 spoof per session</th><th class=num>1 per 10</th><th class=num>1 per 100</th></tr></thead><tbody><tr><td>Rule</td><td class=num>100%</td><td class=num>0%</td><td class=num>2.30</td><td class=num>30%</td><td class=num>4%</td><td class=num>0%</td></tr><tr><td>PCA</td><td class=num>24%</td><td class=num>47%</td><td class=num>2.00</td><td class=num>11%</td><td class=num>1%</td><td class=num>0%</td></tr><tr><td>Isolation Forest</td><td class=num>12%</td><td class=num>23%</td><td class=num>2.20</td><td class=num>5%</td><td class=num>1%</td><td class=num>0%</td></tr><tr><td>Sequence PCA</td><td class=num>8%</td><td class=num>37%</td><td class=num>0.50</td><td class=num>13%</td><td class=num>1%</td><td class=num>0%</td></tr><tr><td>LSTM autoencoder</td><td class=num>6%</td><td class=num>50%</td><td class=num>0.65</td><td class=num>9%</td><td class=num>1%</td><td class=num>0%</td></tr><tr><td>Legal definition, 40-step windows</td><td class=num>92%</td><td class=num>0%</td><td class=num>0.70</td><td class=num>57%</td><td class=num>12%</td><td class=num>1%</td></tr><tr><td>Legal definition, each order's life</td><td class=num>85%</td><td class=num>0%</td><td class=num>0.35</td><td class=num>71%</td><td class=num>20%</td><td class=num>2%</td></tr><tr><td>Legal definition, as the market sees it</td><td class=num>85%</td><td class=num>0%</td><td class=num>0.25</td><td class=num>77%</td><td class=num>25%</td><td class=num>3%</td></tr></tbody></table></figure>
+<figure class=fig><img src='report-figures/fig10_thresholds.png' alt=''><figcaption>Figure 7. Left: fixed and adaptive thresholds in a volatile market. Right: the share of a desk’s alerts that are real spoofs, by how common spoofing is.</figcaption></figure>
+
 <h2>5. Discussion</h2>
 <p>The untaught detectors did what they were built to do: they found what was unusual. The trouble is that a working spoof is designed
 to be unusual in only one way, its size, and honest large orders are just as big. Unusualness and manipulation are different targets.
@@ -215,25 +278,31 @@ Detectors taught by examples or by a rule did better, but they learned the <i>lo
 changes the look, here by splitting the wall, escapes. The legal definition describes the <i>purpose</i> instead: a signal shown, then
 withdrawn, to help a trade on the other side. That survives a change of look, but it needs to know who placed each order, and it reaches a
 hard limit: behaviour can show that a signal was false, but not why it was sent. That is why the law asks for intent to be proved, and
-why an alert should start an investigation rather than end one.</p>
+why an alert should start an investigation rather than end one. Parts 4 and 5 added two lessons. A detector written from a principle
+can still have holes, but they are found and fixed by reading the principle more carefully, not by adding examples: the decoy loophole
+was closed by taking "signal" literally. And when the offence is rare, even a good detector's alerts are mostly false, so precision, not
+only catch rate, decides whether it is useful.</p>
 
 <h2>6. Limitations</h2>
 <p>The results describe a simulation I designed, not real markets; real traders, latency and accounts are richer and messier. The rule's
 success is partly circular because it was written knowing the pattern, which is why the layering test exists. The principle detector was
 designed after Part 1 by someone who knew how the spoofer worked; it encodes the law rather than the spoofer's settings and was tested on
 cases it was not tuned for, but it remains one reading of the law. Samples are about 60–80 spoof episodes per size, so intervals are wide.
-Agents do not learn or respond strategically to surveillance. No result here is evidence about any real trader.</p>
+The background traders do not learn; the challenger does, but it is a simple search over seven settings, not every strategy a human
+could invent, and the refined detector was designed after seeing its first loophole. Visibility weights come from this simulator's book.
+No result here is evidence about any real trader.</p>
 
 <h2>7. Conclusion and further work</h2>
 <p>A detector cannot find this manipulation by looking for the unusual. It can find it by looking for the purpose, given who placed each
 order, and nothing found here separates manipulation from an honest change of mind. Next steps, for Sixth Form: compare the simulator with
-real order-book data; let the spoofer learn its own dodges rather than trying ones I chose; study how regulators could link accounts to
-their owners; and extend the account-level approach to wash trading using graph methods.</p>
+real order-book data (LOBSTER's free NASDAQ samples); give the challenger a learning agent, such as reinforcement learning, and search
+against both versions of the definition at once; study how regulators could link accounts to their owners; and extend the account-level
+approach to wash trading using graph methods.</p>
 
 <h2>Reproducibility and use of AI tools</h2>
 <p class=note>All code, data-generation seeds and results are public at <a href="https://github.com/trader213132/detecting-the-unseen">github.com/trader213132/detecting-the-unseen</a>.
-<code>python run_experiments.py</code>, <code>python run_extensions.py</code> and <code>python run_teaching.py</code> reproduce every number;
-<code>python -m pytest</code> runs 25 tests; this report is written by <code>python build_report.py</code> from the results files.
+<code>python run_experiments.py</code>, <code>run_extensions.py</code>, <code>run_teaching.py</code>, <code>run_evasion_cost.py</code>,
+<code>run_challenger.py</code> and <code>run_thresholds.py</code> reproduce every number; <code>python -m pytest</code> runs the tests; this report is written by <code>python build_report.py</code> from the results files.
 AI assistants (Claude and ChatGPT) were used to help write code and draft text; the experiments, checks and conclusions are my responsibility.
 All spoofing happens inside an offline simulation.</p>
 
@@ -250,5 +319,8 @@ All spoofing happens inside an offline simulation.</p>
 <li><i>Urra, Lopez Gonzalez &amp; Sheth v Financial Conduct Authority</i> (2025). Upper Tribunal (Tax and Chancery Chamber), decision of 1 July 2025.</li>
 <li>Wang, X. &amp; Wellman, M. P. (2017). Spoofing the limit order book: an agent-based model. <i>Proceedings of AAMAS 2017</i>.</li>
 <li>Wang, X., Hoang, C., Vorobeychik, Y. &amp; Wellman, M. P. (2021). Spoofing the limit order book: a strategic agent-based analysis. <i>Games</i>, 12(2), 46.</li>
+<li>Poutré, C., Chételat, D. &amp; Morales, M. (2024). Deep unsupervised anomaly detection in high-frequency markets. <i>The Journal of Finance and Data Science</i>, 10, 100129. doi:10.1016/j.jfds.2024.100129.</li>
+<li>DeLise, T. (2023). Deep semi-supervised anomaly detection for finding fraud in the futures market. arXiv:2309.00088.</li>
+<li>Financial Conduct Authority (2024). Market Abuse Surveillance TechSprint. fca.org.uk.</li>
 </ol>
 </main></body></html>

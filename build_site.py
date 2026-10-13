@@ -248,7 +248,7 @@ def extensions_payload():
 
 
 def teaching_payload():
-    """Part 2 (run_teaching.py): the ladder of teaching, if it has been run."""
+    """Parts 2-5 (run_teaching.py, run_evasion_cost.py, run_challenger.py, run_thresholds.py), where run."""
     def records(df, digits=4):
         return [{k: (round(v, digits) if isinstance(v, float) else v) for k, v in r.items()
                  if not (isinstance(v, float) and np.isnan(v))} for r in df.to_dict("records")]
@@ -257,7 +257,10 @@ def teaching_payload():
     for key, name in [("principle", "teaching_principle.csv"), ("paired", "teaching_paired.csv"),
                       ("reversal", "teaching_reversal_main.csv"), ("markets", "teaching_markets.csv"),
                       ("accounts", "teaching_accounts.csv"), ("evasion", "teaching_evasion.csv"),
-                      ("price", "evasion_cost.csv"), ("price_honest", "evasion_cost_honest.csv")]:
+                      ("price", "evasion_cost.csv"), ("price_honest", "evasion_cost_honest.csv"),
+                      ("challenger", "challenger.csv"), ("challenger_honest", "challenger_honest.csv"),
+                      ("challenger_progress", "challenger_progress.csv"), ("visibility", "visibility.csv"),
+                      ("thresholds", "thresholds.csv"), ("budget", "alert_budget.csv")]:
         if (RESULTS / name).exists():
             df = pd.read_csv(RESULTS / name)
             if key == "reversal":
