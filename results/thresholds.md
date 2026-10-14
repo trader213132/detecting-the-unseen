@@ -29,3 +29,4 @@ Both versions let about 1% of calm validation bars alert. *False alerts* are per
 | Legal definition, 40-step windows | 92% | 0% | 0.70 | 0.80 | 57% | 12% | 1% |
 | Legal definition, each order's life | 85% | 0% | 0.35 | 0.55 | 71% | 20% | 2% |
 | Legal definition, as the market sees it | 85% | 0% | 0.25 | 0.50 | 77% | 25% | 3% |
+| Both versions together | 92% | 0% | 0.90 | 1.25 | 51% | 9% | 1% |

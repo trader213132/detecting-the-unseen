@@ -18,15 +18,15 @@
   const pct = (v, d = 0) => (v === undefined || v === null || Number.isNaN(v) ? "n/a" : `${(v * 100).toFixed(d)}%`);
   const lots = (v) => `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(2)}`;
 
-  const TARGETS = ["nobody", "rule", "window", "order-life", "seen"];
-  const NAME = { nobody: "No surveillance", rule: "The rule", window: "Legal definition, 40-step windows",
-    "order-life": "Legal definition, each order's life", seen: "Legal definition, as the market sees it" };
-  const SHORT = { nobody: "nobody", rule: "the rule", window: "the windowed definition", "order-life": "the order-life definition",
-    seen: "the 'as the market sees it' definition" };
-  const COLOUR = { nobody: "var(--ink-3)", rule: "var(--det-rule)", window: "var(--det-pca)", "order-life": "var(--mark)", seen: "var(--det-iforest)" };
-  const DETS = ["rule", "window", "order-life", "seen"];
-
   const C = T.challenger;
+  const TARGETS = ["nobody", "rule", "window", "order-life", "seen", "both"].filter((t) => C.some((r) => r.target === t));
+  const NAME = { nobody: "No surveillance", rule: "The rule", window: "Legal definition, 40-step windows",
+    "order-life": "Legal definition, each order's life", seen: "Legal definition, as the market sees it", both: "Both versions together" };
+  const SHORT = { nobody: "nobody", rule: "the rule", window: "the windowed definition", "order-life": "the order-life definition",
+    seen: "the 'as the market sees it' definition", both: "both versions together" };
+  const COLOUR = { nobody: "var(--ink-3)", rule: "var(--det-rule)", window: "var(--det-pca)", "order-life": "var(--mark)", seen: "var(--det-iforest)", both: "#7b61d9" };
+  const DETS = ["rule", "window", "order-life", "seen", "both"];
+
   const plain = (t) => C.find((r) => r.target === t && r.rank === 0);
   const best = (t) => C.filter((r) => r.target === t && r.rank > 0).sort((a, b) => b.payoff - a.payoff)[0];
   const honest = (cas, det, m) => (T.challenger_honest || []).find((r) => r.case === cas && r.detector === det && (m === undefined || r.size_mult === m));
@@ -47,7 +47,7 @@
   const vis = T.visibility || [];
   N.vis5 = pct((vis.find((r) => r.ticks_behind_best === 5) || {}).weight);
   N.vis6 = pct((vis.find((r) => r.ticks_behind_best === 6) || {}).weight, 0);
-  ["order-life", "seen", "window", "rule"].forEach((d) => {
+  ["order-life", "seen", "window", "rule", "both"].forEach((d) => {
     const k = d.replace("-", "");
     const h = (c, m) => (honest(c, d, m) || {}).value;
     N[`skew16_${k}`] = pct(h("market maker working off a position", 16));
@@ -174,14 +174,13 @@
 
   $$("[data-chart='duel']").forEach(duel);
   $$("[data-chart='learning']").forEach(learning);
-  table($("[data-ctable='best']"), ["Played against", "Best strategy found", "Payoff (95% CI)", "Caught: rule", "windows", "order life", "as seen"],
+  table($("[data-ctable='best']"), ["Played against", "Best strategy found", "Payoff (95% CI)", "Caught: rule", "windows", "order life", "as seen", "both"],
     TARGETS.flatMap((t) => [plain(t), best(t)].map((r, j) => [`${NAME[t]}${j ? "" : " (ordinary spoof)"}`, j ? r.strategy : "16× wall, 1–2 ticks back",
       `${lots(r.payoff)} (${lots(r.payoff_ci_low)} to ${lots(r.payoff_ci_high)})`, ...DETS.map((d) => pct(r[`caught_${d}`]))])), 2);
   const CASES = ["spoof", "layered spoof", "honest large order", "honest quick cancel", "honest change of mind", "market maker working off a position"];
-  table($("[data-ctable='honest']"), ["Case (16×)", "Rule", "40-step windows", "Order life", "As the market sees it"],
+  table($("[data-ctable='honest']"), ["Case (16×)", "Rule", "40-step windows", "Order life", "As the market sees it", "Both together"],
     [...CASES.map((c) => [c[0].toUpperCase() + c.slice(1), ...DETS.map((d) => pct((honest(c, d, 16) || {}).value))]),
-      ["False alarms, calm market (windows)", "", "", pct((honest("normal calm market", "order-life") || {}).value, 1), pct((honest("normal calm market", "seen") || {}).value, 1)],
-      ["False alarms, volatile market", "", "", pct((honest("normal volatile market", "order-life") || {}).value, 1), pct((honest("normal volatile market", "seen") || {}).value, 1)]]);
+      ...["calm", "volatile"].map((r) => [`False alarms, ${r} market (40-step blocks)`, "", ...["window", "order-life", "seen", "both"].map((d) => pct((honest(`normal ${r} market`, d) || {}).value, 1))])]);
   const NAMES = { Rule: "Rule", "PCA (generic)": "PCA", "IForest (generic)": "Isolation Forest", "Seq-PCA (generic)": "Sequence PCA", "LSTM-AE (generic)": "LSTM autoencoder" };
   table($("[data-ctable='thresholds']"), ["Detector", "Threshold", "False alarms, calm", "False alarms, volatile", "Spoofs caught 16×, volatile", "Honest large flagged 16×"],
     Object.keys(NAMES).flatMap((d) => ["fixed", "adaptive"].map((mode) => [NAMES[d], mode, pct(th(d, mode, "normal_calm", "false_alarm_rate"), 1),
@@ -192,14 +191,14 @@
   // ---- Figure 12: of a desk's alerts, how many are real? ---------------------------------------------
   $$("[data-chart='budget']").forEach((box) => {
     const seg = box.parentElement.querySelector("[data-prev]");
-    const rows = () => { const k = seg?.querySelector("[aria-selected='true']")?.dataset.prev || "10"; return B.map((r) => ({ name: NAMES[r.detector] || r.detector, v: r[`precision_1_in_${k}`], seen: r.detector === SEEN, law: r.detector.startsWith("Legal") })); };
+    const rows = () => { const k = seg?.querySelector("[aria-selected='true']")?.dataset.prev || "10"; return B.map((r) => ({ name: NAMES[r.detector] || r.detector, v: r[`precision_1_in_${k}`], seen: r.detector === SEEN, both: r.detector === "Both versions together", law: r.detector.startsWith("Legal") })); };
     const draw = () => {
       box.innerHTML = "";
       rows().forEach((r) => {
         const row = el("div", { class: "lab-row" }, box);
         el("span", { class: "lab-name" }, row, r.name);
         const track = el("span", { class: "lab-track", "aria-hidden": "true" }, row);
-        const bar = el("span", { class: "lab-bar", style: `background:${r.seen ? "var(--det-iforest)" : r.law ? "var(--mark)" : "var(--ink-3)"}` }, track);
+        const bar = el("span", { class: "lab-bar", style: `background:${r.seen ? "var(--det-iforest)" : r.both ? COLOUR.both : r.law ? "var(--mark)" : "var(--ink-3)"}` }, track);
         requestAnimationFrame(() => { bar.style.width = `${Math.max(0.8, (r.v || 0) * 100)}%`; });
         el("span", { class: "lab-val" }, row, pct(r.v));
       });

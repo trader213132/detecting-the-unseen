@@ -237,8 +237,9 @@ t_price_honest = table(["Order-life principle on honest trading", "Value"],
 
 
 TARGET_NAME = {"nobody": "No surveillance", "rule": "The rule", "window": "Definition, 40-step windows",
-               "order-life": "Definition, each order's life", "seen": "Definition, as the market sees it"}
-CDETS = ["rule", "window", "order-life", "seen"]
+               "order-life": "Definition, each order's life", "seen": "Definition, as the market sees it",
+               "both": "Both versions together"}
+CDETS = ["rule", "window", "order-life", "seen", "both"]
 c_plain = lambda t: chal[(chal.target == t) & (chal["rank"] == 0)].iloc[0]
 c_best = lambda t: chal[(chal.target == t) & (chal["rank"] > 0)].sort_values("payoff", ascending=False).iloc[0]
 lots = lambda v: f"{v:+.2f}"
@@ -253,16 +254,15 @@ def challenger_rows():
     return out
 
 
-t_chal = table(["Played against", "Strategy", "Payoff (95% CI)", "Gain if never caught", "Caught: rule", "windows", "order life", "as seen"],
+t_chal = table(["Played against", "Strategy", "Payoff (95% CI)", "Gain if never caught", "Caught: rule", "windows", "order life", "as seen", "both"],
                challenger_rows(), "Table 12. The challenger's best strategy against each detector, re-tested on 40 sessions it never saw "
                "(80 spoofs). Payoff: lots of the spoofer's genuine order that traded, minus any bought back or any of its wall that traded, "
                "beyond an honest twin with only the genuine order, per spoof; a caught spoof's profit is confiscated.", num_from=2)
 H_CASES = ["spoof", "layered spoof", "honest large order", "honest quick cancel", "honest change of mind", "market maker working off a position"]
 hv = lambda case, det, m=16: chal_h[(chal_h.case == case) & (chal_h.detector == det) & ((chal_h.size_mult == m) if m else chal_h.size_mult.isna())].value.iloc[0]
-t_chal_h = table(["Case (16×)", "Rule", "40-step windows", "Order life", "As the market sees it"],
+t_chal_h = table(["Case (16×)", "Rule", "40-step windows", "Order life", "As the market sees it", "Both together"],
                  [[c[0].upper() + c[1:]] + [pct(hv(c, d)) for d in CDETS] for c in H_CASES] +
-                 [["False alarms, calm (windows)", "", "", pct(hv("normal calm market", "order-life", None), 1), pct(hv("normal calm market", "seen", None), 1)],
-                  ["False alarms, volatile", "", "", pct(hv("normal volatile market", "order-life", None), 1), pct(hv("normal volatile market", "seen", None), 1)]],
+                 [[f"False alarms, {r} (40-step blocks)", ""] + [pct(hv(f"normal {r} market", d, None), 1) for d in CDETS[1:]] for r in ("calm", "volatile")],
                  "Table 13. Every account-level detector on the same spoofs and honest cases, calm market. Each threshold lets about 1% of "
                  "normal 40-step windows alert.")
 P1 = ["Rule", "PCA (generic)", "IForest (generic)", "Seq-PCA (generic)", "LSTM-AE (generic)"]
@@ -381,6 +381,12 @@ N.update(
     skewlife=pct(hv("market maker working off a position", "order-life")), skewseen=pct(hv("market maker working off a position", "seen")),
     seenspoof16=pct(hv("spoof", "seen")), seenlayer16=pct(hv("layered spoof", "seen")),
     seenfpr=pct(hv("normal calm market", "seen", None), 1), seenfprvol=pct(hv("normal volatile market", "seen", None), 1),
+    cboth=lots(cb("both", "payoff")), cbothci=f"{lots(cb('both', 'payoff_ci_low'))} to {lots(cb('both', 'payoff_ci_high'))}",
+    cbothstrat=html.escape(cb("both", "strategy")), cbothcaught=pct(cb("both", "caught_both")),
+    cbothshare=pct(max(0, cb("both", "payoff")) / cb("nobody", "payoff")),
+    bothfpr=pct(hv("normal calm market", "both", None), 1), bothfprvol=pct(hv("normal volatile market", "both", None), 1),
+    bothskew=pct(hv("market maker working off a position", "both")), bothgen=pct(hv("honest large order", "both")),
+    bothwd=pct(hv("honest quick cancel", "both")),
 )
 
 CSS = """
@@ -444,7 +450,8 @@ flagged {N['prgen']} of honest large orders, and kept its false alarms at {N['pr
 tried to dodge it: every dodge tested either gave up the spoofer's gain or needed two accounts the regulator could not link. In a fourth, a
 search program looked for dodges itself. After twice gaming my scoring, it found a real loophole: a large decoy order too far from the price
 for traders to see hid a spoof completely. Measuring the signal the way the market sees it closed that gap and stopped an honest market
-maker being flagged, leaving a spoofer at most {N['cshare']} of its benefit, and only by spoofing small. A fifth showed that thresholds which
+maker being flagged, leaving a spoofer at most {N['cshare']} of its benefit, and only by spoofing below the alert threshold, a gap that combining
+detectors did not close. A fifth showed that thresholds which
 adapt to the market cut false alarms but do not help tell spoofs from honest orders, and that because spoofing is rare, most alerts from
 even the best detector are false. No detector could distinguish a spoof from an honest trader who changes their mind, because only the
 intention differs.</p>
@@ -633,7 +640,12 @@ spoofs caught, no honest large orders or quick cancels flagged, and false alarms
 <p>Against the refined detector the best strategy found was {N['cseenstrat']}: it kept {N['cseen']} lots per spoof ({N['cseenci']}),
 {N['cshare']} of the unwatched best, by staying small enough to sit under the alert threshold ({N['cseencaught']} caught). The windowed
 version of the definition caught {N['cseenwin']} of it, and the refined version caught {N['clifeseen']} of the dodge that beat the windowed
-one, so running both closes each other's gap. <b>H5 is not supported as stated</b>: a search found a dodge that kept the whole benefit
+one, so I added a fifth detector that alerts when either version does, and ran a fifth search against it. It did not help. The
+challenger kept the same small wall and added a decoy to slip past the windowed half too ({N['cbothstrat']}): it still kept
+{N['cbothshare']} of the unwatched best ({N['cboth']} lots per spoof, {N['cbothci']}; {N['cbothcaught']} caught). Meanwhile combining
+quadrupled the false alarms ({N['bothfpr']} of calm 40-step blocks, {N['bothfprvol']} when volatile) and flagged {N['bothskew']} of the
+honest market makers. What is left is a matter of size, not of rules: a spoof small enough to sit under the alert threshold escapes, and
+catching it means accepting more false alarms. <b>H5 is not supported as stated</b>: a search found a dodge that kept the whole benefit
 against the original definition. Fixing it from the law left a spoofer able to keep less than half, and only by spoofing small.</p>
 {t_chal}
 {t_chal_h}

@@ -48,6 +48,7 @@
     { group: "Taught a principle", name: "Legal definition, 40-step windows", kind: "pr" },
     { group: "Taught a principle", name: "Legal definition, each order's life", kind: "life" },
     { group: "Taught a principle", name: "Legal definition, as the market sees it", kind: "seen" },
+    { group: "Taught a principle", name: "Both versions together (40-step windows or as seen)", kind: "both" },
     { group: "Control", name: "Isolation Forest on account data", kind: "ua" },
   ];
 
@@ -84,9 +85,9 @@
     control: "honest large order", withdrawal: "honest quick cancel", reversal: "honest change of mind", skew: "market maker working off a position" };
   function value(det, sit, m) {
     const p1 = det.kind === "p1" ? det.id : null;
-    if (det.kind === "seen") {
-      if (sit.id === "champion") return (champion() || {}).caught_seen;
-      return SEEN_CASE[sit.id] ? h4(SEEN_CASE[sit.id], "seen", sit.sized ? m : undefined) : undefined;
+    if (det.kind === "seen" || det.kind === "both") {
+      if (sit.id === "champion") return (champion() || {})[`caught_${det.kind}`];
+      return SEEN_CASE[sit.id] ? h4(SEEN_CASE[sit.id], det.kind, sit.sized ? m : undefined) : undefined;
     }
     if (sit.id === "skew") {
       const d = p1 === "Rule" ? "rule" : { pr: "window", life: "order-life" }[det.kind];
@@ -143,7 +144,7 @@
 
   // Part 4's detector and situations appear only once run_challenger.py's results are on the site.
   if (!T.challenger_honest) {
-    for (let i = DETECTORS.length - 1; i >= 0; i--) if (DETECTORS[i].kind === "seen") DETECTORS.splice(i, 1);
+    for (let i = DETECTORS.length - 1; i >= 0; i--) if (["seen", "both"].includes(DETECTORS[i].kind)) DETECTORS.splice(i, 1);
     for (let i = SITUATIONS.length - 1; i >= 0; i--) if (["skew", "champion"].includes(SITUATIONS[i].id)) SITUATIONS.splice(i, 1);
   }
 

@@ -33,6 +33,8 @@ seen); the windowed detector is scored on everything the searches tried:
     seen       order-life, measuring the signal as the market sees it (new here; see
                src/accounts.py): each order weighted by how often traders can see a price
                that far from the best, and orders AT the best price left out
+    both       window OR seen: an alert from either version (added after the first results
+               showed each catching the other's best dodge)
 
 The search uses 16 sessions. A search can get stuck on a strategy that is only locally best, so
 at the end every strategy tried in ANY round is scored against each detector, and the five best
@@ -64,8 +66,8 @@ RESULTS, DATA = ROOT / "results", ROOT / "data"
 SEARCH_SEEDS = [70_000 + i for i in range(12)]
 TEST_SEEDS = [72_000 + i for i in range(40)]
 VAL_SEEDS = [2000 + i for i in range(10)]          # the normal validation sessions of Parts 1-3
-TARGETS = ["nobody", "rule", "window", "order-life", "seen"]
-SEARCHED = ["nobody", "rule", "order-life", "seen"]
+TARGETS = ["nobody", "rule", "window", "order-life", "seen", "both"]
+SEARCHED = ["nobody", "rule", "order-life", "seen", "both"]
 DETECTORS = TARGETS[1:]
 POP, GENERATIONS, KEEP, CHILDREN = 32, 15, 8, 16
 PLAIN = {"size": 16, "distance": -1, "layers": 1, "patience": 0, "cover": 0, "decoy": 0.0, "decoy_at": 0}
@@ -149,6 +151,7 @@ def judge(session, taus, weights):
                     "window": window_caught(rows, p40, ep, taus["window"]),
                     "order-life": life_caught(ep, life, taus["order-life"]),
                     "seen": life_caught(ep, seen, taus["seen"])})
+        out[-1]["both"] = out[-1]["window"] or out[-1]["seen"]
     return out
 
 
@@ -313,9 +316,18 @@ def honest_check(taus, weights):
         for i in range(20):
             s = run_session(base + i, regime)
             life, seen = A.lifetime_scores(s), A.lifetime_scores(s, weights)
-            res["order-life"].append(np.mean(A.lifetime_window_max(s, life[0], life[2]) > taus["order-life"]))
-            res["seen"].append(np.mean(A.lifetime_window_max(s, seen[0], seen[2]) > taus["seen"]))
-        for d in ("order-life", "seen"):
+            life_hit = A.lifetime_window_max(s, life[0], life[2]) > taus["order-life"]
+            seen_hit = A.lifetime_window_max(s, seen[0], seen[2]) > taus["seen"]
+            rows = A.account_rows(s, 40)
+            starts = rows["starts"][rows["win"]][A.principle_score(rows["X"]) > taus["window"]]
+            win_hit = np.zeros(len(seen_hit), bool)                     # a window alert, by the 40-step block it starts in
+            k = (starts - A.START) // A.WINDOW
+            win_hit[k[(k >= 0) & (k < len(win_hit))]] = True
+            res["order-life"].append(life_hit.mean())
+            res["seen"].append(seen_hit.mean())
+            res["window"].append(win_hit.mean())
+            res["both"].append((win_hit | seen_hit).mean())
+        for d in ("window", "order-life", "seen", "both"):
             out.append({"case": f"normal {regime} market", "kind": "false alarms (share of 40-step windows)",
                         "size_mult": np.nan, "detector": d, "value": float(np.mean(res[d])), "n": 20})
     cases = [("honest large order", "control", lambda m: [20_000 + 100 * m + i for i in range(15)]),
@@ -344,6 +356,10 @@ def run():
     print("thresholds:", {k: round(v, 1) for k, v in taus.items()})
     with Pool(max(1, min(8, os.cpu_count() or 1) - 1)) as pool:
         arena = Arena(pool, taus, weights)
+        saved = DATA / "challenger_arena.pkl"
+        if "--reuse" in sys.argv and saved.exists():                   # strategies already played need not be replayed
+            arena.seen = {k: (g, rows.assign(caught_both=rows.caught_window | rows.caught_seen))
+                          for k, (g, rows) in pickle.loads(saved.read_bytes()).items()}
         finals, progress = [], []
         for target in SEARCHED:
             scored, prog = search(arena, target, seed=4)

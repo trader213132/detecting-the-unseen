@@ -302,15 +302,16 @@ def price_of_evasion(points, path):
     plt.close(fig)
 
 
-TARGET_COLOUR = {"nobody": MUTED, "rule": "#2a78d6", "window": "#eb6834", "order-life": "#c42a68", "seen": "#1baf7a"}
+TARGET_COLOUR = {"nobody": MUTED, "rule": "#2a78d6", "window": "#eb6834", "order-life": "#c42a68", "seen": "#1baf7a", "both": "#6a4fc9"}
 TARGET_NAME = {"nobody": "No surveillance", "rule": "The rule", "window": "Legal definition, 40-step windows",
-               "order-life": "Legal definition, each order's life", "seen": "Legal definition, as the market sees it"}
+               "order-life": "Legal definition, each order's life", "seen": "Legal definition, as the market sees it",
+               "both": "Both versions together"}
 
 
 def challenger(finals, progress, targets, path):
     """Part 4. Left: the search learning, round by round. Right: on unseen sessions, the plain
     spoof's payoff against each detector and the best strategy the challenger found."""
-    fig, (a, b) = plt.subplots(1, 2, figsize=(9.6, 4.4), gridspec_kw={"width_ratios": [1, 1.25]})
+    fig, (a, b) = plt.subplots(1, 2, figsize=(9.6, 4.8), gridspec_kw={"width_ratios": [1, 1.25]})
     for t in targets:
         q = progress[progress.target == t]
         a.plot(q.generation, q.best_search_score, color=TARGET_COLOUR[t], label=TARGET_NAME[t])

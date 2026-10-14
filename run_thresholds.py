@@ -122,17 +122,20 @@ def account_level():
     taus = R.thresholds(weights)
     rows = []
     for regime, base in (("calm", 3000), ("volatile", 53_000)):
-        counts = {"window": [], "order-life": [], "seen": []}
+        counts = {"window": [], "order-life": [], "seen": [], "both": []}
         for i in range(20):
             s = run_session(base + i, regime)
             r = A.account_rows(s, 40)
             p = A.principle_score(r["X"])
             hit = p > taus["window"]
-            counts["window"].append(alerts_from_accounts(r["starts"][r["win"]][hit], r["account"][hit]))
+            w_time, w_acc = r["starts"][r["win"]][hit], r["account"][hit]
+            counts["window"].append(alerts_from_accounts(w_time, w_acc))
             for name, w in (("order-life", None), ("seen", weights)):
                 c_time, c_acc, sc = A.lifetime_scores(s, w)
                 hit = sc > taus[name]
                 counts[name].append(alerts_from_accounts(c_time[hit], c_acc[hit]))
+            # both versions together: an alert from either, the same account within 40 steps counted once
+            counts["both"].append(alerts_from_accounts(np.r_[w_time, c_time[hit]], np.r_[w_acc, c_acc[hit]]))
         for name, v in counts.items():
             low, high = bootstrap_ci(v)
             rows.append({"detector": name, "mode": "fixed", "test": f"normal_{regime}", "size_mult": np.nan,
@@ -144,7 +147,7 @@ def alert_budget(market, accounts):
     """Precision at three levels of how common spoofing is (16x spoofs, calm market, fixed thresholds)."""
     honest = pd.read_csv(RESULTS / "challenger_honest.csv")
     names = {"window": "Legal definition, 40-step windows", "order-life": "Legal definition, each order's life",
-             "seen": "Legal definition, as the market sees it"}
+             "seen": "Legal definition, as the market sees it", "both": "Both versions together"}
     out = []
 
     def add(name, catch8, catch16, genuine16, fa_calm, fa_vol):

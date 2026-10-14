@@ -176,7 +176,8 @@ Part 3 only tried dodges I thought of. `run_challenger.py` lets a genetic search
 - **It gamed the scoring twice first** (selling more lots through a real order; a decoy that hurt the comparison twin). Both were holes in how success was measured, not in the detector.
 - **Then a real loophole:** a large decoy on the other side, too far from the price for traders to see, cancels the wall out of the legal definition's "on balance" sums. It kept +0.28 lots per spoof, the same as with no surveillance, and was never caught.
 - **The fix, from the law's wording** (a *signal* nobody can see is not a signal): weigh each order by how often traders can see a price that far from the best, at the closest it came while alive, and leave out orders at the best price (`src/accounts.py`, `signal_weights`). It caught 90% of the decoy trick and stopped flagging an honest market maker working off a position (98% → 0%).
-- **Against the fixed version** the best dodge kept +0.12 lots per spoof (45% of the unwatched best) by staying under the alert threshold; the older windowed version caught 85% of it, so the two versions cover each other.
+- **Against the fixed version** the best dodge kept +0.12 lots per spoof (45% of the unwatched best) by staying under the alert threshold.
+- **Both versions together** (alert if either alerts) did not help: the challenger added a decoy and kept the same +0.12, while false alarms quadrupled (0.6% → 2.5%). What is left is a matter of size: a spoof small enough to sit under the threshold escapes, and catching it costs false alarms.
 
 Full tables: `results/challenger.md`.
 

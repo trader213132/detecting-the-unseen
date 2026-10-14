@@ -142,7 +142,9 @@
           <!-- results:start -->
           <h3>Then it found a real loophole</h3>
           <p>Against the legal definition as I first wrote it, the challenger's best strategy was: <i data-cnum="beststrat_orderlife"></i>. It kept <span data-cnum="best_orderlife"></span> lots per spoof, as much as the best it found with no surveillance at all (<span data-cnum="best_nobody"></span>), and the detector never caught it. Against the hand-written rule, simply splitting the wall into layers was enough (<span data-cnum="best_rule"></span>). The next section explains the loophole and the fix.</p>
-          <p>Against the fixed version, the best it could find was <i data-cnum="beststrat_seen"></i>: it kept <span data-cnum="best_seen"></span> lots per spoof, <span data-cnum="keeps_seen"></span> of the unwatched best, by staying small enough to sit under the alert threshold. The two versions of the definition cover each other's gaps: the older, windowed version caught <span data-cnum="bestcaught_seen_window"></span> of that small spoof, and the new version caught <span data-cnum="bestcaught_orderlife_seen"></span> of the decoy trick.</p>
+          <p>Against the fixed version, the best it could find was <i data-cnum="beststrat_seen"></i>: it kept <span data-cnum="best_seen"></span> lots per spoof, <span data-cnum="keeps_seen"></span> of the unwatched best, by staying small enough to sit under the alert threshold. The two versions seemed to cover each other's gaps: the older, windowed version caught <span data-cnum="bestcaught_seen_window"></span> of that small spoof, and the new version caught <span data-cnum="bestcaught_orderlife_seen"></span> of the decoy trick.</p>
+          <h3>Both versions together</h3>
+          <p>So I added a fifth detector that alerts when either version does, and set the challenger on it too. It did not help: the challenger kept the same small wall and added a decoy to slip past the windowed half as well (<i data-cnum="beststrat_both"></i>), keeping <span data-cnum="best_both"></span> lots per spoof, <span data-cnum="keeps_both"></span> of the unwatched best. Meanwhile combining raised false alarms to <span data-cnum="fpr_both"></span> of calm trading and flagged <span data-cnum="skew16_both"></span> of the honest market makers. <mark>What is left is a matter of size, not of rules: a spoof small enough to sit under the alert threshold escapes, and catching it means accepting more false alarms.</mark></p>
           <!-- results:end -->
         </section>
 
@@ -202,11 +204,11 @@
 
   <script src="data/results.js"></script>
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
-  <script src="data/teaching.js?v=13" onerror="window.TEACHING = null"></script>
+  <script src="data/teaching.js?v=15" onerror="window.TEACHING = null"></script>
   <script src="progress.js"></script>
   <script src="assets/site.js?v=9"></script>
   <script src="assets/masthead.js?v=10"></script>
-  <script src="assets/challenger.js?v=13"></script>
+  <script src="assets/challenger.js?v=14"></script>
   <script type="module" src="assets/lake.js?v=12"></script>
 </body>
 </html>

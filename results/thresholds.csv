@@ -102,6 +102,8 @@ LSTM-AE (generic),adaptive,control_calm,16.0,flag_rate,0.5,0.3333333333333333,0.
 window,fixed,normal_calm,,false_alerts_per_session,0.7,0.35,1.1,20
 order-life,fixed,normal_calm,,false_alerts_per_session,0.35,0.1,0.6,20
 seen,fixed,normal_calm,,false_alerts_per_session,0.25,0.1,0.45,20
+both,fixed,normal_calm,,false_alerts_per_session,0.9,0.5,1.3,20
 window,fixed,normal_volatile,,false_alerts_per_session,0.8,0.4,1.3,20
 order-life,fixed,normal_volatile,,false_alerts_per_session,0.55,0.3,0.85,20
 seen,fixed,normal_volatile,,false_alerts_per_session,0.5,0.25,0.8,20
+both,fixed,normal_volatile,,false_alerts_per_session,1.25,0.7,1.9,20
