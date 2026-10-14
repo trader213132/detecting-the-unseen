@@ -3,7 +3,7 @@
 //   - add a new entry at the TOP of `log` whenever something happens
 //   - update `updated` to today's date
 window.PROGRESS = {
-  updated: "2026-10-12",
+  updated: "2026-10-14",
   deadline: { date: "2026-11-06", label: "Research Scholarship submission" },
   schedule: { from: "2026-10-08", to: "2026-11-06" },
   milestones: [
@@ -21,6 +21,11 @@ window.PROGRESS = {
     { label: "Proofread and submit", from: "2026-11-05", to: "2026-11-06", status: "next" }
   ],
   log: [
+    {
+      date: "2026-10-14",
+      title: "Part 6: the price of a false alarm",
+      text: "Turned the last gap into a curve: for every alert threshold, the best payoff a spoofer can keep. Against the original legal definition the decoy keeps everything at every false-alarm rate, and layering beats the rule at every rate. Against the refined definition the curve falls, and from about 1% false alarms spoofing stops paying. The fix turned a loophole no threshold could close into a trade-off a regulator can set."
+    },
     {
       date: "2026-10-12",
       title: "Parts 4 and 5: a search program attacks the detector, and the alert budget",

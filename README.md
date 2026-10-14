@@ -22,6 +22,7 @@ python run_teaching.py               # Part 2: the ladder of teaching (about 30 
 python run_evasion_cost.py           # Part 3: the price of evasion (about 10 minutes)
 python run_challenger.py             # Part 4: an AI challenger searches for dodges (about 40 minutes on 8 cores)
 python run_thresholds.py             # Part 5: adaptive thresholds and the alert budget (about 10 minutes)
+python run_frontier.py               # Part 6: the price of a false alarm (about 10 minutes)
 python build_report.py               # the research report: docs/report.html and docs/report.pdf
 python build_pages.py                # the shared header and footer on every page of the website
 python build_site.py                 # refreshes the website's data from the latest results
@@ -48,6 +49,7 @@ Results land in `results/summary.md` (tables), `results/metrics.csv` (every numb
 | `src/accounts.py` | Part 2: what each account did in each 40-step window, and the principle detector built from the legal definition. |
 | `run_evasion_cost.py` | Part 3: a spoofer that waits before pulling its wall, or buys back what it sold, against every detector; what each dodge costs it. |
 | `run_challenger.py` | Part 4: a genetic search over seven spoofing settings, run against each detector; the refined "as the market sees it" detector; an honest market maker working off a position. |
+| `run_frontier.py` | Part 6: what the best spoofer keeps at every false-alarm rate, for each detector. |
 | `run_thresholds.py` | Part 5: fixed vs adaptive alert thresholds in a volatile market, and how many of a desk's alerts would be real spoofs. |
 | `build_report.py` | Writes the research report (HTML and PDF) with every number and table read from `results/`. |
 | `build_pages.py` | Writes the shared header, menus and footer into every page of the website. |
@@ -190,7 +192,19 @@ Full tables: `results/challenger.md`.
 - **Adaptive thresholds** cut false alarms in a volatile market from 11–51% of bars to 6–17%, still far above the 1% target, and did nothing to separate spoofs from honest large orders.
 - **The alert budget:** the refined legal definition raised 0.25 false alerts per session. If a large spoof happened once in ten sessions, 25% of its alerts would be real; once in a hundred, 3%. For the untaught detectors it would be about 1% at one in ten. When the offence is rare, even good detectors' alerts are mostly false.
 
-Full tables: `results/thresholds.md`. The research report (`docs/report.pdf`) covers all five parts.
+Full tables: `results/thresholds.md`.
+
+## Part 6: the price of a false alarm
+
+`run_frontier.py` replays 61 strategies the challenger found, recording every spoof's raw score, and for each alert threshold lets the spoofer pick its best strategy on practice sessions and measures it on unseen ones.
+
+![The price of a false alarm](results/figures/fig11_frontier.png)
+
+- Against the original legal definition (windowed or by order life) the decoy keeps the full benefit at **every** false-alarm rate: no threshold catches a signal the detector cannot see. Against the rule, layering keeps about +0.10 at every rate.
+- Against the definition as the market sees it the curve falls: +0.11 once 0.4% of normal trading may alert, and from about 1.1% spoofing stops paying.
+- So the fix turned an unclosable loophole into a trade-off a regulator can set; comparing detectors by this curve, not one catch rate, is the main methodological point.
+
+Full table: `results/frontier.md`. The research report (`docs/report.pdf`) covers all six parts.
 
 ---
 

@@ -84,6 +84,19 @@
   N.budUntP10 = range(untaughtB.map((r) => r.precision_1_in_10));
   N.budUntP100 = range(untaughtB.map((r) => r.precision_1_in_100));
   N.budUntFa = untaughtB.length ? `${Math.min(...untaughtB.map((r) => r.false_alerts_per_session_calm)).toFixed(1)}–${Math.max(...untaughtB.map((r) => r.false_alerts_per_session_calm)).toFixed(1)}` : "n/a";
+  // Part 6: the price of a false alarm
+  const F = T.frontier || [];
+  const fr = (d) => F.filter((r) => r.detector === d && r.false_alarm_rate <= 0.10);
+  if (F.length) {
+    const seen = fr("seen"), zero = Math.min(...seen.filter((r) => r.best_payoff <= 0).map((r) => r.false_alarm_rate));
+    const unw = ((T.frontier_unwatched || [])[0] || {}).unwatched_best_payoff;
+    const mid = seen.filter((r) => r.best_payoff > 0 && r.best_payoff < unw - 0.01).sort((a, b) => a.false_alarm_rate - b.false_alarm_rate)[0];
+    N.frZero = pct(zero, 1);
+    if (mid) { N.frMid = lots(mid.best_payoff); N.frMidFa = pct(mid.false_alarm_rate, 1); }
+    N.frWin = lots(Math.min(...fr("window").map((r) => r.best_payoff)));
+    N.frRule = lots(Math.min(...fr("rule").map((r) => r.best_payoff)));
+    N.frUnw = lots(((T.frontier_unwatched || [])[0] || {}).unwatched_best_payoff ?? NaN);
+  }
   $$("[data-cnum]").forEach((n) => { if (N[n.dataset.cnum] !== undefined) n.textContent = N[n.dataset.cnum]; });
 
   // ---- Figure 10: what the best strategy keeps -------------------------------------------------

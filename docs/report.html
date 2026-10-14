@@ -58,7 +58,8 @@ tried to dodge it: every dodge tested either gave up the spoofer's gain or neede
 search program looked for dodges itself. After twice gaming my scoring, it found a real loophole: a large decoy order too far from the price
 for traders to see hid a spoof completely. Measuring the signal the way the market sees it closed that gap and stopped an honest market
 maker being flagged, leaving a spoofer at most 45% of its benefit, and only by spoofing below the alert threshold, a gap that combining
-detectors did not close. A fifth showed that thresholds which
+detectors did not close. A sixth turned this into a curve: with the refined definition, accepting false alarms in about 1.1% of
+normal trading left spoofing unprofitable, while against the original definition and the rule no false-alarm budget helped. A fifth showed that thresholds which
 adapt to the market cut false alarms but do not help tell spoofs from honest orders, and that because spoofing is rare, most alerts from
 even the best detector are false. No detector could distinguish a spoof from an honest trader who changes their mind, because only the
 intention differs.</p>
@@ -260,6 +261,7 @@ against the original definition. Fixing it from the law left a spoofer able to k
 
 
 <h3>4.11 Part 5: thresholds that follow the market, and the alert budget</h3>
+<!-- part5 -->
 <p>Every detector so far had one fixed threshold, set on calm trading. A threshold that adapts to current conditions, rising in
 proportion to how busy the detector's own recent scores are (never falling below the calm level), cut the untaught detectors' false
 alarms in a volatile market from 11%–51% of bars to 6%–17%: better, but still far above the 1% target (Table 14). The
@@ -277,6 +279,21 @@ false, which is one more reason an alert can only start an investigation.</p>
 <figure class=tbl><figcaption>Table 15. The alert budget (calm market, fixed thresholds). Precision is the share of a desk's alerts that are real spoofs, if one 16× spoof happens in every session, one in ten, or one in a hundred.</figcaption><table><thead><tr><th>Detector</th><th class=num>Spoofs 16×</th><th class=num>Honest large 16×</th><th class=num>False alerts per session</th><th class=num>Precision: 1 spoof per session</th><th class=num>1 per 10</th><th class=num>1 per 100</th></tr></thead><tbody><tr><td>Rule</td><td class=num>100%</td><td class=num>0%</td><td class=num>2.30</td><td class=num>30%</td><td class=num>4%</td><td class=num>0%</td></tr><tr><td>PCA</td><td class=num>24%</td><td class=num>47%</td><td class=num>2.00</td><td class=num>11%</td><td class=num>1%</td><td class=num>0%</td></tr><tr><td>Isolation Forest</td><td class=num>12%</td><td class=num>23%</td><td class=num>2.20</td><td class=num>5%</td><td class=num>1%</td><td class=num>0%</td></tr><tr><td>Sequence PCA</td><td class=num>8%</td><td class=num>37%</td><td class=num>0.50</td><td class=num>13%</td><td class=num>1%</td><td class=num>0%</td></tr><tr><td>LSTM autoencoder</td><td class=num>6%</td><td class=num>50%</td><td class=num>0.65</td><td class=num>9%</td><td class=num>1%</td><td class=num>0%</td></tr><tr><td>Legal definition, 40-step windows</td><td class=num>92%</td><td class=num>0%</td><td class=num>0.70</td><td class=num>57%</td><td class=num>12%</td><td class=num>1%</td></tr><tr><td>Legal definition, each order's life</td><td class=num>85%</td><td class=num>0%</td><td class=num>0.35</td><td class=num>71%</td><td class=num>20%</td><td class=num>2%</td></tr><tr><td>Legal definition, as the market sees it</td><td class=num>85%</td><td class=num>0%</td><td class=num>0.25</td><td class=num>77%</td><td class=num>25%</td><td class=num>3%</td></tr><tr><td>Both versions together</td><td class=num>92%</td><td class=num>0%</td><td class=num>0.90</td><td class=num>51%</td><td class=num>9%</td><td class=num>1%</td></tr></tbody></table></figure>
 <figure class=fig><img src='report-figures/fig10_thresholds.png' alt=''><figcaption>Figure 7. Left: fixed and adaptive thresholds in a volatile market. Right: the share of a desk’s alerts that are real spoofs, by how common spoofing is.</figcaption></figure>
 
+<h3>4.12 Part 6: the price of a false alarm</h3>
+<p>Parts 4 and 5 point to one trade-off: a spoof small enough to sit under the alert threshold escapes, and lowering the threshold means
+more false alarms. So the question a regulator actually faces is how much manipulation it must tolerate for each false alarm it is
+willing to investigate. To draw that curve, 61 strategies (the challenger's best against every detector, plus the most profitable with no
+surveillance and an ordinary spoof) were played again recording each spoof's raw score under every detector. For every threshold, the
+spoofer picked its best strategy on the 12 practice sessions (or chose not to spoof) and its payoff was measured on the 40 unseen ones.</p>
+<p>The curves differ in kind (Figure 8). Against the original legal definition, windowed or by order life, the decoy kept the full
+benefit (+0.28 and +0.28 lots per spoof, the same as with no surveillance, +0.28) at every false-alarm rate up to
+10%: no threshold catches a signal the detector cannot see. Against the rule, splitting the wall kept +0.10 at every rate. Against
+the refined definition the curve falls: to +0.11 once 0.4% of normal 40-step blocks may alert, and from 1.1%
+the best strategy the spoofer could choose lost lots on unseen sessions (-0.10), so not spoofing was better. Measuring the
+signal as the market sees it turned a loophole no threshold could close into a trade-off a regulator can set. These numbers come from one
+simulated market and a pool of strategies the challenger found; a cleverer spoofer could do better.</p>
+<figure class=fig><img src='report-figures/fig11_frontier.png' alt=''><figcaption>Figure 8. The price of a false alarm. For each detector, the best payoff a spoofer keeps (chosen on practice sessions, measured on unseen ones) against the share of normal 40-step blocks that raise a false alarm.</figcaption></figure>
+
 <h2>5. Discussion</h2>
 <p>The untaught detectors did what they were built to do: they found what was unusual. The trouble is that a working spoof is designed
 to be unusual in only one way, its size, and honest large orders are just as big. Unusualness and manipulation are different targets.
@@ -287,7 +304,8 @@ hard limit: behaviour can show that a signal was false, but not why it was sent.
 why an alert should start an investigation rather than end one. Parts 4 and 5 added two lessons. A detector written from a principle
 can still have holes, but they are found and fixed by reading the principle more carefully, not by adding examples: the decoy loophole
 was closed by taking "signal" literally. And when the offence is rare, even a good detector's alerts are mostly false, so precision, not
-only catch rate, decides whether it is useful.</p>
+only catch rate, decides whether it is useful. Part 6 joins the two: the right way to compare surveillance methods is not a catch rate at
+one threshold but the curve of what a determined spoofer keeps against the false alarms a regulator accepts.</p>
 
 <h2>6. Limitations</h2>
 <p>The results describe a simulation I designed, not real markets; real traders, latency and accounts are richer and messier. The rule's

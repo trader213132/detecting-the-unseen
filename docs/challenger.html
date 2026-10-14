@@ -118,7 +118,7 @@
     <div class="page">
       <nav class="toc" aria-label="On this page">
         <p>On this page</p>
-        <ol><li><a href="#challenger">Part 4: the challenger</a></li><li><a href="#loophole">The loophole it found</a></li><li><a href="#desk">Part 5: the surveillance desk</a></li></ol>
+        <ol><li><a href="#challenger">Part 4: the challenger</a></li><li><a href="#loophole">The loophole it found</a></li><li><a href="#desk">Part 5: the surveillance desk</a></li><li><a href="#price">Part 6: the price of a false alarm</a></li></ol>
       </nav>
       <article class="article" id="article">
         <section id="challenger" aria-labelledby="challenger-title">
@@ -186,6 +186,19 @@
           <p>The refined definition raised <span data-cnum="budSeenFa"></span> false alerts per session. If a large spoof happened once in ten sessions, <span data-cnum="budSeenP10"></span> of its alerts would be real; once in a hundred, <span data-cnum="budSeenP100"></span>. For the detectors taught nothing it would be <span data-cnum="budUntP10"></span> at one in ten. This is the base-rate problem of every test for something rare: even a good detector's alerts are mostly false, which is one more reason an alert can only start an investigation, never end one.</p>
           <!-- budget:end -->
         </section>
+
+        <section id="price" aria-labelledby="price-title">
+          <h2 class="section-title" id="price-title">Part 6: the price of a false alarm</h2>
+          <p>Everything above points to one trade-off. A spoof small enough to sit under the alert threshold escapes, and lowering the threshold means more false alarms. So the question a regulator really faces is: <b>for each false alarm I am willing to investigate, how much can the best spoofer still get away with?</b></p>
+          <p>To draw that, 61 strategies the challenger found were played again, recording every spoof's score under every detector. At each threshold the spoofer picks its best strategy on practice sessions, or decides not to spoof, and its payoff is measured on sessions it never saw.</p>
+          <figure class="figure" id="figure-13" aria-labelledby="figure-13-cap">
+            <div class="figure__top"><p class="fig-label">Figure 13 <span>What a spoofer keeps, for each level of false alarms</span></p></div>
+            <img class="figure__img" src="report-figures/fig11_frontier.png" alt="Step chart: against the original legal definition the best spoofer keeps its full benefit at every false-alarm rate; against the rule it keeps a smaller amount at every rate; against the definition as the market sees it the benefit falls to nothing once about one percent of normal trading may alert." loading="lazy">
+            <figcaption class="figcaption" id="figure-13-cap"><b>Figure 13.</b> The best payoff a spoofer keeps (lots per spoof, chosen on practice sessions, measured on 40 unseen ones) against the share of normal 40-step stretches that raise a false alarm. Further left means fewer false alarms; lower means less profit for the spoofer.</figcaption>
+          </figure>
+          <p>The curves differ in kind. Against the legal definition as first written, the decoy keeps the full benefit (<span data-cnum="frWin"></span> lots per spoof, as much as with no surveillance, <span data-cnum="frUnw"></span>) at <i>every</i> false-alarm rate: no threshold can catch a signal the detector cannot see. Against the rule, splitting the wall keeps <span data-cnum="frRule"></span> at every rate. Against the version that measures the signal as the market sees it, the curve falls: to <span data-cnum="frMid"></span> once <span data-cnum="frMidFa"></span> of normal trading may alert, and from <span data-cnum="frZero"></span> spoofing stopped paying at all.</p>
+          <p><mark>Reading the law more carefully turned a loophole that no threshold could close into a trade-off a regulator can choose.</mark> The right way to compare surveillance methods is not one catch rate, but this curve. It comes from one simulated market and the strategies one search found, so a cleverer spoofer could do better.</p>
+        </section>
       </article>
     </div>
     <nav class="chapter-nav" aria-label="Chapters"><a class="chapter-nav__prev" href="teaching.html"><small>Chapter 3</small>What kind of teaching works?</a><a class="chapter-nav__next" href="conclusion.html"><small>Chapter 5</small>What it means</a></nav>
@@ -204,11 +217,11 @@
 
   <script src="data/results.js"></script>
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
-  <script src="data/teaching.js?v=15" onerror="window.TEACHING = null"></script>
+  <script src="data/teaching.js?v=16" onerror="window.TEACHING = null"></script>
   <script src="progress.js"></script>
   <script src="assets/site.js?v=9"></script>
   <script src="assets/masthead.js?v=10"></script>
-  <script src="assets/challenger.js?v=14"></script>
+  <script src="assets/challenger.js?v=15"></script>
   <script type="module" src="assets/lake.js?v=12"></script>
 </body>
 </html>

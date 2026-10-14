@@ -260,7 +260,8 @@ def teaching_payload():
                       ("price", "evasion_cost.csv"), ("price_honest", "evasion_cost_honest.csv"),
                       ("challenger", "challenger.csv"), ("challenger_honest", "challenger_honest.csv"),
                       ("challenger_progress", "challenger_progress.csv"), ("visibility", "visibility.csv"),
-                      ("thresholds", "thresholds.csv"), ("budget", "alert_budget.csv")]:
+                      ("thresholds", "thresholds.csv"), ("budget", "alert_budget.csv"), ("frontier", "frontier.csv"),
+                      ("frontier_unwatched", "frontier_unwatched.csv")]:
         if (RESULTS / name).exists():
             df = pd.read_csv(RESULTS / name)
             if key == "reversal":

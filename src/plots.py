@@ -386,3 +386,34 @@ def thresholds_figure(market, budget, path):
     fig.tight_layout()
     fig.savefig(path, dpi=200)
     plt.close(fig)
+
+
+def frontier_figure(table, unwatched, path):
+    """Part 6. For each detector: the best payoff a spoofer keeps, against the false alarms the regulator accepts."""
+    names = {"rule": "The rule", "window": "Legal definition, 40-step windows",
+             "order-life": "Legal definition, each order's life", "seen": "Legal definition, as the market sees it"}
+    fig, ax = plt.subplots(figsize=(7.8, 4.8))
+    floor = 0.0005
+    for d in ("rule", "window", "order-life", "seen"):
+        q = table[table.detector == d].sort_values("false_alarm_rate")
+        x = np.maximum(q.false_alarm_rate.to_numpy(), floor)
+        y = q.best_payoff.to_numpy()
+        ax.step(x, y, where="post", color=TARGET_COLOUR[d], linewidth=2.4 if d == "seen" else 1.8, label=names[d],
+                linestyle=(0, (5, 3)) if d == "window" else "-", zorder=4 if d == "window" else 3)
+    ax.axhline(unwatched, color=MUTED, linestyle="--", linewidth=1)
+    ax.text(0.00055, unwatched * 1.03, "no surveillance", va="bottom", ha="left", fontsize=7.5, color=MUTED)
+    ax.axvline(0.01, color=AXIS, linestyle=":", linewidth=1)
+    ax.text(0.0105, unwatched * 1.02, "1% (used in Parts 1-5)", fontsize=7, color=INK_2, va="bottom")
+    ax.axhline(0, color=AXIS, linewidth=1)
+    ax.set_xscale("log")
+    ax.set_xlim(floor, 0.2)
+    ax.set_xticks([floor, 0.001, 0.01, 0.1])
+    ax.set_xticklabels(["none", "0.1%", "1%", "10%"])
+    ax.set_xlabel("False alarms the regulator accepts (share of 40-step blocks of normal trading)")
+    ax.set_ylabel("Best payoff a spoofer keeps (lots per spoof)")
+    ax.set_title("The price of a false alarm")
+    ax.legend(fontsize=7.5, loc="lower left")
+    ax.grid(axis="x", color=GRID, linewidth=0.6)
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)

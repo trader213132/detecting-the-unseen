@@ -52,6 +52,8 @@ chal_h = pd.read_csv(RESULTS / "challenger_honest.csv")
 thr = pd.read_csv(RESULTS / "thresholds.csv")
 budget = pd.read_csv(RESULTS / "alert_budget.csv")
 vis = pd.read_csv(RESULTS / "visibility.csv")
+front = pd.read_csv(RESULTS / "frontier.csv")
+front_unwatched = float(pd.read_csv(RESULTS / "frontier_unwatched.csv").iloc[0, 0])
 
 
 def row(df, **kw):
@@ -388,6 +390,14 @@ N.update(
     bothskew=pct(hv("market maker working off a position", "both")), bothgen=pct(hv("honest large order", "both")),
     bothwd=pct(hv("honest quick cancel", "both")),
 )
+fr = lambda d: front[(front.detector == d) & (front.false_alarm_rate <= 0.10)]
+seen_zero = fr("seen")[fr("seen").best_payoff <= 0].false_alarm_rate.min()
+seen_mid = fr("seen")[(fr("seen").best_payoff > 0) & (fr("seen").best_payoff < front_unwatched - 0.01)].sort_values("false_alarm_rate").iloc[0]
+N.update(
+    frunw=lots(front_unwatched), frzero=pct(seen_zero, 1), frmid=lots(seen_mid.best_payoff), frmidfa=pct(seen_mid.false_alarm_rate, 1),
+    frwin=lots(fr("window").best_payoff.min()), frlife=lots(fr("order-life").best_payoff.min()), frrule=lots(fr("rule").best_payoff.min()),
+    frseenlow=lots(fr("seen")[fr("seen").false_alarm_rate >= seen_zero].best_payoff.iloc[0]),
+)
 
 CSS = """
 :root { --ink:#16181d; --ink2:#4b505a; --line:#d7dae0; --mark:#b1245c; --paper:#ffffff; }
@@ -451,7 +461,8 @@ tried to dodge it: every dodge tested either gave up the spoofer's gain or neede
 search program looked for dodges itself. After twice gaming my scoring, it found a real loophole: a large decoy order too far from the price
 for traders to see hid a spoof completely. Measuring the signal the way the market sees it closed that gap and stopped an honest market
 maker being flagged, leaving a spoofer at most {N['cshare']} of its benefit, and only by spoofing below the alert threshold, a gap that combining
-detectors did not close. A fifth showed that thresholds which
+detectors did not close. A sixth turned this into a curve: with the refined definition, accepting false alarms in about {N['frzero']} of
+normal trading left spoofing unprofitable, while against the original definition and the rule no false-alarm budget helped. A fifth showed that thresholds which
 adapt to the market cut false alarms but do not help tell spoofs from honest orders, and that because spoofing is rare, most alerts from
 even the best detector are false. No detector could distinguish a spoof from an honest trader who changes their mind, because only the
 intention differs.</p>
@@ -653,6 +664,7 @@ against the original definition. Fixing it from the law left a spoofer able to k
 
 
 <h3>4.11 Part 5: thresholds that follow the market, and the alert budget</h3>
+<!-- part5 -->
 <p>Every detector so far had one fixed threshold, set on calm trading. A threshold that adapts to current conditions, rising in
 proportion to how busy the detector's own recent scores are (never falling below the calm level), cut the untaught detectors' false
 alarms in a volatile market from {N['volfix']} of bars to {N['voladapt']}: better, but still far above the 1% target (Table 14). The
@@ -670,6 +682,21 @@ false, which is one more reason an alert can only start an investigation.</p>
 {t_budget}
 {fig('fig10_thresholds.png', 'Figure 7. Left: fixed and adaptive thresholds in a volatile market. Right: the share of a desk’s alerts that are real spoofs, by how common spoofing is.')}
 
+<h3>4.12 Part 6: the price of a false alarm</h3>
+<p>Parts 4 and 5 point to one trade-off: a spoof small enough to sit under the alert threshold escapes, and lowering the threshold means
+more false alarms. So the question a regulator actually faces is how much manipulation it must tolerate for each false alarm it is
+willing to investigate. To draw that curve, 61 strategies (the challenger's best against every detector, plus the most profitable with no
+surveillance and an ordinary spoof) were played again recording each spoof's raw score under every detector. For every threshold, the
+spoofer picked its best strategy on the 12 practice sessions (or chose not to spoof) and its payoff was measured on the 40 unseen ones.</p>
+<p>The curves differ in kind (Figure 8). Against the original legal definition, windowed or by order life, the decoy kept the full
+benefit ({N['frwin']} and {N['frlife']} lots per spoof, the same as with no surveillance, {N['frunw']}) at every false-alarm rate up to
+10%: no threshold catches a signal the detector cannot see. Against the rule, splitting the wall kept {N['frrule']} at every rate. Against
+the refined definition the curve falls: to {N['frmid']} once {N['frmidfa']} of normal 40-step blocks may alert, and from {N['frzero']}
+the best strategy the spoofer could choose lost lots on unseen sessions ({N['frseenlow']}), so not spoofing was better. Measuring the
+signal as the market sees it turned a loophole no threshold could close into a trade-off a regulator can set. These numbers come from one
+simulated market and a pool of strategies the challenger found; a cleverer spoofer could do better.</p>
+{fig('fig11_frontier.png', 'Figure 8. The price of a false alarm. For each detector, the best payoff a spoofer keeps (chosen on practice sessions, measured on unseen ones) against the share of normal 40-step blocks that raise a false alarm.')}
+
 <h2>5. Discussion</h2>
 <p>The untaught detectors did what they were built to do: they found what was unusual. The trouble is that a working spoof is designed
 to be unusual in only one way, its size, and honest large orders are just as big. Unusualness and manipulation are different targets.
@@ -680,7 +707,8 @@ hard limit: behaviour can show that a signal was false, but not why it was sent.
 why an alert should start an investigation rather than end one. Parts 4 and 5 added two lessons. A detector written from a principle
 can still have holes, but they are found and fixed by reading the principle more carefully, not by adding examples: the decoy loophole
 was closed by taking "signal" literally. And when the offence is rare, even a good detector's alerts are mostly false, so precision, not
-only catch rate, decides whether it is useful.</p>
+only catch rate, decides whether it is useful. Part 6 joins the two: the right way to compare surveillance methods is not a catch rate at
+one threshold but the curve of what a determined spoofer keeps against the false alarms a regulator accepts.</p>
 
 <h2>6. Limitations</h2>
 <p>The results describe a simulation I designed, not real markets; real traders, latency and accounts are richer and messier. The rule's
