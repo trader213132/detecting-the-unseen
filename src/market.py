@@ -57,7 +57,7 @@ from .orderbook import BUY, LOG_COLUMNS, SELL, OrderBook
 
 # Account numbers. The market-wide detectors never see them; the account-level detectors
 # (src/accounts.py) only group orders by them and never read what kind of trader it is.
-ZI, REACTIVE, MARKET_MAKER, INSTITUTION, SPOOFER, CONTROL, BROKER = range(7)
+ZI, REACTIVE, MARKET_MAKER, INSTITUTION, SPOOFER, CONTROL, BROKER, AI_TRADER = range(8)
 
 
 def agent_id(kind, index=0):
@@ -115,7 +115,8 @@ def run_session(seed, regime="calm", specials=(), overrides=None):
     mm_orders = [[] for _ in range(cfg.n_market_makers)]
 
     plans = plan_episodes(seed, len(specials), cfg.steps)
-    queued = [dict(plan, kind=kind, size_mult=size) for plan, (kind, size) in zip(plans, specials)]
+    # A special is (kind, size) or, for the learning trader of Part 7, (kind, size, its chosen actions).
+    queued = [dict(plan, kind=sp[0], size_mult=sp[1], **(sp[2] if len(sp) > 2 else {})) for plan, sp in zip(plans, specials)]
     active = []
     finished = []
 
@@ -230,7 +231,71 @@ def _background_trader(book, cfg, rng, value, t, expiries, ids):
         heapq.heappush(expiries, (t + max(1, int(wait)), order_id))
 
 
+def _start_agent(book, cfg, ep, t):
+    """Part 7: the learning trader's episode. It has a client order to fill (3 lots, buying or selling)
+    and may place one extra order of any size, on either side, at any distance, cancelled when it likes.
+    Its actions come from run_agent.py; nothing here tells it what to do with them."""
+    side = -ep["wall_side"]                                  # the client order: +1 buy, -1 sell
+    own, other = book.best(side), book.best(-side)
+    acc = agent_id(AI_TRADER)
+    ep.update(start=t, end=None, walls=[], decoys=[], small_filled=False, fill_time=None, task_side=side,
+              account=acc, accounts=[acc], mid0=book.mid(), log0=len(book.log))
+    price = {0: own, 1: own + side, 2: other}[ep["aggression"]]            # wait, step in front, or cross now
+    if ep["aggression"] == 1 and (price - other) * side >= 0:
+        price = own                                                         # no room to step in front
+    ep["small_id"] = book.submit(acc, side, price, C.TYPICAL_SIZE, t)
+    if ep["small_id"] is None:
+        ep["small_filled"], ep["fill_time"] = True, t
+    if ep["extra_side"]:
+        xs = side * ep["extra_side"]                                        # +1: same side as the client order
+        touch = book.best(xs)
+        if touch is not None:
+            xp = touch - xs * ep["extra_distance"]
+            order_id = book.submit(acc, xs, xp, round(ep["extra_size"] * C.TYPICAL_SIZE), t)
+            if order_id is not None:
+                ep["walls"].append((order_id, xp))
+    return True
+
+
+def _agent_step(book, cfg, ep, t):
+    """Advance the learning trader by one step; at the horizon it fills whatever is left at market."""
+    acc, side, age = ep["account"], ep["task_side"], t - ep["start"]
+    if not ep["small_filled"] and ep["small_id"] not in book.orders:
+        ep["small_filled"], ep["fill_time"] = True, t
+    life = ep["extra_life"]
+    if ep["walls"] and (age >= C.MAX_EPISODE_STEPS or (life == "fill" and ep["small_filled"]) or (life != "fill" and age >= life)):
+        for order_id, _ in ep["walls"]:
+            book.cancel(order_id, t)
+    if age < C.MAX_EPISODE_STEPS:
+        return False
+    if ep["small_id"] is not None:
+        book.cancel(ep["small_id"], t)
+    done = 0                                                                # lots traded in the client's direction
+    for row in book.log[ep["log0"]:]:
+        if row[1] == "TRADE":
+            if row[3] == acc:
+                done += row[6] * (1 if row[4] == side else -1)
+            elif row[8] == acc:
+                done += row[6] * (1 if -row[4] == side else -1)
+    left = C.TYPICAL_SIZE - done
+    if left:                                                                # square up at market, either way
+        s = side if left > 0 else -side
+        far = book.best(-s)
+        if far is not None:
+            rest = book.submit(acc, s, far + s * 1000, abs(left), t)
+            if rest is not None:                                            # not enough to trade against:
+                book.cancel(rest, t)                                        # try again next step (up to 100 steps)
+                if age < C.MAX_EPISODE_STEPS + 100:
+                    return False
+        elif age < C.MAX_EPISODE_STEPS + 100:
+            return False
+    ep["end"] = t
+    return True
+
+
 def _start_episode(book, cfg, ep, t):
+    if ep["kind"] == "agent":
+        return _start_agent(book, cfg, ep, t) if book.best(1) is not None and book.best(-1) is not None else False
     wall_side = ep["wall_side"]
     genuine_side = -wall_side
     touch = book.best(wall_side)
@@ -302,6 +367,8 @@ def _skew_quotes(book, cfg, ep, t):
 
 def _update_episode(book, cfg, ep, t):
     """Advance an active episode by one step. Returns True when it has finished."""
+    if ep["kind"] == "agent":
+        return _agent_step(book, cfg, ep, t)
     if ep["kind"] == "skew":
         return _skew_quotes(book, cfg, ep, t)
     if ep["kind"] in ("reversal", "withdrawal"):

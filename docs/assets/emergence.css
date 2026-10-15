@@ -1,0 +1,44 @@
+/* Learning evidence extends the existing research journal. */
+.emergence-wrap { max-width: 76rem; margin: 0 auto; padding: 0 var(--gutter) 4rem; }
+.emergence-wrap section { margin: 3.5rem 0; scroll-margin-top: 6rem; }
+.emergence-wrap h2 { font: 720 clamp(1.6rem, 3vw, 2.6rem)/1.12 var(--font-display); letter-spacing: -.025em; text-wrap: balance; }
+.emergence-wrap h3 { font: 650 1.15rem/1.3 var(--font-display); }
+.emergence-wrap p, .emergence-wrap li { max-width: 70ch; }
+.emergence-wrap .lead { font-size: clamp(1.15rem, 2vw, 1.45rem); }
+.emergence-links { display: flex; gap: 1rem 1.5rem; flex-wrap: wrap; font-family: var(--font-display); }
+.emergence-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 1rem; padding: 1.2rem 0; font: 500 .9rem/1.5 var(--font-display); }
+.emergence-controls label { display: grid; gap: .35rem; }
+.emergence-controls select, .emergence-controls button { background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; min-height: 44px; padding: .6rem .8rem; font: inherit; }
+.emergence-controls button { cursor: pointer; }
+.emergence-controls select:hover, .emergence-controls button:hover { border-color: var(--ink); }
+.emergence-controls :focus-visible, .emergence-wrap summary:focus-visible, .emergence-wrap a:focus-visible { outline: 2px solid var(--mark); outline-offset: 4px; }
+.emergence-controls input[type=range] { width: min(21rem, 65vw); accent-color: var(--mark); min-height: 44px; }
+.learning-stage { background: var(--paper); padding: clamp(1rem, 3vw, 2rem); border: 1px solid var(--line); border-radius: 10px; }
+.learning-choices { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1rem; margin: 0 0 1.4rem; align-items: start; }
+.learning-choices h3 { margin: .35rem 0 0; font-size: .95rem; }
+.learning-options { display: grid; gap: .65rem; }
+.learning-option { display: grid; grid-template-columns: minmax(9rem, 1fr) minmax(3rem, 2fr) 4rem; gap: 1rem; align-items: center; font: 500 .85rem/1.35 var(--font-display); }
+.prob-track { height: 10px; background: var(--paper-3); overflow: hidden; border-radius: 5px; }
+.prob-fill { display: block; height: 100%; width: 100%; transform: scaleX(var(--probability, 0)); transform-origin: left; background: var(--ink-2); transition: transform 180ms cubic-bezier(.16, 1, .3, 1); }
+.learning-option[data-option="extra_side:-1"] .prob-fill { background: var(--mark); }
+.learning-option output { text-align: right; font-variant-numeric: tabular-nums; }
+.learning-status { min-height: 3em; font-family: var(--font-display); color: var(--ink-2); }
+.emergence-table-wrap { max-width: 100%; overflow: auto; border-block: 1px solid var(--line); }
+.emergence-table { border-collapse: collapse; width: 100%; min-width: 680px; font: 400 .85rem/1.5 var(--font-display); font-variant-numeric: tabular-nums; }
+.emergence-table caption { text-align: left; padding: 1rem 0; font-weight: 650; }
+.emergence-table th, .emergence-table td { padding: .85rem .65rem; text-align: right; vertical-align: top; border-bottom: 1px solid var(--line); }
+.emergence-table th:first-child { text-align: left; min-width: 10rem; }
+.emergence-table th { font-weight: 600; }
+.emergence-note { font-size: .95rem; color: var(--ink-2); }
+.emergence-wrap details { padding: 1rem 0; }
+.emergence-wrap summary { font: 600 1rem/1.5 var(--font-display); cursor: pointer; }
+.emergence-wrap code { overflow-wrap: anywhere; }
+.emergence-update { max-width: 76rem; margin: 0 auto; padding: 3rem var(--gutter); }
+.emergence-update h2 { font: 720 clamp(1.7rem, 3vw, 2.6rem)/1.15 var(--font-display); max-width: 24ch; }
+.emergence-update p { max-width: 70ch; }
+@media (max-width: 700px) {
+  .learning-choices { grid-template-columns: 1fr; gap: .6rem; }
+  .learning-option { grid-template-columns: minmax(7rem, 1fr) minmax(3rem, 1fr) 3.5rem; gap: .5rem; }
+  .emergence-wrap section { margin: 2.5rem 0; }
+}
+@media (prefers-reduced-motion: reduce) { .prob-fill { transition: none; } }

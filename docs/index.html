@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Detecting the Unseen</title>
-  <meta name="description" content="Can AI spot market manipulation it was never shown? A simulated market, seven detectors from a hand-written rule to an LSTM neural network, and an honest answer. A Habs Research Scholarship project by Ebrahim.">
+  <meta name="description" content="Will AI trading agents learn manipulation, and will existing detectors recognise it? Reproducible simulation experiments, held-out controls and honest limits. A research project by Ebrahim.">
   <meta property="og:title" content="Detecting the Unseen">
-  <meta property="og:description" content="Can AI spot market manipulation it was never shown? A simulated market, seven detectors and an honest answer.">
+  <meta property="og:description" content="Will AI traders learn manipulation? A learning-agent pilot builds on the existing detector research, with inspectable results and honest limits.">
   <meta property="og:type" content="article">
   <meta name="theme-color" content="#dbe4ef" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b0e13" media="(prefers-color-scheme: dark)">
@@ -48,14 +48,16 @@
         <div class="dd" id="dd">
           <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
             <div class="dd-list">
-              <a class="dd-item is-active" href="experiment.html" data-img="0"><strong>The experiment</strong><span>A market where spoofing works, and seven detectors.</span></a>
-              <a class="dd-item" href="results.html" data-img="1"><strong>Results</strong><span>Spoofs against honest look-alikes and volatile markets.</span></a>
-              <a class="dd-item" href="teaching.html" data-img="2"><strong>What kind of teaching works?</strong><span>Examples, a rule, or the law. And how to dodge it.</span></a>
-              <a class="dd-item" href="challenger.html" data-img="3"><strong>An AI challenger</strong><span>A search program hunts for spoofs the law-based detector misses.</span></a>
-              <a class="dd-item" href="conclusion.html" data-img="4"><strong>What it means</strong><span>The answer, its limits and the sources.</span></a>
+              <a class="dd-item is-active" href="learning.html" data-img="0"><strong>The learning experiment</strong><span>What an AI trader learns, with held-out controls.</span></a>
+              <a class="dd-item" href="experiment.html" data-img="1"><strong>The detector foundation</strong><span>A market where spoofing works, and seven detectors.</span></a>
+              <a class="dd-item" href="results.html" data-img="2"><strong>Results</strong><span>Spoofs against honest look-alikes and volatile markets.</span></a>
+              <a class="dd-item" href="teaching.html" data-img="3"><strong>What kind of teaching works?</strong><span>Examples, a rule, or the law. And how to dodge it.</span></a>
+              <a class="dd-item" href="challenger.html" data-img="4"><strong>An AI challenger</strong><span>A search program hunts for spoofs the law-based detector misses.</span></a>
+              <a class="dd-item" href="conclusion.html" data-img="5"><strong>What it means</strong><span>The answer, its limits and the sources.</span></a>
             </div>
             <div class="dd-media" aria-hidden="true">
-              <img class="is-active" src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async">
+              <img class="is-active" src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async">
+              <img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
               <img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
               <img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
               <img src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
@@ -90,7 +92,8 @@
       <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
       <h3>The study</h3>
       <div class="sheet-list">
-        <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The experiment</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
+        <a class="sheet-item" href="learning.html"><img src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The learning experiment</strong><small>What an AI trader learns, with held-out controls.</small></span></a>
+        <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The detector foundation</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
         <a class="sheet-item" href="results.html"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>Results</strong><small>Spoofs against honest look-alikes and volatile markets.</small></span></a>
         <a class="sheet-item" href="teaching.html"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What kind of teaching works?</strong><small>Examples, a rule, or the law. And how to dodge it.</small></span></a>
         <a class="sheet-item" href="challenger.html"><img src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>An AI challenger</strong><small>A search program hunts for spoofs the law-based detector misses.</small></span></a>
@@ -123,20 +126,28 @@
           <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg>
         </a>
         <h1 class="hero__title" id="title"><span class="ln"><span class="ln-i">Detecting</span></span><span class="ln"><span class="ln-i">the <em>Unseen</em></span></span></h1>
-        <p class="hero__dek">Can AI spot market manipulation it was never shown? A simulated market, seven detectors and an honest answer.</p>
+        <p class="hero__dek">Will AI traders learn to manipulate a market on their own? And will our detectors recognise what they learn?</p>
         <div class="hero__cta">
           <a class="btn btn--ghost" href="#replay">Watch one spoof</a>
-          <a class="btn btn--solid" href="summary.html">The 5-minute summary</a>
+          <a class="btn btn--solid" href="learning.html">Read the learning experiment</a>
         </div>
         <p class="hero__by"><b>Ebrahim</b> · Habs Research Scholarship project</p>
       </div>
       <div class="scroll-cue" aria-hidden="true"><span>(</span><span>scroll down</span><span>)</span></div>
     </section>
 
+    <section class="answer" aria-labelledby="new-question">
+      <div class="answer__grid"><div>
+        <h2 class="answer__lead" id="new-question">A new question. The same standard of evidence.</h2>
+        <p class="answer__abstract">The project now asks what a learning trader does when rewarded for execution quality, and whether existing detectors recognise the resulting behaviour. The new pilot uses independent learners, unseen test sessions, complete trade accounting and matched controls. <a href="learning.html">Read the measured result and replay the learning.</a></p>
+        <p>This is a restricted replication and detector-transfer study. <a href="https://arxiv.org/abs/2306.06087">Earlier research already demonstrated learned spoofing.</a> The new chapter explains what this experiment adds, what it cannot establish, and why an alert alone is not a discovery.</p>
+      </div><div><h3>The detector foundation stays.</h3><p>The results below test human-designed spoofing and detector evasion. They explain the surveillance systems used in the new study; they are not evidence that the new learner discovered those strategies.</p><a class="btn btn--solid" href="learning.html#learning-results">Inspect the new results</a></div></div>
+    </section>
+
     <section class="answer" id="findings" aria-labelledby="answer-title">
       <div class="answer__grid">
         <div>
-          <h2 class="answer__lead" id="answer-title">Not by looking for the unusual. Yes, by knowing the purpose.</h2>
+          <h2 class="answer__lead" id="answer-title">The earlier finding: unusual trading is not proof of manipulation.</h2>
           <p class="answer__abstract">Spoofing means placing large orders you never intend to trade, so that other traders misread supply and demand. Real examples are rare and hard to label, which makes one idea attractive: train a detector only on normal trading and let it flag whatever looks unusual. This project tests that idea in a simulated market where spoofing measurably works, with seven detectors ranging from a hand-written rule to an LSTM neural network. The detectors that were never told what spoofing looks like could not tell a spoof from an honest large order, in five different markets and even when they examined individual orders. They found the honest orders <mark>more</mark> unusual, because a spoof is unusual only in its size, while its quick cancellation looks like ordinary market-making. The one signal that separated them, a large order cancelled quickly, came from what the detectors were told, and it stopped working as soon as the same spoof was split into smaller pieces. A second experiment asked what kind of teaching does work. Examples and patterns teach what spoofing looks like, and fail the same way. A detector built only from the legal definition, which asks whether a trader showed interest it then withdrew while trading the other way, caught both kinds of spoof without a single example and flagged no honest large orders. What it cannot do is tell a spoof from an honest change of mind: that takes intent, which no data shows.</p>
         </div>
         <ol class="findings" aria-label="Key findings">
@@ -298,7 +309,7 @@
   <!-- footer:start -->
   <footer class="footer">
     <div class="footer__inner">
-      <p class="footer__links"><a href="index.html" aria-current=page>Home</a> · <a href="experiment.html">The experiment</a> · <a href="results.html">Results</a> · <a href="teaching.html">Teaching</a> · <a href="challenger.html">Challenger</a> · <a href="conclusion.html">What it means</a> · <a href="progress.html">Progress</a> · <a href="lab.html">Research Lab</a> · <a href="summary.html">Summary</a> · <a href="analytics.html">Analytics</a> · <a href="report.html">Report</a> · <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code</a></p>
+      <p class="footer__links"><a href="index.html" aria-current=page>Home</a> · <a href="learning.html">Learning experiment</a> · <a href="experiment.html">The experiment</a> · <a href="results.html">Results</a> · <a href="teaching.html">Teaching</a> · <a href="challenger.html">Challenger</a> · <a href="conclusion.html">What it means</a> · <a href="progress.html">Progress</a> · <a href="lab.html">Research Lab</a> · <a href="summary.html">Summary</a> · <a href="analytics.html">Analytics</a> · <a href="report.html">Report</a> · <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code</a></p>
       <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
       <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
     </div>

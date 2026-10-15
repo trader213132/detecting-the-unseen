@@ -16,6 +16,8 @@ Primary: the Habs Research Scholarship assessors and teachers reviewing Ebrahim'
 
 ## Product Purpose
 
+Current research direction (14 October 2026): will AI traders learn manipulation, and will existing detectors recognise what they learn? Preserve the original detector study as the foundation. The learning chapter is a restricted execution-policy pilot, clearly distinguished from unrestricted sequential learning and from prior published demonstrations of learned spoofing. Its evidence comes from `results/emergence/`, and its primary route is `docs/learning.html`.
+
 A public research page for the project "Detecting the Unseen". It asks: can AI detect hidden market manipulation (spoofing) without being taught what manipulation looks like? The page explains the question, shows how the experiment works, presents the real preliminary results, and tracks progress towards the submission and the Sixth Form plan. Success means a reader leaves knowing what was tested, what was found (including where the hypothesis failed), and what happens next.
 
 ## Positioning

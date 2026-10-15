@@ -3,7 +3,7 @@
 //   - add a new entry at the TOP of `log` whenever something happens
 //   - update `updated` to today's date
 window.PROGRESS = {
-  updated: "2026-10-14",
+  updated: "2026-10-15",
   deadline: { date: "2026-11-06", label: "Research Scholarship submission" },
   schedule: { from: "2026-10-08", to: "2026-11-06" },
   milestones: [
@@ -21,6 +21,11 @@ window.PROGRESS = {
     { label: "Proofread and submit", from: "2026-11-05", to: "2026-11-06", status: "next" }
   ],
   log: [
+    {
+      date: "2026-10-15",
+      title: "A new question: will AI traders learn to manipulate on their own?",
+      text: "Six AI traders learned by trial and error to fill client orders at a good price, three of them fined whenever surveillance flagged them. All six learned ordinary, honest execution; none learned to spoof. A hand-built spoof was not reliably profitable in this market once the risk of its fake order trading was counted. An earlier published study (Byrd, 2022) did find learned spoofing, so whether AI discovers manipulation depends on whether the market makes it pay after its risks."
+    },
     {
       date: "2026-10-14",
       title: "Part 6: the price of a false alarm",

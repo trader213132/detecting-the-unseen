@@ -1,6 +1,19 @@
 # Detecting the Unseen
 
-**Can artificial intelligence detect hidden market manipulation without being taught what manipulation looks like?**
+**Will AI traders learn manipulation, and will existing detectors recognise what they learn?**
+
+**Result (15 October 2026):** all six learners, with and without a fine for detector alerts, converged on ordinary execution (five wait at the best price, one steps in front); none chose the spoof-like signature. A hand-designed spoof was not reliably profitable in the calm test market (+0.21 ticks per lot vs the benchmark, 95% interval −0.39 to +0.65) and lost heavily in the volatile and no-feedback markets. Full results: `results/emergence/findings.md` and `docs/learning.html`.
+
+The new restricted learning-agent pilot is in `run_emergence.py`, with its protocol in `research/emergence-protocol.md` and generated evidence in `results/emergence/`. Run `python build_emergence.py` after a complete experiment to build `docs/learning.html`. Existing evidence is never overwritten by the experiment runner; archive it before a fresh run, or use the downloadable reproduction bundle in a separate directory.
+
+This is a replication and detector-transfer investigation, not a priority claim: [Byrd, Learning Not to Spoof](https://arxiv.org/abs/2306.06087) already reports independently learned spoofing. The present learner selects a fixed execution configuration rather than a state-conditioned sequence of actions. The older detector study is retained below as the foundation. The active, earlier `run_agent.py` experiment has separate outputs; its quick-test report is not the evidence for the new chapter.
+
+```bash
+python run_emergence.py --workers 4
+python -m pytest tests/test_emergence.py -q
+python build_emergence.py
+python build_pages.py
+```
 
 **Website:** https://detecting-the-unseen.vercel.app (all the results on one page: [summary](https://detecting-the-unseen.vercel.app/summary.html))
 

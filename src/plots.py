@@ -417,3 +417,30 @@ def frontier_figure(table, unwatched, path):
     fig.tight_layout()
     fig.savefig(path, dpi=200)
     plt.close(fig)
+
+
+def agent_figure(logs, path):
+    """Part 7. Left: how often the learner chose the spoof's signature, round by round, for each fine.
+    Right: its score. One line per independent learner."""
+    fines = sorted(logs.fine.unique())
+    colours = dict(zip(fines, ["#c42a68", "#eb6834", "#2a78d6", "#1baf7a"]))
+    fig, (a, b) = plt.subplots(1, 2, figsize=(9.8, 4.2))
+    for (fine, learner), q in logs.groupby(["fine", "learner"]):
+        smooth = q.share_manipulative.rolling(10, min_periods=1).mean()
+        a.plot(q.iteration, smooth, color=colours[fine], linewidth=1.8, alpha=0.9,
+               label=f"fine {fine:g} ticks/lot" if learner == 0 else None)
+        b.plot(q.iteration, q.reward.rolling(10, min_periods=1).mean(), color=colours[fine], linewidth=1.5, alpha=0.9)
+    a.set_ylim(0, 1)
+    a.set_yticks([0, 0.25, 0.5, 0.75, 1])
+    a.set_yticklabels(["0%", "25%", "50%", "75%", "100%"])
+    a.set_xlabel("Round of learning (64 orders each)")
+    a.set_ylabel("Orders with the spoof's signature")
+    a.set_title("Does it learn to spoof?")
+    a.legend(fontsize=7.5, loc="upper left")
+    b.axhline(0, color=AXIS, linewidth=1)
+    b.set_xlabel("Round of learning")
+    b.set_ylabel("Price achieved vs arrival mid (ticks per lot)")
+    b.set_title("What it earns (before fines)")
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)

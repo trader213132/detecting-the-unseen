@@ -14,18 +14,19 @@ ARROW = '<svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path
 CHEV = '<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg>'
 
 # The study: the four chapters that tell the story, each with a figure preview.
-STUDY = [("experiment.html", "The experiment", "A market where spoofing works, and seven detectors.", "replay"),
+STUDY = [("learning.html", "The learning experiment", "What an AI trader learns, with held-out controls.", "challenger"),
+         ("experiment.html", "The detector foundation", "A market where spoofing works, and seven detectors.", "replay"),
          ("results.html", "Results", "Spoofs against honest look-alikes and volatile markets.", "detectors"),
          ("teaching.html", "What kind of teaching works?", "Examples, a rule, or the law. And how to dodge it.", "ladder"),
          ("conclusion.html", "What it means", "The answer, its limits and the sources.", "answer")]
 CHALLENGER_READY = True       # Part 4's chapter is listed only once its results are in
 if CHALLENGER_READY:
-    STUDY.insert(3, ("challenger.html", "An AI challenger", "A search program hunts for spoofs the law-based detector misses.", "challenger"))
+    STUDY.insert(4, ("challenger.html", "An AI challenger", "A search program hunts for spoofs the law-based detector misses.", "challenger"))
 EXPLORE = [("lab.html", "Research Lab", "Pick a market situation and see how every detector reacts.", "lab"),
            ("index.html#replay", "Watch one spoof", "The wall goes up, the order fills, the wall vanishes.", "replay")]
 PAPER = [("report.html", "Research report"), ("summary.html", "Summary: the project in five minutes"),
          ("analytics.html", "Analytics explorer"), ("conclusion.html#references", "References")]
-PAGES = {"index.html": "Home", "experiment.html": "The experiment", "results.html": "Results",
+PAGES = {"index.html": "Home", "learning.html": "Learning experiment", "experiment.html": "The experiment", "results.html": "Results",
          "teaching.html": "Teaching", "conclusion.html": "What it means", "progress.html": "Progress",
          "lab.html": "Research Lab", "summary.html": "Summary", "analytics.html": "Analytics"}
 if CHALLENGER_READY:

@@ -138,6 +138,12 @@ Exact values use semantic booktabs tables, scoped headers and local horizontal s
 
 ## Do's and Don'ts
 
+### Learning chapter extension (14 October 2026)
+
+`learning.html` preserves the journal shell and water treatment. Its primary mode is Read. One user-controlled replay displays saved training probabilities on a common 0–1 scale; it starts paused, stops when hidden or offscreen, and reduces motion to direct round selection. No new decorative scene or animation library is added. `assets/emergence.css` uses the existing paper, ink, mark and type tokens. Tables retain exact values and confidence intervals, with local overflow on small screens. All market tables remain visible without JavaScript; enhanced controls select one market at a time. The first viewport leads with the question and measured interpretation. The homepage retains its visual identity and links to this new study; older detector results remain explicitly labelled as the foundation.
+
+Original MotionSites-informed prompts and the scoped design rationale are recorded in `research/emergence-design-prompts.md`. MotionSites was consulted as a public reference; no claim is made to have used its paid prompt library or copied its assets.
+
 ### Do:
 - **Do** preserve the incumbent font stacks, light and dark themes, byline and detector meanings.
 - **Do** keep water decorative and research numbers traceable to generated data.
