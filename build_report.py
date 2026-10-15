@@ -53,6 +53,8 @@ thr = pd.read_csv(RESULTS / "thresholds.csv")
 budget = pd.read_csv(RESULTS / "alert_budget.csv")
 vis = pd.read_csv(RESULTS / "visibility.csv")
 front = pd.read_csv(RESULTS / "frontier.csv")
+em_sum = pd.read_csv(RESULTS / "emergence" / "summary.csv")
+em_man = __import__("json").loads((RESULTS / "emergence" / "manifest.json").read_text(encoding="utf-8"))
 front_unwatched = float(pd.read_csv(RESULTS / "frontier_unwatched.csv").iloc[0, 0])
 
 
@@ -398,6 +400,30 @@ N.update(
     frwin=lots(fr("window").best_payoff.min()), frlife=lots(fr("order-life").best_payoff.min()), frrule=lots(fr("rule").best_payoff.min()),
     frseenlow=lots(fr("seen")[fr("seen").false_alarm_rate >= seen_zero].best_payoff.iloc[0]),
 )
+em = lambda env, pol: em_sum[(em_sum.environment == env) & (em_sum.policy == pol)].iloc[0]
+em_greedy = em_sum[(em_sum.environment == "calm") & em_sum.policy.str.match(r"^fine\d_learner\d$")]
+em_pols = em_man["policies"]
+waits = sum(p["action"]["aggression"] == 0 and p["action"]["extra_side"] == 0 for p in em_pols)
+N.update(
+    emn=str(len(em_pols)), emspoof=str(int((em_greedy.signature_share > 0.5).sum())) if (em_greedy.signature_share > 0.5).any() else "none", emwait=str(waits),
+    emtrain=f"{em_man['training_episodes']:,}", emtest=str(em_man["config"]["test"]),
+    emwaitgain=lots(em("calm", "fine0_learner0").vs_honest),
+    emwaitci=f"{lots(em('calm', 'fine0_learner0').ci_low)} to {lots(em('calm', 'fine0_learner0').ci_high)}",
+    emdes=lots(em("calm", "designed_control").vs_honest),
+    emdesci=f"{lots(em('calm', 'designed_control').ci_low)} to {lots(em('calm', 'designed_control').ci_high)}",
+    emdesvol=lots(em("volatile", "designed_control").vs_honest), emdesnf=lots(em("no_feedback", "designed_control").vs_honest),
+    emwaitvol=lots(em("volatile", "fine0_learner0").vs_honest),
+    emdesflag=pct(em("calm", "designed_control").flag_seen),
+)
+t_em = table(["Policy", "Calm market: score vs benchmark (95% CI)", "Volatile", "Book response off", "Spoof signature", "Flagged (as seen)"],
+             [[label, f"{lots(em('calm', pol).vs_honest)} ({lots(em('calm', pol).ci_low)} to {lots(em('calm', pol).ci_high)})",
+               lots(em("volatile", pol).vs_honest), lots(em("no_feedback", pol).vs_honest), pct(em("calm", pol).signature_share),
+               pct(em("calm", pol).flag_seen)]
+              for pol, label in [("honest", "Honest benchmark (chosen on validation sessions)")] +
+              [(f"fine{int(q['fine'])}_learner{q['learner']}", f"{'No fine' if q['fine'] == 0 else 'Fine 2'}, learner {q['learner'] + 1}: {html.escape(q['description'])}") for q in em_pols] +
+              [("random", "Uniform random choices"), ("designed_control", "Hand-designed spoof (a control, not learned)")]],
+             "Table 16. Part 7 on 128 held-out sessions per market. Score: execution surplus in ticks per client lot, compared with the honest "
+             "benchmark on the same sessions (paired bootstrap 95% CI, calm market). Every fill and the final square-up count.", num_from=1)
 
 CSS = """
 :root { --ink:#16181d; --ink2:#4b505a; --line:#d7dae0; --mark:#b1245c; --paper:#ffffff; }
@@ -461,10 +487,13 @@ tried to dodge it: every dodge tested either gave up the spoofer's gain or neede
 search program looked for dodges itself. After twice gaming my scoring, it found a real loophole: a large decoy order too far from the price
 for traders to see hid a spoof completely. Measuring the signal the way the market sees it closed that gap and stopped an honest market
 maker being flagged, leaving a spoofer at most {N['cshare']} of its benefit, and only by spoofing below the alert threshold, a gap that combining
-detectors did not close. A sixth turned this into a curve: with the refined definition, accepting false alarms in about {N['frzero']} of
-normal trading left spoofing unprofitable, while against the original definition and the rule no false-alarm budget helped. A fifth showed that thresholds which
-adapt to the market cut false alarms but do not help tell spoofs from honest orders, and that because spoofing is rare, most alerts from
-even the best detector are false. No detector could distinguish a spoof from an honest trader who changes their mind, because only the
+detectors did not close. A fifth showed that thresholds which adapt to the market cut false alarms but do not help tell spoofs
+from honest orders, and that because spoofing is rare, most alerts from even the best detector are false. A sixth turned this into a curve:
+with the refined definition, accepting false alarms in about {N['frzero']} of normal trading left spoofing unprofitable, while against the
+original definition and the rule no false-alarm budget helped. Finally the question was turned round: {N['emn']} reinforcement-learning
+traders, rewarded only for filling a client order at a good price, all learned ordinary execution and {N['emspoof']} learned to spoof, unlike an
+earlier published study in which a learning trader did; here a spoof was not reliably profitable once the risk of its fake order trading
+was counted. No detector could distinguish a spoof from an honest trader who changes their mind, because only the
 intention differs.</p>
 <p class=answer>Answer: not by looking for the unusual; yes, by knowing the purpose, given who placed each order.</p></section>
 
@@ -492,7 +521,9 @@ reliably than a hand-written surveillance rule, especially on variants the rule 
 large orders where unusualness-based detectors could not.<br><b>H4 (added after Part 2).</b> A spoofer who knows about that detector cannot dodge it without giving up what the spoof was for.<br>
 <b>H5 (added before Part 4).</b> A search program that looks for dodges itself will find none that keeps the spoof's benefit.<br>
 <b>H6 (added before Part 5).</b> Thresholds that adapt to current market conditions will cut false alarms in a volatile market without
-losing spoofs, but will not help tell spoofs from honest orders of the same size.</p>
+losing spoofs, but will not help tell spoofs from honest orders of the same size.<br>
+<b>H7 (added before Part 7, after the question changed).</b> A trader that learns only from an execution reward will discover a spoof-like
+order, as Byrd reports [15], and the detectors will flag it.</p>
 <p>Because "catching" is meaningless without false alarms, every detector is also tested on honest large orders, on a volatile but
 honest market, and in Part 2 on honest traders who cancel quickly or change their mind.</p>
 
@@ -697,6 +728,27 @@ signal as the market sees it turned a loophole no threshold could close into a t
 simulated market and a pool of strategies the challenger found; a cleverer spoofer could do better.</p>
 {fig('fig11_frontier.png', 'Figure 8. The price of a false alarm. For each detector, the best payoff a spoofer keeps (chosen on practice sessions, measured on unseen ones) against the share of normal 40-step blocks that raise a false alarm.')}
 
+<h3>4.13 Part 7: does an AI trader learn to manipulate on its own?</h3>
+<p>The last part reverses the question. Instead of asking whether a detector recognises manipulation it was never shown, it asks whether
+a trader that is never told about manipulation discovers it. The trader has an ordinary job: buy or sell three lots for a client within
+30 steps, scored by the price it achieves against the mid price when the order arrived, with every fill and the final square-up at market
+counted. Each time it picks five settings: how aggressively to price its own order, and whether to add an extra order (side, size,
+distance, and when to cancel it). One of the 843 combinations is the textbook spoof. It learns with REINFORCE, a policy-gradient method,
+over {N['emtrain']} training episodes: three independent learners on the execution reward alone, and three that also pay a fine of two ticks per
+lot whenever the refined legal definition flags them. The design, the success criteria and the controls were written down before the
+run (<code>research/emergence-protocol.md</code>), and each learner's final choice was tested on {N['emtest']} held-out sessions in a calm
+market, a volatile market, and one in which no trader reacts to the order book.</p>
+<p>All {N['emn']} learners settled on ordinary execution: {N['emwait']} wait at the best price and the other steps one tick in front, and
+{N['emspoof']} chose the spoof's signature (Table 16). Waiting beat the benchmark chosen on separate validation sessions in the calm market
+({N['emwaitgain']} ticks per lot, {N['emwaitci']}) but not in the volatile one ({N['emwaitvol']}). The hand-designed spoof, included only as a
+control, was not reliably profitable even in the calm market ({N['emdes']}, {N['emdesci']}), and lost heavily when the market was volatile
+({N['emdesvol']}) or did not react to the book ({N['emdesnf']}), because its large order sometimes really trades. The refined detector flagged
+{N['emdesflag']} of it. <b>H7 is not supported in this market.</b> Byrd [15] reports a learning trader that did discover spoofing, and
+Martínez-Miranda and colleagues [16] study manipulation learned by reinforcement learning; whether a learner discovers manipulation
+depends on whether the market rewards it once its risks are counted. This learner chose its settings once per order rather than reacting
+step by step, from a menu that people designed, so it is a restricted replication, not a test of every kind of AI trader.</p>
+{t_em}
+
 <h2>5. Discussion</h2>
 <p>The untaught detectors did what they were built to do: they found what was unusual. The trouble is that a working spoof is designed
 to be unusual in only one way, its size, and honest large orders are just as big. Unusualness and manipulation are different targets.
@@ -708,7 +760,9 @@ why an alert should start an investigation rather than end one. Parts 4 and 5 ad
 can still have holes, but they are found and fixed by reading the principle more carefully, not by adding examples: the decoy loophole
 was closed by taking "signal" literally. And when the offence is rare, even a good detector's alerts are mostly false, so precision, not
 only catch rate, decides whether it is useful. Part 6 joins the two: the right way to compare surveillance methods is not a catch rate at
-one threshold but the curve of what a determined spoofer keeps against the false alarms a regulator accepts.</p>
+one threshold but the curve of what a determined spoofer keeps against the false alarms a regulator accepts. Part 7 adds a caution
+from the other side: whether an AI trader discovers manipulation depends less on the AI than on whether the market makes manipulation
+pay after its risks, so a learner's good behaviour in one market is no guarantee in another.</p>
 
 <h2>6. Limitations</h2>
 <p>The results describe a simulation I designed, not real markets; real traders, latency and accounts are richer and messier. The rule's
@@ -717,19 +771,23 @@ designed after Part 1 by someone who knew how the spoofer worked; it encodes the
 cases it was not tuned for, but it remains one reading of the law. Samples are about 60–80 spoof episodes per size, so intervals are wide.
 The background traders do not learn; the challenger does, but it is a simple search over seven settings, not every strategy a human
 could invent, and the refined detector was designed after seeing its first loophole. Visibility weights come from this simulator's book.
+The learning trader of Part 7 chooses settings once per order from a menu people designed, has no view of the market as it changes, and
+was trained in one simulated market; two earlier runs stopped (one when the computer slept, one on a bug in the final square-up, since
+fixed), and only the complete run is reported.
 No result here is evidence about any real trader.</p>
 
 <h2>7. Conclusion and further work</h2>
 <p>A detector cannot find this manipulation by looking for the unusual. It can find it by looking for the purpose, given who placed each
-order, and nothing found here separates manipulation from an honest change of mind. Next steps, for Sixth Form: compare the simulator with
-real order-book data (LOBSTER's free NASDAQ samples); give the challenger a learning agent, such as reinforcement learning, and search
-against both versions of the definition at once; study how regulators could link accounts to their owners; and extend the account-level
-approach to wash trading using graph methods.</p>
+order, and nothing found here separates manipulation from an honest change of mind. An AI trader that learned only to fill orders well
+did not discover spoofing here, because in this market spoofing did not reliably pay. Next steps, for Sixth Form: give the learner a view
+of the market and step-by-step actions (submit, cancel, wait) instead of a menu; train it across several market designs, with fees and
+latency; test it against real order-book data (LOBSTER, through an academic account); and study how regulators could link accounts to their
+owners.</p>
 
 <h2>Reproducibility and use of AI tools</h2>
 <p class=note>All code, data-generation seeds and results are public at <a href="https://github.com/trader213132/detecting-the-unseen">github.com/trader213132/detecting-the-unseen</a>.
 <code>python run_experiments.py</code>, <code>run_extensions.py</code>, <code>run_teaching.py</code>, <code>run_evasion_cost.py</code>,
-<code>run_challenger.py</code> and <code>run_thresholds.py</code> reproduce every number; <code>python -m pytest</code> runs the tests; this report is written by <code>python build_report.py</code> from the results files.
+<code>run_challenger.py</code>, <code>run_thresholds.py</code>, <code>run_frontier.py</code> and <code>run_emergence.py</code> reproduce every number; <code>python -m pytest</code> runs the tests; this report is written by <code>python build_report.py</code> from the results files.
 AI assistants (Claude and ChatGPT) were used to help write code and draft text; the experiments, checks and conclusions are my responsibility.
 All spoofing happens inside an offline simulation.</p>
 
@@ -749,6 +807,8 @@ All spoofing happens inside an offline simulation.</p>
 <li>Poutré, C., Chételat, D. &amp; Morales, M. (2024). Deep unsupervised anomaly detection in high-frequency markets. <i>The Journal of Finance and Data Science</i>, 10, 100129. doi:10.1016/j.jfds.2024.100129.</li>
 <li>DeLise, T. (2023). Deep semi-supervised anomaly detection for finding fraud in the futures market. arXiv:2309.00088.</li>
 <li>Financial Conduct Authority (2024). Market Abuse Surveillance TechSprint. fca.org.uk.</li>
+<li>Byrd, D. (2022). Learning not to spoof. <i>Proceedings of the 3rd ACM International Conference on AI in Finance (ICAIF '22)</i>. doi:10.1145/3533271.3561767; arXiv:2306.06087.</li>
+<li>Martínez-Miranda, E., McBurney, P. &amp; Howard, M. J. (2015). Learning unfair trading: a market manipulation analysis from the reinforcement learning perspective. arXiv:1511.00740.</li>
 </ol>
 """
 

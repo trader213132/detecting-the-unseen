@@ -14,7 +14,7 @@ ARROW = '<svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path
 CHEV = '<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg>'
 
 # The study: the four chapters that tell the story, each with a figure preview.
-STUDY = [("learning.html", "The learning experiment", "What an AI trader learns, with held-out controls.", "challenger"),
+STUDY = [("learning.html", "The learning experiment", "What an AI trader learns, with held-out controls.", "learning"),
          ("experiment.html", "The detector foundation", "A market where spoofing works, and seven detectors.", "replay"),
          ("results.html", "Results", "Spoofs against honest look-alikes and volatile markets.", "detectors"),
          ("teaching.html", "What kind of teaching works?", "Examples, a rule, or the law. And how to dodge it.", "ladder"),
@@ -122,13 +122,48 @@ def header(page):
 
 
 def footer(page):
-    links = " · ".join(f'<a href="{h}"{" aria-current=page" if h == page else ""}>{t}</a>' for h, t in PAGES.items())
-    return f'''  <footer class="footer">
-    <div class="footer__inner">
-      <p class="footer__links">{links} · <a href="report.html">Report</a> · <a href="{REPO}" data-repo-link>Code</a></p>
-      <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
-      <p>Every number comes from the code in <a href="{REPO}" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+    """The Wayfinder footer: the project's name, then every chapter, the explorers and the paper."""
+    here = lambda href: ' aria-current="page"' if href == page else ""
+    chapters = [(h, t) for h, t, _, _ in STUDY] + [("progress.html", "Progress")]
+    study = chr(10).join(f'          <li><a href="{h}"{here(h)}><span class="wayfinder__num">{i:02d}</span>{t}</a></li>'
+                      for i, (h, t) in enumerate(chapters, 1))
+    explore = [("lab.html", "Research Lab"), ("index.html#replay", "Watch one spoof"), ("analytics.html", "Analytics explorer")]
+    paper = [("summary.html", "Summary"), ("report.html", "Research report"), ("report.pdf", "Report as PDF"),
+             ("conclusion.html#references", "References"), (REPO, "Code on GitHub"), ("progress.html", "Progress")]
+    item = lambda h, t: (f'          <li><a href="{h}" data-repo-link>{t}</a></li>' if h == REPO
+                         else f'          <li><a href="{h}"{here(h)}>{t}</a></li>')
+    return f'''  <footer class="footer wayfinder">
+    <div class="wayfinder__inner">
+      <p class="wayfinder__name" aria-hidden="true">Detecting the Unseen</p>
+      <div class="wayfinder__grid">
+        <nav class="wayfinder__col" aria-label="The study">
+          <p class="wayfinder__head">The study</p>
+          <ol>
+{study}
+          </ol>
+        </nav>
+        <nav class="wayfinder__col" aria-label="Explore">
+          <p class="wayfinder__head">Explore</p>
+          <ul>
+{chr(10).join(item(h, t) for h, t in explore)}
+          </ul>
+        </nav>
+        <nav class="wayfinder__col" aria-label="The paper">
+          <p class="wayfinder__head">The paper</p>
+          <ul>
+{chr(10).join(item(h, t) for h, t in paper)}
+          </ul>
+        </nav>
+      </div>
+      <div class="wayfinder__base">
+        <div class="wayfinder__notes">
+          <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
+          <p>Every number comes from the code in <a href="{REPO}" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+        </div>
+        <button class="wayfinder__top" type="button">Back to top <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 8.6V1.6M1.9 4.6 5 1.4l3.1 3.2"/></svg></button>
+      </div>
     </div>
+    <script src="assets/finish.js?v=1" defer></script>
   </footer>'''
 
 

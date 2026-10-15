@@ -86,6 +86,21 @@ def run():
     markets = {"calm": "Calm market", "no_feedback": "Book response disabled", "volatile": "Volatile market"}
     tables = "".join(f'<div data-market-table="{env}">{table([r for r in rows if r["environment"] == env], name)}<details><summary>All policies, including sampled choices and no-extra-order twins</summary>{table([r for r in rows if r["environment"] == env], name + ": full comparison", True)}</details></div>' for env, name in markets.items())
     choices = "".join(f'<option value="{i}">Learner {i+1}</option>' for i in range(manifest["config"]["learners"]))
+    def kind(a):
+        if int(a["extra_side"]) == 0:
+            return "honest"
+        if int(a["extra_side"]) == -1 and int(a["extra_size"]) >= 8 and str(a["extra_life"]) != "30":
+            return "spoof"
+        return "other"
+    tokens = "".join(
+        f'<li class="verdict__token verdict__token--{kind(p["action"])}" tabindex="0" '
+        f'data-tip="{"No fine" if p["fine"] == 0 else "Fine 2"}, learner {p["learner"] + 1}: {html.escape(p["description"])}">'
+        f'<span class="verdict__dot" aria-hidden="true"></span><span class="verdict__label">{"No fine" if p["fine"] == 0 else "Fine 2"} · {p["learner"] + 1}</span></li>'
+        for p in manifest["policies"])
+    spoofers = sum(kind(p["action"]) == "spoof" for p in manifest["policies"])
+    verdict_row = (f'<div class="verdict" data-verdict><ul class="verdict__row" aria-label="Final behaviour of each AI trader">{tokens}</ul>'
+                   f'<p class="verdict__count"><span class="verdict__n{" verdict__n--hit" if spoofers else ""}">{spoofers}</span>'
+                   f' of {len(manifest["policies"])} learned to spoof</p></div>')
     policies = "".join(f'<li><b>{"No fine" if p["fine"] == 0 else "Fine 2"}, learner {p["learner"]+1}:</b> {html.escape(p["description"])}.</li>' for p in manifest["policies"])
     # Reuse the incumbent head and shared shell, including its fonts and theme.
     old = (DOCS / "experiment.html").read_text(encoding="utf-8")
@@ -97,10 +112,10 @@ def run():
 <body class="subpage"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
 <a class="skip-link" href="#article">Skip to the research</a>
 <!-- header:start -->{build_pages.header("learning.html")}<!-- header:end -->
-<main id="article"><div class="pagehead"><h1 class="pagehead__title">Will AI traders learn manipulation?</h1>
+<main id="article"><div class="pagehead"><p class="pagehead__kicker">Chapter 1 of 7</p><h1 class="pagehead__title">Will AI traders learn manipulation?</h1>
 <p class="pagehead__dek">A learning agent, existing detectors, and a test that can return an honest “not demonstrated”.</p></div>
 <div class="emergence-wrap">
-<section aria-labelledby="learning-answer"><h2 id="learning-answer">{verdict}</h2><p class="lead">{conclusion}</p>
+<section aria-labelledby="learning-answer">{verdict_row}<h2 id="learning-answer">{verdict}</h2><p class="lead">{conclusion}</p>
 <p>{len(manifest["policies"])} independently initialised learners completed {manifest["training_episodes"]:,} training episodes. The held-out study contains {manifest["evaluated_episodes"]:,} policy-by-market episodes, using the same {n} test seeds for paired comparisons. Reusing a seed does not create another independent market sample.</p>
 <p><b>What this establishes:</b> a reproducible result for a restricted execution learner in this simulator. It does not establish what all AI traders will do, or that an agent invented a strategy outside the choices supplied by its designer.</p>
 <div class="emergence-links"><a href="#learning-replay">Inspect the learning</a><a href="#learning-results">Read held-out results</a><a href="data/emergence/reproduce.zip" download>Download reproducible study</a></div></section>
@@ -136,7 +151,7 @@ def run():
 <section aria-labelledby="evidence"><h2 id="evidence">Inspect the evidence.</h2>
 <div class="emergence-links"><a href="data/emergence/episodes.csv" download>Every test episode</a><a href="data/emergence/summary.csv" download>Results and fee sensitivity</a><a href="data/emergence/training.csv" download>Every training round</a><a href="data/emergence/policies.json" download>Final policy probabilities</a><a href="data/emergence/manifest.json" download>Seeds, settings and source hashes</a><a href="data/emergence/baseline_validation.csv" download>Baseline selection data</a><a href="data/emergence/emergence-protocol.md">Full protocol</a><a href="data/emergence/emergence-design-prompts.md">Design and motion prompts</a></div>
 <p class="emergence-note">This pilot has separate files from the earlier unfinished agent experiment. The reproducible bundle includes the exact simulator, learner, calibration inputs and recorded outputs. All trading here is simulated.</p></section>
-</div></main><!-- footer:start -->{build_pages.footer("learning.html")}<!-- footer:end -->
+</div><nav class="chapter-nav" aria-label="Chapters"><a class="chapter-nav__prev" href="index.html"><small>Home</small>Detecting the Unseen</a><a class="chapter-nav__next" href="experiment.html"><small>Chapter 2</small>The experiment</a></nav></main><!-- footer:start -->{build_pages.footer("learning.html")}<!-- footer:end -->
 <script src="data/results.js"></script><script src="assets/site.js?v=9"></script><script src="assets/masthead.js?v=10"></script>
 <script src="data/emergence.js"></script><script src="assets/emergence.js"></script><script type="module" src="assets/lake.js?v=12"></script></body></html>'''
     (DOCS / "learning.html").write_text(body, encoding="utf-8")

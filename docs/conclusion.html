@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=9"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=10">
+  <link rel="stylesheet" href="assets/site.css?v=21"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=10">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="subpage"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
@@ -51,7 +51,7 @@
               <a class="dd-item" href="conclusion.html" data-img="5" aria-current="page"><strong>What it means</strong><span>The answer, its limits and the sources.</span></a>
             </div>
             <div class="dd-media" aria-hidden="true">
-              <img class="is-active" src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async">
+              <img class="is-active" src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async">
               <img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
               <img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
               <img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
@@ -87,7 +87,7 @@
       <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
       <h3>The study</h3>
       <div class="sheet-list">
-        <a class="sheet-item" href="learning.html"><img src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The learning experiment</strong><small>What an AI trader learns, with held-out controls.</small></span></a>
+        <a class="sheet-item" href="learning.html"><img src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The learning experiment</strong><small>What an AI trader learns, with held-out controls.</small></span></a>
         <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The detector foundation</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
         <a class="sheet-item" href="results.html"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>Results</strong><small>Spoofs against honest look-alikes and volatile markets.</small></span></a>
         <a class="sheet-item" href="teaching.html"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What kind of teaching works?</strong><small>Examples, a rule, or the law. And how to dodge it.</small></span></a>
@@ -114,18 +114,25 @@
 
   <main id="top">
     <header class="pagehead">
-      <p class="pagehead__kicker">Chapter 5 of 6</p>
+      <p class="pagehead__kicker">Chapter 6 of 7</p>
       <h1 class="pagehead__title">What it means</h1>
       <p class="pagehead__dek">The answer to the question, its limits, and the sources.</p>
     </header>
     <div class="page">
       <nav class="toc" aria-label="On this page">
         <p>On this page</p>
-        <ol><li><a href="#answer">What it means</a></li><li><a href="#references">References</a></li></ol>
+        <ol><li><a href="#learning-answer">The new question</a></li><li><a href="#answer">The detectors</a></li><li><a href="#references">References</a></li></ol>
       </nav>
       <article class="article" id="article">
+        <section id="learning-answer" aria-labelledby="learning-answer-title">
+          <h2 class="section-title" id="learning-answer-title">Will AI traders learn to manipulate?</h2>
+          <p class="verdict__big">In this market, no. Six AI traders learned to fill orders honestly, and none learned to spoof.</p>
+          <p>Each was rewarded only for getting its client a good price, with ordinary orders to choose from, including everything a spoof needs. All six settled on plain execution, with or without a fine for being flagged. The reason is economic, not moral: here a spoof was not reliably profitable once the chance of its fake order really trading was counted, and it lost heavily in a volatile market. An earlier published study found a learning trader that <i>did</i> discover spoofing, in a market where it paid. So whether an AI discovers manipulation depends less on the AI than on whether the market rewards it, which means a good result in one market is no guarantee in another.</p>
+          <p>This learner chose its settings once per order from a menu people designed. A trader that watches the market and acts step by step could behave differently, and that is the next experiment. <a href="learning.html">The full chapter</a> has the replay of its learning and every result.</p>
+        </section>
+
         <section id="answer" aria-labelledby="answer-title-2">
-          <h2 class="section-title" id="answer-title-2">What it means</h2>
+          <h2 class="section-title" id="answer-title-2">What the detectors showed</h2>
           <p class="verdict__big">A detector cannot find manipulation by looking for the unusual. It can find it by looking for the purpose.</p>
           <p>The starting hypothesis was that a label-free model would beat a hand-written rule. It is <b>not supported</b>, and the failure is robust: across five markets, two time resolutions, per-bar and sequence models, a neural network, and a detector that examined every single order. A spoof is only unusual in its size, and honest orders are big too.</p>
           <p>Part 2 shows what does work, and it is not more data or a bigger model. Examples and patterns teach a detector what spoofing <i>looks like</i>, and a spoofer who splits the wall into smaller orders no longer looks like that. The legal definition teaches what spoofing <i>does</i>: it shows interest that it withdraws, to help a trade on the other side. A detector built from that definition, with no examples and no training, caught single-wall and layered spoofs alike, flagged no honest large orders and no honest quick cancellations, and kept its false alarms low when the market changed. Given the same data without the definition, an untaught model caught none.</p>
@@ -153,16 +160,55 @@
         </section>
       </article>
     </div>
-    <nav class="chapter-nav" aria-label="Chapters"><a class="chapter-nav__prev" href="challenger.html"><small>Chapter 4</small>An AI challenger</a><a class="chapter-nav__next" href="progress.html"><small>Chapter 6</small>Progress</a></nav>
+    <nav class="chapter-nav" aria-label="Chapters"><a class="chapter-nav__prev" href="challenger.html"><small>Chapter 5</small>An AI challenger</a><a class="chapter-nav__next" href="progress.html"><small>Chapter 7</small>Progress</a></nav>
   </main>
 
   <!-- footer:start -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <p class="footer__links"><a href="index.html">Home</a> · <a href="learning.html">Learning experiment</a> · <a href="experiment.html">The experiment</a> · <a href="results.html">Results</a> · <a href="teaching.html">Teaching</a> · <a href="challenger.html">Challenger</a> · <a href="conclusion.html" aria-current=page>What it means</a> · <a href="progress.html">Progress</a> · <a href="lab.html">Research Lab</a> · <a href="summary.html">Summary</a> · <a href="analytics.html">Analytics</a> · <a href="report.html">Report</a> · <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code</a></p>
-      <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
-      <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+  <footer class="footer wayfinder">
+    <div class="wayfinder__inner">
+      <p class="wayfinder__name" aria-hidden="true">Detecting the Unseen</p>
+      <div class="wayfinder__grid">
+        <nav class="wayfinder__col" aria-label="The study">
+          <p class="wayfinder__head">The study</p>
+          <ol>
+          <li><a href="learning.html"><span class="wayfinder__num">01</span>The learning experiment</a></li>
+          <li><a href="experiment.html"><span class="wayfinder__num">02</span>The detector foundation</a></li>
+          <li><a href="results.html"><span class="wayfinder__num">03</span>Results</a></li>
+          <li><a href="teaching.html"><span class="wayfinder__num">04</span>What kind of teaching works?</a></li>
+          <li><a href="challenger.html"><span class="wayfinder__num">05</span>An AI challenger</a></li>
+          <li><a href="conclusion.html" aria-current="page"><span class="wayfinder__num">06</span>What it means</a></li>
+          <li><a href="progress.html"><span class="wayfinder__num">07</span>Progress</a></li>
+          </ol>
+        </nav>
+        <nav class="wayfinder__col" aria-label="Explore">
+          <p class="wayfinder__head">Explore</p>
+          <ul>
+          <li><a href="lab.html">Research Lab</a></li>
+          <li><a href="index.html#replay">Watch one spoof</a></li>
+          <li><a href="analytics.html">Analytics explorer</a></li>
+          </ul>
+        </nav>
+        <nav class="wayfinder__col" aria-label="The paper">
+          <p class="wayfinder__head">The paper</p>
+          <ul>
+          <li><a href="summary.html">Summary</a></li>
+          <li><a href="report.html">Research report</a></li>
+          <li><a href="report.pdf">Report as PDF</a></li>
+          <li><a href="conclusion.html#references">References</a></li>
+          <li><a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a></li>
+          <li><a href="progress.html">Progress</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="wayfinder__base">
+        <div class="wayfinder__notes">
+          <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
+          <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+        </div>
+        <button class="wayfinder__top" type="button">Back to top <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 8.6V1.6M1.9 4.6 5 1.4l3.1 3.2"/></svg></button>
+      </div>
     </div>
+    <script src="assets/finish.js?v=1" defer></script>
   </footer>
   <!-- footer:end -->
 
