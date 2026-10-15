@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=21"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=10">
+  <link rel="stylesheet" href="assets/site.css?v=21"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=11">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="subpage"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
@@ -51,12 +51,13 @@
               <a class="dd-item" href="conclusion.html" data-img="5"><strong>What it means</strong><span>The answer, its limits and the sources.</span></a>
             </div>
             <div class="dd-media" aria-hidden="true">
-              <img class="is-active" src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async">
-              <img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
-              <img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
-              <img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
-              <img src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
-              <img src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side." class="is-active" src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async">
+              <img data-cap="One spoof replayed: the fake wall (pink) beside the real order book." src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="Who catches what: the share of spoofs each detector flags, by order size." src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="The ladder of teaching: spoofs caught (pink) and honest orders flagged (grey)." src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="The challenger learning: the best payoff it found, round by round, per detector." src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="Spoof or honest order? 0.5 is a coin toss; lower means honest orders look stranger." src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <p class="dd-cap">What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side.</p>
             </div>
           </div>
           <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
@@ -195,7 +196,7 @@
   <script src="data/teaching.js?v=16" onerror="window.TEACHING = null"></script>
   <script src="progress.js"></script>
   <script src="assets/site.js?v=9"></script>
-  <script src="assets/masthead.js?v=10"></script>
+  <script src="assets/masthead.js?v=11"></script>
   <script type="module" src="assets/lake.js?v=12"></script>
 </body>
 </html>

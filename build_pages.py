@@ -34,6 +34,15 @@ if CHALLENGER_READY:
              "challenger.html": "Challenger", **{k: v for k, v in PAGES.items() if k in ("conclusion.html", "progress.html", "lab.html", "summary.html", "analytics.html")}}
 
 
+# What each menu picture shows, in one line (the menu shows it under the picture)
+CAPTIONS = {"learning": "What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side.",
+            "replay": "One spoof replayed: the fake wall (pink) beside the real order book.",
+            "detectors": "Who catches what: the share of spoofs each detector flags, by order size.",
+            "ladder": "The ladder of teaching: spoofs caught (pink) and honest orders flagged (grey).",
+            "challenger": "The challenger learning: the best payoff it found, round by round, per detector.",
+            "answer": "Spoof or honest order? 0.5 is a coin toss; lower means honest orders look stranger."}
+
+
 def img(name, w, h, lazy=True):
     lazy_attr = ' loading="lazy"' if lazy else ""
     return f'<img src="assets/menu/{name}.webp" alt="" width="{w}" height="{h}" decoding="async"{lazy_attr}>'
@@ -46,8 +55,9 @@ def header(page):
         f'              <a class="dd-item{" is-active" if i == 0 else ""}" href="{h}" data-img="{i}"{here(h)}><strong>{t}</strong><span>{d}</span></a>'
         for i, (h, t, d, _) in enumerate(STUDY))
     first = lambda tag: tag.replace("<img ", '<img class="is-active" ', 1)
-    media = "\n".join("              " + (first(img(im, 856, 716, False)) if i == 0 else img(im, 856, 716))
+    media = "\n".join("              " + (first(img(im, 856, 716, False)) if i == 0 else img(im, 856, 716)).replace("<img ", f'<img data-cap="{CAPTIONS.get(im, "")}" ', 1)
                       for i, (_, _, _, im) in enumerate(STUDY))
+    media += f'\n              <p class="dd-cap">{CAPTIONS.get(STUDY[0][3], "")}</p>'
     cards = "\n".join(f'            <a class="dd-card" href="{h}"{here(h)}>{img(im, 432, 588)}<strong>{t}</strong><span>{d}</span></a>'
                       for h, t, d, im in EXPLORE)
     links = "\n".join(f'            <a class="dd-link" href="{h}"{here(h)}>{t}</a>' for h, t in PAPER)

@@ -127,6 +127,8 @@
   const show = (row) => {
     rows.forEach((r) => r.classList.toggle("is-active", r === row));
     pics.forEach((p, i) => p.classList.toggle("is-active", i === +row.dataset.img));
+    const cap = dd.querySelector(".dd-cap"), pic = pics[+row.dataset.img];
+    if (cap && pic) cap.textContent = pic.dataset.cap || "";
   };
   rows.forEach((r) => { r.addEventListener("pointerenter", () => show(r)); r.addEventListener("focus", () => show(r)); });
 
