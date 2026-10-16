@@ -95,7 +95,7 @@ def run():
     tokens = "".join(
         f'<li class="verdict__token verdict__token--{kind(p["action"])}" tabindex="0" '
         f'data-tip="{"No fine" if p["fine"] == 0 else "Fine 2"}, learner {p["learner"] + 1}: {html.escape(p["description"])}">'
-        f'<span class="verdict__dot" aria-hidden="true"></span><span class="verdict__label">{"No fine" if p["fine"] == 0 else "Fine 2"} · {p["learner"] + 1}</span></li>'
+        f'<span class="verdict__dot" aria-hidden="true"></span><span class="verdict__label">{"No fine" if p["fine"] == 0 else "Fine 2"}<br>learner {p["learner"] + 1}</span></li>'
         for p in manifest["policies"])
     spoofers = sum(kind(p["action"]) == "spoof" for p in manifest["policies"])
     verdict_row = (f'<div class="verdict" data-verdict><ul class="verdict__row" aria-label="Final behaviour of each AI trader">{tokens}</ul>'
