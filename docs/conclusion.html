@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=27"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=11">
+  <link rel="stylesheet" href="assets/site.css?v=29"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=11">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="subpage"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
@@ -138,9 +138,34 @@
 
         <section id="answer" aria-labelledby="answer-title-2">
           <h2 class="section-title" id="answer-title-2">What the detectors showed</h2>
-          <p class="verdict__big">A detector cannot find manipulation by looking for the unusual. It can find it by looking for the purpose.</p>
+          <p class="verdict__big">A detector cannot find manipulation by looking for the unusual. It can find it by checking for what the law says manipulation does.</p>
           <p>The starting hypothesis was that a label-free model would beat a hand-written rule. It is <b>not supported</b>, and the failure is robust: across five markets, two time resolutions, per-bar and sequence models, a neural network, and a detector that examined every single order. A spoof is only unusual in its size, and honest orders are big too.</p>
           <p>Part 2 shows what does work, and it is not more data or a bigger model. Examples and patterns teach a detector what spoofing <i>looks like</i>, and a spoofer who splits the wall into smaller orders no longer looks like that. The legal definition teaches what spoofing <i>does</i>: it shows interest that it withdraws, to help a trade on the other side. A detector built from that definition, with no examples and no training, caught single-wall and layered spoofs alike, flagged no honest large orders and no honest quick cancellations, and kept its false alarms low when the market changed. Given the same data without the definition, an untaught model caught none.</p>
+                    <figure class="figure ladder" data-reveal aria-labelledby="ladder-cap">
+            <ol class="ladder__rows">
+              <li class="ladder__row" style="--d:0ms">
+                <p class="ladder__name"><b>Taught nothing</b><span>Isolation Forest, the best of the four untaught detectors here</span></p>
+                <div class="ladder__bar" aria-hidden="true"><i style="--w:23%"></i></div>
+                <p class="ladder__v"><b>23%</b> of layered spoofs caught · 23% of honest large orders flagged</p>
+              </li>
+              <li class="ladder__row" style="--d:120ms">
+                <p class="ladder__name"><b>Shown examples</b><span>a classifier shown 10 spoofs and 10 honest orders</span></p>
+                <div class="ladder__bar" aria-hidden="true"><i style="--w:30%"></i></div>
+                <p class="ladder__v"><b>30%</b> of layered spoofs caught · 0% of honest large orders flagged</p>
+              </li>
+              <li class="ladder__row" style="--d:240ms">
+                <p class="ladder__name"><b>Given a pattern</b><span>the rule: a large order cancelled quickly</span></p>
+                <div class="ladder__bar" aria-hidden="true"><i style="--w:8%"></i></div>
+                <p class="ladder__v"><b>8%</b> of layered spoofs caught · 0% of honest large orders flagged</p>
+              </li>
+              <li class="ladder__row ladder__row--law" style="--d:360ms">
+                <p class="ladder__name"><b>Given the law</b><span>the legal definition, checked per account</span></p>
+                <div class="ladder__bar" aria-hidden="true"><i style="--w:85%"></i></div>
+                <p class="ladder__v"><b>85%</b> of layered spoofs caught · 0% of honest large orders flagged</p>
+              </li>
+            </ol>
+            <figcaption id="ladder-cap"><b>The ladder of teaching, at a glance.</b> Spoofs split into layers, at 16 times a typical order, calm market. Every detector side by side is on the <a href="summary.html">Summary</a>, and the full results are in <a href="teaching.html">What kind of teaching works?</a></figcaption>
+          </figure>
           <p>So the answer to the original question has two halves. <b>Can AI detect manipulation without being taught what it looks like?</b> Not by learning normal trading and flagging what is unusual. But it does not need to be shown what manipulation looks like either: told what it <i>is</i>, and shown who placed each order, it can. What no detector here could do is tell a spoof from an honest change of mind, because the actions are identical and only the intention differs. Detection can say that a signal was false; it takes an investigation to say why.</p>
           <p>It has known weaknesses: a spoofer hidden in a busy broker account is harder to see, and one who uses two accounts can only be caught if the regulator knows who owns them. Part 3 tried the other obvious dodges: waiting before pulling the wall is caught once each order is judged over its own life, and buying back what was sold only escapes by giving up the gain. The next stage is real order data, where accounts are messier than in any simulation, and a spoofer who adapts to the detector.</p>
           <h3>Limitations</h3>
