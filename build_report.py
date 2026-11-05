@@ -788,7 +788,10 @@ owners.</p>
 <p class=note>All code, data-generation seeds and results are public at <a href="https://github.com/trader213132/detecting-the-unseen">github.com/trader213132/detecting-the-unseen</a>.
 <code>python run_experiments.py</code>, <code>run_extensions.py</code>, <code>run_teaching.py</code>, <code>run_evasion_cost.py</code>,
 <code>run_challenger.py</code>, <code>run_thresholds.py</code>, <code>run_frontier.py</code> and <code>run_emergence.py</code> reproduce every number; <code>python -m pytest</code> runs the tests; this report is written by <code>python build_report.py</code> from the results files.
-AI assistants (Claude and ChatGPT) were used to help write code and draft text; the experiments, checks and conclusions are my responsibility.
+AI coding assistants (Claude and ChatGPT/Codex) were used extensively: they wrote most of the software, including the simulator, detectors,
+experiments and website, proposed some of the experiments and analyses, and drafted parts of the text. I chose the research question and its
+direction, decided which results to pursue, checked the findings and sources, and drew the conclusions; I am responsible for every claim, and do not
+claim to have hand-coded every component.
 All spoofing happens inside an offline simulation.</p>
 
 <h2>References</h2>

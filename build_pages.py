@@ -24,11 +24,11 @@ if CHALLENGER_READY:
     STUDY.insert(4, ("challenger.html", "An AI challenger", "A search program hunts for spoofs the law-based detector misses.", "challenger"))
 EXPLORE = [("lab.html", "Research Lab", "Pick a market situation and see how every detector reacts.", "lab"),
            ("index.html#replay", "Watch one spoof", "The wall goes up, the order fills, the wall vanishes.", "replay")]
-PAPER = [("report.html", "Research report"), ("summary.html", "Summary: the project in five minutes"),
-         ("analytics.html", "Analytics explorer"), ("conclusion.html#references", "References")]
+PAPER = [("scholarship.html", "Scholarship research portfolio"), ("report.html", "Research report"), ("summary.html", "Summary: the project in five minutes"),
+         ("analytics.html", "Analytics explorer"), ("conclusion.html#references", "References"), ("progress.html", "Progress")]
 PAGES = {"index.html": "Home", "learning.html": "Learning experiment", "experiment.html": "The experiment", "results.html": "Results",
          "teaching.html": "Teaching", "conclusion.html": "What it means", "progress.html": "Progress",
-         "lab.html": "Research Lab", "summary.html": "Summary", "analytics.html": "Analytics"}
+         "lab.html": "Research Lab", "summary.html": "Summary", "analytics.html": "Analytics", "scholarship.html": "Scholarship Research"}
 if CHALLENGER_READY:
     PAGES = {**{k: v for k, v in PAGES.items() if k != "conclusion.html" and k not in ("progress.html", "lab.html", "summary.html", "analytics.html")},
              "challenger.html": "Challenger", **{k: v for k, v in PAGES.items() if k in ("conclusion.html", "progress.html", "lab.html", "summary.html", "analytics.html")}}
@@ -79,7 +79,7 @@ def header(page):
           <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore{CHEV}</button></li>
           <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper{CHEV}</button></li>
           <li><a class="menu__plain" href="lab.html"{here("lab.html")}>Lab</a></li>
-          <li><a class="menu__plain" href="progress.html"{here("progress.html")}>Progress</a></li>
+          <li><a class="menu__plain menu__plain--portfolio" href="scholarship.html" aria-label="Scholarship Research"{here("scholarship.html")}><span class="lbl-long">Scholarship Research</span><span class="lbl-short" aria-hidden="true">Scholarship</span></a></li>
         </ul>
         <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
         <div class="dd" id="dd">
@@ -112,6 +112,7 @@ def header(page):
       </div>
     </div>
     <div class="sheet" id="sheet">
+      <a class="sheet-summary" href="scholarship.html"><span><strong>Scholarship Research</strong><small>Economics, Mathematics and Computer Science: completed and proposed research</small></span>{ARROW}</a>
       <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span>{ARROW}</a>
       <h3>The study</h3>
       <div class="sheet-list">
@@ -138,7 +139,7 @@ def footer(page):
     study = chr(10).join(f'          <li><a href="{h}"{here(h)}><span class="wayfinder__num">{i:02d}</span>{t}</a></li>'
                       for i, (h, t) in enumerate(chapters, 1))
     explore = [("lab.html", "Research Lab"), ("index.html#replay", "Watch one spoof"), ("analytics.html", "Analytics explorer")]
-    paper = [("summary.html", "Summary"), ("report.html", "Research report"), ("report.pdf", "Report as PDF"),
+    paper = [("scholarship.html", "Scholarship research portfolio"), ("summary.html", "Summary"), ("report.html", "Research report"), ("report.pdf", "Report as PDF"),
              ("conclusion.html#references", "References"), (REPO, "Code on GitHub"), ("progress.html", "Progress")]
     item = lambda h, t: (f'          <li><a href="{h}" data-repo-link>{t}</a></li>' if h == REPO
                          else f'          <li><a href="{h}"{here(h)}>{t}</a></li>')

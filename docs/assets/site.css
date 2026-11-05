@@ -810,3 +810,132 @@ details.data-table .table-wrap { margin: 0.6rem 0 0; }
   .verdict__label { font-size: 0.6rem; white-space: normal; }
 }
 @media (prefers-reduced-motion: reduce) { .verdict__dot, .verdict__n, .verdict__token::before { transition: none !important; } }
+
+/* Scholarship research portfolio (November 2026) -------------------------------------------------
+   Three subjects, one accent each, taken from the existing detector palette. Completed work is solid;
+   proposed work is dashed, so the two can never be mistaken for each other. */
+:root { --econ: var(--det-rule); --maths: var(--det-pca); --cs: var(--det-iforest); }
+
+/* Home: the three directions */
+.directions { position: relative; z-index: 1; max-width: 88rem; margin: 0 auto; padding: clamp(3.5rem, 8vw, 6rem) var(--gutter) clamp(1rem, 3vw, 2rem); }
+.directions__inner { max-width: 72rem; }
+.directions__title { font: 760 clamp(1.7rem, 3.6vw, 2.8rem)/1.08 var(--font-display); letter-spacing: -0.03em; margin: 0 0 0.8rem; max-width: 24ch; text-wrap: balance; }
+.directions__lede { font-size: 1.08rem; line-height: 1.6; color: var(--ink-2); max-width: 52ch; margin: 0 0 1.8rem; }
+.directions__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.directions__more { margin: 1.4rem 0 0; font-family: var(--font-display); font-weight: 600; }
+.dir-card { display: grid; gap: 0.55rem; height: 100%; padding: 1.3rem 1.3rem 1.5rem; border-radius: var(--radius); background: var(--paper);
+  border: 1px solid var(--line); border-top: 3px solid var(--accent); text-decoration: none; color: var(--ink);
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms ease, box-shadow 260ms ease; }
+.dir-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.dir-card:focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; }
+.dir-card__subject { font: 650 0.8rem/1 var(--font-display); color: var(--accent); }
+.dir-card strong { font: 720 1.2rem/1.25 var(--font-display); letter-spacing: -0.01em; }
+.dir-card > span:last-child { font-size: 0.96rem; line-height: 1.5; color: var(--ink-2); }
+.dir-card--econ { --accent: var(--econ); } .dir-card--maths { --accent: var(--maths); } .dir-card--cs { --accent: var(--cs); }
+
+/* The portfolio page */
+.portfolio { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; padding: 112px var(--gutter) 3rem; }
+.portfolio__intro { padding-bottom: clamp(2.5rem, 6vw, 3.5rem); border-bottom: 1px solid var(--line); }
+.portfolio__kicker { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-2); margin: 0 0 1rem; }
+.portfolio__title { font: 800 clamp(2.2rem, 5.6vw, 4.4rem)/1.0 var(--font-display); font-stretch: 105%; letter-spacing: -0.04em; margin: 0 0 1.4rem; max-width: 18ch; text-wrap: balance; }
+.portfolio__lede { font-size: clamp(1.08rem, 1.6vw, 1.28rem); line-height: 1.62; color: var(--ink); max-width: 44rem; margin: 0 0 1rem; text-wrap: pretty; }
+.portfolio__note { font-family: var(--font-display); font-size: 0.86rem; color: var(--ink-2); margin: 1.2rem 0 1.4rem; max-width: 60ch; }
+.portfolio__jump { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.jump { display: inline-flex; align-items: center; gap: 0.55rem; height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line);
+  font: 600 0.9rem/1 var(--font-display); color: var(--ink); text-decoration: none; transition: border-color 200ms ease, background-color 200ms ease; }
+.jump::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.jump:hover { border-color: var(--ink); }
+.jump--econ { --accent: var(--econ); } .jump--maths { --accent: var(--maths); } .jump--cs { --accent: var(--cs); }
+
+.dept { --accent: var(--ink); padding: clamp(3rem, 7vw, 4.8rem) 0 0; scroll-margin-top: 84px; }
+.dept--econ { --accent: var(--econ); } .dept--maths { --accent: var(--maths); } .dept--cs { --accent: var(--cs); }
+.dept__subject { display: inline-flex; align-items: center; gap: 0.6rem; font: 650 0.86rem/1 var(--font-display); color: var(--accent); margin: 0 0 0.9rem; }
+.dept__subject::before { content: ""; width: 28px; height: 3px; border-radius: 2px; background: var(--accent); }
+.dept__title { font: 780 clamp(1.8rem, 4vw, 3rem)/1.05 var(--font-display); letter-spacing: -0.03em; margin: 0 0 1.2rem; max-width: 22ch; text-wrap: balance; }
+.dept__question { margin: 0 0 2rem; padding: 1rem 0 1rem 1.2rem; border-left: 3px solid var(--accent); max-width: 46rem;
+  font: italic 400 clamp(1.08rem, 1.7vw, 1.3rem)/1.55 var(--font-text); color: var(--ink); }
+.dept__question b { display: block; font: 650 0.78rem/1.2 var(--font-display); font-style: normal; color: var(--ink-2); margin-bottom: 0.4rem; }
+.dept__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.panel { border-radius: var(--radius); padding: 1.3rem 1.35rem 1.4rem; }
+.panel--done { background: var(--paper-2); border: 1px solid var(--line); }
+.panel--next { background: transparent; border: 1.5px dashed color-mix(in srgb, var(--accent) 60%, var(--line)); }
+.panel__tag { display: inline-flex; align-items: center; gap: 0.45rem; font: 650 0.76rem/1 var(--font-display); margin: 0 0 0.9rem; }
+.panel--done .panel__tag { color: var(--ink); }
+.panel--done .panel__tag::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--ink); }
+.panel--next .panel__tag { color: var(--accent); }
+.panel--next .panel__tag::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1.5px dashed var(--accent); box-sizing: border-box; }
+.panel h3 { font: 700 1.08rem/1.3 var(--font-display); margin: 0 0 0.7rem; }
+.panel ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.55rem; }
+.panel li { font-size: 0.98rem; line-height: 1.55; }
+.panel li a { color: inherit; }
+.evidence-link { display: inline-block; margin-top: 0.9rem; font: 600 0.86rem/1.3 var(--font-display); color: var(--ink); }
+.dept__why { margin-top: 2rem; max-width: 46rem; }
+.dept__why h3 { font: 720 1.25rem/1.25 var(--font-display); margin: 0 0 0.8rem; }
+.dept__why p { font-size: 1.02rem; line-height: 1.65; margin: 0 0 0.9rem; }
+.dept__why dl { display: grid; grid-template-columns: minmax(8rem, 11rem) 1fr; gap: 0.7rem 1.4rem; margin: 0; }
+.dept__why dt { font: 650 0.92rem/1.5 var(--font-display); color: var(--accent); }
+.dept__why dd { margin: 0; font-size: 0.98rem; line-height: 1.6; }
+
+/* Illustrative Bayesian calculator */
+.bayes { margin-top: 2rem; padding: 1.4rem; border-radius: var(--radius); border: 1px solid var(--line); background: var(--paper); }
+.bayes__head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 1.2rem; align-items: baseline; margin-bottom: 1.1rem; }
+.bayes__head h3 { font: 720 1.15rem/1.3 var(--font-display); margin: 0; }
+.bayes__badge { font: 600 0.74rem/1 var(--font-display); color: var(--ink-2); border: 1px solid var(--line); border-radius: 999px; padding: 0.4rem 0.65rem; }
+.bayes__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.6rem; align-items: start; }
+.bayes__grid > * { min-width: 0; }   /* lets the columns shrink: the formula below must never widen a phone screen */
+.bayes__field { display: grid; gap: 0.35rem; margin-bottom: 1rem; }
+.bayes__field label { display: flex; justify-content: space-between; gap: 1rem; font: 600 0.9rem/1.3 var(--font-display); }
+.bayes__field output { font-family: var(--font-mono); font-size: 0.86rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.bayes__field small { font-size: 0.84rem; color: var(--ink-2); line-height: 1.45; }
+.bayes input[type="range"] { width: 100%; accent-color: var(--maths); }
+.bayes__answer { font: 800 clamp(2.4rem, 6vw, 3.6rem)/1 var(--font-display); letter-spacing: -0.03em; color: var(--ink); margin: 0.2rem 0 0.5rem; font-variant-numeric: tabular-nums; }
+.bayes__answer-label { font: 600 0.92rem/1.4 var(--font-display); margin: 0; }
+.bayes__freq { margin: 1rem 0 0; font-size: 0.96rem; line-height: 1.6; color: var(--ink-2); }
+.bayes__bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--paper-3); margin-top: 0.9rem; }
+.bayes__bar span { display: block; height: 100%; transition: width 260ms cubic-bezier(0.16, 1, 0.3, 1); }
+.bayes__bar .is-true { background: var(--mark); } .bayes__bar .is-false { background: var(--ink-3); }
+.bayes__legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin-top: 0.5rem; font: 500 0.8rem/1.3 var(--font-display); color: var(--ink-2); }
+.bayes__legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 0.35rem; vertical-align: -1px; }
+.bayes__formula { margin: 1.1rem 0 0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-2); overflow-x: auto; white-space: nowrap; }
+.bayes__note { margin: 0.8rem 0 0; font-size: 0.86rem; color: var(--ink-2); }
+
+/* Completed vs proposed */
+.ledger { padding: clamp(3.5rem, 8vw, 5.5rem) 0 0; scroll-margin-top: 84px; }
+.ledger__title { font: 780 clamp(1.8rem, 4vw, 3rem)/1.05 var(--font-display); letter-spacing: -0.03em; margin: 0 0 0.8rem; max-width: 22ch; text-wrap: balance; }
+.ledger__lede { font-size: 1.04rem; line-height: 1.6; color: var(--ink-2); max-width: 50ch; margin: 0 0 1.6rem; }
+.ledger__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.ledger .panel--next { --accent: var(--ink-3); }
+.ledger .panel h3 { font-size: 1.2rem; }
+
+/* Evidence, the researcher, AI assistance */
+.portfolio__block { padding: clamp(3rem, 7vw, 4.5rem) 0 0; scroll-margin-top: 84px; }
+.portfolio__block > h2 { font: 760 clamp(1.5rem, 3vw, 2.2rem)/1.1 var(--font-display); letter-spacing: -0.025em; margin: 0 0 1rem; }
+.portfolio__block > p { font-size: 1.02rem; line-height: 1.65; max-width: 46rem; margin: 0 0 0.9rem; }
+.evidence-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1.2rem; }
+.evidence-grid a { display: grid; gap: 0.25rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink);
+  font-family: var(--font-display); transition: border-color 200ms ease, transform 200ms cubic-bezier(0.16, 1, 0.3, 1); }
+.evidence-grid a:hover { border-color: var(--ink); transform: translateY(-2px); }
+.evidence-grid strong { font-size: 0.98rem; }
+.evidence-grid span { font-size: 0.84rem; color: var(--ink-2); line-height: 1.4; }
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.6rem 2.4rem; align-items: start; }
+.about__name { font: 760 1.5rem/1.2 var(--font-display); margin: 0 0 0.3rem; }
+.about__role { font: 500 0.96rem/1.4 var(--font-display); color: var(--ink-2); margin: 0 0 1rem; }
+.about ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.5rem; font-size: 0.98rem; line-height: 1.55; }
+.ai-statement { padding: 1.3rem 1.4rem; border-radius: var(--radius); background: var(--paper-2); border: 1px solid var(--line); }
+.ai-statement h3 { font: 700 1.05rem/1.3 var(--font-display); margin: 0 0 0.7rem; }
+.ai-statement p { font-size: 0.96rem; line-height: 1.6; margin: 0 0 0.7rem; }
+
+@media (max-width: 860px) {
+  .directions__list, .evidence-grid { grid-template-columns: 1fr; }
+  .dept__cols, .ledger__cols, .about, .bayes__grid { grid-template-columns: 1fr; }
+  .dept__why dl { grid-template-columns: 1fr; gap: 0.2rem; }
+  .dept__why dd { margin-bottom: 0.6rem; }
+  .bayes__formula { white-space: normal; overflow-wrap: anywhere; }
+  .bayes { padding: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) { .dir-card, .evidence-grid a, .bayes__bar span { transition: none; } }
+
+/* The menu's portfolio link: full label on wide screens, a short one where the bar gets tight */
+.menu__plain--portfolio { white-space: nowrap; }
+.menu__plain--portfolio .lbl-short { display: none; }
+@media (max-width: 1180px) { .menu__plain--portfolio .lbl-long { display: none; } .menu__plain--portfolio .lbl-short { display: inline; } }

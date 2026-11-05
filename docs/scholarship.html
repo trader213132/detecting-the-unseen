@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sixth Form Research Scholarship — Research Portfolio · Detecting the Unseen</title>
+  <meta name="description" content="A research portfolio in Economics, Mathematics and Computer Science, built on one independent project on AI and market manipulation. Completed preliminary research and proposed Sixth Form research, clearly separated.">
+  <meta property="og:title" content="Detecting the Unseen: research portfolio">
+  <meta property="og:description" content="One independent research project on AI and market manipulation, and three proposed directions for Sixth Form research.">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#dbe4ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0e13" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314171f'/%3E%3Crect x='7' y='9' width='12' height='4' rx='2' fill='%23858d9b'/%3E%3Crect x='7' y='15' width='18' height='4' rx='2' fill='%23ee5f95'/%3E%3Crect x='7' y='21' width='9' height='4' rx='2' fill='%23a3abbb'/%3E%3C/svg%3E">
+  <script>
+    try { var t = localStorage.getItem("dtu-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=27"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=11">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+</head>
+<body class="summary-page portfolio-page"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
+  <a class="skip-link" href="#main">Skip to the results</a>
+
+  <!-- header:start -->
+  <header class="topbar is-solid" data-topbar>
+    <div class="topbar__inner">
+      <a class="wordmark" href="index.html" aria-label="Detecting the Unseen, home">
+        <span class="wordmark__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        Detecting the Unseen
+      </a>
+      <nav class="menu" id="menu" aria-label="Main">
+        <ul class="menu__links">
+          <li><a class="menu__plain" href="summary.html">Summary</a></li>
+          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">The study<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><a class="menu__plain" href="lab.html">Lab</a></li>
+          <li><a class="menu__plain menu__plain--portfolio" href="scholarship.html" aria-label="Scholarship Research" aria-current="page"><span class="lbl-long">Scholarship Research</span><span class="lbl-short" aria-hidden="true">Scholarship</span></a></li>
+        </ul>
+        <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
+        <div class="dd" id="dd">
+          <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
+            <div class="dd-list">
+              <a class="dd-item is-active" href="learning.html" data-img="0"><strong>The learning experiment</strong><span>What an AI trader learns, with held-out controls.</span></a>
+              <a class="dd-item" href="experiment.html" data-img="1"><strong>The detector foundation</strong><span>A market where spoofing works, and seven detectors.</span></a>
+              <a class="dd-item" href="results.html" data-img="2"><strong>Results</strong><span>Spoofs against honest look-alikes and volatile markets.</span></a>
+              <a class="dd-item" href="teaching.html" data-img="3"><strong>What kind of teaching works?</strong><span>Examples, a rule, or the law. And how to dodge it.</span></a>
+              <a class="dd-item" href="challenger.html" data-img="4"><strong>An AI challenger</strong><span>A search program hunts for spoofs the law-based detector misses.</span></a>
+              <a class="dd-item" href="conclusion.html" data-img="5"><strong>What it means</strong><span>The answer, its limits and the sources.</span></a>
+            </div>
+            <div class="dd-media" aria-hidden="true">
+              <img data-cap="What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side." class="is-active" src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async">
+              <img data-cap="One spoof replayed: the fake wall (pink) beside the real order book." src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="Who catches what: the share of spoofs each detector flags, by order size." src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="The ladder of teaching: spoofs caught (pink) and honest orders flagged (grey)." src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="The challenger learning: the best payoff it found, round by round, per detector." src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="Spoof or honest order? 0.5 is a coin toss; lower means honest orders look stranger." src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <p class="dd-cap">What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side.</p>
+            </div>
+          </div>
+          <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
+            <a class="dd-card" href="lab.html"><img src="assets/menu/lab.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Research Lab</strong><span>Pick a market situation and see how every detector reacts.</span></a>
+            <a class="dd-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><span>The wall goes up, the order fills, the wall vanishes.</span></a>
+          </div>
+          <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
+            <a class="dd-link" href="scholarship.html" aria-current="page">Scholarship research portfolio</a>
+            <a class="dd-link" href="report.html">Research report</a>
+            <a class="dd-link" href="summary.html">Summary: the project in five minutes</a>
+            <a class="dd-link" href="analytics.html">Analytics explorer</a>
+            <a class="dd-link" href="conclusion.html#references">References</a>
+            <a class="dd-link" href="progress.html">Progress</a>
+          </div>
+        </div>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch between light and dark theme">
+          <i class="ph ph-moon theme-icon-light" aria-hidden="true"></i>
+          <i class="ph ph-sun theme-icon-dark" aria-hidden="true"></i>
+        </button>
+        <a class="icon-button" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link aria-label="Code on GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a>
+        <a class="pill cta" href="report.html">Report</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5h12M2 10.5h12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sheet" id="sheet">
+      <a class="sheet-summary" href="scholarship.html"><span><strong>Scholarship Research</strong><small>Economics, Mathematics and Computer Science: completed and proposed research</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <h3>The study</h3>
+      <div class="sheet-list">
+        <a class="sheet-item" href="learning.html"><img src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The learning experiment</strong><small>What an AI trader learns, with held-out controls.</small></span></a>
+        <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The detector foundation</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
+        <a class="sheet-item" href="results.html"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>Results</strong><small>Spoofs against honest look-alikes and volatile markets.</small></span></a>
+        <a class="sheet-item" href="teaching.html"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What kind of teaching works?</strong><small>Examples, a rule, or the law. And how to dodge it.</small></span></a>
+        <a class="sheet-item" href="challenger.html"><img src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>An AI challenger</strong><small>A search program hunts for spoofs the law-based detector misses.</small></span></a>
+        <a class="sheet-item" href="conclusion.html"><img src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What it means</strong><small>The answer, its limits and the sources.</small></span></a>
+      </div>
+      <h3>Explore</h3>
+      <div class="sheet-cards">
+        <a class="sheet-card" href="lab.html"><img src="assets/menu/lab.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Research Lab</strong><small>Pick a market situation and see how every detector reacts.</small></a>
+        <a class="sheet-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><small>The wall goes up, the order fills, the wall vanishes.</small></a>
+      </div>
+      <h3>The paper</h3>
+      <div class="sheet-links">
+        <a href="scholarship.html">Scholarship research portfolio</a>
+        <a href="report.html">Research report</a>
+        <a href="summary.html">Summary: the project in five minutes</a>
+        <a href="analytics.html">Analytics explorer</a>
+        <a href="conclusion.html#references">References</a>
+        <a href="progress.html">Progress</a>
+        <a href="progress.html">Progress</a>
+        <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
+      </div>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="main" class="portfolio">
+    <section class="portfolio__intro" aria-labelledby="portfolio-title">
+      <p class="portfolio__kicker rise" style="--i:0">Research portfolio · Economics, Mathematics, Computer Science</p>
+      <h1 class="portfolio__title rise" id="portfolio-title" style="--i:1">Sixth Form Research Scholarship — Research Portfolio</h1>
+      <p class="portfolio__lede rise" style="--i:2">My independent research began with a question: can artificial intelligence identify financial market manipulation it has never encountered before? Through building simulated financial markets, evaluating detection algorithms and experimenting with learning trading agents, I discovered new questions connecting Economics, Mathematics and Computer Science.</p>
+      <p class="portfolio__lede rise" style="--i:3">My Sixth Form research proposals build on these preliminary findings, extending the investigation in three different academic directions.</p>
+      <p class="portfolio__note rise" style="--i:4">Every result on this page comes from simulated markets, and each links to its evidence. Work marked <b>Completed</b> has been done; work marked <b>Proposed</b> has not. This is an independent project, not produced or endorsed by Haberdashers' Boys' School.</p>
+      <nav class="portfolio__jump rise" style="--i:5" aria-label="Research directions">
+        <a class="jump jump--econ" href="#economics">Economics</a>
+        <a class="jump jump--maths" href="#mathematics">Mathematics</a>
+        <a class="jump jump--cs" href="#computer-science">Computer Science</a>
+        <a class="jump" href="#discovered">What remains unanswered</a>
+      </nav>
+    </section>
+
+    <!-- ECONOMICS -->
+    <section class="dept dept--econ" id="economics" aria-labelledby="econ-title">
+      <p class="dept__subject">Economics</p>
+      <h2 class="dept__title" id="econ-title">When does market manipulation pay?</h2>
+      <p class="dept__question"><b>Research question</b>Under what economic conditions does market manipulation become profitable, and how do incentives influence whether learning trading agents discover it?</p>
+      <div class="dept__cols">
+        <div class="panel panel--done" data-reveal>
+          <p class="panel__tag">Completed</p>
+          <h3>What my preliminary research found</h3>
+          <ul>
+            <li>A large spoof order (8 times a typical order) increased the probability of a genuine order filling by 12 percentage points in one simulated market (95% interval +6 to +20 points).</li>
+            <li>This did not establish that spoofing was reliably profitable once its costs and risks were considered: a spoofer's fake order can really trade.</li>
+            <li>None of six restricted learning agents, rewarded only for execution quality, independently learned spoofing.</li>
+            <li>A hand-designed spoof did not demonstrate statistically reliable profitability in the pilot's calm test market (+0.21 ticks per lot against the honest benchmark, 95% interval −0.39 to +0.65, 128 held-out sessions).</li>
+            <li>With the refined, law-based detector, accepting false alarms in about 1.1% of normal trading left the best spoofing strategies found unprofitable.</li>
+          </ul>
+          <a class="evidence-link" href="learning.html#learning-results">Evidence: the learning experiment</a> · <a class="evidence-link" href="challenger.html#price">the price of a false alarm</a>
+        </div>
+        <div class="panel panel--next" data-reveal>
+          <p class="panel__tag">Proposed</p>
+          <h3>What I propose to investigate</h3>
+          <ul>
+            <li>Derive an economic model of manipulation incentives: the expected gain from a misleading order against its execution risk, its costs and the expected penalty.</li>
+            <li>Investigate how market conditions (volatility, depth, how strongly traders react to the order book) change expected profitability.</li>
+            <li>Examine whether detection penalties discourage manipulation, and how large the expected penalty must be to deter it.</li>
+            <li>Test whether more capable learning agents discover manipulative strategies when the economic incentives make them attractive.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dept__why" data-reveal>
+        <h3>Why this matters for Economics</h3>
+        <p>My results suggest that whether manipulation appears depends less on the trader than on the incentives the market offers. That turns a technical question into an economic one.</p>
+        <dl>
+          <dt>Incentives</dt><dd>A trader, human or artificial, responds to expected payoffs. If a market rewards misleading orders, a profit-seeking learner may find them without being told to.</dd>
+          <dt>Market efficiency</dt><dd>Prices aggregate information from orders. A false signal about supply or demand distorts that information, and with it the prices other traders rely on.</dd>
+          <dt>Regulation</dt><dd>UK market abuse law defines manipulation by its effect, a false or misleading signal, and requires intent to be proved. Surveillance can flag behaviour, but it cannot see intent.</dd>
+          <dt>Game theory</dt><dd>A spoofer and a regulator choose strategies against each other: the spoofer adapts to the detector, and the regulator chooses how strict to be. My challenger experiment was a first, simulated version of that game.</dd>
+          <dt>Economics of crime</dt><dd>Becker's model treats offending as a choice that weighs gains against the probability and size of a penalty. Manipulation by an algorithm raises a new question: who bears that penalty when no person intended the act?</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- MATHEMATICS -->
+    <section class="dept dept--maths" id="mathematics" aria-labelledby="maths-title">
+      <p class="dept__subject">Mathematics</p>
+      <h2 class="dept__title" id="maths-title">How reliable is a warning when the base rate is unknown?</h2>
+      <p class="dept__question"><b>Research question</b>How can mathematical models produce reliable surveillance decisions when the true frequency of manipulation and the costs of mistakes are uncertain?</p>
+      <div class="dept__cols">
+        <div class="panel panel--done" data-reveal>
+          <p class="panel__tag">Completed</p>
+          <h3>Mathematical work already done</h3>
+          <ul>
+            <li>Statistical evaluation of seven detector configurations and the law-based detectors on the same simulated episodes.</li>
+            <li>Bootstrap confidence intervals throughout, and paired comparisons of detectors on identical episodes.</li>
+            <li>True-positive (catch) and false-positive (false alarm) rates, with every threshold fixed on separate normal trading before testing.</li>
+            <li>ROC-AUC analysis: detectors taught nothing scored 0.14–0.44 when separating spoofs from honest orders of the same size, where 0.5 is chance.</li>
+            <li>Bayesian base-rate calculations: if a large spoof happened once in ten sessions, about 25% of the best detector's alerts would be genuine.</li>
+            <li>Detection thresholds under changing conditions: fixed against adaptive thresholds in a volatile market, and the curve of what a spoofer keeps at each false-alarm rate.</li>
+          </ul>
+          <a class="evidence-link" href="results.html">Evidence: results</a> · <a class="evidence-link" href="challenger.html#desk">the alert budget</a> · <a class="evidence-link" href="report.html">the report</a>
+        </div>
+        <div class="panel panel--next" data-reveal>
+          <p class="panel__tag">Proposed</p>
+          <h3>What I propose to investigate</h3>
+          <ul>
+            <li>Bayesian probability with an uncertain prevalence: treating the rate of manipulation as unknown and carrying that uncertainty through to bounds on the reliability of an alert.</li>
+            <li>Mathematical optimisation of detection thresholds, rather than fixing them at a conventional 1% false-alarm rate.</li>
+            <li>Expected-loss functions that put a cost on a missed manipulation and on a false accusation, and choose the threshold that minimises expected loss.</li>
+            <li>Minimax regret and robust decision-making: thresholds that perform acceptably across every plausible prevalence and cost, not only the most likely one.</li>
+            <li>How these decisions perform when the model's own assumptions are wrong.</li>
+          </ul>
+          <p class="bayes__note">My completed experiments measured false alarms and fixed thresholds empirically. The proposal is to derive and optimise those choices mathematically, under uncertainty that the experiments did not model.</p>
+        </div>
+      </div>
+
+      <div class="bayes" data-bayes>
+        <div class="bayes__head">
+          <h3>How reliable is one alert? An illustrative calculation</h3>
+          <span class="bayes__badge">Illustrative calculation, not an experimental result</span>
+        </div>
+        <div class="bayes__grid">
+          <div>
+            <div class="bayes__field">
+              <label for="b-prev">Prevalence: share of stretches of trading that contain manipulation <output id="b-prev-out" for="b-prev">1.0%</output></label>
+              <input type="range" id="b-prev" min="0.1" max="20" step="0.1" value="1">
+            </div>
+            <div class="bayes__field">
+              <label for="b-sens">Sensitivity: share of manipulation the detector flags <output id="b-sens-out" for="b-sens">85%</output></label>
+              <input type="range" id="b-sens" min="1" max="100" step="1" value="85">
+            </div>
+            <div class="bayes__field">
+              <label for="b-fpr">False-positive rate: share of honest stretches it flags <output id="b-fpr-out" for="b-fpr">1.0%</output></label>
+              <input type="range" id="b-fpr" min="0.1" max="20" step="0.1" value="1">
+              <small>Defaults: an 85% catch rate and 1% false alarms, similar to the law-based detector in my experiments; the prevalence is unknown in reality, so try different values.</small>
+            </div>
+          </div>
+          <div>
+            <p class="bayes__answer" id="b-answer" aria-live="polite">46%</p>
+            <p class="bayes__answer-label">chance that an alert is genuine manipulation</p>
+            <div class="bayes__bar" aria-hidden="true"><span class="is-true" id="b-bar-true"></span><span class="is-false" id="b-bar-false"></span></div>
+            <p class="bayes__legend"><span><i style="background:var(--mark)"></i>Genuine alerts</span><span><i style="background:var(--ink-3)"></i>False alerts</span></p>
+            <p class="bayes__freq" id="b-freq">Out of 10,000 stretches of trading, 100 contain manipulation; the detector flags 85 of them and 99 honest ones.</p>
+            <p class="bayes__formula">P(manipulation | alert) = s·p / (s·p + f·(1 − p))</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPUTER SCIENCE -->
+    <section class="dept dept--cs" id="computer-science" aria-labelledby="cs-title">
+      <p class="dept__subject">Computer Science</p>
+      <h2 class="dept__title" id="cs-title">When does cheating pay?</h2>
+      <p class="dept__question"><b>Research question</b>Under what market conditions does a learning trading agent discover spoofing, and can a previously fixed detector identify the learned behaviour without generating excessive false accusations?</p>
+      <div class="dept__cols">
+        <div class="panel panel--done" data-reveal>
+          <p class="panel__tag">Completed</p>
+          <h3>What has been built and tested</h3>
+          <ul>
+            <li>A simulated limit-order-book market with price-time priority, in which spoofing measurably influences other traders.</li>
+            <li>Seven detector configurations: a hand-written surveillance rule and six anomaly detectors, including PCA, Isolation Forest and an LSTM autoencoder.</li>
+            <li>Experiments with a conventional rule and a law-informed detector built from the legal definition of manipulation.</li>
+            <li>The conventional rule caught 100% of the tested large single-wall spoofs, but only 8% after the same orders were split into smaller layers.</li>
+            <li>The law-informed detector caught 85% of the tested layered spoofs while flagging none of the tested honest large orders.</li>
+            <li>A search program that hunted for dodges found a real loophole in the law-informed detector, which was then closed.</li>
+            <li>Six restricted learning agents did not independently discover spoofing.</li>
+          </ul>
+          <a class="evidence-link" href="experiment.html">Evidence: the method</a> · <a class="evidence-link" href="teaching.html">the law-informed detector</a> · <a class="evidence-link" href="learning.html">the learning agents</a>
+        </div>
+        <div class="panel panel--next" data-reveal>
+          <p class="panel__tag">Proposed</p>
+          <h3>What I propose to investigate</h3>
+          <ul>
+            <li>Develop state-conditioned, sequential reinforcement-learning agents that observe the market and submit, cancel or wait at every step, instead of choosing settings once from a menu.</li>
+            <li>Investigate how learned trading behaviour changes with economic conditions, such as volatility and how strongly other traders respond to the order book.</li>
+            <li>Test whether frozen detectors transfer to unfamiliar strategies that a learner invents.</li>
+            <li>Evaluate false alerts and generalisation on independent test data that no agent or detector has seen.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPLETED vs PROPOSED -->
+    <section class="ledger" id="discovered" aria-labelledby="ledger-title">
+      <h2 class="ledger__title" id="ledger-title">What I Have Discovered — and What Remains Unanswered</h2>
+      <p class="ledger__lede">The left column is finished work with evidence you can inspect. The right column has not been done yet; it describes hypotheses and methods, not results.</p>
+      <div class="ledger__cols">
+        <div class="panel panel--done" data-reveal>
+          <p class="panel__tag">Completed preliminary research</p>
+          <h3>Seven experiments, with code and data</h3>
+          <ul>
+            <li>Detectors taught nothing could not tell a spoof from an honest order of the same size; that starting hypothesis was <b>not supported</b>.</li>
+            <li>Examples and a rule learned what spoofs look like and missed a disguised version; a detector built from the law caught both.</li>
+            <li>Dodges were tested by hand and by a search program; one loophole was found and fixed.</li>
+            <li>Adaptive thresholds, the alert budget and the price of a false alarm.</li>
+            <li>A learning-agent pilot: none of six agents learned to spoof.</li>
+            <li>Negative results are kept: four of seven hypotheses were not supported (H1, H2, H5 and H7 in the report), and no detector could separate a spoof from an honest change of mind.</li>
+          </ul>
+          <a class="evidence-link" href="report.html">Research report</a> · <a class="evidence-link" href="report.pdf">PDF</a> · <a class="evidence-link" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Source code</a>
+        </div>
+        <div class="panel panel--next" data-reveal>
+          <p class="panel__tag">Proposed Sixth Form research</p>
+          <h3>Two years of open questions</h3>
+          <ul>
+            <li><b>Economics:</b> a model of manipulation incentives, and whether penalties deter learning agents.</li>
+            <li><b>Mathematics:</b> threshold choices that are optimal or robust when prevalence and costs are uncertain.</li>
+            <li><b>Computer Science:</b> sequential learning agents across market designs, and whether fixed detectors transfer to what they learn.</li>
+            <li>Each would be tested on fresh, held-out data, and reported whether or not it confirms the hypothesis.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVIDENCE -->
+    <section class="portfolio__block" id="evidence" aria-labelledby="evidence-title">
+      <h2 id="evidence-title">Research evidence</h2>
+      <p>Every claim above can be traced to these pages and files. Elsewhere on the site, numbers are written by the code straight from the results files; the figures quoted on this page were checked against those same files.</p>
+      <div class="evidence-grid">
+        <a href="report.html"><strong>Research report</strong><span>All seven parts, every table, the hypotheses and references</span></a>
+        <a href="results.html"><strong>Experimental results</strong><span>Every chart from Part 1, with the data behind it</span></a>
+        <a href="experiment.html"><strong>Research methodology</strong><span>The simulated market, the spoofs and the detectors</span></a>
+        <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link><strong>Source code</strong><span>The full repository, with tests and the scripts that reproduce every number</span></a>
+        <a href="conclusion.html"><strong>Limitations and failed hypotheses</strong><span>What the results do not show, and what did not work</span></a>
+        <a href="data/emergence/emergence-protocol.md"><strong>Technical documentation</strong><span>The learning experiment's protocol, written before it ran</span></a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="portfolio__block" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About the Researcher</h2>
+      <div class="about">
+        <div>
+          <p class="about__name">Ebrahim Kafian</p>
+          <p class="about__role">Year 11, Haberdashers' Boys' School</p>
+          <ul>
+            <li>A strong interest in Economics, Mathematics, Artificial Intelligence and quantitative finance.</li>
+            <li>Independent development of financial market research and simulation projects, including this one.</li>
+            <li>An interest in pursuing Economics and Mathematics at A-level and at university.</li>
+          </ul>
+        </div>
+        <div class="ai-statement">
+          <h3>How AI tools were used</h3>
+          <p>This project used AI coding assistants (Claude and ChatGPT/Codex) extensively. They wrote most of the software, including the simulator, the detectors, the experiments and this website, and they proposed some of the experiments and analyses.</p>
+          <p>My part was choosing the research question and its direction, deciding which results to pursue, checking the findings and sources, and drawing the conclusions stated here. I am responsible for every claim on this site, and I do not claim to have hand-coded every component.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer:start -->
+  <footer class="footer wayfinder">
+    <div class="wayfinder__inner">
+      <p class="wayfinder__name" aria-hidden="true">Detecting the Unseen</p>
+      <div class="wayfinder__grid">
+        <nav class="wayfinder__col" aria-label="The study">
+          <p class="wayfinder__head">The study</p>
+          <ol>
+          <li><a href="learning.html"><span class="wayfinder__num">01</span>The learning experiment</a></li>
+          <li><a href="experiment.html"><span class="wayfinder__num">02</span>The detector foundation</a></li>
+          <li><a href="results.html"><span class="wayfinder__num">03</span>Results</a></li>
+          <li><a href="teaching.html"><span class="wayfinder__num">04</span>What kind of teaching works?</a></li>
+          <li><a href="challenger.html"><span class="wayfinder__num">05</span>An AI challenger</a></li>
+          <li><a href="conclusion.html"><span class="wayfinder__num">06</span>What it means</a></li>
+          <li><a href="progress.html"><span class="wayfinder__num">07</span>Progress</a></li>
+          </ol>
+        </nav>
+        <nav class="wayfinder__col" aria-label="Explore">
+          <p class="wayfinder__head">Explore</p>
+          <ul>
+          <li><a href="lab.html">Research Lab</a></li>
+          <li><a href="index.html#replay">Watch one spoof</a></li>
+          <li><a href="analytics.html">Analytics explorer</a></li>
+          </ul>
+        </nav>
+        <nav class="wayfinder__col" aria-label="The paper">
+          <p class="wayfinder__head">The paper</p>
+          <ul>
+          <li><a href="scholarship.html" aria-current="page">Scholarship research portfolio</a></li>
+          <li><a href="summary.html">Summary</a></li>
+          <li><a href="report.html">Research report</a></li>
+          <li><a href="report.pdf">Report as PDF</a></li>
+          <li><a href="conclusion.html#references">References</a></li>
+          <li><a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a></li>
+          <li><a href="progress.html">Progress</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="wayfinder__base">
+        <div class="wayfinder__notes">
+          <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
+          <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+        </div>
+        <button class="wayfinder__top" type="button">Back to top <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 8.6V1.6M1.9 4.6 5 1.4l3.1 3.2"/></svg></button>
+      </div>
+    </div>
+    <script src="assets/finish.js?v=1" defer></script>
+  </footer>
+  <!-- footer:end -->
+
+  <script src="data/results.js"></script>
+  <script src="progress.js"></script>
+  <script src="assets/site.js?v=9"></script>
+  <script src="assets/masthead.js?v=11"></script>
+  <script src="assets/summary.js?v=11"></script>
+  <script src="assets/scholarship.js?v=1"></script>
+  <script type="module" src="assets/lake.js?v=12"></script>
+</body>
+</html>
