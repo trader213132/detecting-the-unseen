@@ -7,6 +7,7 @@ so the report always matches the experiments. Output:
     docs/report.html   the report as a web page (linked from the website)
     docs/report.pdf    the same report as a PDF, printed with Google Chrome if it is installed
 """
+from decimal import Decimal, ROUND_HALF_UP
 import html
 import shutil
 import subprocess
@@ -90,7 +91,11 @@ def princ(test, metric_name, size=None, setting="main", det=PRINCIPLE, df=tp):
 
 
 def pct(x, d=0):
-    return "n/a" if pd.isna(x) else f"{x * 100:.{d}f}%"
+    # round half up, as the website's JavaScript does, so the report and the site agree
+    if pd.isna(x):
+        return "n/a"
+    v = Decimal(repr(float(x) * 100)).quantize(Decimal(1).scaleb(-d), rounding=ROUND_HALF_UP)
+    return f"{abs(v) if v == 0 else v}%"
 
 
 def ci(r, d=0, fmt=pct):
@@ -468,7 +473,7 @@ a { color: var(--mark); }
 BODY = f"""
 <h1>Detecting the Unseen</h1>
 <p class=sub>Can artificial intelligence detect hidden market manipulation without being taught what manipulation looks like?</p>
-<div class=meta>Ebrahim · Habs Research Scholarship application · Technical report on preliminary results · {date.today():%d %B %Y}
+<div class=meta>Ebrahim Kafian · Habs Research Scholarship application · Technical report on preliminary results · {date.today():%d %B %Y}
 <span class=noprint> · <a href="report.pdf">PDF</a> · <a href="index.html">Website</a> · <a href="https://github.com/trader213132/detecting-the-unseen">Code and data</a></span></div>
 
 <section class=abstract><h2>Abstract</h2>
@@ -755,7 +760,7 @@ to be unusual in only one way, its size, and honest large orders are just as big
 Detectors taught by examples or by a rule did better, but they learned the <i>look</i> of the spoofs they were given, so a spoofer who
 changes the look, here by splitting the wall, escapes. The legal definition describes the <i>purpose</i> instead: a signal shown, then
 withdrawn, to help a trade on the other side. That survives a change of look, but it needs to know who placed each order, and it reaches a
-hard limit: behaviour can show that a signal was false, but not why it was sent. That is why the law asks for intent to be proved, and
+hard limit: behaviour can show that a signal was false, but not why it was sent. That is why investigators look for other evidence of purpose, such as what traders wrote, and
 why an alert should start an investigation rather than end one. Parts 4 and 5 added two lessons. A detector written from a principle
 can still have holes, but they are found and fixed by reading the principle more carefully, not by adding examples: the decoy loophole
 was closed by taking "signal" literally. And when the offence is rare, even a good detector's alerts are mostly false, so precision, not

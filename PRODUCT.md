@@ -36,7 +36,7 @@ This is a real, reproducible experiment, not a pitch. Every number on the page c
 - An anomaly score is never described as proof of manipulation or intent.
 - All spoofing happens inside an offline simulation, which the page must state.
 - The AI-drafted proposal (`proposal/`) stays private and is not published.
-- The byline is "Ebrahim" only (the user's choice). No surname, photo or other personal details.
+- The byline is "Ebrahim Kafian" (the user's choice in the scholarship portfolio brief, 5 Nov 2026). No photo or other personal details.
 
 ## Brand Commitments
 

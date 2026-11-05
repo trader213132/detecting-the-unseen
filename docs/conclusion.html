@@ -142,7 +142,7 @@
           <p class="verdict__big">A detector cannot find manipulation by looking for the unusual. It can find it by looking for the purpose.</p>
           <p>The starting hypothesis was that a label-free model would beat a hand-written rule. It is <b>not supported</b>, and the failure is robust: across five markets, two time resolutions, per-bar and sequence models, a neural network, and a detector that examined every single order. A spoof is only unusual in its size, and honest orders are big too.</p>
           <p>Part 2 shows what does work, and it is not more data or a bigger model. Examples and patterns teach a detector what spoofing <i>looks like</i>, and a spoofer who splits the wall into smaller orders no longer looks like that. The legal definition teaches what spoofing <i>does</i>: it shows interest that it withdraws, to help a trade on the other side. A detector built from that definition, with no examples and no training, caught single-wall and layered spoofs alike, flagged no honest large orders and no honest quick cancellations, and kept its false alarms low when the market changed. Given the same data without the definition, an untaught model caught none.</p>
-          <p>So the answer to the title question has two halves. <b>Can AI detect manipulation without being taught what it looks like?</b> Not by learning normal trading and flagging what is unusual. But it does not need to be shown what manipulation looks like either: told what it <i>is</i>, and shown who placed each order, it can. What no detector here could do is tell a spoof from an honest change of mind, because the actions are identical and only the intention differs. Detection can say that a signal was false; it takes an investigation to say why.</p>
+          <p>So the answer to the original question has two halves. <b>Can AI detect manipulation without being taught what it looks like?</b> Not by learning normal trading and flagging what is unusual. But it does not need to be shown what manipulation looks like either: told what it <i>is</i>, and shown who placed each order, it can. What no detector here could do is tell a spoof from an honest change of mind, because the actions are identical and only the intention differs. Detection can say that a signal was false; it takes an investigation to say why.</p>
           <p>It has known weaknesses: a spoofer hidden in a busy broker account is harder to see, and one who uses two accounts can only be caught if the regulator knows who owns them. Part 3 tried the other obvious dodges: waiting before pulling the wall is caught once each order is judged over its own life, and buying back what was sold only escapes by giving up the gain. The next stage is real order data, where accounts are messier than in any simulation, and a spoofer who adapts to the detector.</p>
           <h3>Limitations</h3>
           <p>These results describe a simulation, not real markets. The market and the spoofer were both designed for this project, the traders are simplified, and there is no latency. The rule's success is partly circular, since it was written knowing the pattern, which is why the layered test exists. The principle detector was designed after Part 1, by someone who knew how the spoofer worked; it encodes the law rather than the spoofer's settings, and it was tested on layering, new markets and account structures it was not tuned for, but it is still one person's reading of the law. It also relies on account data that only regulators and exchanges hold, and the simulation's accounts are cleaner than real ones. Samples are around 80 spoof episodes per size, so intervals are wide at small sizes. An alert is never evidence of intent, only a reason to look closer. All spoofing in this project happens inside an offline simulation.</p>
@@ -210,7 +210,7 @@
       <div class="wayfinder__base">
         <div class="wayfinder__notes">
           <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
-          <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+          <p>Charts and tables are built from the results files in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>; figures quoted in the text were checked against them. Detector data generated <time data-generated></time>.</p>
         </div>
         <button class="wayfinder__top" type="button">Back to top <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 8.6V1.6M1.9 4.6 5 1.4l3.1 3.2"/></svg></button>
       </div>
@@ -226,7 +226,7 @@
   <script src="data/extensions.js" onerror="window.EXTENSIONS = null"></script>
   <script src="data/teaching.js?v=16" onerror="window.TEACHING = null"></script>
   <script src="progress.js"></script>
-  <script src="assets/site.js?v=9"></script>
+  <script src="assets/site.js?v=10"></script>
   <script src="assets/masthead.js?v=11"></script>
   <script type="module" src="assets/lake.js?v=12"></script>
 </body>

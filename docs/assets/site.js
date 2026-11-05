@@ -1152,8 +1152,7 @@
     const line = $("[data-status-line]");
     if (line) {
       const when = fmtDate(P.deadline.date, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-      line.innerHTML = days > 0 ? `<b>${days} day${days === 1 ? "" : "s"}</b> until the ${P.deadline.label}, ${when}. Last updated ${fmtDate(P.updated)}.`
-        : days === 0 ? `The ${P.deadline.label} is <b>today</b>, ${when}.` : `The ${P.deadline.label} was due ${when}.`;
+      line.innerHTML = `Prepared for the ${P.deadline.label}, ${when}. Last updated ${fmtDate(P.updated)}.`;
     }
     const up = $("#updated-date");
     if (up) { up.textContent = fmtDate(P.updated); up.setAttribute("datetime", P.updated); }

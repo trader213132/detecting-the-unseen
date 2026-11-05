@@ -168,7 +168,7 @@
         <dl>
           <dt>Incentives</dt><dd>A trader, human or artificial, responds to expected payoffs. If a market rewards misleading orders, a profit-seeking learner may find them without being told to.</dd>
           <dt>Market efficiency</dt><dd>Prices aggregate information from orders. A false signal about supply or demand distorts that information, and with it the prices other traders rely on.</dd>
-          <dt>Regulation</dt><dd>UK market abuse law defines manipulation by its effect, a false or misleading signal, and requires intent to be proved. Surveillance can flag behaviour, but it cannot see intent.</dd>
+          <dt>Regulation</dt><dd>UK market abuse law defines manipulation by its effect: orders that give, or are likely to give, a false or misleading signal. Surveillance can show that a signal was false, but not why it was sent, so investigators look for other evidence of purpose.</dd>
           <dt>Game theory</dt><dd>A spoofer and a regulator choose strategies against each other: the spoofer adapts to the detector, and the regulator chooses how strict to be. My challenger experiment was a first, simulated version of that game.</dd>
           <dt>Economics of crime</dt><dd>Becker's model treats offending as a choice that weighs gains against the probability and size of a penalty. Manipulation by an algorithm raises a new question: who bears that penalty when no person intended the act?</dd>
         </dl>
@@ -189,7 +189,7 @@
             <li>Bootstrap confidence intervals throughout, and paired comparisons of detectors on identical episodes.</li>
             <li>True-positive (catch) and false-positive (false alarm) rates, with every threshold fixed on separate normal trading before testing.</li>
             <li>ROC-AUC analysis: detectors taught nothing scored 0.14–0.44 when separating spoofs from honest orders of the same size, where 0.5 is chance.</li>
-            <li>Bayesian base-rate calculations: if a large spoof happened once in ten sessions, about 25% of the best detector's alerts would be genuine.</li>
+            <li>Bayesian base-rate calculations: if a large spoof happened once in ten sessions, about 25% of the refined law-based detector's alerts would be genuine.</li>
             <li>Detection thresholds under changing conditions: fixed against adaptive thresholds in a volatile market, and the curve of what a spoofer keeps at each false-alarm rate.</li>
           </ul>
           <a class="evidence-link" href="results.html">Evidence: results</a> · <a class="evidence-link" href="challenger.html#desk">the alert budget</a> · <a class="evidence-link" href="report.html">the report</a>
@@ -281,7 +281,7 @@
       <div class="ledger__cols">
         <div class="panel panel--done" data-reveal>
           <p class="panel__tag">Completed preliminary research</p>
-          <h3>Seven experiments, with code and data</h3>
+          <h3>Seven parts, with code and data</h3>
           <ul>
             <li>Detectors taught nothing could not tell a spoof from an honest order of the same size; that starting hypothesis was <b>not supported</b>.</li>
             <li>Examples and a rule learned what spoofs look like and missed a disguised version; a detector built from the law caught both.</li>
@@ -382,7 +382,7 @@
       <div class="wayfinder__base">
         <div class="wayfinder__notes">
           <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
-          <p>Every number comes from the code in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>. Data generated <time data-generated></time>.</p>
+          <p>Charts and tables are built from the results files in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>; figures quoted in the text were checked against them. Detector data generated <time data-generated></time>.</p>
         </div>
         <button class="wayfinder__top" type="button">Back to top <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 8.6V1.6M1.9 4.6 5 1.4l3.1 3.2"/></svg></button>
       </div>
@@ -393,7 +393,7 @@
 
   <script src="data/results.js"></script>
   <script src="progress.js"></script>
-  <script src="assets/site.js?v=9"></script>
+  <script src="assets/site.js?v=10"></script>
   <script src="assets/masthead.js?v=11"></script>
   <script src="assets/summary.js?v=11"></script>
   <script src="assets/scholarship.js?v=1"></script>

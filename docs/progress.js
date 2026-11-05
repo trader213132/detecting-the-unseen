@@ -3,7 +3,7 @@
 //   - add a new entry at the TOP of `log` whenever something happens
 //   - update `updated` to today's date
 window.PROGRESS = {
-  updated: "2026-10-15",
+  updated: "2026-11-05",
   deadline: { date: "2026-11-06", label: "Research Scholarship submission" },
   schedule: { from: "2026-10-08", to: "2026-11-06" },
   milestones: [
@@ -21,6 +21,11 @@ window.PROGRESS = {
     { label: "Proofread and submit", from: "2026-11-05", to: "2026-11-06", status: "next" }
   ],
   log: [
+    {
+      date: "2026-11-05",
+      title: "A research portfolio, and a check of every page",
+      text: "Added a page that separates completed research from proposed Sixth Form research in Economics, Mathematics and Computer Science. Then reread every page as an assessor would, and corrected wording that went further than the evidence: one rounding mismatch between the site and the report, stale dates, and a sentence that overstated what market abuse law requires."
+    },
     {
       date: "2026-10-15",
       title: "A new question: will AI traders learn to manipulate on their own?",

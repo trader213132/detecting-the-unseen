@@ -66,7 +66,7 @@
   const th = (det, mode, test, metric, m) => (TH.find((r) => r.detector === det && r.mode === mode && r.test === test && r.metric === metric &&
     (m === undefined ? r.size_mult === undefined : r.size_mult === m)) || {}).value;
   const UNTAUGHT = ["PCA (generic)", "IForest (generic)", "Seq-PCA (generic)", "LSTM-AE (generic)"];
-  const range = (vals, d = 0) => { const v = vals.filter((x) => x !== undefined); return v.length ? `${pct(Math.min(...v), d)}–${pct(Math.max(...v), d)}` : "n/a"; };
+  const range = (vals, d = 0) => { const v = vals.filter((x) => x !== undefined); if (!v.length) return "n/a"; const lo = pct(Math.min(...v), d), hi = pct(Math.max(...v), d); return lo === hi ? `about ${lo}` : `${lo}–${hi}`; };
   N.volFixed = range(UNTAUGHT.map((d) => th(d, "fixed", "normal_volatile", "false_alarm_rate")), 1);
   N.volAdapt = range(UNTAUGHT.map((d) => th(d, "adaptive", "normal_volatile", "false_alarm_rate")), 1);
   N.catchVolFixed = range(UNTAUGHT.map((d) => th(d, "fixed", "spoof_volatile", "catch_rate", 16)));
