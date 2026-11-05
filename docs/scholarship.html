@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
-  <link rel="stylesheet" href="assets/site.css?v=27"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=11">
+  <link rel="stylesheet" href="assets/site.css?v=28"><link rel="stylesheet" href="assets/lake.css?v=12"><link rel="stylesheet" href="assets/masthead.css?v=11">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body class="summary-page portfolio-page"><div class="lake-scene" aria-hidden="true"><canvas data-lake></canvas></div>
@@ -130,13 +130,57 @@
         <a class="jump jump--cs" href="#computer-science">Computer Science</a>
         <a class="jump" href="#discovered">What remains unanswered</a>
       </nav>
+      <figure class="pathway rise" style="--i:6" aria-label="One completed pilot leads to three proposed research directions">
+        <div class="pathway__root">
+          <span class="pathway__tag">Completed</span>
+          <strong>Detecting the Unseen</strong>
+          <span>Seven parts, simulated markets, code and data</span>
+        </div>
+        <svg class="pathway__fork" viewBox="0 0 120 180" preserveAspectRatio="none" aria-hidden="true">
+          <path class="pathway__stem" d="M0 90 H44" />
+          <path class="pathway__branch" d="M44 90 C80 90 76 30 120 30" />
+          <path class="pathway__branch" d="M44 90 H120" />
+          <path class="pathway__branch" d="M44 90 C80 90 76 150 120 150" />
+        </svg>
+        <ol class="pathway__leaves">
+          <li class="pathway__leaf pathway__leaf--econ"><a href="#economics"><span class="pathway__tag">Proposed · Economics</span>Why manipulation pays, or does not</a></li>
+          <li class="pathway__leaf pathway__leaf--maths"><a href="#mathematics"><span class="pathway__tag">Proposed · Mathematics</span>How far to trust an alert</a></li>
+          <li class="pathway__leaf pathway__leaf--cs"><a href="#computer-science"><span class="pathway__tag">Proposed · Computer Science</span>What learning agents discover</a></li>
+        </ol>
+      </figure>
     </section>
 
     <!-- ECONOMICS -->
     <section class="dept dept--econ" id="economics" aria-labelledby="econ-title">
       <p class="dept__subject">Economics</p>
       <h2 class="dept__title" id="econ-title">When does market manipulation pay?</h2>
-      <p class="dept__question"><b>Research question</b>Under what economic conditions does market manipulation become profitable, and how do incentives influence whether learning trading agents discover it?</p>
+      <div class="dept__lead">
+        <p class="dept__question"><b>Research question</b>Under what economic conditions does market manipulation become profitable, and how do incentives influence whether learning trading agents discover it?</p>
+      <figure class="pfig" data-reveal>
+        <svg viewBox="0 0 400 230" role="img" aria-labelledby="fig-econ-t">
+          <title id="fig-econ-t">Concept: the gain from a false signal, minus the risk that the fake order trades, minus the expected penalty, leaves a net payoff that may be above or below zero.</title>
+          <line class="pfig__axis" x1="20" y1="150" x2="388" y2="150" />
+          <text class="pfig__small" x="22" y="166">0</text>
+          <rect class="pfig__up" x="34" y="40" width="64" height="110" rx="3" />
+          <path class="pfig__link" d="M98 40 H128" />
+          <rect class="pfig__down" x="128" y="40" width="64" height="46" rx="3" />
+          <path class="pfig__link" d="M192 86 H222" />
+          <rect class="pfig__down" x="222" y="86" width="64" height="38" rx="3" />
+          <path class="pfig__link" d="M286 124 H316" />
+          <rect class="pfig__net" x="316" y="124" width="64" height="26" rx="3" />
+          <text class="pfig__q" x="348" y="112" text-anchor="middle">?</text>
+          <text class="pfig__label" x="66" y="186" text-anchor="middle">Gain from the</text>
+          <text class="pfig__label" x="66" y="204" text-anchor="middle">false signal</text>
+          <text class="pfig__label" x="160" y="186" text-anchor="middle">Fake order</text>
+          <text class="pfig__label" x="160" y="204" text-anchor="middle">really trades</text>
+          <text class="pfig__label" x="254" y="186" text-anchor="middle">Expected</text>
+          <text class="pfig__label" x="254" y="204" text-anchor="middle">penalty</text>
+          <text class="pfig__label pfig__label--b" x="348" y="186" text-anchor="middle">What is</text>
+          <text class="pfig__label pfig__label--b" x="348" y="204" text-anchor="middle">left?</text>
+        </svg>
+        <figcaption><b>Concept sketch, not data.</b> A spoof pays only if what the false signal gains outweighs the risk of its fake order trading and the expected penalty. In my calm test market, the hand-designed spoof's net gain was not reliably above zero.</figcaption>
+      </figure>
+      </div>
       <div class="dept__cols">
         <div class="panel panel--done" data-reveal>
           <p class="panel__tag">Completed</p>
@@ -178,7 +222,31 @@
     <section class="dept dept--maths" id="mathematics" aria-labelledby="maths-title">
       <p class="dept__subject">Mathematics</p>
       <h2 class="dept__title" id="maths-title">How reliable is a warning when the base rate is unknown?</h2>
-      <p class="dept__question"><b>Research question</b>How can mathematical models produce reliable surveillance decisions when the true frequency of manipulation and the costs of mistakes are uncertain?</p>
+      <div class="dept__lead">
+        <p class="dept__question"><b>Research question</b>How can mathematical models produce reliable surveillance decisions when the true frequency of manipulation and the costs of mistakes are uncertain?</p>
+      <figure class="pfig" data-reveal>
+        <svg viewBox="0 0 400 230" role="img" aria-labelledby="fig-maths-t">
+          <title id="fig-maths-t">Concept: detector scores for honest and manipulative trading overlap, so any threshold trades false alarms against missed cases.</title>
+          <line class="pfig__axis" x1="16" y1="160" x2="388" y2="160" />
+          <defs><clipPath id="pfig-right"><rect x="226" y="0" width="180" height="170" /></clipPath><clipPath id="pfig-left"><rect x="0" y="0" width="226" height="170" /></clipPath></defs>
+          <path class="pfig__honest-fill" clip-path="url(#pfig-right)" d="M20 160 L20 159 C70 156 90 40 140 40 C190 40 210 120 260 150 C280 157 300 159 330 159 L330 160 Z" />
+          <path class="pfig__honest" d="M20 159 C70 156 90 40 140 40 C190 40 210 120 260 150 C280 157 300 159 330 159" />
+          <path class="pfig__spoof-fill" clip-path="url(#pfig-left)" d="M150 160 L150 159 C200 156 240 98 280 98 C320 98 345 150 384 158 L384 160 Z" />
+          <path class="pfig__spoof" d="M150 159 C200 156 240 98 280 98 C320 98 345 150 384 158" />
+          <line class="pfig__threshold" x1="226" y1="24" x2="226" y2="168" />
+          <text class="pfig__label pfig__label--b" x="226" y="18" text-anchor="middle">Alert threshold</text>
+          <text class="pfig__label" x="108" y="32" text-anchor="middle">Honest trading</text>
+          <text class="pfig__label pfig__label--accent" x="300" y="88" text-anchor="middle">Manipulation</text>
+          <text class="pfig__small" x="268" y="186" text-anchor="middle">False alarms</text>
+          <path class="pfig__pointer" d="M262 176 L248 154" />
+          <text class="pfig__small" x="168" y="186" text-anchor="middle">Missed cases</text>
+          <path class="pfig__pointer" d="M180 176 L206 152" />
+          <text class="pfig__small" x="20" y="212">lower score</text>
+          <text class="pfig__small" x="384" y="212" text-anchor="end">higher score → more suspicious</text>
+        </svg>
+        <figcaption><b>Concept sketch, not data.</b> Honest and manipulative trading overlap, so moving the threshold swaps false alarms for missed cases. When manipulation is rare, even a small share of false alarms can outnumber the real alerts. The proposal is to choose that threshold mathematically.</figcaption>
+      </figure>
+      </div>
       <div class="dept__cols">
         <div class="panel panel--done" data-reveal>
           <p class="panel__tag">Completed</p>
@@ -243,8 +311,34 @@
     <!-- COMPUTER SCIENCE -->
     <section class="dept dept--cs" id="computer-science" aria-labelledby="cs-title">
       <p class="dept__subject">Computer Science</p>
-      <h2 class="dept__title" id="cs-title">When does cheating pay?</h2>
-      <p class="dept__question"><b>Research question</b>Under what market conditions does a learning trading agent discover spoofing, and can a previously fixed detector identify the learned behaviour without generating excessive false accusations?</p>
+      <h2 class="dept__title" id="cs-title">What will a learning agent discover, and will detectors notice?</h2>
+      <div class="dept__lead">
+        <p class="dept__question"><b>Research question</b>Under what market conditions does a learning trading agent discover spoofing, and can a previously fixed detector identify the learned behaviour without generating excessive false accusations?</p>
+      <figure class="pfig" data-reveal>
+        <svg viewBox="0 0 400 230" role="img" aria-labelledby="fig-cs-t">
+          <title id="fig-cs-t">The learning experiment: a learning agent sends orders to a simulated market and is rewarded for the price it gets. Frozen detectors watch the market, and in one group their alerts cost the agent a fine.</title>
+          <defs><marker id="pfig-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="pfig__arrowhead" /></marker></defs>
+          <rect class="pfig__box pfig__box--accent" x="14" y="62" width="112" height="64" rx="8" />
+          <text class="pfig__label pfig__label--b" x="70" y="91" text-anchor="middle">Learning</text>
+          <text class="pfig__label pfig__label--b" x="70" y="109" text-anchor="middle">agent</text>
+          <rect class="pfig__box" x="236" y="18" width="150" height="64" rx="8" />
+          <text class="pfig__label pfig__label--b" x="311" y="47" text-anchor="middle">Simulated</text>
+          <text class="pfig__label pfig__label--b" x="311" y="65" text-anchor="middle">order book</text>
+          <rect class="pfig__box" x="236" y="146" width="150" height="64" rx="8" />
+          <text class="pfig__label pfig__label--b" x="311" y="175" text-anchor="middle">Frozen</text>
+          <text class="pfig__label pfig__label--b" x="311" y="193" text-anchor="middle">detectors</text>
+          <path class="pfig__flow" d="M126 74 C170 50 196 44 234 44" marker-end="url(#pfig-arrow)" />
+          <text class="pfig__small" x="168" y="40" text-anchor="middle">orders</text>
+          <path class="pfig__flow" d="M236 66 C200 70 176 86 128 94" marker-end="url(#pfig-arrow)" />
+          <text class="pfig__small" x="184" y="98" text-anchor="middle">fills, price</text>
+          <path class="pfig__flow" d="M311 82 V144" marker-end="url(#pfig-arrow)" />
+          <text class="pfig__small" x="318" y="118">watch</text>
+          <path class="pfig__flow pfig__flow--dash" d="M236 180 C180 180 110 170 76 128" marker-end="url(#pfig-arrow)" />
+          <text class="pfig__small" x="150" y="196" text-anchor="middle">fine, one group only</text>
+        </svg>
+        <figcaption><b>How the pilot fits together.</b> The agent is never shown a spoof: it is rewarded only for the price it gets, and in one group fined when the frozen detector alerts. The proposal replaces this agent with one that watches the market and acts at every step.</figcaption>
+      </figure>
+      </div>
       <div class="dept__cols">
         <div class="panel panel--done" data-reveal>
           <p class="panel__tag">Completed</p>
