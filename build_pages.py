@@ -125,7 +125,6 @@ def header(page):
       <h3>The paper</h3>
       <div class="sheet-links">
 {s_links}
-        <a href="progress.html">Progress</a>
         <a href="{REPO}" data-repo-link>Code on GitHub</a>
       </div>
     </div>
