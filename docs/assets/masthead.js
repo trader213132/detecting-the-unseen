@@ -37,7 +37,7 @@
   const nav = document.getElementById("menu");
   const dd = document.getElementById("dd");
   if (!header || !nav || !dd) return;
-  const ORDER = ["findings", "explore", "paper", "scholar"];
+  const ORDER = ["sims", "findings", "scholar", "paper"];
   const PAD = 20;                          // lines each panel's text up with its trigger's text (8px + 12px)
   const triggers = [...nav.querySelectorAll(".menu__trigger")];
   const panels = Object.fromEntries([...dd.querySelectorAll(".dd__panel")].map((p) => [p.dataset.panel, p]));

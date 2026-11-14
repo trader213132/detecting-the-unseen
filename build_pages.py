@@ -5,6 +5,12 @@
 Each page in docs/ has two pairs of markers:
     <!-- header:start --> ... <!-- header:end -->     <!-- footer:start --> ... <!-- footer:end -->
 Everything between them is replaced, so a menu change is made once, here, for all pages.
+
+The site is organised in four groups, the same in the desktop menu, the phone menu and the footer:
+    Simulations   every interactive replay and lab (also listed on simulations.html, the flask icon)
+    Explanations  the chapters, in reading order
+    Scholarship   the portfolio and the Economics pilot
+    Paper         summary, report, references, progress
 """
 from pathlib import Path
 
@@ -13,34 +19,42 @@ REPO = "https://github.com/trader213132/detecting-the-unseen"
 ARROW = '<svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg>'
 CHEV = '<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg>'
 
-# The study: the four chapters that tell the story, each with a figure preview.
+# Explanations: the chapters that tell the story, in reading order, each with a figure preview.
 STUDY = [("learning.html", "The learning experiment", "What an AI trader learns, with held-out controls.", "learning"),
          ("experiment.html", "The detector foundation", "A market where spoofing works, and seven detectors.", "replay"),
          ("results.html", "Results", "Spoofs against honest look-alikes and volatile markets.", "detectors"),
          ("teaching.html", "What kind of teaching works?", "Examples, a rule, or the law. And how to dodge it.", "ladder"),
+         ("challenger.html", "An AI challenger", "A search program hunts for spoofs the law-based detector misses.", "challenger"),
          ("conclusion.html", "What it means", "The answer, its limits and the sources.", "answer")]
-CHALLENGER_READY = True       # Part 4's chapter is listed only once its results are in
-if CHALLENGER_READY:
-    STUDY.insert(4, ("challenger.html", "An AI challenger", "A search program hunts for spoofs the law-based detector misses.", "challenger"))
-EXPLORE = [("lab.html", "Research Lab", "Pick a market situation and see how every detector reacts.", "lab"),
-           ("index.html#replay", "Watch one spoof", "The wall goes up, the order fills, the wall vanishes.", "replay")]
-PAPER = [("scholarship.html", "Scholarship research portfolio"), ("report.html", "Research report"), ("summary.html", "Summary: the project in five minutes"),
-         ("analytics.html", "Analytics explorer"), ("conclusion.html#references", "References"), ("progress.html", "Progress")]
-PAGES = {"index.html": "Home", "learning.html": "Learning experiment", "experiment.html": "The experiment", "results.html": "Results",
-         "teaching.html": "Teaching", "conclusion.html": "What it means", "progress.html": "Progress",
-         "lab.html": "Research Lab", "summary.html": "Summary", "analytics.html": "Analytics", "scholarship.html": "Scholarship Research"}
-if CHALLENGER_READY:
-    PAGES = {**{k: v for k, v in PAGES.items() if k != "conclusion.html" and k not in ("progress.html", "lab.html", "summary.html", "analytics.html")},
-             "challenger.html": "Challenger", **{k: v for k, v in PAGES.items() if k in ("conclusion.html", "progress.html", "lab.html", "summary.html", "analytics.html")}}
 
-# The Economics proposal's pilot: when does a spoof pay? (run_breakeven.py)
-SCHOLAR = [("scholarship.html", "Scholarship portfolio"), ("break-even.html", "Break-Even Lab: when does manipulation pay?"), ("surveillance.html", "Surveillance Lab: two traders, one footprint")]
-PAGES["break-even.html"] = "Break-Even Lab"
+# Simulations: (page, title, one line, Phosphor icon, kind, explained in (page, title)).
+# The same list drives the menu, the phone menu, the footer and the simulations.html hub.
+SIMS = [("index.html#replay", "Watch one spoof", "A fake wall goes up, the order fills, the wall vanishes.", "play-circle", "Replay",
+         ("experiment.html", "The detector foundation")),
+        ("lab.html", "Research Lab", "Pick a market situation and see how every detector reacts.", "sliders-horizontal", "Lab",
+         ("results.html", "Results")),
+        ("surveillance.html", "Surveillance Lab", "A spoof and an honest change of mind, side by side.", "binoculars", "Replay",
+         ("teaching.html", "What kind of teaching works?")),
+        ("challenger.html#challenger", "AI challenger", "Watch a search program hunt for spoofs the detector misses.", "crosshair", "Replay",
+         ("challenger.html", "An AI challenger")),
+        ("learning.html#learning-replay", "Learning replay", "Step through what six AI traders learned, round by round.", "brain", "Replay",
+         ("learning.html", "The learning experiment")),
+        ("break-even.html", "Break-Even Lab", "When does a spoof pay? 48 simulated markets.", "scales", "Lab",
+         ("scholarship.html#economics", "Economics proposal")),
+        ("analytics.html", "Analytics explorer", "Filter and compare every result table.", "chart-bar", "Charts",
+         ("report.html", "Research report")),
+        ("scholarship.html#mathematics", "Base-rate calculator", "How often is an alert right? Bayes, interactively.", "percent", "Calculator",
+         ("scholarship.html#mathematics", "Mathematics proposal"))]
 
-# A spoof and an honest change of mind replayed side by side (build_surveillance.py)
-EXPLORE.insert(1, ("surveillance.html", "Surveillance Lab", "A spoof and an honest change of mind, side by side. The detector flags both.", "replay"))
-PAGES["surveillance.html"] = "Surveillance Lab"
+SCHOLAR = [("scholarship.html", "Scholarship portfolio"), ("break-even.html", "Break-Even Lab: when does manipulation pay?"),
+           ("surveillance.html", "Surveillance Lab: two traders, one footprint")]
+PAPER = [("summary.html", "Summary: the project in five minutes"), ("report.html", "Research report"), ("report.pdf", "Report as PDF"),
+         ("conclusion.html#references", "References"), ("progress.html", "Progress")]
 
+PAGES = {"index.html": "Home", "simulations.html": "Simulations", "learning.html": "Learning experiment", "experiment.html": "The experiment",
+         "results.html": "Results", "teaching.html": "Teaching", "challenger.html": "Challenger", "conclusion.html": "What it means",
+         "progress.html": "Progress", "lab.html": "Research Lab", "summary.html": "Summary", "analytics.html": "Analytics",
+         "scholarship.html": "Scholarship Research", "break-even.html": "Break-Even Lab", "surveillance.html": "Surveillance Lab"}
 
 # What each menu picture shows, in one line (the menu shows it under the picture)
 CAPTIONS = {"learning": "What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side.",
@@ -60,20 +74,21 @@ def header(page):
     here = lambda href: ' aria-current="page"' if href == page else ""
     solid = "" if page == "index.html" else " is-solid"
     rows = "\n".join(
-        f'              <a class="dd-item{" is-active" if i == 0 else ""}" href="{h}" data-img="{i}"{here(h)}><strong>{t}</strong><span>{d}</span></a>'
+        f'              <a class="dd-item{" is-active" if i == 0 else ""}" href="{h}" data-img="{i}"{here(h)}><strong><span class="dd-num">{i + 1:02d}</span>{t}</strong><span>{d}</span></a>'
         for i, (h, t, d, _) in enumerate(STUDY))
     first = lambda tag: tag.replace("<img ", '<img class="is-active" ', 1)
     media = "\n".join("              " + (first(img(im, 856, 716, False)) if i == 0 else img(im, 856, 716)).replace("<img ", f'<img data-cap="{CAPTIONS.get(im, "")}" ', 1)
                       for i, (_, _, _, im) in enumerate(STUDY))
     media += f'\n              <p class="dd-cap">{CAPTIONS.get(STUDY[0][3], "")}</p>'
-    cards = "\n".join(f'            <a class="dd-card" href="{h}"{here(h)}>{img(im, 432, 588)}<strong>{t}</strong><span>{d}</span></a>'
-                      for h, t, d, im in EXPLORE)
+    sims = "\n".join(f'            <a class="dd-sim" href="{h}"{here(h)}><i class="ph ph-{ic} dd-sim__icon" aria-hidden="true"></i>'
+                     f'<span><strong>{t}</strong><span>{d}</span></span></a>' for h, t, d, ic, _, _ in SIMS)
     links = "\n".join(f'            <a class="dd-link" href="{h}"{here(h)}>{t}</a>' for h, t in PAPER)
     scholar = "\n".join(f'            <a class="dd-link" href="{h}"{here(h)}>{t}</a>' for h, t in SCHOLAR)
     s_items = "\n".join(f'        <a class="sheet-item" href="{h}">{img(im, 856, 716)}<span><strong>{t}</strong><small>{d}</small></span></a>'
                         for h, t, d, im in STUDY)
-    s_cards = "\n".join(f'        <a class="sheet-card" href="{h}">{img(im, 432, 588)}<strong>{t}</strong><small>{d}</small></a>'
-                        for h, t, d, im in EXPLORE)
+    s_sims = "\n".join(f'        <a class="sheet-sim" href="{h}"><i class="ph ph-{ic}" aria-hidden="true"></i><span><strong>{t}</strong><small>{d}</small></span></a>'
+                       for h, t, d, ic, _, _ in SIMS)
+    s_scholar = "\n".join(f'        <a href="{h}">{t}</a>' for h, t in SCHOLAR)
     s_links = "\n".join(f'        <a href="{h}">{t}</a>' for h, t in PAPER)
     return f'''  <header class="topbar{solid}" data-topbar>
     <div class="topbar__inner">
@@ -83,15 +98,19 @@ def header(page):
       </a>
       <nav class="menu" id="menu" aria-label="Main">
         <ul class="menu__links">
-          <li><a class="menu__plain" href="summary.html"{here("summary.html")}>Summary</a></li>
-          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">The study{CHEV}</button></li>
-          <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore{CHEV}</button></li>
-          <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper{CHEV}</button></li>
-          <li><a class="menu__plain" href="lab.html"{here("lab.html")}>Lab</a></li>
-          <li><button class="menu__trigger menu__plain--portfolio" type="button" data-menu="scholar" aria-expanded="false" aria-controls="p-scholar"><span class="lbl-long">Scholarship Research</span><span class="lbl-short" aria-hidden="true">Scholarship</span>{CHEV}</button></li>
+          <li><a class="menu__plain" href="index.html#start">Start here</a></li>
+          <li><button class="menu__trigger" type="button" data-menu="sims" aria-expanded="false" aria-controls="p-sims">Simulations{CHEV}</button></li>
+          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">Explanations{CHEV}</button></li>
+          <li><button class="menu__trigger" type="button" data-menu="scholar" aria-expanded="false" aria-controls="p-scholar">Scholarship{CHEV}</button></li>
+          <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">Paper{CHEV}</button></li>
         </ul>
-        <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
+        <!-- One container for all the menus: it morphs between them rather than closing and reopening. -->
         <div class="dd" id="dd">
+          <div class="dd__panel dd-sims" id="p-sims" data-panel="sims">
+            <p class="dd-head">Interactive simulations <span>every one runs on the offline simulated market</span></p>
+{sims}
+            <a class="dd-all" href="simulations.html"{here("simulations.html")}>All simulations, and where each is explained {ARROW}</a>
+          </div>
           <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
             <div class="dd-list">
 {rows}
@@ -100,18 +119,16 @@ def header(page):
 {media}
             </div>
           </div>
-          <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
-{cards}
+          <div class="dd__panel dd-paper dd-scholar" id="p-scholar" data-panel="scholar">
+{scholar}
           </div>
           <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
 {links}
           </div>
-          <div class="dd__panel dd-paper dd-scholar" id="p-scholar" data-panel="scholar">
-{scholar}
-          </div>
         </div>
       </nav>
       <div class="topbar__actions">
+        <a class="icon-button icon-button--sims" href="simulations.html" aria-label="All simulations" title="All simulations"{here("simulations.html")}><i class="ph ph-flask" aria-hidden="true"></i></a>
         <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch between light and dark theme">
           <i class="ph ph-moon theme-icon-light" aria-hidden="true"></i>
           <i class="ph ph-sun theme-icon-dark" aria-hidden="true"></i>
@@ -124,18 +141,21 @@ def header(page):
       </div>
     </div>
     <div class="sheet" id="sheet">
-      <a class="sheet-summary" href="scholarship.html"><span><strong>Scholarship Research</strong><small>Economics, Mathematics and Computer Science: completed and proposed research</small></span>{ARROW}</a>
-      <a class="sheet-summary" href="break-even.html"><span><strong>Break-Even Lab</strong><small>When does market manipulation pay? Pilot results and sealed predictions</small></span>{ARROW}</a>
-      <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span>{ARROW}</a>
-      <h3>The study</h3>
+      <a class="sheet-summary" href="index.html#start"><span><strong>Start here</strong><small>Three ways in: run it, read it, or see the scholarship proposal</small></span>{ARROW}</a>
+      <a class="sheet-summary" href="simulations.html"><span><strong>All simulations</strong><small>Every replay and lab, with the chapter that explains it</small></span>{ARROW}</a>
+      <h3>Simulations</h3>
+      <div class="sheet-sims">
+{s_sims}
+      </div>
+      <h3>Explanations</h3>
       <div class="sheet-list">
 {s_items}
       </div>
-      <h3>Explore</h3>
-      <div class="sheet-cards">
-{s_cards}
+      <h3>Scholarship</h3>
+      <div class="sheet-links">
+{s_scholar}
       </div>
-      <h3>The paper</h3>
+      <h3>Paper</h3>
       <div class="sheet-links">
 {s_links}
         <a href="{REPO}" data-repo-link>Code on GitHub</a>
@@ -145,34 +165,34 @@ def header(page):
 
 
 def footer(page):
-    """The Wayfinder footer: the project's name, then every chapter, the explorers and the paper."""
+    """The Wayfinder footer: the same four groups as the menu."""
     here = lambda href: ' aria-current="page"' if href == page else ""
-    chapters = [(h, t) for h, t, _, _ in STUDY] + [("progress.html", "Progress")]
+    chapters = [("summary.html", "Summary")] + [(h, t) for h, t, _, _ in STUDY]
     study = chr(10).join(f'          <li><a href="{h}"{here(h)}><span class="wayfinder__num">{i:02d}</span>{t}</a></li>'
-                      for i, (h, t) in enumerate(chapters, 1))
-    explore = [("lab.html", "Research Lab"), ("surveillance.html", "Surveillance Lab"), ("index.html#replay", "Watch one spoof"), ("analytics.html", "Analytics explorer")]
-    paper = [("scholarship.html", "Scholarship research portfolio"), ("break-even.html", "Break-Even Lab"), ("summary.html", "Summary"), ("report.html", "Research report"), ("report.pdf", "Report as PDF"),
-             ("conclusion.html#references", "References"), (REPO, "Code on GitHub"), ("progress.html", "Progress")]
+                         for i, (h, t) in enumerate(chapters))
+    sims = [("simulations.html", "All simulations")] + [(h, t) for h, t, *_ in SIMS]
+    paper = SCHOLAR[:2] + [("report.html", "Research report"), ("report.pdf", "Report as PDF"),
+                           ("conclusion.html#references", "References"), (REPO, "Code on GitHub"), ("progress.html", "Progress")]
     item = lambda h, t: (f'          <li><a href="{h}" data-repo-link>{t}</a></li>' if h == REPO
                          else f'          <li><a href="{h}"{here(h)}>{t}</a></li>')
     return f'''  <footer class="footer wayfinder">
     <div class="wayfinder__inner">
       <p class="wayfinder__name" aria-hidden="true">Detecting the Unseen</p>
       <div class="wayfinder__grid">
-        <nav class="wayfinder__col" aria-label="The study">
-          <p class="wayfinder__head">The study</p>
+        <nav class="wayfinder__col" aria-label="Simulations">
+          <p class="wayfinder__head">Simulations</p>
+          <ul>
+{chr(10).join(item(h, t) for h, t in sims)}
+          </ul>
+        </nav>
+        <nav class="wayfinder__col" aria-label="Explanations">
+          <p class="wayfinder__head">Explanations, in reading order</p>
           <ol>
 {study}
           </ol>
         </nav>
-        <nav class="wayfinder__col" aria-label="Explore">
-          <p class="wayfinder__head">Explore</p>
-          <ul>
-{chr(10).join(item(h, t) for h, t in explore)}
-          </ul>
-        </nav>
-        <nav class="wayfinder__col" aria-label="The paper">
-          <p class="wayfinder__head">The paper</p>
+        <nav class="wayfinder__col" aria-label="Scholarship and paper">
+          <p class="wayfinder__head">Scholarship and paper</p>
           <ul>
 {chr(10).join(item(h, t) for h, t in paper)}
           </ul>
@@ -188,6 +208,20 @@ def footer(page):
     </div>
     <script src="assets/finish.js?v=1" defer></script>
   </footer>'''
+
+
+def sims_grid():
+    """The cards on simulations.html: what each simulation is, and where it is explained."""
+    return "\n".join(
+        f'''          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-{ic}" aria-hidden="true"></i></span><span class="sim-kind">{kind}</span></div>
+            <h3>{t}</h3>
+            <p>{d}</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="{h}">Open the simulation {ARROW}</a>
+              <a class="sim-explain" href="{eh}"><span>Explained in <b>{et}</b></span>{ARROW}</a>
+            </div>
+          </article>''' for h, t, d, ic, kind, (eh, et) in SIMS)
 
 
 def replace(text, name, new):
@@ -208,6 +242,8 @@ def main():
         text = replace(text, "header", header(page))
         if "<!-- footer:start -->" in text:
             text = replace(text, "footer", footer(page))
+        if "<!-- sims:start -->" in text:
+            text = replace(text, "sims", sims_grid())
         path.write_text(text, encoding="utf-8")
         print("updated", page)
 

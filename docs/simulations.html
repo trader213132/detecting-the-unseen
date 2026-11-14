@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulations · Detecting the Unseen</title>
+  <meta name="description" content="Every interactive simulation on Detecting the Unseen in one place: what each one shows, and the chapter that explains it.">
+  <meta property="og:title" content="Simulations · Detecting the Unseen">
+  <meta property="og:description" content="Every replay and lab in one place, each linked to the chapter that explains it.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0f1217">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314171f'/%3E%3Crect x='7' y='9' width='12' height='4' rx='2' fill='%23858d9b'/%3E%3Crect x='7' y='15' width='18' height='4' rx='2' fill='%23ee5f95'/%3E%3Crect x='7' y='21' width='9' height='4' rx='2' fill='%23a3abbb'/%3E%3C/svg%3E">
+  <script>
+    try { var t = localStorage.getItem("dtu-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=27"><link rel="stylesheet" href="assets/masthead.css?v=22">
+  <link rel="stylesheet" href="assets/sims.css?v=1">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+</head>
+<body class="sims-page">
+  <a class="skip-link" href="#main">Skip to the simulations</a>
+
+  <!-- header:start -->
+  <header class="topbar is-solid" data-topbar>
+    <div class="topbar__inner">
+      <a class="wordmark" href="index.html" aria-label="Detecting the Unseen, home">
+        <span class="wordmark__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        Detecting the Unseen
+      </a>
+      <nav class="menu" id="menu" aria-label="Main">
+        <ul class="menu__links">
+          <li><a class="menu__plain" href="index.html#start">Start here</a></li>
+          <li><button class="menu__trigger" type="button" data-menu="sims" aria-expanded="false" aria-controls="p-sims">Simulations<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">Explanations<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="scholar" aria-expanded="false" aria-controls="p-scholar">Scholarship<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">Paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+        </ul>
+        <!-- One container for all the menus: it morphs between them rather than closing and reopening. -->
+        <div class="dd" id="dd">
+          <div class="dd__panel dd-sims" id="p-sims" data-panel="sims">
+            <p class="dd-head">Interactive simulations <span>every one runs on the offline simulated market</span></p>
+            <a class="dd-sim" href="index.html#replay"><i class="ph ph-play-circle dd-sim__icon" aria-hidden="true"></i><span><strong>Watch one spoof</strong><span>A fake wall goes up, the order fills, the wall vanishes.</span></span></a>
+            <a class="dd-sim" href="lab.html"><i class="ph ph-sliders-horizontal dd-sim__icon" aria-hidden="true"></i><span><strong>Research Lab</strong><span>Pick a market situation and see how every detector reacts.</span></span></a>
+            <a class="dd-sim" href="surveillance.html"><i class="ph ph-binoculars dd-sim__icon" aria-hidden="true"></i><span><strong>Surveillance Lab</strong><span>A spoof and an honest change of mind, side by side.</span></span></a>
+            <a class="dd-sim" href="challenger.html#challenger"><i class="ph ph-crosshair dd-sim__icon" aria-hidden="true"></i><span><strong>AI challenger</strong><span>Watch a search program hunt for spoofs the detector misses.</span></span></a>
+            <a class="dd-sim" href="learning.html#learning-replay"><i class="ph ph-brain dd-sim__icon" aria-hidden="true"></i><span><strong>Learning replay</strong><span>Step through what six AI traders learned, round by round.</span></span></a>
+            <a class="dd-sim" href="break-even.html"><i class="ph ph-scales dd-sim__icon" aria-hidden="true"></i><span><strong>Break-Even Lab</strong><span>When does a spoof pay? 48 simulated markets.</span></span></a>
+            <a class="dd-sim" href="analytics.html"><i class="ph ph-chart-bar dd-sim__icon" aria-hidden="true"></i><span><strong>Analytics explorer</strong><span>Filter and compare every result table.</span></span></a>
+            <a class="dd-sim" href="scholarship.html#mathematics"><i class="ph ph-percent dd-sim__icon" aria-hidden="true"></i><span><strong>Base-rate calculator</strong><span>How often is an alert right? Bayes, interactively.</span></span></a>
+            <a class="dd-all" href="simulations.html" aria-current="page">All simulations, and where each is explained <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+          </div>
+          <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
+            <div class="dd-list">
+              <a class="dd-item is-active" href="learning.html" data-img="0"><strong><span class="dd-num">01</span>The learning experiment</strong><span>What an AI trader learns, with held-out controls.</span></a>
+              <a class="dd-item" href="experiment.html" data-img="1"><strong><span class="dd-num">02</span>The detector foundation</strong><span>A market where spoofing works, and seven detectors.</span></a>
+              <a class="dd-item" href="results.html" data-img="2"><strong><span class="dd-num">03</span>Results</strong><span>Spoofs against honest look-alikes and volatile markets.</span></a>
+              <a class="dd-item" href="teaching.html" data-img="3"><strong><span class="dd-num">04</span>What kind of teaching works?</strong><span>Examples, a rule, or the law. And how to dodge it.</span></a>
+              <a class="dd-item" href="challenger.html" data-img="4"><strong><span class="dd-num">05</span>An AI challenger</strong><span>A search program hunts for spoofs the law-based detector misses.</span></a>
+              <a class="dd-item" href="conclusion.html" data-img="5"><strong><span class="dd-num">06</span>What it means</strong><span>The answer, its limits and the sources.</span></a>
+            </div>
+            <div class="dd-media" aria-hidden="true">
+              <img data-cap="What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side." class="is-active" src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async">
+              <img data-cap="One spoof replayed: the fake wall (pink) beside the real order book." src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="Who catches what: the share of spoofs each detector flags, by order size." src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="The ladder of teaching: spoofs caught (pink) and honest orders flagged (grey)." src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="The challenger learning: the best payoff it found, round by round, per detector." src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="Spoof or honest order? 0.5 is a coin toss; lower means honest orders look stranger." src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <p class="dd-cap">What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side.</p>
+            </div>
+          </div>
+          <div class="dd__panel dd-paper dd-scholar" id="p-scholar" data-panel="scholar">
+            <a class="dd-link" href="scholarship.html">Scholarship portfolio</a>
+            <a class="dd-link" href="break-even.html">Break-Even Lab: when does manipulation pay?</a>
+            <a class="dd-link" href="surveillance.html">Surveillance Lab: two traders, one footprint</a>
+          </div>
+          <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
+            <a class="dd-link" href="summary.html">Summary: the project in five minutes</a>
+            <a class="dd-link" href="report.html">Research report</a>
+            <a class="dd-link" href="report.pdf">Report as PDF</a>
+            <a class="dd-link" href="conclusion.html#references">References</a>
+            <a class="dd-link" href="progress.html">Progress</a>
+          </div>
+        </div>
+      </nav>
+      <div class="topbar__actions">
+        <a class="icon-button icon-button--sims" href="simulations.html" aria-label="All simulations" title="All simulations" aria-current="page"><i class="ph ph-flask" aria-hidden="true"></i></a>
+        <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch between light and dark theme">
+          <i class="ph ph-moon theme-icon-light" aria-hidden="true"></i>
+          <i class="ph ph-sun theme-icon-dark" aria-hidden="true"></i>
+        </button>
+        <a class="icon-button" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link aria-label="Code on GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a>
+        <a class="pill cta" href="report.html">Report</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5h12M2 10.5h12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sheet" id="sheet">
+      <a class="sheet-summary" href="index.html#start"><span><strong>Start here</strong><small>Three ways in: run it, read it, or see the scholarship proposal</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <a class="sheet-summary" href="simulations.html"><span><strong>All simulations</strong><small>Every replay and lab, with the chapter that explains it</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <h3>Simulations</h3>
+      <div class="sheet-sims">
+        <a class="sheet-sim" href="index.html#replay"><i class="ph ph-play-circle" aria-hidden="true"></i><span><strong>Watch one spoof</strong><small>A fake wall goes up, the order fills, the wall vanishes.</small></span></a>
+        <a class="sheet-sim" href="lab.html"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i><span><strong>Research Lab</strong><small>Pick a market situation and see how every detector reacts.</small></span></a>
+        <a class="sheet-sim" href="surveillance.html"><i class="ph ph-binoculars" aria-hidden="true"></i><span><strong>Surveillance Lab</strong><small>A spoof and an honest change of mind, side by side.</small></span></a>
+        <a class="sheet-sim" href="challenger.html#challenger"><i class="ph ph-crosshair" aria-hidden="true"></i><span><strong>AI challenger</strong><small>Watch a search program hunt for spoofs the detector misses.</small></span></a>
+        <a class="sheet-sim" href="learning.html#learning-replay"><i class="ph ph-brain" aria-hidden="true"></i><span><strong>Learning replay</strong><small>Step through what six AI traders learned, round by round.</small></span></a>
+        <a class="sheet-sim" href="break-even.html"><i class="ph ph-scales" aria-hidden="true"></i><span><strong>Break-Even Lab</strong><small>When does a spoof pay? 48 simulated markets.</small></span></a>
+        <a class="sheet-sim" href="analytics.html"><i class="ph ph-chart-bar" aria-hidden="true"></i><span><strong>Analytics explorer</strong><small>Filter and compare every result table.</small></span></a>
+        <a class="sheet-sim" href="scholarship.html#mathematics"><i class="ph ph-percent" aria-hidden="true"></i><span><strong>Base-rate calculator</strong><small>How often is an alert right? Bayes, interactively.</small></span></a>
+      </div>
+      <h3>Explanations</h3>
+      <div class="sheet-list">
+        <a class="sheet-item" href="learning.html"><img src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The learning experiment</strong><small>What an AI trader learns, with held-out controls.</small></span></a>
+        <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The detector foundation</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
+        <a class="sheet-item" href="results.html"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>Results</strong><small>Spoofs against honest look-alikes and volatile markets.</small></span></a>
+        <a class="sheet-item" href="teaching.html"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What kind of teaching works?</strong><small>Examples, a rule, or the law. And how to dodge it.</small></span></a>
+        <a class="sheet-item" href="challenger.html"><img src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>An AI challenger</strong><small>A search program hunts for spoofs the law-based detector misses.</small></span></a>
+        <a class="sheet-item" href="conclusion.html"><img src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What it means</strong><small>The answer, its limits and the sources.</small></span></a>
+      </div>
+      <h3>Scholarship</h3>
+      <div class="sheet-links">
+        <a href="scholarship.html">Scholarship portfolio</a>
+        <a href="break-even.html">Break-Even Lab: when does manipulation pay?</a>
+        <a href="surveillance.html">Surveillance Lab: two traders, one footprint</a>
+      </div>
+      <h3>Paper</h3>
+      <div class="sheet-links">
+        <a href="summary.html">Summary: the project in five minutes</a>
+        <a href="report.html">Research report</a>
+        <a href="report.pdf">Report as PDF</a>
+        <a href="conclusion.html#references">References</a>
+        <a href="progress.html">Progress</a>
+        <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
+      </div>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="main">
+    <section class="sims-hero">
+      <div class="sims-wrap">
+        <p class="sims-eyebrow"><i class="ph ph-flask" aria-hidden="true"></i>Simulations</p>
+        <h1>Run it yourself.<br><em>Then read why.</em></h1>
+        <p class="sims-lead">Every interactive replay and lab on this site, in one place. Each one runs on the same offline simulated market, and each links to the chapter that explains what it shows.</p>
+        <p class="sims-legend"><span><b>Replay</b> · real simulator episodes, played back</span><span><b>Lab</b> · change the settings yourself</span><span><b>Charts</b> · explore the result tables</span></p>
+      </div>
+    </section>
+
+    <section class="sims-path" aria-labelledby="path-title">
+      <div class="sims-wrap">
+        <h2 class="sims-h2" id="path-title">How the pieces fit together</h2>
+        <p class="sims-lead">The project in four steps. Pink links open a simulation; grey links open the explanation.</p>
+        <ol class="path">
+          <li>
+            <span class="path__n">01</span>
+            <h3>Build a market where spoofing works</h3>
+            <p>Simulated traders read the order book, so a fake wall really does move them.</p>
+            <div class="path__links">
+              <a class="is-sim" href="index.html#replay"><i class="ph ph-play-circle" aria-hidden="true"></i>Watch one spoof</a>
+              <a class="is-sim" href="lab.html"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i>Research Lab</a>
+              <a class="is-read" href="experiment.html"><i class="ph ph-book-open" aria-hidden="true"></i>The detector foundation</a>
+              <a class="is-read" href="results.html"><i class="ph ph-book-open" aria-hidden="true"></i>Results</a>
+            </div>
+          </li>
+          <li>
+            <span class="path__n">02</span>
+            <h3>Catch it, without accusing honest traders</h3>
+            <p>A detector built from the law catches spoofs, but cannot tell them from an honest change of mind.</p>
+            <div class="path__links">
+              <a class="is-sim" href="surveillance.html"><i class="ph ph-binoculars" aria-hidden="true"></i>Surveillance Lab</a>
+              <a class="is-read" href="teaching.html"><i class="ph ph-book-open" aria-hidden="true"></i>What kind of teaching works?</a>
+            </div>
+          </li>
+          <li>
+            <span class="path__n">03</span>
+            <h3>Let AI try to beat it</h3>
+            <p>A search program hunts for spoofs the detector misses; learning traders are rewarded for good execution.</p>
+            <div class="path__links">
+              <a class="is-sim" href="challenger.html#challenger"><i class="ph ph-crosshair" aria-hidden="true"></i>AI challenger</a>
+              <a class="is-sim" href="learning.html#learning-replay"><i class="ph ph-brain" aria-hidden="true"></i>Learning replay</a>
+              <a class="is-read" href="challenger.html"><i class="ph ph-book-open" aria-hidden="true"></i>An AI challenger</a>
+              <a class="is-read" href="learning.html"><i class="ph ph-book-open" aria-hidden="true"></i>The learning experiment</a>
+            </div>
+          </li>
+          <li>
+            <span class="path__n">04</span>
+            <h3>Ask whether it pays</h3>
+            <p>The Economics question: after unwanted fills, costs and penalties, is a fake order worth it?</p>
+            <div class="path__links">
+              <a class="is-sim" href="break-even.html"><i class="ph ph-scales" aria-hidden="true"></i>Break-Even Lab</a>
+              <a class="is-read" href="scholarship.html#economics"><i class="ph ph-book-open" aria-hidden="true"></i>Economics proposal</a>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sims-all" aria-labelledby="all-title">
+      <div class="sims-wrap">
+        <h2 class="sims-h2" id="all-title">Every simulation</h2>
+        <div class="sim-grid">
+<!-- sims:start -->
+          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-play-circle" aria-hidden="true"></i></span><span class="sim-kind">Replay</span></div>
+            <h3>Watch one spoof</h3>
+            <p>A fake wall goes up, the order fills, the wall vanishes.</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="index.html#replay">Open the simulation <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+              <a class="sim-explain" href="experiment.html"><span>Explained in <b>The detector foundation</b></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+            </div>
+          </article>
+          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></span><span class="sim-kind">Lab</span></div>
+            <h3>Research Lab</h3>
+            <p>Pick a market situation and see how every detector reacts.</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="lab.html">Open the simulation <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+              <a class="sim-explain" href="results.html"><span>Explained in <b>Results</b></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+            </div>
+          </article>
+          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-binoculars" aria-hidden="true"></i></span><span class="sim-kind">Replay</span></div>
+            <h3>Surveillance Lab</h3>
+            <p>A spoof and an honest change of mind, side by side.</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="surveillance.html">Open the simulation <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+              <a class="sim-explain" href="teaching.html"><span>Explained in <b>What kind of teaching works?</b></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+            </div>
+          </article>
+          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-crosshair" aria-hidden="true"></i></span><span class="sim-kind">Replay</span></div>
+            <h3>AI challenger</h3>
+            <p>Watch a search program hunt for spoofs the detector misses.</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="challenger.html#challenger">Open the simulation <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+              <a class="sim-explain" href="challenger.html"><span>Explained in <b>An AI challenger</b></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+            </div>
+          </article>
+          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-brain" aria-hidden="true"></i></span><span class="sim-kind">Replay</span></div>
+            <h3>Learning replay</h3>
+            <p>Step through what six AI traders learned, round by round.</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="learning.html#learning-replay">Open the simulation <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+              <a class="sim-explain" href="learning.html"><span>Explained in <b>The learning experiment</b></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+            </div>
+          </article>
+          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-scales" aria-hidden="true"></i></span><span class="sim-kind">Lab</span></div>
+            <h3>Break-Even Lab</h3>
+            <p>When does a spoof pay? 48 simulated markets.</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="break-even.html">Open the simulation <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+              <a class="sim-explain" href="scholarship.html#economics"><span>Explained in <b>Economics proposal</b></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+            </div>
+          </article>
+          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-chart-bar" aria-hidden="true"></i></span><span class="sim-kind">Charts</span></div>
+            <h3>Analytics explorer</h3>
+            <p>Filter and compare every result table.</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="analytics.html">Open the simulation <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+              <a class="sim-explain" href="report.html"><span>Explained in <b>Research report</b></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+            </div>
+          </article>
+          <article class="sim-card">
+            <div class="sim-card__top"><span class="sim-card__icon"><i class="ph ph-percent" aria-hidden="true"></i></span><span class="sim-kind">Calculator</span></div>
+            <h3>Base-rate calculator</h3>
+            <p>How often is an alert right? Bayes, interactively.</p>
+            <div class="sim-card__links">
+              <a class="sim-open" href="scholarship.html#mathematics">Open the simulation <svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+              <a class="sim-explain" href="scholarship.html#mathematics"><span>Explained in <b>Mathematics proposal</b></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+            </div>
+          </article>
+  <!-- sims:end -->
+        </div>
+        <p class="sims-note">Every simulation runs offline on simulated traders. Nothing here is live market data, and an alert is never evidence of intent.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer:start -->
+  <footer class="footer wayfinder">
+    <div class="wayfinder__inner">
+      <p class="wayfinder__name" aria-hidden="true">Detecting the Unseen</p>
+      <div class="wayfinder__grid">
+        <nav class="wayfinder__col" aria-label="Simulations">
+          <p class="wayfinder__head">Simulations</p>
+          <ul>
+          <li><a href="simulations.html" aria-current="page">All simulations</a></li>
+          <li><a href="index.html#replay">Watch one spoof</a></li>
+          <li><a href="lab.html">Research Lab</a></li>
+          <li><a href="surveillance.html">Surveillance Lab</a></li>
+          <li><a href="challenger.html#challenger">AI challenger</a></li>
+          <li><a href="learning.html#learning-replay">Learning replay</a></li>
+          <li><a href="break-even.html">Break-Even Lab</a></li>
+          <li><a href="analytics.html">Analytics explorer</a></li>
+          <li><a href="scholarship.html#mathematics">Base-rate calculator</a></li>
+          </ul>
+        </nav>
+        <nav class="wayfinder__col" aria-label="Explanations">
+          <p class="wayfinder__head">Explanations, in reading order</p>
+          <ol>
+          <li><a href="summary.html"><span class="wayfinder__num">00</span>Summary</a></li>
+          <li><a href="learning.html"><span class="wayfinder__num">01</span>The learning experiment</a></li>
+          <li><a href="experiment.html"><span class="wayfinder__num">02</span>The detector foundation</a></li>
+          <li><a href="results.html"><span class="wayfinder__num">03</span>Results</a></li>
+          <li><a href="teaching.html"><span class="wayfinder__num">04</span>What kind of teaching works?</a></li>
+          <li><a href="challenger.html"><span class="wayfinder__num">05</span>An AI challenger</a></li>
+          <li><a href="conclusion.html"><span class="wayfinder__num">06</span>What it means</a></li>
+          </ol>
+        </nav>
+        <nav class="wayfinder__col" aria-label="Scholarship and paper">
+          <p class="wayfinder__head">Scholarship and paper</p>
+          <ul>
+          <li><a href="scholarship.html">Scholarship portfolio</a></li>
+          <li><a href="break-even.html">Break-Even Lab: when does manipulation pay?</a></li>
+          <li><a href="report.html">Research report</a></li>
+          <li><a href="report.pdf">Report as PDF</a></li>
+          <li><a href="conclusion.html#references">References</a></li>
+          <li><a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a></li>
+          <li><a href="progress.html">Progress</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="wayfinder__base">
+        <div class="wayfinder__notes">
+          <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
+          <p>Charts and tables are built from the results files in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>; figures quoted in the text were checked against them. Detector data generated <time data-generated></time>.</p>
+        </div>
+        <button class="wayfinder__top" type="button">Back to top <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 8.6V1.6M1.9 4.6 5 1.4l3.1 3.2"/></svg></button>
+      </div>
+    </div>
+    <script src="assets/finish.js?v=1" defer></script>
+  </footer>
+  <!-- footer:end -->
+
+  <script src="progress.js"></script>
+  <script src="assets/site.js?v=10"></script>
+  <script src="assets/masthead.js?v=20"></script>
+</body>
+</html>
