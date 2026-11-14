@@ -34,7 +34,7 @@ if CHALLENGER_READY:
              "challenger.html": "Challenger", **{k: v for k, v in PAGES.items() if k in ("conclusion.html", "progress.html", "lab.html", "summary.html", "analytics.html")}}
 
 # The Economics proposal's pilot: when does a spoof pay? (run_breakeven.py)
-PAPER.insert(1, ("break-even.html", "Break-Even Lab: when does manipulation pay?"))
+SCHOLAR = [("scholarship.html", "Scholarship portfolio"), ("break-even.html", "Break-Even Lab: when does manipulation pay?")]
 PAGES["break-even.html"] = "Break-Even Lab"
 
 
@@ -65,6 +65,7 @@ def header(page):
     cards = "\n".join(f'            <a class="dd-card" href="{h}"{here(h)}>{img(im, 432, 588)}<strong>{t}</strong><span>{d}</span></a>'
                       for h, t, d, im in EXPLORE)
     links = "\n".join(f'            <a class="dd-link" href="{h}"{here(h)}>{t}</a>' for h, t in PAPER)
+    scholar = "\n".join(f'            <a class="dd-link" href="{h}"{here(h)}>{t}</a>' for h, t in SCHOLAR)
     s_items = "\n".join(f'        <a class="sheet-item" href="{h}">{img(im, 856, 716)}<span><strong>{t}</strong><small>{d}</small></span></a>'
                         for h, t, d, im in STUDY)
     s_cards = "\n".join(f'        <a class="sheet-card" href="{h}">{img(im, 432, 588)}<strong>{t}</strong><small>{d}</small></a>'
@@ -83,7 +84,7 @@ def header(page):
           <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore{CHEV}</button></li>
           <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper{CHEV}</button></li>
           <li><a class="menu__plain" href="lab.html"{here("lab.html")}>Lab</a></li>
-          <li><a class="menu__plain menu__plain--portfolio" href="scholarship.html" aria-label="Scholarship Research"{here("scholarship.html")}><span class="lbl-long">Scholarship Research</span><span class="lbl-short" aria-hidden="true">Scholarship</span></a></li>
+          <li><button class="menu__trigger menu__plain--portfolio" type="button" data-menu="scholar" aria-expanded="false" aria-controls="p-scholar"><span class="lbl-long">Scholarship Research</span><span class="lbl-short" aria-hidden="true">Scholarship</span>{CHEV}</button></li>
         </ul>
         <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
         <div class="dd" id="dd">
@@ -101,6 +102,9 @@ def header(page):
           <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
 {links}
           </div>
+          <div class="dd__panel dd-paper dd-scholar" id="p-scholar" data-panel="scholar">
+{scholar}
+          </div>
         </div>
       </nav>
       <div class="topbar__actions">
@@ -117,6 +121,7 @@ def header(page):
     </div>
     <div class="sheet" id="sheet">
       <a class="sheet-summary" href="scholarship.html"><span><strong>Scholarship Research</strong><small>Economics, Mathematics and Computer Science: completed and proposed research</small></span>{ARROW}</a>
+      <a class="sheet-summary" href="break-even.html"><span><strong>Break-Even Lab</strong><small>When does market manipulation pay? Pilot results and sealed predictions</small></span>{ARROW}</a>
       <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span>{ARROW}</a>
       <h3>The study</h3>
       <div class="sheet-list">
@@ -142,7 +147,7 @@ def footer(page):
     study = chr(10).join(f'          <li><a href="{h}"{here(h)}><span class="wayfinder__num">{i:02d}</span>{t}</a></li>'
                       for i, (h, t) in enumerate(chapters, 1))
     explore = [("lab.html", "Research Lab"), ("index.html#replay", "Watch one spoof"), ("analytics.html", "Analytics explorer")]
-    paper = [("scholarship.html", "Scholarship research portfolio"), ("summary.html", "Summary"), ("report.html", "Research report"), ("report.pdf", "Report as PDF"),
+    paper = [("scholarship.html", "Scholarship research portfolio"), ("break-even.html", "Break-Even Lab"), ("summary.html", "Summary"), ("report.html", "Research report"), ("report.pdf", "Report as PDF"),
              ("conclusion.html#references", "References"), (REPO, "Code on GitHub"), ("progress.html", "Progress")]
     item = lambda h, t: (f'          <li><a href="{h}" data-repo-link>{t}</a></li>' if h == REPO
                          else f'          <li><a href="{h}"{here(h)}>{t}</a></li>')
