@@ -34,8 +34,12 @@ if CHALLENGER_READY:
              "challenger.html": "Challenger", **{k: v for k, v in PAGES.items() if k in ("conclusion.html", "progress.html", "lab.html", "summary.html", "analytics.html")}}
 
 # The Economics proposal's pilot: when does a spoof pay? (run_breakeven.py)
-SCHOLAR = [("scholarship.html", "Scholarship portfolio"), ("break-even.html", "Break-Even Lab: when does manipulation pay?")]
+SCHOLAR = [("scholarship.html", "Scholarship portfolio"), ("break-even.html", "Break-Even Lab: when does manipulation pay?"), ("surveillance.html", "Surveillance Lab: two traders, one footprint")]
 PAGES["break-even.html"] = "Break-Even Lab"
+
+# A spoof and an honest change of mind replayed side by side (build_surveillance.py)
+EXPLORE.insert(1, ("surveillance.html", "Surveillance Lab", "A spoof and an honest change of mind, side by side. The detector flags both.", "replay"))
+PAGES["surveillance.html"] = "Surveillance Lab"
 
 
 # What each menu picture shows, in one line (the menu shows it under the picture)
@@ -146,7 +150,7 @@ def footer(page):
     chapters = [(h, t) for h, t, _, _ in STUDY] + [("progress.html", "Progress")]
     study = chr(10).join(f'          <li><a href="{h}"{here(h)}><span class="wayfinder__num">{i:02d}</span>{t}</a></li>'
                       for i, (h, t) in enumerate(chapters, 1))
-    explore = [("lab.html", "Research Lab"), ("index.html#replay", "Watch one spoof"), ("analytics.html", "Analytics explorer")]
+    explore = [("lab.html", "Research Lab"), ("surveillance.html", "Surveillance Lab"), ("index.html#replay", "Watch one spoof"), ("analytics.html", "Analytics explorer")]
     paper = [("scholarship.html", "Scholarship research portfolio"), ("break-even.html", "Break-Even Lab"), ("summary.html", "Summary"), ("report.html", "Research report"), ("report.pdf", "Report as PDF"),
              ("conclusion.html#references", "References"), (REPO, "Code on GitHub"), ("progress.html", "Progress")]
     item = lambda h, t: (f'          <li><a href="{h}" data-repo-link>{t}</a></li>' if h == REPO
