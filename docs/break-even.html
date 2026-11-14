@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Break-Even Lab · Detecting the Unseen</title>
+  <meta name="description" content="When does market manipulation pay? A pre-registered pilot across 48 simulated markets: the payoff G − U − C − pF, measured, mapped and sealed.">
+  <meta property="og:title" content="Break-Even Lab: when does market manipulation pay?">
+  <meta property="og:description" content="48 simulated markets, a measured payoff model and sealed predictions.">
+  <meta property="og:type" content="article">
+  <meta name="theme-color" content="#0f1217">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314171f'/%3E%3Crect x='7' y='9' width='12' height='4' rx='2' fill='%23858d9b'/%3E%3Crect x='7' y='15' width='18' height='4' rx='2' fill='%23ee5f95'/%3E%3Crect x='7' y='21' width='9' height='4' rx='2' fill='%23a3abbb'/%3E%3C/svg%3E">
+  <script>
+    try { var t = localStorage.getItem("dtu-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=27"><link rel="stylesheet" href="assets/masthead.css?v=11">
+  <link rel="stylesheet" href="assets/breakeven.css?v=2">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+</head>
+<body class="be-page">
+  <a class="skip-link" href="#main">Skip to the results</a>
+
+  <!-- header:start -->
+  <header class="topbar is-solid" data-topbar>
+    <div class="topbar__inner">
+      <a class="wordmark" href="index.html" aria-label="Detecting the Unseen, home">
+        <span class="wordmark__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        Detecting the Unseen
+      </a>
+      <nav class="menu" id="menu" aria-label="Main">
+        <ul class="menu__links">
+          <li><a class="menu__plain" href="summary.html">Summary</a></li>
+          <li><button class="menu__trigger" type="button" data-menu="findings" aria-expanded="false" aria-controls="p-findings">The study<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="explore" aria-expanded="false" aria-controls="p-explore">Explore<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><button class="menu__trigger" type="button" data-menu="paper" aria-expanded="false" aria-controls="p-paper">The paper<svg class="chev" width="8" height="5" viewBox="0 0 8 5" aria-hidden="true"><path d="M1 1l3 3 3-3"/></svg></button></li>
+          <li><a class="menu__plain" href="lab.html">Lab</a></li>
+          <li><a class="menu__plain menu__plain--portfolio" href="scholarship.html" aria-label="Scholarship Research"><span class="lbl-long">Scholarship Research</span><span class="lbl-short" aria-hidden="true">Scholarship</span></a></li>
+        </ul>
+        <!-- One container for all three menus: it morphs between them rather than closing and reopening. -->
+        <div class="dd" id="dd">
+          <div class="dd__panel dd-findings" id="p-findings" data-panel="findings">
+            <div class="dd-list">
+              <a class="dd-item is-active" href="learning.html" data-img="0"><strong>The learning experiment</strong><span>What an AI trader learns, with held-out controls.</span></a>
+              <a class="dd-item" href="experiment.html" data-img="1"><strong>The detector foundation</strong><span>A market where spoofing works, and seven detectors.</span></a>
+              <a class="dd-item" href="results.html" data-img="2"><strong>Results</strong><span>Spoofs against honest look-alikes and volatile markets.</span></a>
+              <a class="dd-item" href="teaching.html" data-img="3"><strong>What kind of teaching works?</strong><span>Examples, a rule, or the law. And how to dodge it.</span></a>
+              <a class="dd-item" href="challenger.html" data-img="4"><strong>An AI challenger</strong><span>A search program hunts for spoofs the law-based detector misses.</span></a>
+              <a class="dd-item" href="conclusion.html" data-img="5"><strong>What it means</strong><span>The answer, its limits and the sources.</span></a>
+            </div>
+            <div class="dd-media" aria-hidden="true">
+              <img data-cap="What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side." class="is-active" src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async">
+              <img data-cap="One spoof replayed: the fake wall (pink) beside the real order book." src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="Who catches what: the share of spoofs each detector flags, by order size." src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="The ladder of teaching: spoofs caught (pink) and honest orders flagged (grey)." src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="The challenger learning: the best payoff it found, round by round, per detector." src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <img data-cap="Spoof or honest order? 0.5 is a coin toss; lower means honest orders look stranger." src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy">
+              <p class="dd-cap">What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side.</p>
+            </div>
+          </div>
+          <div class="dd__panel dd-explore" id="p-explore" data-panel="explore">
+            <a class="dd-card" href="lab.html"><img src="assets/menu/lab.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Research Lab</strong><span>Pick a market situation and see how every detector reacts.</span></a>
+            <a class="dd-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><span>The wall goes up, the order fills, the wall vanishes.</span></a>
+          </div>
+          <div class="dd__panel dd-paper" id="p-paper" data-panel="paper">
+            <a class="dd-link" href="scholarship.html">Scholarship research portfolio</a>
+            <a class="dd-link" href="break-even.html" aria-current="page">Break-Even Lab: when does manipulation pay?</a>
+            <a class="dd-link" href="report.html">Research report</a>
+            <a class="dd-link" href="summary.html">Summary: the project in five minutes</a>
+            <a class="dd-link" href="analytics.html">Analytics explorer</a>
+            <a class="dd-link" href="conclusion.html#references">References</a>
+            <a class="dd-link" href="progress.html">Progress</a>
+          </div>
+        </div>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-button" type="button" id="theme-toggle" aria-label="Switch between light and dark theme">
+          <i class="ph ph-moon theme-icon-light" aria-hidden="true"></i>
+          <i class="ph ph-sun theme-icon-dark" aria-hidden="true"></i>
+        </button>
+        <a class="icon-button" href="https://github.com/trader213132/detecting-the-unseen" data-repo-link aria-label="Code on GitHub"><i class="ph ph-github-logo" aria-hidden="true"></i></a>
+        <a class="pill cta" href="report.html">Report</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5h12M2 10.5h12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sheet" id="sheet">
+      <a class="sheet-summary" href="scholarship.html"><span><strong>Scholarship Research</strong><small>Economics, Mathematics and Computer Science: completed and proposed research</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <a class="sheet-summary" href="summary.html"><span><strong>Summary</strong><small>The question and the answer in plain words</small></span><svg width="10" height="8" viewBox="0 0 9.5 8" aria-hidden="true"><path d="M0.7 4H8.8M5.6 0.75 8.85 4 5.6 7.25"/></svg></a>
+      <h3>The study</h3>
+      <div class="sheet-list">
+        <a class="sheet-item" href="learning.html"><img src="assets/menu/learning.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The learning experiment</strong><small>What an AI trader learns, with held-out controls.</small></span></a>
+        <a class="sheet-item" href="experiment.html"><img src="assets/menu/replay.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>The detector foundation</strong><small>A market where spoofing works, and seven detectors.</small></span></a>
+        <a class="sheet-item" href="results.html"><img src="assets/menu/detectors.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>Results</strong><small>Spoofs against honest look-alikes and volatile markets.</small></span></a>
+        <a class="sheet-item" href="teaching.html"><img src="assets/menu/ladder.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What kind of teaching works?</strong><small>Examples, a rule, or the law. And how to dodge it.</small></span></a>
+        <a class="sheet-item" href="challenger.html"><img src="assets/menu/challenger.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>An AI challenger</strong><small>A search program hunts for spoofs the law-based detector misses.</small></span></a>
+        <a class="sheet-item" href="conclusion.html"><img src="assets/menu/answer.webp" alt="" width="856" height="716" decoding="async" loading="lazy"><span><strong>What it means</strong><small>The answer, its limits and the sources.</small></span></a>
+      </div>
+      <h3>Explore</h3>
+      <div class="sheet-cards">
+        <a class="sheet-card" href="lab.html"><img src="assets/menu/lab.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Research Lab</strong><small>Pick a market situation and see how every detector reacts.</small></a>
+        <a class="sheet-card" href="index.html#replay"><img src="assets/menu/replay.webp" alt="" width="432" height="588" decoding="async" loading="lazy"><strong>Watch one spoof</strong><small>The wall goes up, the order fills, the wall vanishes.</small></a>
+      </div>
+      <h3>The paper</h3>
+      <div class="sheet-links">
+        <a href="scholarship.html">Scholarship research portfolio</a>
+        <a href="break-even.html">Break-Even Lab: when does manipulation pay?</a>
+        <a href="report.html">Research report</a>
+        <a href="summary.html">Summary: the project in five minutes</a>
+        <a href="analytics.html">Analytics explorer</a>
+        <a href="conclusion.html#references">References</a>
+        <a href="progress.html">Progress</a>
+        <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a>
+      </div>
+    </div>
+  </header>
+  <!-- header:end -->
+
+  <main id="main">
+    <!-- 1 · THE WALL -->
+    <section class="be-hero" data-hero>
+      <div class="be-hero__stage">
+        <canvas class="be-hero__canvas" data-book role="img"
+          aria-label="Animated order book: a normal book, then a large pink spoof wall appears on the sell side, buyers and sellers lean away from it, the spoofer's small genuine buy order fills, and the wall is withdrawn."></canvas>
+        <div class="be-hero__text">
+          <p class="be-eyebrow be-eyebrow--hero">Economics pilot · sealed 14 Nov 2026</p>
+          <div class="be-hero__swap">
+            <div class="be-hero__intro" data-intro>
+              <h1 class="be-h1" data-split>When does manipulation <em>pay?</em></h1>
+              <p class="be-lede">A large order can move other traders. But after unwanted fills, costs and the risk of being caught, is it worth it? I measured it in 48 simulated markets.</p>
+            </div>
+            <div class="be-hero__eq" data-hero-eq aria-hidden="true">
+              <p class="be-hero__eqline"><span>G</span><span>−</span><span>U</span><span>−</span><span>C</span><span>−</span><span>p</span><span>F</span></p>
+              <p class="be-hero__eqcap">benefit − unwanted fills − costs − expected penalty</p>
+            </div>
+          </div>
+          <div class="be-cue" data-cue><span class="be-cue__line"></span><span>Scroll to run the spoof</span></div>
+        </div>
+        <ol class="be-steps" data-steps>
+          <li>01 · A normal book</li>
+          <li>02 · A fake wall appears</li>
+          <li>03 · Traders lean away, the genuine order fills</li>
+          <li>04 · The wall is pulled</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 2 · THE EQUATION -->
+    <section class="be-sec be-eq" data-eq>
+      <div class="be-wrap be-eq__grid">
+        <div class="be-eq__text">
+          <p class="be-eyebrow">02 · The model</p>
+          <h2 class="be-h2">Every term, measured</h2>
+          <p>For one attempt, compared with an <strong>honest twin</strong> (the same market and the same genuine order, but no wall):</p>
+          <p class="be-formula"><span class="m">net</span> = <span class="g">G</span> − U − C − pF</p>
+          <p>G and U come straight from the simulator. The penalty is a scenario I choose, <em>not</em> a real fine.</p>
+
+          <div class="be-presets" role="group" aria-label="Load a measured market">
+            <button type="button" class="be-pill" data-preset="2.25|9|calm|16">Calm · liquid · responsive</button>
+            <button type="button" class="be-pill" data-preset="1.5|6|calm|16">Calm · normal · responsive</button>
+            <button type="button" class="be-pill" data-preset="1|9|volatile|16">Volatile · thin · responsive</button>
+            <button type="button" class="be-pill" data-preset="1.5|0|calm|16">No one reads the book</button>
+          </div>
+
+          <div class="be-sliders" data-sliders>
+            <label class="be-slider"><span class="be-slider__name"><b class="g">G</b> extra genuine lots</span><input type="range" min="0" max="1" step="0.01" value="0.34" data-k="G"><output data-o="G"></output></label>
+            <label class="be-slider"><span class="be-slider__name"><b>U</b> own wall that traded</span><input type="range" min="0" max="1.5" step="0.01" value="0.03" data-k="U"><output data-o="U"></output></label>
+            <label class="be-slider"><span class="be-slider__name"><b>C</b> fees and costs</span><input type="range" min="0" max="0.5" step="0.01" value="0" data-k="C"><output data-o="C"></output></label>
+            <label class="be-slider"><span class="be-slider__name"><b>p</b> chance of being caught</span><input type="range" min="0" max="1" step="0.01" value="0.85" data-k="p"><output data-o="p"></output></label>
+            <label class="be-slider"><span class="be-slider__name"><b>F</b> hypothetical sanction</span><input type="range" min="0" max="3" step="0.01" value="0.2" data-k="F"><output data-o="F"></output></label>
+          </div>
+          <p class="be-foot">Units: lots of the genuine order per attempt. The simulator charges no fees, so measured C is 0. The slider lets you add costs.</p>
+        </div>
+
+        <div class="be-eq__vis">
+          <div class="be-big">
+            <div class="be-odo" data-odo aria-live="polite"></div>
+            <p class="be-big__cap" data-verdict></p>
+          </div>
+          <svg class="be-fall" viewBox="0 0 640 360" data-fall role="img" aria-label="Waterfall chart of benefit minus unwanted fills, costs and expected penalty, ending in the net payoff">
+            <defs>
+              <pattern id="be-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <rect width="6" height="6" class="be-hatch-bg"/><line x1="0" y1="0" x2="0" y2="6" class="be-hatch-ln"/>
+              </pattern>
+            </defs>
+          </svg>
+          <p class="be-fstar" data-fstar></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · THE MAP -->
+    <section class="be-sec be-map" data-map>
+      <div class="be-wrap">
+        <p class="be-eyebrow">03 · The map</p>
+        <h2 class="be-h2">Where it pays, and where it doesn’t</h2>
+        <p class="be-lead">48 simulated markets: 3 levels of liquidity × 4 levels of how strongly traders react to the book × calm or volatile × two wall sizes. Each has 60 paired sessions on development seeds only.</p>
+
+        <div class="be-stats" data-stats>
+          <div class="be-stat"><p class="be-stat__n" data-stat="pays"></p><p>conditions where the spoof <strong>reliably paid</strong> before any penalty (95% interval above zero)</p></div>
+          <div class="be-stat"><p class="be-stat__n" data-stat="nofeed"></p><p>markets where <strong>no one reads the book</strong> in which the spoof paid</p></div>
+          <div class="be-stat"><p class="be-stat__n" data-stat="fmax"></p><p>the <strong>largest break-even sanction</strong>, in lots per attempt (order-life detector)</p></div>
+        </div>
+
+        <div class="be-controls">
+          <div class="be-seg" data-seg="size" role="radiogroup" aria-label="Wall size"><span class="be-seg__ind"></span>
+            <button type="button" role="radio" data-v="8">8× wall</button><button type="button" role="radio" data-v="16" aria-checked="true">16× wall</button></div>
+          <div class="be-seg" data-seg="regime" role="radiogroup" aria-label="Volatility"><span class="be-seg__ind"></span>
+            <button type="button" role="radio" data-v="calm">Calm</button><button type="button" role="radio" data-v="volatile">Volatile</button><button type="button" role="radio" data-v="both" aria-checked="true">Both</button></div>
+          <div class="be-seg" data-seg="det" role="radiogroup" aria-label="Detector"><span class="be-seg__ind"></span>
+            <button type="button" role="radio" data-v="life" aria-checked="true">Order-life</button><button type="button" role="radio" data-v="rule">Rule</button></div>
+        </div>
+        <div class="be-penalty">
+          <label class="be-slider be-slider--wide"><span class="be-slider__name"><b>F</b> expected sanction per attempt</span><input type="range" min="0" max="0.6" step="0.01" value="0" data-mapf><output data-mapfo></output></label>
+          <button type="button" class="be-pill be-pill--ink" data-sweep><i class="ph ph-play"></i> Sweep the penalty</button>
+        </div>
+        <p class="be-live" data-mapcap aria-live="polite"></p>
+        <div class="be-panels" data-panels></div>
+        <p class="be-foot">Colour shows the net payoff after the expected penalty, net − p·F. A ring means the 95% interval is above zero and it still pays after the penalty. Units: lots of the genuine order per attempt. C = 0. Development seeds only; held-out seeds are sealed.</p>
+      </div>
+      <div class="be-tip" data-tip hidden></div>
+    </section>
+
+    <!-- 4 · THE SEAL -->
+    <section class="be-sec be-seal" data-seal>
+      <div class="be-wrap">
+        <p class="be-eyebrow">04 · The seal</p>
+        <h2 class="be-h2">I froze my predictions before testing them</h2>
+        <p class="be-lead">Before running anything, I wrote down the grid, the seeds and what would count as success, then published a SHA-256 fingerprint. Change one character and the fingerprint changes completely. The held-out seeds have not been run.</p>
+        <div class="be-envs" data-envs></div>
+      </div>
+    </section>
+
+    <section class="be-sec be-becker" data-becker>
+      <div class="be-wrap be-becker__grid">
+        <div>
+          <p class="be-eyebrow">05 · Deterrence</p>
+          <h2 class="be-h2">Catch more, or fine more?</h2>
+          <p>Becker (1968): a rational offender compares the gain with the <em>expected</em> penalty, p × F. Every point on the curve deters exactly. Above it, spoofing does not pay. Drag the regulator’s point. The dots are the conditions that paid in the pilot, plotted at their measured catch rate and break-even sanction.</p>
+          <p class="be-live" data-beckercap aria-live="polite"></p>
+          <svg class="be-chart" viewBox="0 0 600 380" data-beckersvg role="img" aria-label="Break-even curve of sanction against chance of being caught"></svg>
+        </div>
+        <div>
+          <p class="be-eyebrow">06 · A career, not one attempt</p>
+          <h2 class="be-h2 be-h2--s">Small risks add up</h2>
+          <p>The chance of being caught at least once in N attempts is 1 − (1 − p)<sup>N</sup>. Even a small per-attempt chance adds up for a habitual spoofer.</p>
+          <svg class="be-chart" viewBox="0 0 600 380" data-careersvg role="img" aria-label="Chance of being caught at least once against number of attempts"></svg>
+          <p class="be-foot">The pink line uses the p from the model above.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="be-band" aria-label="Key results">
+      <div class="be-marquee"><div class="be-marquee__track" data-marquee></div></div>
+      <div class="be-wrap be-band__note">
+        <p>A pilot on <strong>development seeds</strong> of a simulated market. It shows nothing about real markets or real fines, and an alert is not proof of intent. Code: <code>run_breakeven.py</code>. Protocol: <a href="research/breakeven-preregistration.md">breakeven-preregistration.md</a>.</p>
+        <p>AI assistance: an AI assistant wrote the pilot code, this page and its animations at my direction. I chose the question, the model and the conditions, and I am responsible for the interpretation.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer:start -->
+  <footer class="footer wayfinder">
+    <div class="wayfinder__inner">
+      <p class="wayfinder__name" aria-hidden="true">Detecting the Unseen</p>
+      <div class="wayfinder__grid">
+        <nav class="wayfinder__col" aria-label="The study">
+          <p class="wayfinder__head">The study</p>
+          <ol>
+          <li><a href="learning.html"><span class="wayfinder__num">01</span>The learning experiment</a></li>
+          <li><a href="experiment.html"><span class="wayfinder__num">02</span>The detector foundation</a></li>
+          <li><a href="results.html"><span class="wayfinder__num">03</span>Results</a></li>
+          <li><a href="teaching.html"><span class="wayfinder__num">04</span>What kind of teaching works?</a></li>
+          <li><a href="challenger.html"><span class="wayfinder__num">05</span>An AI challenger</a></li>
+          <li><a href="conclusion.html"><span class="wayfinder__num">06</span>What it means</a></li>
+          <li><a href="progress.html"><span class="wayfinder__num">07</span>Progress</a></li>
+          </ol>
+        </nav>
+        <nav class="wayfinder__col" aria-label="Explore">
+          <p class="wayfinder__head">Explore</p>
+          <ul>
+          <li><a href="lab.html">Research Lab</a></li>
+          <li><a href="index.html#replay">Watch one spoof</a></li>
+          <li><a href="analytics.html">Analytics explorer</a></li>
+          </ul>
+        </nav>
+        <nav class="wayfinder__col" aria-label="The paper">
+          <p class="wayfinder__head">The paper</p>
+          <ul>
+          <li><a href="scholarship.html">Scholarship research portfolio</a></li>
+          <li><a href="summary.html">Summary</a></li>
+          <li><a href="report.html">Research report</a></li>
+          <li><a href="report.pdf">Report as PDF</a></li>
+          <li><a href="conclusion.html#references">References</a></li>
+          <li><a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>Code on GitHub</a></li>
+          <li><a href="progress.html">Progress</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="wayfinder__base">
+        <div class="wayfinder__notes">
+          <p>Research use only. Every spoof on this site happened inside an offline simulation, and an alert is never evidence of intent.</p>
+          <p>Charts and tables are built from the results files in <a href="https://github.com/trader213132/detecting-the-unseen" data-repo-link>the repository</a>; figures quoted in the text were checked against them. Detector data generated <time data-generated></time>.</p>
+        </div>
+        <button class="wayfinder__top" type="button">Back to top <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 8.6V1.6M1.9 4.6 5 1.4l3.1 3.2"/></svg></button>
+      </div>
+    </div>
+    <script src="assets/finish.js?v=1" defer></script>
+  </footer>
+  <!-- footer:end -->
+
+  <script src="data/breakeven.js?v=2"></script>
+  <script src="progress.js"></script>
+  <script src="assets/site.js?v=10"></script>
+  <script src="assets/masthead.js?v=11"></script>
+  <script src="assets/breakeven.js?v=2"></script>
+</body>
+</html>

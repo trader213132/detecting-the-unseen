@@ -1,0 +1,9 @@
+Break-even pilot seals (SHA-256)
+
+1. breakeven-preregistration.md
+   sealed: 2026-11-14 (before any pilot session was run)
+   sha256: 5f6ba04889861096cc6e4ace79f4454caffd2a2d2359269dcab930b83ad4fbc0
+
+2. breakeven-predictions.json
+   sealed: 2026-11-14 (after the development pilot, before any held-out run)
+   sha256: 7b6458e80d0530c2e0de279a04ff04cdae70cb6e17ad8b5d5c44d7006465e724

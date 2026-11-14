@@ -33,6 +33,10 @@ if CHALLENGER_READY:
     PAGES = {**{k: v for k, v in PAGES.items() if k != "conclusion.html" and k not in ("progress.html", "lab.html", "summary.html", "analytics.html")},
              "challenger.html": "Challenger", **{k: v for k, v in PAGES.items() if k in ("conclusion.html", "progress.html", "lab.html", "summary.html", "analytics.html")}}
 
+# The Economics proposal's pilot: when does a spoof pay? (run_breakeven.py)
+PAPER.insert(1, ("break-even.html", "Break-Even Lab: when does manipulation pay?"))
+PAGES["break-even.html"] = "Break-Even Lab"
+
 
 # What each menu picture shows, in one line (the menu shows it under the picture)
 CAPTIONS = {"learning": "What the AI trader chose after 100 rounds of learning. Pink: an extra order on the opposite side.",

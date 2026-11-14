@@ -18,3 +18,4 @@ results/*_log.txt
 # Stopped or failed learning-agent runs, kept locally as evidence (see research/emergence-protocol.md)
 results/emergence_incomplete_*/
 results/emergence_failed_*/
+.claude/
